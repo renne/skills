@@ -10,8 +10,6 @@ Sources: https://github.com/dani-garcia/vaultwarden/wiki/Which-container-image-t
 
 Vaultwarden is an unofficial Bitwarden server implementation written in Rust, ideal for self-hosted deployments. The recommended deployment method is via Docker or Podman using the official `vaultwarden/server` container image.
 
----
-
 ## Supported Features
 
 Vaultwarden supports most Bitwarden features. Notable supported and missing features:
