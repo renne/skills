@@ -60,9 +60,10 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Getting Started (Installation, CLI, Setup Keys)](netbird/getting-started/SKILL.md) | https://docs.netbird.io/get-started |
 | [Access Control (Groups, Policies, Posture Checks)](netbird/access-control/SKILL.md) | https://docs.netbird.io/manage/access-control |
 | [Networks and DNS (Routes, Site-to-Site, Nameservers)](netbird/networks-and-dns/SKILL.md) | https://docs.netbird.io/manage/networks |
+| [DNS Management (Nameservers, Custom Zones, DNS Settings, Aliases, Troubleshooting)](netbird/dns/SKILL.md) | https://docs.netbird.io/manage/dns |
 | [Self-Hosted Deployment (Docker Compose, Config, IdP)](netbird/self-hosted/SKILL.md) | https://docs.netbird.io/selfhosted/selfhosted-quickstart |
 | [MCP Server (AI Management via mcp-netbird)](netbird/mcp-netbird/SKILL.md) | https://github.com/XNet-NGO/mcp-netbird |
-| [DNS + CoreDNS Integration (forwarder vs authoritative, internal zone routing, Corefile patterns)](netbird/dns-coredns-integration/SKILL.md) | https://docs.netbird.io/manage/dns |
+| [DNS + CoreDNS Integration (Custom Zones vs CoreDNS, forwarder, internal zone routing, Corefile patterns)](netbird/dns-coredns-integration/SKILL.md) | https://docs.netbird.io/manage/dns |
 
 ### Proxmox VE
 

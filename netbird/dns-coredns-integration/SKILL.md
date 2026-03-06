@@ -1,32 +1,47 @@
 ---
 name: dns-coredns-integration
-description: Practical guide for integrating NetBird DNS with CoreDNS as an authoritative nameserver for internal zones. Explains that NetBird DNS is a forwarder (not an authoritative server), how to configure NetBird to point peers to a CoreDNS instance for specific domains, and when you must keep CoreDNS for hostname/subdomain mappings. Use when deciding whether to replace CoreDNS hostname mappings with NetBird DNS, setting up internal domain resolution for NetBird peers, or integrating NetBird with an existing CoreDNS setup.
+description: Practical guide for integrating NetBird DNS with CoreDNS as an authoritative nameserver for internal zones. Explains NetBird's two DNS approaches (Custom Zones for simple records vs. CoreDNS for complex zone management), how to configure NetBird to point peers to a CoreDNS instance for specific domains, and when CoreDNS is still required for advanced hostname/zone management. Use when deciding whether to use NetBird Custom Zones vs. CoreDNS, setting up internal domain resolution for NetBird peers, or integrating NetBird with an existing CoreDNS setup.
 ---
 # NetBird DNS + CoreDNS Integration
 
-## Key Concept: NetBird DNS is a Forwarder, Not an Authoritative Server
+## Two Approaches to Internal DNS in NetBird
 
-**NetBird DNS cannot host DNS zones or serve A/CNAME records directly.**
+NetBird provides two ways to serve internal DNS records:
 
-NetBird's DNS management feature does two things:
+### Option A: NetBird Custom Zones (Recommended for simple use cases)
+
+NetBird's **Custom Zones** feature (available in recent versions) lets you host A, AAAA, and CNAME records directly within NetBird — distributed to peers, no external DNS server needed.
+
+- Create a zone (e.g., `corp.example.com`) in **DNS → Zones**
+- Add A/AAAA/CNAME records for internal hosts
+- Assign distribution groups — only those peers receive the records
+- Custom Zones take precedence over nameserver forwarding for the same domain
+
+Use Custom Zones when you need simple hostname → IP mappings and don't want to run a separate DNS server. See [Custom Zones documentation](https://docs.netbird.io/manage/dns/custom-zones) for full details.
+
+### Option B: CoreDNS (or other external DNS) via Nameserver Forwarding
+
+For **complex zone management** — zone transfers, SRV/TXT/PTR records, dynamic DNS, DNSSEC, secondary nameservers, or existing infrastructure — you need an external authoritative DNS server.
+
+NetBird's **nameserver forwarder** then distributes the CoreDNS address to all peers automatically.
+
+NetBird's forwarding feature does two things:
 1. **Distributes nameserver configuration** to all peers (which DNS server to use for which domain)
 2. **Adds search domains** so short hostnames resolve correctly
 
-It does **not** run an authoritative DNS server. To serve hostname → IP mappings for a zone (e.g., `example.com`), you need an external authoritative DNS server such as CoreDNS, BIND, or PowerDNS.
-
 ---
 
-## Integration Pattern
+## CoreDNS Integration Pattern
 
-The recommended pattern for internal zones is:
+The recommended pattern for CoreDNS-backed zones is:
 
 ```
 Peer → NetBird DNS forwarder → CoreDNS (authoritative for internal zone)
                                         ↓
-                             Returns A/CNAME records
+                             Returns A/CNAME/SRV/PTR records
 ```
 
-1. **CoreDNS** remains the authoritative server for the internal zone (e.g., `example.com`)
+1. **CoreDNS** is the authoritative server for the internal zone (e.g., `example.com`)
 2. **NetBird** is configured with a nameserver entry pointing to CoreDNS for that zone
 3. All NetBird peers automatically use CoreDNS for the matching domain
 
@@ -122,29 +137,39 @@ Via MCP (`netbird-create_netbird_nameserver`):
 
 ---
 
-## What NetBird DNS CAN Do (vs CoreDNS)
+## What NetBird Custom Zones CAN Do (vs CoreDNS)
 
-| Capability | NetBird DNS | CoreDNS |
-|-----------|-------------|---------|
-| Forward queries to specific servers for domains | ✅ | ✅ (forward plugin) |
-| Serve A/CNAME records for a zone | ❌ | ✅ (file / hosts plugin) |
-| Wildcard subdomain resolution | ❌ (native) | ✅ (zone file `*` record) |
-| Push DNS config to all VPN peers automatically | ✅ | ❌ (manual config per host) |
-| Search domain distribution | ✅ | ❌ (manual config per host) |
-| Split DNS (different servers per domain) | ✅ | ✅ (multiple server blocks) |
+| Capability | NetBird Custom Zones | NetBird Nameserver Forwarding | CoreDNS |
+|-----------|---------------------|-------------------------------|---------|
+| Serve A/AAAA/CNAME records for a zone | ✅ | ❌ | ✅ (file / hosts plugin) |
+| Wildcard subdomain resolution | ❌ | ❌ (native) | ✅ (zone file `*` record) |
+| PTR records for reverse DNS | ❌ | ❌ | ✅ |
+| SRV/TXT records | ❌ | ❌ | ✅ |
+| Zone transfers to secondary nameservers | ❌ | ❌ | ✅ |
+| DNSSEC | ❌ | ❌ | ✅ |
+| Forward queries to specific servers per domain | ❌ | ✅ | ✅ (forward plugin) |
+| Push DNS config to all VPN peers automatically | ✅ | ✅ | ❌ (manual config per host) |
+| Search domain distribution | ✅ | ✅ | ❌ (manual config per host) |
+| Split DNS (different servers per domain) | ✅ (zones) | ✅ (match domains) | ✅ (multiple server blocks) |
+| Group-based access control for DNS records | ✅ (distribution groups) | ❌ | ❌ |
 
 ---
 
-## When to Keep CoreDNS
+## When to Use CoreDNS vs NetBird Custom Zones
 
-Keep CoreDNS as the authoritative server when you need:
-- **Static A/CNAME records** for hostnames in a zone
-- **Wildcard subdomain** resolution (e.g., `*.example.com → 192.168.1.1`)
+Use **NetBird Custom Zones** when you need:
+- Simple A/AAAA/CNAME records for internal services
+- Group-based access control (different peers see different records)
+- No separate DNS infrastructure to manage
+
+Use **CoreDNS** (with NetBird nameserver forwarding) when you need:
 - **PTR records** for reverse DNS
-- **SRV/TXT records** for service discovery
+- **SRV/TXT records** for service discovery (e.g., Active Directory, Kubernetes)
 - **Zone transfers** to secondary nameservers
-
-Use NetBird DNS to **distribute** the CoreDNS address to all peers automatically instead of manually configuring each host.
+- **DNSSEC** signing
+- **Wildcard subdomain** resolution (e.g., `*.example.com → 192.168.1.1`)
+- **Dynamic DNS** updates
+- **Existing CoreDNS infrastructure** you want to keep
 
 ---
 
