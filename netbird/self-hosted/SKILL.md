@@ -42,8 +42,12 @@ curl -fsSL https://github.com/netbirdio/netbird/releases/latest/download/getting
 
 The script prompts for:
 1. Your public domain (e.g., `netbird.example.com`)
-2. The reverse proxy to use (Traefik recommended for automatic TLS)
-3. Whether to enable the NetBird relay/proxy service
+2. The reverse proxy to use:
+   - `[0]` **Traefik** (default/recommended — automatic TLS via Let's Encrypt)
+   - `[2-4]` Options for using an existing proxy (nginx, Caddy, etc.)
+3. Whether to enable the NetBird Proxy service (requires a separate subdomain + wildcard DNS record, e.g., `*.proxy.example.com`)
+
+The script generates: `docker-compose.yml`, `config.yaml`, `dashboard.env`, and optionally `proxy.env`.
 
 After completion, start the stack:
 
@@ -51,6 +55,20 @@ After completion, start the stack:
 cd netbird   # directory created by the script
 docker compose up -d
 ```
+
+### First-time Admin Setup
+
+After the stack starts, **no users exist by default**. Navigate to `https://netbird.example.com/setup` to create the first admin account.
+
+The installation includes a **built-in local user management** system via an embedded [Dex](https://dexidp.io/) OIDC server — **no external identity provider is required**. You can add more users from the dashboard or switch to an external IdP later.
+
+### Required Ports
+
+| Port | Protocol | Purpose |
+|------|----------|---------|
+| 80 | TCP | HTTP (ACME challenge / redirect) |
+| 443 | TCP | HTTPS dashboard and API |
+| 3478 | UDP | STUN/TURN negotiation (coturn) |
 
 The dashboard is accessible at `https://netbird.example.com`.
 

@@ -38,12 +38,35 @@ NetBird enables connectivity beyond peer-to-peer connections through two complem
 Dashboard → **Networks → Add Network**:
 
 1. **Name** – descriptive label (e.g., `office-london`).
-2. **Resources** – add one or more IP prefixes or domains:
-   - IP prefix: `192.168.10.0/24`
-   - Domain: `*.corp.example.com`
+2. **Resources** – add one or more resources:
+   - **Single IP**: `192.168.10.1`
+   - **IP range / prefix**: `192.168.10.0/24`
+   - **Domain name**: `fileserver.corp.local`
+   - **Wildcard domain**: `*.corp.example.com`
 3. **Routing Peers** – select the peer(s) that will forward traffic to this network. Multiple routing peers provide high availability and load balancing.
 4. **Access Groups** – groups whose peers are allowed to access this network (resolved via Access Policies).
 5. **Masquerading** – enabled by default; the routing peer performs NAT so remote devices see requests from the routing peer's LAN IP. Disable for transparent routing when the remote subnet has a return route to the NetBird overlay.
+
+### Domain Resources
+
+When a resource is defined as a **domain name** or **wildcard domain** (e.g., `*.corp.example.com`):
+
+- NetBird distributes the routing rule to peers alongside a DNS resolution rule.
+- The **routing peer** acts as a DNS forwarder for that domain (on port `22054`; older clients below v0.59.0 use `5353`).
+- Clients resolve the domain through the routing peer, which looks up the address on the local network and routes traffic accordingly.
+- **Wildcard domain routing** (`*.example.com`) must be explicitly enabled in **Settings → Networks → Enable wildcard domain routing** before it can be used.
+
+**Troubleshooting domain resources:**
+```bash
+# Check domain resource resolution via the routing peer's forwarder (using dig)
+dig @<routing-peer-ip> -p 22054 fileserver.corp.local
+
+# Alternative with nslookup (port flag support varies by implementation)
+nslookup -port=22054 fileserver.corp.local <routing-peer-ip>
+
+# List domain-based resources and their status
+netbird networks ls
+```
 
 ### High Availability
 

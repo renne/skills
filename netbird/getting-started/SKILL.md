@@ -20,6 +20,34 @@ NetBird is an open-source, zero-trust networking platform that creates encrypted
 
 ---
 
+## Onboarding Wizard
+
+When you first log in to the NetBird dashboard, an onboarding wizard guides setup through two modes:
+
+### Mode 1: Peer-to-Peer Network
+
+Connect laptops, desktops, and servers directly in a mesh. Steps:
+1. Install the NetBird client on each device.
+2. Sign in with your identity provider (SSO) — the peer appears in the dashboard automatically.
+3. The default policy allows all peers to communicate. For Zero Trust, delete this and create targeted policies.
+
+### Mode 2: Remote Network Access
+
+Provides VPN-like access to a private subnet or cloud VPC without requiring NetBird on every host. Steps:
+1. Install NetBird on a **routing peer** inside the target network.
+2. Register it with a **Setup Key** (for headless/automated enrollment).
+3. Define a **Network** resource (e.g., `192.168.1.0/24`).
+4. Create an **Access Policy** granting specific peer groups access to that network.
+5. Users can access devices on the subnet using their NetBird IP as a gateway.
+
+**Demo of zero-trust in the onboarding**: the wizard lets you toggle the Default Policy on/off to instantly see how deny-by-default works before adding your first real policy.
+
+### IDP Sync for User Groups
+
+If your identity provider (e.g., Okta, Azure AD) has user groups, NetBird can sync them automatically. Synced groups appear in **Access Control → Groups** and can be used directly in policies.
+
+---
+
 ## Installation
 
 ### Linux (script)

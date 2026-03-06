@@ -10,6 +10,55 @@ Source: https://www.home-assistant.io/docs/configuration/templating/
 
 Home Assistant uses [Jinja2](https://jinja.palletsprojects.com/) for templating. Templates let you insert dynamic values anywhere a value can appear in YAML configuration — automations, scripts, notifications, template sensors, and more.
 
+### Jinja Extensions Enabled
+
+Home Assistant enables two Jinja2 extensions:
+- **Loop Controls** (`jinja2.ext.loopcontrols`): `break` and `continue` in `{% for %}` loops
+- **Expression Statement** (`jinja2.ext.do`): `{% do %}` to execute expressions without output (e.g., appending to a list)
+
+```jinja
+{# Using break in a loop #}
+{% set ns = namespace(found=false) %}
+{% for item in items %}
+  {% if item.id == target_id %}
+    {% set ns.found = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{# Using do to append to a list #}
+{% set result = [] %}
+{% for item in items %}
+  {% do result.append(item.name) %}
+{% endfor %}
+```
+
+---
+
+## Reusable Templates
+
+Store reusable Jinja2 macros in the `custom_templates/` folder (in your config directory) with the `.jinja` extension (max 5 MiB total).
+
+```jinja
+{# custom_templates/helpers.jinja #}
+{% macro friendly_state(entity_id) %}
+  {{ states(entity_id) | replace('_', ' ') | title }}
+{% endmacro %}
+```
+
+Import in other templates:
+
+```jinja
+{% from 'helpers.jinja' import friendly_state %}
+The light is {{ friendly_state('light.living_room') }}.
+```
+
+Reload custom templates without restarting Home Assistant:
+
+```yaml
+action: homeassistant.reload_custom_templates
+```
+
 ---
 
 ## Template Delimiters
@@ -28,6 +77,16 @@ Home Assistant uses [Jinja2](https://jinja.palletsprojects.com/) for templating.
 
 ```jinja
 {{ states('sensor.temperature') }}
+```
+
+### Get state with optional formatting arguments
+
+`states()` supports optional `rounded` and `with_unit` arguments:
+
+```jinja
+{{ states('sensor.temperature', rounded=true) }}           {# round to display precision #}
+{{ states('sensor.temperature', with_unit=true) }}         {# append unit of measurement #}
+{{ states('sensor.temperature', rounded=true, with_unit=true) }}
 ```
 
 ### Check if an entity is in a specific state
@@ -293,7 +352,36 @@ message: >
 
 ## Debugging Templates
 
-Use **Developer Tools → Template** in the Home Assistant UI to write and test templates with live feedback. Enter any Jinja2 template and see the rendered output immediately.
+Use **Settings → Developer tools → Template** in the Home Assistant UI to write and test templates with live feedback. Enter any Jinja2 template and see the rendered output immediately.
+
+---
+
+## Non-String Return Values
+
+Template sensors return strings by default. To return a non-string value (e.g., a list or dict) from a macro, use the `returns` named argument with the `as_function` filter:
+
+```jinja
+{# In custom_templates/helpers.jinja #}
+{% macro active_lights() %}
+  {% set result = [] %}
+  {% for entity_id in states.light | selectattr('state', 'eq', 'on') | map(attribute='entity_id') %}
+    {% do result.append(entity_id) %}
+  {% endfor %}
+  {{ result | returns }}
+{% endmacro %}
+```
+
+```jinja
+{# In a template sensor #}
+{% from 'helpers.jinja' import active_lights %}
+{{ active_lights | as_function() }}
+```
+
+---
+
+## Limited Templates
+
+Some template contexts have access to a **limited** subset of functions for security reasons (e.g., trigger templates and `trigger_variables`). These contexts cannot access `states`, `state_attr`, or similar functions. Use the full template editor to test which functions are available.
 
 ---
 

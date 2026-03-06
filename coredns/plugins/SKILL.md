@@ -240,36 +240,6 @@ Provides in-cluster DNS resolution for Kubernetes services and pods. This is the
 
 ---
 
-## acl
-
-Enforces IP-based access control, blocking or dropping DNS queries from specified networks.
-
-```
-.:53 {
-    acl {
-        # Allow only internal networks
-        allow net 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
-        block                # block everything else
-
-        # Or block specific types from specific nets
-        # block type A net 192.0.2.0/24
-    }
-}
-```
-
-### ACL actions
-
-| Action | Behavior |
-|--------|----------|
-| `allow` | Allow the query |
-| `block` | Respond with REFUSED |
-| `drop` | Silently drop (no response) |
-| `filter` | Respond with NOERROR and empty answer (filtered) |
-
-Rules are evaluated top-to-bottom; first match wins.
-
----
-
 ## dnssec
 
 Signs responses on-the-fly with DNSSEC. CoreDNS uses NSEC (not NSEC3). Signing keys must be generated externally (e.g., with `dnssec-keygen`).
@@ -315,11 +285,215 @@ Generates DNS responses dynamically based on the query name and type using Go te
 
 ## loadbalance
 
-Randomly shuffles A, AAAA, and MX records in responses to distribute load across multiple IPs.
+Randomly shuffles A, AAAA, and MX records in responses to distribute load across multiple IPs. Optionally prefers records matching specified subnets (useful for returning geographically closer addresses first).
 
 ```
 .:53 {
     loadbalance round_robin   # only option: round_robin
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## acl (v1.14.1+)
+
+Enforces access control policies on source IP. Rules are evaluated top-to-bottom; first match wins. Supports `allow`, `block` (REFUSED), `drop` (silent), and `filter` (NOERROR empty answer) actions. Also supports filtering by record type and FQDN pattern.
+
+```
+.:53 {
+    acl {
+        allow net 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16
+        block                # block everything else
+    }
+}
+```
+
+---
+
+## azure
+
+Serves zone data from Microsoft Azure DNS. Requires Azure credentials with DNS Zone Reader permission.
+
+```
+.:53 {
+    azure {
+        tenant-id     <AZURE_TENANT_ID>
+        client-id     <AZURE_CLIENT_ID>
+        client-secret <AZURE_CLIENT_SECRET>
+        subscription  <SUBSCRIPTION_ID>
+        resource-group <RESOURCE_GROUP>
+        zone-name     example.com
+    }
+}
+```
+
+---
+
+## bufsize
+
+Limits the EDNS0 buffer size advertised by CoreDNS to prevent IP fragmentation. Useful on networks where large UDP packets are dropped.
+
+```
+.:53 {
+    bufsize 512   # advertise max 512-byte EDNS0 buffer
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## cancel
+
+Cancels a request's context after a configurable timeout (default 5001 milliseconds). Downstream plugins that respect context cancellation will abort processing, preventing resource leaks from slow upstream queries.
+
+```
+.:53 {
+    cancel 3000ms   # cancel after 3 seconds
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## clouddns
+
+Serves zone data from Google Cloud Platform (GCP) Cloud DNS. Authenticates via Application Default Credentials or a service account key file.
+
+```
+.:53 {
+    clouddns {
+        project my-gcp-project
+        zone-name example-com
+    }
+}
+```
+
+---
+
+## grpc
+
+Proxies DNS messages to an upstream server via gRPC (instead of plain DNS-over-UDP/TCP). Supports TLS for the gRPC connection.
+
+```
+.:53 {
+    grpc . 10.0.0.1:5300 {
+        tls /certs/client.crt /certs/client.key /certs/ca.crt
+    }
+}
+```
+
+---
+
+## header
+
+Modifies DNS message headers for queries or responses. Can set or clear flags (e.g., `AA`, `TC`, `RD`, `RA`).
+
+```
+.:53 {
+    header {
+        response set ra   # set RA (recursion available) flag on responses
+    }
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## https
+
+Configures DNS-over-HTTPS (DoH) server options for a listener already declared with the `https://` scheme in the server block address.
+
+```
+https://.:443 {
+    tls /certs/server.crt /certs/server.key
+    https
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## https3
+
+Configures DNS-over-HTTPS/3 (DoH3) using HTTP/3 (QUIC) transport. Requires the listener to be declared with the `h3://` scheme.
+
+```
+h3://.:443 {
+    tls /certs/server.crt /certs/server.key
+    https3
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## k8s_external
+
+Resolves load balancer external IPs and node IPs for Kubernetes services from **outside** the cluster, using a user-defined zone. Complements the `kubernetes` plugin which handles in-cluster resolution.
+
+```
+external.example.org {
+    k8s_external {
+        apex external.example.org
+    }
+}
+```
+
+Queries for `<svc>.<ns>.external.example.org` return the LoadBalancer external IP of that service.
+
+---
+
+## minimal
+
+Minimizes the size of DNS response messages by removing unnecessary records from the Authority and Additional sections, while preserving the Answer section. Useful to stay within UDP packet limits.
+
+```
+.:53 {
+    minimal
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## multisocket
+
+Allows starting multiple server instances that listen on the **same port** using `SO_REUSEPORT`. Improves multi-core throughput under high query load.
+
+```
+.:53 {
+    multisocket
+    forward . 8.8.8.8
+}
+```
+
+---
+
+## nomad
+
+Reads zone data from a HashiCorp Nomad cluster's service catalog and exposes services as DNS records.
+
+```
+.:53 {
+    nomad {
+        address http://127.0.0.1:4646
+        token   <NOMAD_TOKEN>
+        ttl     30
+    }
+}
+```
+
+---
+
+## quic
+
+Configures DNS-over-QUIC (DoQ) server options for a listener declared with the `quic://` scheme. Requires a TLS certificate.
+
+```
+quic://.:853 {
+    tls /certs/server.crt /certs/server.key
+    quic
     forward . 8.8.8.8
 }
 ```

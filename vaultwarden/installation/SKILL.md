@@ -10,6 +10,40 @@ Sources: https://github.com/dani-garcia/vaultwarden/wiki/Which-container-image-t
 
 Vaultwarden is an unofficial Bitwarden server implementation written in Rust, ideal for self-hosted deployments. The recommended deployment method is via Docker or Podman using the official `vaultwarden/server` container image.
 
+## Supported Features
+
+Vaultwarden supports most Bitwarden features. Notable supported and missing features:
+
+### Supported
+
+| Feature | Notes |
+|---------|-------|
+| Core vault (passwords, notes, cards, identities) | Fully supported |
+| Organizations and collections | Fully supported |
+| **Groups** | Requires `ORG_GROUPS_ENABLED=true` |
+| **SSO (OpenID Connect)** | Enable with `SSO_ENABLED=true` |
+| **Event Logs** | Enable with `ORG_EVENTS_ENABLED=true` |
+| **Directory Connector** | Supported for user/group sync |
+| **Account Recovery** (Admin Reset) | Requires email (SMTP) configured |
+| Two-step login: TOTP, email | Requires SMTP for email 2FA |
+| Two-step login: Duo, YubiKey, FIDO2 WebAuthn | Supported |
+| Emergency Access | Requires SMTP |
+| Send (file & text) | Fully supported |
+| Username generator with SimpleLogin, AnonAddy, Firefox Relay | Supported |
+| Bitwarden Authenticator app | Supported |
+
+### Missing / Partial
+
+| Feature | Status |
+|---------|--------|
+| Login with Passkeys | Partially supported |
+| New Device Login Protection | Not supported |
+| Bitwarden passwordless.dev | Not supported |
+
+### Security Audits
+
+Vaultwarden has undergone independent security audits. See the [Vaultwarden Audits wiki page](https://github.com/dani-garcia/vaultwarden/wiki/Vaultwarden-Audits) for details.
+
 ---
 
 ## Container Image

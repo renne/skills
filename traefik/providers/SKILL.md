@@ -389,7 +389,7 @@ When referencing resources from a specific provider, use the `@provider` suffix:
 
 ## References
 
-- [Providers Overview](https://doc.traefik.io/traefik/providers/overview/)
+- [Providers Overview](https://doc.traefik.io/traefik/reference/install-configuration/providers/overview/)
 - [Docker Provider](https://doc.traefik.io/traefik/providers/docker/)
 - [Kubernetes Ingress Provider](https://doc.traefik.io/traefik/providers/kubernetes-ingress/)
 - [Kubernetes CRD Provider](https://doc.traefik.io/traefik/providers/kubernetes-crd/)

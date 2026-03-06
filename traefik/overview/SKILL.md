@@ -8,7 +8,13 @@ Source: https://doc.traefik.io/traefik/
 
 ## What is Traefik?
 
-Traefik is a modern, cloud-native reverse proxy and load balancer designed to integrate with your existing infrastructure components and configure itself automatically and dynamically. Unlike traditional reverse proxies that require manual configuration file updates and restarts, Traefik reads its routing rules directly from your infrastructure (Docker labels, Kubernetes annotations/CRDs, configuration files, etc.) and updates in real time without downtime.
+Traefik is a modern, cloud-native **application proxy** and the core of the Traefik Hub Runtime Platform. It is designed to integrate with your existing infrastructure components and configure itself automatically and dynamically. Unlike traditional reverse proxies that require manual configuration file updates and restarts, Traefik reads its routing rules directly from your infrastructure (Docker labels, Kubernetes annotations/CRDs, configuration files, etc.) and updates in real time without downtime.
+
+Traefik has 3.3 billion+ downloads and 55,000+ GitHub stars. Beyond reverse proxying, the broader Traefik platform includes:
+- **API management** — manage, secure, and publish APIs
+- **API gateway** — centralized entry point for microservices
+- **AI gateway** — manage AI model endpoints
+- **API mocking** — stub backends for development and testing
 
 ## Core Concepts
 

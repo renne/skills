@@ -316,7 +316,7 @@ volumes:
 
 ## References
 
-- [HTTPS Overview](https://doc.traefik.io/traefik/https/overview/)
+- [HTTPS Overview](https://doc.traefik.io/traefik/reference/routing-configuration/http/tls/overview/)
 - [Let's Encrypt (ACME)](https://doc.traefik.io/traefik/https/acme/)
 - [ACME Certificate Resolver Reference](https://doc.traefik.io/traefik/reference/install-configuration/tls/certificate-resolvers/acme/)
 - [TLS Certificates](https://doc.traefik.io/traefik/reference/routing-configuration/http/tls/tls-certificates/)
