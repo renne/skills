@@ -83,6 +83,17 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Frontend Development (Lit/LitElement components, API integration, views, state management)](gramps-web/frontend-development/SKILL.md) | https://github.com/gramps-project/gramps-web |
 | [REST API (endpoints, authentication, data model, search, LLM/chat)](gramps-web/api/SKILL.md) | https://github.com/gramps-project/gramps-web-api |
 
+### Vaultwarden
+
+| Skill | Source |
+|-------|--------|
+| [Installation & Deployment (Docker images, docker run, Docker Compose, Caddy)](vaultwarden/installation/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki |
+| [Configuration (environment variables, ENV_FILE, config precedence, DOMAIN, signups)](vaultwarden/configuration/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki/Configuration-overview |
+| [HTTPS & Reverse Proxy (Caddy, nginx, Let's Encrypt, Cloudflare, OCSP)](vaultwarden/https-and-reverse-proxy/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS |
+| [Admin Page (ADMIN_TOKEN, argon2id hashing, user management, organizations)](vaultwarden/admin-page/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page |
+| [SMTP Configuration (email delivery, Gmail, Outlook, SendGrid, OAuth2 proxy)](vaultwarden/smtp-configuration/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki/SMTP-Configuration |
+| [Backup & Restore (SQLite backup, data folder, automated backups, restore)](vaultwarden/backup-and-restore/SKILL.md) | https://github.com/dani-garcia/vaultwarden/wiki/Backing-up-your-vault |
+
 ### Anthropics (submodule)
 
 Skills from [anthropics/skills](https://github.com/anthropics/skills) are included as a Git submodule at [`anthropics/skills`](anthropics/skills).
