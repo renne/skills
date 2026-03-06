@@ -34,3 +34,14 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Overview & Getting Started](docker-compose/overview/SKILL.md) | https://docs.docker.com/compose/ |
 | [Compose File Reference](docker-compose/compose-file-reference/SKILL.md) | https://docs.docker.com/reference/compose-file/ |
 | [How-Tos (Networking, Env Vars, Secrets, Profiles, Watch, Multiple Files)](docker-compose/how-tos/SKILL.md) | https://docs.docker.com/compose/how-tos/ |
+
+### Home Assistant
+
+| Skill | Source |
+|-------|--------|
+| [Automations (Triggers, Conditions, Actions, Blueprints)](home-assistant/automations/SKILL.md) | https://www.home-assistant.io/docs/automation/ |
+| [Scripts (Sequences, Variables, Modes)](home-assistant/scripts/SKILL.md) | https://www.home-assistant.io/docs/scripts/ |
+| [Templates (Jinja2, States, Filters, Template Entities)](home-assistant/templates/SKILL.md) | https://www.home-assistant.io/docs/configuration/templating/ |
+| [Configuration (configuration.yaml, Secrets, Packages, Includes)](home-assistant/configuration/SKILL.md) | https://www.home-assistant.io/docs/configuration/ |
+| [Dashboard (Lovelace Cards, YAML Mode, Custom Cards)](home-assistant/dashboard/SKILL.md) | https://www.home-assistant.io/docs/dashboard/ |
+| [Scenes (Definition, Activation, Ad-hoc Apply)](home-assistant/scenes/SKILL.md) | https://www.home-assistant.io/docs/scene/ |
