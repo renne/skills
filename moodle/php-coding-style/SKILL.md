@@ -61,7 +61,7 @@ if ($condition)
 
 ### Classes
 
-> **Moodle-specific deviation from PSR-12:** Moodle uses `lower_case_with_underscores` for class names, **not** PascalCase/StudlyCaps.
+> **Moodle-specific deviation from PSR-12:** Moodle uses `lower_case_with_underscores` for class names, **not** PascalCase/StudlyCaps. This is a long-standing Moodle convention; you may encounter older code using PascalCase, but all new code should follow the Moodle style.
 
 ```php
 // Correct (Moodle style)
