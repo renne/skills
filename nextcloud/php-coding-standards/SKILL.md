@@ -1,3 +1,7 @@
+---
+name: php-coding-standards
+description: Nextcloud PHP coding standards enforced by PHP CS Fixer with the nextcloud/coding-standard package. Use when writing, reviewing, or auto-formatting Nextcloud PHP code, checking naming conventions, strict comparisons, control structures, PHPDoc, and namespace imports.
+---
 # Nextcloud PHP Coding Standards
 
 Source: https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/php.html

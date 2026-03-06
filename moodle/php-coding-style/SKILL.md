@@ -1,3 +1,7 @@
+---
+name: php-coding-style
+description: Moodle PHP coding style guide based on PSR-12/PSR-1 with Moodle-specific rules. Use when writing or reviewing PHP code in Moodle core or plugins, checking indentation, naming conventions, braces, control structures, PHPDoc comments, and SQL formatting.
+---
 # Moodle PHP Coding Style
 
 Source: https://moodledev.io/general/development/policies/codingstyle

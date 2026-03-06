@@ -1,3 +1,7 @@
+---
+name: coding-standards
+description: Nextcloud general coding style and guidelines covering PHP, JavaScript/TypeScript, collaborative development practices, and CI requirements. Use when writing or reviewing any Nextcloud code, setting up linting tools, or preparing a pull request for the Nextcloud project.
+---
 # Nextcloud Coding Style & General Guidelines
 
 Source: https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/index.html

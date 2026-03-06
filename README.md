@@ -1,5 +1,12 @@
-# ai-skills
+# skills
 AI skills collection
+
+Clone this repository with:
+```bash
+git clone https://github.com/renne/skills
+```
+
+Each skill is a directory containing a `SKILL.md` file following the [VS Code Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills) open standard. See [AGENTS.md](AGENTS.md) for contribution rules.
 
 ## Skills
 
@@ -7,23 +14,23 @@ AI skills collection
 
 | Skill | Source |
 |-------|--------|
-| [PHP Coding Style](skills/moodle/php-coding-style.md) | https://moodledev.io/general/development/policies/codingstyle |
-| [Moodle App Coding Style](skills/moodle/app-coding-style.md) | https://moodledev.io/general/development/policies/codingstyle-moodleapp |
-| [Moodle App Development Guide](skills/moodle/app-development-guide.md) | https://moodledev.io/general/app/development/development-guide |
-| [Moodle App Plugins Development Guide](skills/moodle/app-plugins-development-guide.md) | https://moodledev.io/general/app/development/plugins-development-guide |
+| [PHP Coding Style](moodle/php-coding-style/SKILL.md) | https://moodledev.io/general/development/policies/codingstyle |
+| [Moodle App Coding Style](moodle/app-coding-style/SKILL.md) | https://moodledev.io/general/development/policies/codingstyle-moodleapp |
+| [Moodle App Development Guide](moodle/app-development-guide/SKILL.md) | https://moodledev.io/general/app/development/development-guide |
+| [Moodle App Plugins Development Guide](moodle/app-plugins-development-guide/SKILL.md) | https://moodledev.io/general/app/development/plugins-development-guide |
 
 ### Nextcloud
 
 | Skill | Source |
 |-------|--------|
-| [Coding Style & General Guidelines](skills/nextcloud/coding-standards.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/index.html |
-| [PHP Coding Standards](skills/nextcloud/php-coding-standards.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/php.html |
-| [App Development Guide](skills/nextcloud/app-development.md) | https://docs.nextcloud.com/server/19/developer_manual/app/index.html |
+| [Coding Style & General Guidelines](nextcloud/coding-standards/SKILL.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/index.html |
+| [PHP Coding Standards](nextcloud/php-coding-standards/SKILL.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/php.html |
+| [App Development Guide](nextcloud/app-development/SKILL.md) | https://docs.nextcloud.com/server/19/developer_manual/app/index.html |
 
 ### Docker Compose
 
 | Skill | Source |
 |-------|--------|
-| [Overview & Getting Started](skills/docker-compose/overview.md) | https://docs.docker.com/compose/ |
-| [Compose File Reference](skills/docker-compose/compose-file-reference.md) | https://docs.docker.com/reference/compose-file/ |
-| [How-Tos (Networking, Env Vars, Secrets, Profiles, Watch, Multiple Files)](skills/docker-compose/how-tos.md) | https://docs.docker.com/compose/how-tos/ |
+| [Overview & Getting Started](docker-compose/overview/SKILL.md) | https://docs.docker.com/compose/ |
+| [Compose File Reference](docker-compose/compose-file-reference/SKILL.md) | https://docs.docker.com/reference/compose-file/ |
+| [How-Tos (Networking, Env Vars, Secrets, Profiles, Watch, Multiple Files)](docker-compose/how-tos/SKILL.md) | https://docs.docker.com/compose/how-tos/ |
