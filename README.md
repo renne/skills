@@ -3,7 +3,7 @@ AI skills collection
 
 Clone this repository with:
 ```bash
-git clone https://github.com/renne/skills
+git clone --recurse-submodules https://github.com/renne/skills
 ```
 
 Each skill is a directory containing a `SKILL.md` file following the [VS Code Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills) open standard. See [AGENTS.md](AGENTS.md) for contribution rules.
@@ -43,6 +43,10 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Access Control (Groups, Policies, Posture Checks)](netbird/access-control/SKILL.md) | https://docs.netbird.io/manage/access-control |
 | [Networks and DNS (Routes, Site-to-Site, Nameservers)](netbird/networks-and-dns/SKILL.md) | https://docs.netbird.io/manage/networks |
 | [Self-Hosted Deployment (Docker Compose, Config, IdP)](netbird/self-hosted/SKILL.md) | https://docs.netbird.io/selfhosted/selfhosted-quickstart |
+
+### Anthropics (submodule)
+
+Skills from [anthropics/skills](https://github.com/anthropics/skills) are included as a Git submodule at [`anthropics/skills`](anthropics/skills).
 
 ### Home Assistant
 
