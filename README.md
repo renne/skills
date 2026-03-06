@@ -35,6 +35,15 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Compose File Reference](docker-compose/compose-file-reference/SKILL.md) | https://docs.docker.com/reference/compose-file/ |
 | [How-Tos (Networking, Env Vars, Secrets, Profiles, Watch, Multiple Files)](docker-compose/how-tos/SKILL.md) | https://docs.docker.com/compose/how-tos/ |
 
+### NetBird
+
+| Skill | Source |
+|-------|--------|
+| [Getting Started (Installation, CLI, Setup Keys)](netbird/getting-started/SKILL.md) | https://docs.netbird.io/get-started |
+| [Access Control (Groups, Policies, Posture Checks)](netbird/access-control/SKILL.md) | https://docs.netbird.io/manage/access-control |
+| [Networks and DNS (Routes, Site-to-Site, Nameservers)](netbird/networks-and-dns/SKILL.md) | https://docs.netbird.io/manage/networks |
+| [Self-Hosted Deployment (Docker Compose, Config, IdP)](netbird/self-hosted/SKILL.md) | https://docs.netbird.io/selfhosted/selfhosted-quickstart |
+
 ### Home Assistant
 
 | Skill | Source |
