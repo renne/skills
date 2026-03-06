@@ -15,6 +15,22 @@ Source: https://github.com/gramps-project/gramps-web
 - **[Rollup](https://rollupjs.org/)** – Production bundler
 - **Prettier + ESLint** – Code formatting and linting (`@open-wc/eslint-config`)
 
+## Notable Features
+
+- **AI Chat Assistant** – Natural language queries over your family tree data
+- **DNA & Chromosome Tools** – Visualize and analyze DNA matches
+- **Bi-Directional Sync** – Sync data between Gramps Web and Gramps Desktop
+- **40+ languages** supported via i18n
+- **Interactive charts, maps, blog, and timeline views**
+
+### Live Demo
+
+A live demo is available at https://demo.grampsweb.org/ with credentials: `owner`, `editor`, `contributor`, or `member` (each with the same value as username for the password).
+
+### Roadmap / Development Board
+
+The project's development board and roadmap is at: https://github.com/orgs/gramps-project/projects/1/views/1
+
 ## Local Development Setup
 
 ```bash

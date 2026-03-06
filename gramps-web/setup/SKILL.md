@@ -8,11 +8,21 @@ Source: https://www.grampsweb.org/install_setup/setup/
 
 ## What is Gramps Web?
 
-Gramps Web is a modern genealogy web application built on top of [Gramps](https://gramps-project.org), the open-source desktop genealogy program. It provides collaborative, browser-based access to a Gramps family tree database with features including interactive charts, maps, DNA tools, a blog, and an AI chat assistant.
+Gramps Web is a modern genealogy web application built on top of [Gramps](https://gramps-project.org), the open-source desktop genealogy program. It provides collaborative, browser-based access to a Gramps family tree database with features including interactive charts, maps, DNA tools, a blog, and an AI chat assistant. **40+ languages** are supported.
 
 Architecture:
 - **Frontend** (`gramps-project/gramps-web`): Lit/LitElement web components served as static files via nginx
 - **Backend** (`gramps-project/gramps-web-api`): Python Flask REST API running the Gramps genealogy engine
+
+## Deployment Options
+
+| Option | Description |
+|--------|-------------|
+| **Docker Compose (self-hosted)** | Recommended for full control; runs on any Linux server or Raspberry Pi (ARM supported) |
+| **DigitalOcean 1-Click App** | One-click deploy on DigitalOcean Marketplace |
+| **[Grampshub.com](https://grampshub.com/)** | Managed hosted provider — no setup required |
+
+Migration between instances is straightforward (export/import the Gramps database file) — you are not locked in to any hosting provider.
 
 ## Docker Compose Deployment
 

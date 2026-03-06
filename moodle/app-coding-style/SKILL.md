@@ -90,6 +90,82 @@ getPrivateInfo() {
 - Use template literals instead of string concatenation.
 - Use destructuring for objects and arrays where it improves readability.
 
+### Avoid Abusing User-Defined Type Guards
+
+User-defined type guards (`is` predicates) can make code harder to maintain if overused. Only use them when TypeScript cannot narrow the type automatically.
+
+```typescript
+// Bad — unnecessary type guard when TypeScript can infer
+function isString(value: unknown): value is string {
+    return typeof value === 'string';
+}
+
+// Good — use `typeof` directly
+if (typeof value === 'string') { ... }
+
+// Good — appropriate use when discriminating a union
+function isError(value: Result): value is ErrorResult {
+    return value.type === 'error';
+}
+```
+
+### Spread Operator
+
+The spread operator (`...`) is allowed but should be accompanied by a comment explaining why it is being used, since it can obscure intent.
+
+```typescript
+// Good — comment explains the usage
+const merged = {
+    ...defaults,
+    ...overrides, // User settings override defaults
+};
+```
+
+### String Interpolation
+
+Prefer template literals (backticks) when it improves readability over string concatenation.
+
+```typescript
+// Good
+const message = `Hello, ${user.name}! You have ${count} messages.`;
+
+// Bad — concatenation is harder to read
+const message = 'Hello, ' + user.name + '! You have ' + count + ' messages.';
+```
+
+### Avoid Declaring Variables Using Commas
+
+Declare each variable separately for clarity and easier version control diffs.
+
+```typescript
+// Bad
+let foo = 1, bar = 2, baz = 3;
+
+// Good
+let foo = 1;
+let bar = 2;
+let baz = 3;
+```
+
+### Avoiding Too Many Optional Arguments
+
+When a function has more than 2 optional parameters, use an options object instead of positional arguments. This avoids callers having to pass `undefined` for unused parameters and makes the call site self-documenting.
+
+```typescript
+// Bad — caller must know the order and pass undefined for unused args
+function createUser(name: string, role?: string, active?: boolean, email?: string) { ... }
+createUser('Alice', undefined, true, 'alice@example.com');
+
+// Good — options object
+interface CreateUserOptions {
+    role?: string;
+    active?: boolean;
+    email?: string;
+}
+function createUser(name: string, options: CreateUserOptions = {}) { ... }
+createUser('Alice', { active: true, email: 'alice@example.com' });
+```
+
 ## Tools
 
 - **ESLint**: The primary linting tool. Warnings are treated as errors.

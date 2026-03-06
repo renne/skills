@@ -16,6 +16,15 @@ NetBird follows a Zero Trust model: **no peer has access to any other peer by de
 
 Groups act as tags that organize peers for policy assignment. A peer can belong to multiple groups; a group can contain multiple peers.
 
+### User Groups vs Peer Groups
+
+While all groups are technically identical in NetBird, there is a useful conceptual distinction:
+
+- **User Groups**: Assigned to user accounts in the dashboard or synced from an IdP. When a user logs in via SSO (e.g., Okta, Azure AD), their devices automatically inherit the groups linked to that user account.
+- **Peer Groups**: Assigned directly to infrastructure (servers, databases, IoT devices) — typically via a Setup Key with Auto-groups configured. The group is persistent on the peer regardless of who (if anyone) logged in.
+
+This pattern enables clean Zero Trust segmentation: `Engineers` (user group) can access `Production-Servers` (peer group) via an explicit policy, without exposing those servers to all peers.
+
 ### Built-in Group
 
 - **All** – contains every peer in the account. Cannot be modified or deleted. Used for the default onboarding policy.
@@ -39,7 +48,7 @@ Policies define which source group(s) can reach which destination group(s), and 
 
 ### Default Policy
 
-New accounts include a default **All-to-All** policy (source: `All` → destination: `All`) so every peer can reach every other peer. For Zero Trust deployments, **delete this policy** and create targeted policies.
+New accounts include a default **All-to-All** policy (source: `All` → destination: `All`) so every peer can reach every other peer. This policy exists for convenience during onboarding but **undermines Zero Trust principles** — it grants blanket access to all devices. For any serious deployment, **delete this policy** immediately after onboarding and replace it with targeted policies.
 
 ### Creating a Policy
 

@@ -318,7 +318,7 @@ http:
 
 ## References
 
-- [HTTP Routing Overview](https://doc.traefik.io/traefik/routing/overview/)
+- [HTTP Routing Overview](https://doc.traefik.io/traefik/reference/routing-configuration/dynamic-configuration-methods/)
 - [HTTP Routers](https://doc.traefik.io/traefik/reference/routing-configuration/http/routing/router/)
 - [HTTP Services](https://doc.traefik.io/traefik/reference/routing-configuration/http/routing/services/)
 - [EntryPoints](https://doc.traefik.io/traefik/routing/entrypoints/)

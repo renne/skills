@@ -318,6 +318,43 @@ Use for load balancer health checks: `GET http://traefik:8080/ping`
 
 ---
 
+## Per-Entrypoint Observability
+
+Access logs, tracing, and metrics can be disabled per entrypoint, and overridden at the router level. This allows high-volume entrypoints (e.g., health checks) to be excluded from observability pipelines:
+
+```yaml
+# traefik.yaml (static config)
+entryPoints:
+  web:
+    address: ":80"
+    observability:
+      accessLogs: true    # override global accessLog setting for this entrypoint
+      tracing: true       # override global tracing setting
+      metrics: true       # override global metrics setting
+  healthcheck:
+    address: ":8082"
+    observability:
+      accessLogs: false   # suppress access logs for health check traffic
+      tracing: false
+      metrics: false
+```
+
+Router-level observability can also be overridden in dynamic configuration:
+
+```yaml
+http:
+  routers:
+    my-router:
+      rule: "Host(`app.example.com`)"
+      service: my-service
+      observability:
+        accessLogs: true
+        tracing: true
+        metrics: true
+```
+
+---
+
 ## Kubernetes: Prometheus with ServiceMonitor
 
 If using the Prometheus Operator:
