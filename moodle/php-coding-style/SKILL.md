@@ -16,8 +16,8 @@ Moodle's PHP coding style is based on PSR-12 and PSR-1 with Moodle-specific adap
 - **Never** include the closing `?>` tag at the end of pure PHP files to avoid accidental whitespace output.
 - Use UTF-8 encoding without BOM.
 - Use Unix-style LF line endings only.
-- No trailing whitespace at the end of lines.
-- Files must end with a **single LF newline** — no extra blank lines at the end.
+- No trailing whitespace at the end of any line (spaces or tabs before the newline character are not allowed).
+- Files must end with a **single LF newline** — no extra blank lines at the end. (This final LF is not trailing whitespace; it terminates the last line.)
 
 ## Indentation
 

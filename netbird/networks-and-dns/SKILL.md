@@ -58,7 +58,10 @@ When a resource is defined as a **domain name** or **wildcard domain** (e.g., `*
 
 **Troubleshooting domain resources:**
 ```bash
-# Check domain resource resolution via the routing peer's forwarder
+# Check domain resource resolution via the routing peer's forwarder (using dig)
+dig @<routing-peer-ip> -p 22054 fileserver.corp.local
+
+# Alternative with nslookup (port flag support varies by implementation)
 nslookup -port=22054 fileserver.corp.local <routing-peer-ip>
 
 # List domain-based resources and their status
