@@ -1,3 +1,7 @@
+---
+name: app-development
+description: Nextcloud app development guide covering MVC architecture, routing, controllers, database mappers, templates, and Vue.js frontend. Use when creating a new Nextcloud app, implementing controllers or services, setting up database schemas, or adding frontend components with Vue.js.
+---
 # Nextcloud App Development Guide
 
 Source: https://docs.nextcloud.com/server/19/developer_manual/app/index.html

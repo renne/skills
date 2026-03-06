@@ -1,3 +1,7 @@
+---
+name: how-tos
+description: Docker Compose practical guides for networking, environment variables, secrets, profiles, Compose Watch live file sync, multiple compose files (merge/extend/include), and production deployment. Use when solving specific Docker Compose configuration tasks or setting up environment-specific deployments.
+---
 # Docker Compose How-Tos
 
 Sources:

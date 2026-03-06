@@ -1,3 +1,7 @@
+---
+name: overview
+description: Docker Compose overview covering key concepts (services, networks, volumes, configs, secrets), getting started guide, CLI commands reference, and production considerations. Use when working with Docker Compose for the first time, setting up multi-container applications, or looking up CLI commands.
+---
 # Docker Compose Overview
 
 Source: https://docs.docker.com/compose/

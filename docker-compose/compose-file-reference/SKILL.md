@@ -1,3 +1,7 @@
+---
+name: compose-file-reference
+description: Docker Compose file format reference for compose.yaml covering all top-level elements (services, networks, volumes, configs, secrets), every service attribute (image, build, ports, environment, volumes, depends_on, healthcheck, restart, deploy, develop/watch), and variable interpolation. Use when writing or reviewing compose.yaml files.
+---
 # Docker Compose File Reference
 
 Source: https://docs.docker.com/reference/compose-file/
