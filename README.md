@@ -10,6 +10,16 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 
 ## Skills
 
+### GitHub Copilot
+
+| Skill | Source |
+|-------|--------|
+| [Getting Started (Overview, features, plans, quickstart)](github-copilot/getting-started/SKILL.md) | https://docs.github.com/en/copilot |
+| [Chat (IDE, GitHub.com, Mobile, slash commands, MCP, AI models)](github-copilot/chat/SKILL.md) | https://docs.github.com/en/copilot/concepts/chat |
+| [Code Suggestions (inline completions, next edit suggestions, supported languages)](github-copilot/code-suggestions/SKILL.md) | https://docs.github.com/en/copilot/concepts/completions/code-suggestions |
+| [Coding Agent (autonomous PR creation, custom agents, hooks, MCP, security)](github-copilot/coding-agent/SKILL.md) | https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent |
+| [Customization (custom instructions, prompt engineering, response tuning)](github-copilot/customization/SKILL.md) | https://docs.github.com/en/copilot/concepts/prompting/response-customization |
+
 ### Moodle
 
 | Skill | Source |
