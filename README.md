@@ -81,6 +81,17 @@ Skills from [anthropics/skills](https://github.com/anthropics/skills) are includ
 
 Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) are included as a Git submodule at [`voltagent/awesome-agent-skills`](voltagent/awesome-agent-skills).
 
+### Traefik
+
+| Skill | Source |
+|-------|--------|
+| [Overview & Getting Started (core concepts, request lifecycle, installation, router rules)](traefik/overview/SKILL.md) | https://doc.traefik.io/traefik/ |
+| [Routing (HTTP/TCP/UDP routers, rules, services, load balancing, entrypoints)](traefik/routing/SKILL.md) | https://doc.traefik.io/traefik/routing/overview/ |
+| [Middlewares (BasicAuth, ForwardAuth, Headers, RateLimit, Compress, StripPrefix, CircuitBreaker, and more)](traefik/middlewares/SKILL.md) | https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/overview/ |
+| [HTTPS & TLS (Let's Encrypt ACME, HTTP-01/DNS-01/TLS-ALPN-01 challenges, wildcard certs, TLS options, mTLS)](traefik/https-tls/SKILL.md) | https://doc.traefik.io/traefik/https/overview/ |
+| [Providers (Docker labels, Kubernetes IngressRoute CRDs, file provider, Consul/etcd)](traefik/providers/SKILL.md) | https://doc.traefik.io/traefik/providers/overview/ |
+| [Observability (Prometheus metrics, OpenTelemetry/Jaeger tracing, access logs, API dashboard)](traefik/observability/SKILL.md) | https://doc.traefik.io/traefik/observe/overview/ |
+
 ### Home Assistant
 
 | Skill | Source |
