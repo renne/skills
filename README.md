@@ -35,6 +35,13 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Compose File Reference](docker-compose/compose-file-reference/SKILL.md) | https://docs.docker.com/reference/compose-file/ |
 | [How-Tos (Networking, Env Vars, Secrets, Profiles, Watch, Multiple Files)](docker-compose/how-tos/SKILL.md) | https://docs.docker.com/compose/how-tos/ |
 
+### CoreDNS
+
+| Skill | Source |
+|-------|--------|
+| [Overview & Configuration (Corefile, server blocks, snippets, env vars)](coredns/overview/SKILL.md) | https://coredns.io/manual/toc/ |
+| [Plugins Reference (forward, cache, rewrite, file, kubernetes, acl, dnssec, hosts, template, and more)](coredns/plugins/SKILL.md) | https://coredns.io/plugins/ |
+| [Kubernetes (cluster DNS, ConfigMap, stub zones, debugging, monitoring)](coredns/kubernetes/SKILL.md) | https://coredns.io/manual/toc/ |
 ### NetBird
 
 | Skill | Source |
