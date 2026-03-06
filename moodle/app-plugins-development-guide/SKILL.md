@@ -1,3 +1,7 @@
+---
+name: app-plugins-development-guide
+description: Guide for adding Moodle App mobile support to Moodle plugins via db/mobile.php. Use when implementing mobile plugin support, creating mobile output classes with Ionic templates, working with Angular directives in PHP-rendered HTML, or adding custom web services for mobile.
+---
 # Moodle App Plugins Development Guide
 
 Source: https://moodledev.io/general/app/development/plugins-development-guide

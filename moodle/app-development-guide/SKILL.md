@@ -1,3 +1,7 @@
+---
+name: app-development-guide
+description: Moodle App development environment setup and workflow guide. Use when setting up a Moodle mobile app development environment, understanding the project structure, running or building the app, writing tests, or contributing to the Moodle App codebase.
+---
 # Moodle App Development Guide
 
 Source: https://moodledev.io/general/app/development/development-guide

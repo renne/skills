@@ -1,3 +1,7 @@
+---
+name: app-coding-style
+description: Moodle App (Angular/TypeScript) coding style guide. Use when writing or reviewing TypeScript/Angular code for the Moodle mobile app, including ESLint compliance, async/await patterns, guard clauses, Angular component conventions, and Ionic UI usage.
+---
 # Moodle App Coding Style (TypeScript / Angular)
 
 Source: https://moodledev.io/general/development/policies/codingstyle-moodleapp
