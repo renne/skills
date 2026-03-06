@@ -52,9 +52,26 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Self-Hosted Deployment (Docker Compose, Config, IdP)](netbird/self-hosted/SKILL.md) | https://docs.netbird.io/selfhosted/selfhosted-quickstart |
 | [MCP Server (AI Management via mcp-netbird)](netbird/mcp-netbird/SKILL.md) | https://github.com/XNet-NGO/mcp-netbird |
 
+### Proxmox VE
+
+| Skill | Source |
+|-------|--------|
+| [Installation & Host System Administration (Debian base, networking, packages, disk management)](proxmox/installation/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [QEMU/KVM Virtual Machines (qm CLI, hardware config, cloud-init, PCI passthrough, snapshots)](proxmox/virtual-machines/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [LXC Containers (pct CLI, templates, networking, mount points, resource limits)](proxmox/containers/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [Storage (ZFS, Ceph RBD/CephFS, LVM, LVM-Thin, NFS, iSCSI, CIFS, pvesm)](proxmox/storage/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [Cluster Manager, Networking & Firewall (pvecm, SDN, bridges, VLANs, bonds, HA firewall)](proxmox/cluster-networking/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [User Management (realms, users, groups, roles, permissions, API tokens, 2FA)](proxmox/user-management/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [Backup & Restore (vzdump, backup modes, PBS integration, scheduled jobs, retention)](proxmox/backup-restore/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+| [High Availability (HA manager, fencing, HA groups, resource states, failover)](proxmox/high-availability/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
+
 ### Anthropics (submodule)
 
 Skills from [anthropics/skills](https://github.com/anthropics/skills) are included as a Git submodule at [`anthropics/skills`](anthropics/skills).
+
+### VoltAgent (submodule)
+
+Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) are included as a Git submodule at [`voltagent/awesome-agent-skills`](voltagent/awesome-agent-skills).
 
 ### Home Assistant
 
