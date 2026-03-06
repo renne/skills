@@ -19,6 +19,7 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Code Suggestions (inline completions, next edit suggestions, supported languages)](github-copilot/code-suggestions/SKILL.md) | https://docs.github.com/en/copilot/concepts/completions/code-suggestions |
 | [Coding Agent (autonomous PR creation, custom agents, hooks, MCP, security)](github-copilot/coding-agent/SKILL.md) | https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent |
 | [Customization (custom instructions, prompt engineering, response tuning)](github-copilot/customization/SKILL.md) | https://docs.github.com/en/copilot/concepts/prompting/response-customization |
+| [CLI (terminal assistant, installation, modes, shortcuts, slash commands, skills, MCP, LSP)](github-copilot/cli/SKILL.md) | https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli |
 
 ### Moodle
 
@@ -61,6 +62,7 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Networks and DNS (Routes, Site-to-Site, Nameservers)](netbird/networks-and-dns/SKILL.md) | https://docs.netbird.io/manage/networks |
 | [Self-Hosted Deployment (Docker Compose, Config, IdP)](netbird/self-hosted/SKILL.md) | https://docs.netbird.io/selfhosted/selfhosted-quickstart |
 | [MCP Server (AI Management via mcp-netbird)](netbird/mcp-netbird/SKILL.md) | https://github.com/XNet-NGO/mcp-netbird |
+| [DNS + CoreDNS Integration (forwarder vs authoritative, internal zone routing, Corefile patterns)](netbird/dns-coredns-integration/SKILL.md) | https://docs.netbird.io/manage/dns |
 
 ### Proxmox VE
 
