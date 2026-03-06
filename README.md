@@ -65,6 +65,14 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Backup & Restore (vzdump, backup modes, PBS integration, scheduled jobs, retention)](proxmox/backup-restore/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
 | [High Availability (HA manager, fencing, HA groups, resource states, failover)](proxmox/high-availability/SKILL.md) | https://pve.proxmox.com/pve-docs/ |
 
+### Gramps Web
+
+| Skill | Source |
+|-------|--------|
+| [Setup & Deployment (Docker Compose, configuration, user roles, OIDC, AI chat)](gramps-web/setup/SKILL.md) | https://www.grampsweb.org/install_setup/setup/ |
+| [Frontend Development (Lit/LitElement components, API integration, views, state management)](gramps-web/frontend-development/SKILL.md) | https://github.com/gramps-project/gramps-web |
+| [REST API (endpoints, authentication, data model, search, LLM/chat)](gramps-web/api/SKILL.md) | https://github.com/gramps-project/gramps-web-api |
+
 ### Anthropics (submodule)
 
 Skills from [anthropics/skills](https://github.com/anthropics/skills) are included as a Git submodule at [`anthropics/skills`](anthropics/skills).
