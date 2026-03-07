@@ -126,3 +126,6 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 | [Configuration (configuration.yaml, Secrets, Packages, Includes)](home-assistant/configuration/SKILL.md) | https://www.home-assistant.io/docs/configuration/ |
 | [Dashboard (Lovelace Cards, YAML Mode, Custom Cards)](home-assistant/dashboard/SKILL.md) | https://www.home-assistant.io/docs/dashboard/ |
 | [Scenes (Definition, Activation, Ad-hoc Apply)](home-assistant/scenes/SKILL.md) | https://www.home-assistant.io/docs/scene/ |
+| [Helpers (input_boolean, input_number, input_select, input_text, input_datetime, input_button, counter, timer, schedule)](home-assistant/helpers/SKILL.md) | https://www.home-assistant.io/docs/configuration/helpers/ |
+| [Areas & Floors (Rooms, Floors, Labels, Zones)](home-assistant/areas-floors/SKILL.md) | https://www.home-assistant.io/docs/organizing/ |
+| [Entities & Device Registry (Entity IDs, States, Renaming, Disabling, Device Management)](home-assistant/entities/SKILL.md) | https://www.home-assistant.io/docs/configuration/customizing-devices/ |
