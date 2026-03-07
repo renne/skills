@@ -129,3 +129,4 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 | [Helpers (input_boolean, input_number, input_select, input_text, input_datetime, input_button, counter, timer, schedule)](home-assistant/helpers/SKILL.md) | https://www.home-assistant.io/docs/configuration/helpers/ |
 | [Areas & Floors (Rooms, Floors, Labels, Zones)](home-assistant/areas-floors/SKILL.md) | https://www.home-assistant.io/docs/organizing/ |
 | [Entities & Device Registry (Entity IDs, States, Renaming, Disabling, Device Management)](home-assistant/entities/SKILL.md) | https://www.home-assistant.io/docs/configuration/customizing-devices/ |
+| [MCP Server (ha-mcp: AI control via Claude Desktop, Claude Code, VS Code, Cursor, and 15+ clients)](home-assistant/ha-mcp/SKILL.md) | https://github.com/homeassistant-ai/ha-mcp |
