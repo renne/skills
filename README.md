@@ -116,6 +116,17 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 | [Providers (Docker labels, Kubernetes IngressRoute CRDs, file provider, Consul/etcd)](traefik/providers/SKILL.md) | https://doc.traefik.io/traefik/providers/overview/ |
 | [Observability (Prometheus metrics, OpenTelemetry/Jaeger tracing, access logs, API dashboard)](traefik/observability/SKILL.md) | https://doc.traefik.io/traefik/observe/overview/ |
 
+### Matter (Connected Home over IP)
+
+| Skill | Source |
+|-------|--------|
+| [Overview (architecture, stack layers, nodes, clusters, fabrics, commissioning)](matter/overview/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/ |
+| [Building (GN/ninja, prerequisites, ZAP tool, build_examples.py)](matter/building/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/guides/BUILDING.html |
+| [Access Control (ACLs, privileges, AuthModes, subjects, targets, chip-tool)](matter/access-control/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/guides/access-control-guide.html |
+| [Writing Clusters (C++ implementation, ServerClusterInterface, build integration, Ember migration)](matter/writing-clusters/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/guides/writing_clusters.html |
+| [Code Generation (ZAP, .matter IDL, codegen.py, pre-generation, IDL tooling)](matter/code-generation/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/zap_and_codegen/code_generation.html |
+| [Testing (unit tests pw_unit_test, Python Mobly integration tests, YAML tests, CI)](matter/testing/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/testing/index.html |
+
 ### Home Assistant
 
 | Skill | Source |
