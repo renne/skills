@@ -97,7 +97,7 @@ At the end of every session, update the skills library with anything new you lea
 
 1. If you discovered a new pattern, tool, or procedure not covered by an existing skill, create a new `SKILL.md` following the format above.
 2. If you improved upon or corrected an existing skill's instructions, edit that `SKILL.md` directly.
-3. Run `git -C ~/.copilot/skills add -A && git -C ~/.copilot/skills commit -m "chore: update skills from session learnings"` to persist the changes.
+3. Run `git -C ~/.copilot/skills add -A && git -C ~/.copilot/skills commit -m "chore: update skills from session learnings"` to persist the changes. Always pull and rebase before push.
 4. If the repository has a remote, push with `git -C ~/.copilot/skills push`.
 
 Apply this rule at the end of any session in which you used or could have used a skill.
