@@ -160,11 +160,36 @@ Use a smartphone as a DECT handset when on the home Wi-Fi:
 
 ---
 
+## DECT Range Extenders
+
+Extend the DECT radio coverage of the FRITZ!Box using FRITZ!DECT Repeaters or third-party DECT extenders.
+
+- Up to **6 DECT repeaters** can be registered with the FRITZ!Box.
+- Repeaters cannot be cascaded (a repeater cannot register with another repeater).
+- FRITZ!DECT repeaters and third-party DECT extenders cannot be used in parallel.
+- The FRITZ!Box itself cannot act as a DECT extender, even when used as a Mesh Repeater. (In a FRITZ! Mesh, cordless phones can register directly with both the Mesh Master and the Mesh Repeater FRITZ!Box.)
+
+### Registering a FRITZ!DECT Repeater
+
+1. Go to **Home Network → DECT → DECT Devices → Register FRITZ!DECT Device**.
+2. Alternatively, briefly press the **DECT button** on the FRITZ!Box to start registration mode.
+3. Press the **Connect** button on the FRITZ!DECT Repeater until it flashes.
+4. The repeater appears in the device list once registered.
+
+### Registering a third-party DECT extender
+
+1. Go to **Home Network → DECT → DECT Devices → Register DECT Device**.
+2. Follow the extender manufacturer's instructions to put it in registration mode.
+3. Enter the DECT PIN if prompted (default: **0000**).
+
+---
+
 ## References
 
 - [Setting up a telephone in the FRITZ!Box](https://en.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/3569_Setting-up-a-telephone-in-the-FRITZ-Box/)
 - [Setting up and using the FRITZ!Box answering machine](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/6_Setting-up-and-using-the-FRITZ-Box-answering-machine/)
 - [Cannot register a cordless phone – FRITZ!Box 7690](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/65_Cannot-register-a-cordless-phone/)
+- [Extending the DECT range of the FRITZ!Box with an extender](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/31_Extending-the-DECT-range-of-the-FRITZ-Box-with-an-extender/)
 - [Using an IP telephone in the FRITZ! home network](https://en.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/268_Using-an-telephone-or-internet-telephony-software-in-the-FRITZ-home-network/)
 - [FRITZ!Box 7690 Service & Support](https://fritz.com/en/pages/service-fritz-box-7690)
 - [FRITZ!Box 7690 User Manual (PDF, English)](https://www.manua.ls/avm/fritzbox-7690/manual)
