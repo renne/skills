@@ -77,6 +77,26 @@ Register the FRITZ!Smart Gateway:
 
 ---
 
+## Smart Home Device Limits
+
+The FRITZ!Box 7690 supports **up to 100 smart home devices** in total. Of these, up to **50** can be directly registered with the FRITZ!Box:
+
+| Device type | Max directly registered |
+|-------------|------------------------|
+| FRITZ! radiator controls (e.g., FRITZ!DECT 301/302) | 50 |
+| FRITZ! smart switches and door/window contacts | 50 |
+| FRITZ! smart plugs (e.g., FRITZ!DECT 200/210) and LED lights (FRITZ!DECT 500) | 20 |
+| FRITZ!Smart Energy 250 | 5 |
+| Third-party DECT ULE/HAN FUN devices | 30 |
+| Third-party Zigbee devices | 40 |
+
+**Notes:**
+- If more than 3 DECT cordless phones or DECT door intercom systems are registered, keep HAN FUN devices below 30 — exceeding this may cause some HAN FUN devices to lose connectivity or prevent their advanced features (e.g., switching, energy monitoring) from working properly.
+- Additional smart home devices beyond the direct limit can be integrated via a **FRITZ!Smart Gateway** or a second FRITZ!Box used as a **Mesh Repeater**.
+
+---
+
+
 ## Smart Home Devices Overview
 
 After pairing, devices appear at **Smart Home → Devices and Groups**:
@@ -159,7 +179,8 @@ The FRITZ!Box 7690 supports third-party Zigbee and HAN FUN devices. Compatibilit
 
 ## References
 
-- [Using a smart home device from another manufacturer](https://en.avm.de/service/knowledge-base/dok/FRITZ-Box-7690/3435_Using-a-smart-home-device-from-another-manufacturer/)
+- [Using a smart home device from another manufacturer](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/3435_Using-a-smart-home-device-from-another-manufacturer/)
+- [Number and type of smart home devices that can be registered with the FRITZ!Box](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/3729_Number-and-type-of-smart-home-devices-that-can-be-registered-with-the-FRITZ-Box/)
 - [Registering a smart home device with the FRITZ!Smart Gateway](https://fritz.com/en/apps/knowledge-base/FRITZ-Box-7690/3728_Registering-a-smart-home-device-with-the-FRITZ-Smart-Gateway)
 - [FRITZ!Box 7690 Service & Support](https://fritz.com/en/pages/service-fritz-box-7690)
 - [FRITZ!Box 7690 User Manual (PDF, English)](https://www.manua.ls/avm/fritzbox-7690/manual)

@@ -1,6 +1,6 @@
 ---
 name: nas-and-storage
-description: FRITZ!Box 7690 FRITZ!NAS setup for USB storage devices including configuration, SMB/CIFS network sharing, FTP access, user permissions, media server (DLNA/UPnP), and remote access via MyFRITZ!. Use when setting up a network-attached storage share, enabling media streaming, configuring file access permissions, or connecting to the FRITZ!Box from Windows/macOS/Linux.
+description: FRITZ!Box 7690 FRITZ!NAS setup for USB storage devices including configuration, SMB/CIFS network sharing, FTP access, user permissions, media server (DLNA/UPnP), remote access via MyFRITZ!, and USB print server setup. Use when setting up a network-attached storage share, enabling media streaming, configuring file access permissions, connecting to the FRITZ!Box from Windows/macOS/Linux, or sharing a USB printer across the home network.
 ---
 # FRITZ!Box 7690 NAS and Storage (FRITZ!NAS)
 
@@ -174,8 +174,42 @@ Alternatively, enable remote access via VPN (see the **VPN** skill) for full net
 
 ---
 
+## USB Print Server
+
+The FRITZ!Box 7690 can share a USB printer over the home network so all devices can print wirelessly without connecting the printer directly.
+
+### Requirements
+
+- The printer must support RAW printing (unidirectional RAW over TCP/IP on **TCP port 9100**).
+- Printers requiring bidirectional data transfer (GDI/Windows printers, LIDIL, DOT4/IEEE 1284) cannot be used as USB print servers. Connect such printers directly via Wi-Fi or LAN instead.
+
+### Setting up a USB printer
+
+1. Connect the printer's USB cable to the **USB port** on the FRITZ!Box 7690.
+2. Turn the printer on and wait for it to be detected (it appears under **Home Network → USB / Storage**).
+3. On each computer that should print:
+   - **Windows**: In the printer settings, add a TCP/IP port pointing to `fritz.box` (or `192.168.178.1`) on port **9100**. Select the correct printer driver. If print jobs remain stuck, open **Control Panel → Devices and Printers**, right-click the printer, choose **Printer Properties → Ports**, select the TCP/IP port, click **Configure Port**, and uncheck **SNMP Status Enabled** / disable bidirectional support.
+   - **macOS / Linux**: Use the printer's native driver and configure it as a network printer with the RAW protocol to `fritz.box:9100`.
+4. Configure the firewall on each computer to allow outgoing connections to TCP port 9100 on the FRITZ!Box.
+
+### Alternative: Connect printer via Wi-Fi or LAN
+
+For printers that do not support RAW printing via USB, connect them directly to the FRITZ!Box home network:
+
+1. Connect the printer via Wi-Fi or a LAN cable to the FRITZ!Box (the FRITZ!Box does not need any special configuration — the printer uses DHCP).
+2. Enable **wireless device communication**: go to **Wi-Fi → Security → Advanced Settings** and check **Active wireless devices may communicate with each other** (required for Wi-Fi-connected printers).
+3. Refer to the printer manufacturer's instructions to add it to each computer as a network printer.
+
+For all-in-one printers with an integrated fax or telephone:
+- Connect the analog port of the all-in-one printer to a **FON** port on the FRITZ!Box.
+- Configure it as a fax device at **Telephony → Telephony Devices → Configure New Device → Fax Device**.
+
+---
+
 ## References
 
 - [Configuring a USB storage device connected to FRITZ!Box](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/26_Configuring-a-USB-storage-device-connected-to-FRITZ-Box/)
+- [Cannot print with USB printer connected to FRITZ!Box](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/174_Cannot-print-with-USB-printer-connected-to-FRITZ-Box/)
+- [Using a printer connected via network cable or Wi-Fi in the FRITZ! home network](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/506_Using-a-printer-connected-via-network-cable-or-Wi-Fi-in-the-FRITZ-home-network/)
 - [FRITZ!Box 7690 Service & Support](https://fritz.com/en/pages/service-fritz-box-7690)
 - [FRITZ!Box 7690 User Manual (PDF, English)](https://www.manua.ls/avm/fritzbox-7690/manual)

@@ -105,9 +105,21 @@ View real-time bandwidth usage per device:
 
 ---
 
+## Provider-Specific Setup Guides
+
+AVM provides dedicated step-by-step setup guides for major ISPs in Germany, Austria, Belgium, Italy, the Netherlands, Spain, Switzerland, and other countries. These guides cover provider-specific settings such as PPPoE credentials format, required VLAN IDs, and any non-standard configuration.
+
+To find the guide for your ISP, visit:
+- [Setting up the FRITZ!Box: Guides for different providers](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/3588_Setting-up-the-FRITZ-Box-Guides-for-different-providers/)
+
+Examples of providers with dedicated guides: Deutsche Telekom, Vodafone, o2, 1&1, Proximus, Fastweb, KPN, MásMóvil, Swisscom, Sunrise, A1, and many more.
+
+---
+
 ## References
 
 - [Setting up FRITZ!Box for use with a DSL line](https://fritz.com/en/apps/knowledge-base/FRITZ-Box-7690/635_Setting-up-FRITZ-Box-for-use-with-a-DSL-line)
+- [Setting up the FRITZ!Box: Guides for different providers](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/3588_Setting-up-the-FRITZ-Box-Guides-for-different-providers/)
 - [FRITZ!Box 7690 Service & Support](https://fritz.com/en/pages/service-fritz-box-7690)
 - [VPN connections in a cascading FRITZ!Box](https://en.avm.de/service/knowledge-base/dok/FRITZ-Box-7690/3766_Setting-up-VPN-connections-in-a-FRITZ-Box-used-as-a-cascading-router/)
 - [FRITZ!Box 7690 User Manual (PDF, English)](https://www.manua.ls/avm/fritzbox-7690/manual)

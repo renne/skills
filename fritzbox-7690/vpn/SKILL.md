@@ -129,6 +129,21 @@ MyFRITZ! provides secure web-based remote access to specific FRITZ!Box services 
 - Access the FRITZ!Box web interface, FRITZ!NAS, and smart home remotely.
 - End-to-end encrypted; no port forwarding required.
 
+### Setting up a MyFRITZ! account
+
+1. In the FRITZ!Box web interface, click **Internet → MyFRITZ! Account**.
+2. Enter your email address and click **Next**.
+3. Open the confirmation email from MyFRITZ!Net and click **Register Your FRITZ!Box**.
+4. Set a MyFRITZ! password on the myfritz.net website and click **Conclude Submission**.
+
+### Enabling FRITZ!Box remote access via MyFRITZ!
+
+1. In the FRITZ!Box web interface, click **Internet → MyFRITZ! Account**.
+2. Click **Configure MyFRITZ! Internet Access**.
+3. Select or create a FRITZ!Box user account for remote access and click **Apply**.
+
+Your FRITZ!Box is now reachable at your personal `*.myfritz.net` hostname. This hostname is also used as the **Remote Gateway** when setting up WireGuard or IPSec VPN connections.
+
 ---
 
 ## Troubleshooting
@@ -146,6 +161,7 @@ MyFRITZ! provides secure web-based remote access to specific FRITZ!Box services 
 ## References
 
 - [VPN with FRITZ!Box overview](https://fritz.com/en/apps/knowledge-base/FRITZ-Box-7690/3448_VPN-with-FRITZ-Box)
+- [Creating a MyFRITZ! account and setting it up in the FRITZ!Box](https://uk.fritz.com/service/knowledge-base/dok/FRITZ-Box-7690/966_Creating-a-MyFRITZ-account-and-setting-it-up-in-the-FRITZ-Box/)
 - [Setting up VPN connections in a cascading FRITZ!Box](https://en.avm.de/service/knowledge-base/dok/FRITZ-Box-7690/3766_Setting-up-VPN-connections-in-a-FRITZ-Box-used-as-a-cascading-router/)
 - [FRITZ!Box 7690 Service & Support](https://fritz.com/en/pages/service-fritz-box-7690)
 - [FRITZ!Box 7690 User Manual (PDF, English)](https://www.manua.ls/avm/fritzbox-7690/manual)
