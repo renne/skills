@@ -127,6 +127,19 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 | [Code Generation (ZAP, .matter IDL, codegen.py, pre-generation, IDL tooling)](matter/code-generation/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/zap_and_codegen/code_generation.html |
 | [Testing (unit tests pw_unit_test, Python Mobly integration tests, YAML tests, CI)](matter/testing/SKILL.md) | https://project-chip.github.io/connectedhomeip-doc/testing/index.html |
 
+### FRITZ!Box 7690
+
+| Skill | Source |
+|-------|--------|
+| [Internet Setup (DSL, VDSL, FTTH/fiber, external modem, cascading)](fritzbox-7690/internet-setup/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [Wi-Fi and Mesh (Wi-Fi 7, mesh networking, guest Wi-Fi, WPS, scheduling)](fritzbox-7690/wifi-and-mesh/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [Telephony (DECT phones, VoIP/SIP, answering machines, call blocking, fax)](fritzbox-7690/telephony/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [Smart Home (Zigbee, DECT ULE/HAN FUN, FRITZ!Smart Gateway, routines)](fritzbox-7690/smart-home/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [VPN (WireGuard remote access and site-to-site, IPSec, MyFRITZ!)](fritzbox-7690/vpn/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [Network Security (Firewall, parental controls, access profiles, device blocking)](fritzbox-7690/network-security/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [NAS and Storage (FRITZ!NAS, USB storage, SMB, media server, remote access)](fritzbox-7690/nas-and-storage/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+| [Device Management (FRITZ!OS updates, backup/restore, diagnostics, factory reset)](fritzbox-7690/device-management/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
+
 ### Home Assistant
 
 | Skill | Source |
