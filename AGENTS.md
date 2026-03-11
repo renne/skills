@@ -102,4 +102,4 @@ At the end of every session, update the skills library with anything new you lea
 
 Apply this rule at the end of any session in which you used or could have used a skill.
 
-**Before context compaction:** If the context is about to be compacted, immediately follow steps 1–4 above to persist all accumulated learnings before they are lost.
+**Before context compaction:** If the context is about to be compacted, immediately follow steps 1–3 above to persist all accumulated learnings before they are lost.
