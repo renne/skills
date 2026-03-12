@@ -247,6 +247,25 @@ curl -X PUT https://api.netbird.io/api/dns/settings \
 
 Match domain nameservers require macOS, Windows 10+, or Linux with `systemd-resolved`. Always configure at least one primary nameserver assigned to all peers as a fallback.
 
+### Linux Bootstrap Caveat
+
+On Linux, NetBird may manage `/etc/resolv.conf` directly instead of going through `systemd-resolved`. In that mode:
+
+- `/etc/resolv.conf` can contain only the local NetBird resolver, for example `100.115.218.142`
+- NetBird typically keeps a backup at `/etc/resolv.conf.original.netbird`
+- host DNS can fail during startup if the local NetBird resolver path is not ready yet
+
+For infrastructure hosts, keep the NetBird resolver first for overlay/private records, but add public fallback resolvers after it:
+
+```conf
+search nb.example.internal example.internal
+nameserver 100.115.218.142
+nameserver 86.54.11.100
+nameserver 86.54.11.200
+```
+
+If NetBird keeps rewriting `/etc/resolv.conf`, persist the fallback via a systemd hook such as `ExecStartPost` on `netbird.service`.
+
 ---
 
 ## DNS Troubleshooting
@@ -291,6 +310,22 @@ netbird down && netbird up --disable-dns
 # Re-enable: netbird down && netbird up --disable-dns=false
 ```
 
+### Bootstrap Failure Pattern on Self-Hosted Nodes
+
+If a host both runs NetBird and starts critical services that need public DNS, watch for this chain:
+
+1. service starts
+2. service needs DNS immediately
+3. resolver path depends on the local NetBird resolver
+4. local NetBird DNS path is not ready
+5. service fails before NetBird-dependent DNS recovers
+
+Mitigations:
+
+- keep the NetBird resolver first for private overlay records
+- add public fallback resolvers on the host
+- if a Docker container still fails through `127.0.0.11`, use an explicit per-service `dns:` override
+
 ### Common Issues
 
 | Issue | Likely Cause | Fix |
@@ -300,6 +335,7 @@ netbird down && netbird up --disable-dns
 | Android ignores custom DNS | Private DNS is enabled | Settings → Network & Internet → Private DNS → Off |
 | Match domains not working | Using macOS/Windows without a primary nameserver | Configure at least one primary nameserver |
 | Routing peer can't resolve domain resources | Routing peer's group not in nameserver distribution | Add routing peer's group to the nameserver's distribution groups |
+| Containerized service fails DNS while host DNS works | Docker embedded resolver `127.0.0.11` is unhealthy or forwarding incorrectly | Add explicit `dns:` entries on the affected service and test container namespace resolution separately |
 
 ### Wildcard Syntax Note
 

@@ -163,6 +163,8 @@ Devices in office-a can now reach `192.168.2.x` and vice versa through the routi
 - Multiple routing peers per network improve resilience; NetBird picks the lowest-latency available peer.
 - When a routing peer also runs CoreDNS, use `netbird up --disable-dns` to avoid port 53 conflicts and set that peer's group to DNS Unmanaged Mode.
 - Routes from removed peers can persist in `ip route table 7120` on other peers. Restart NetBird or add a static override in the main routing table. See the `routing-troubleshooting` skill for details.
+- On infrastructure hosts, do not rely on the NetBird-managed local resolver as the only host resolver if other critical services need public DNS during startup. Keep NetBird first for overlay records, but add public fallback resolvers behind it.
+- Docker containers can still fail through `127.0.0.11` even when host DNS is healthy. For bootstrap-sensitive services, use an explicit service-level `dns:` override if testing shows Docker's embedded resolver is unstable.
 
 ## Configuring Upstream Routers to Use NetBird-Integrated CoreDNS
 

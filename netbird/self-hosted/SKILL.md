@@ -268,6 +268,47 @@ docker compose logs -f
 docker compose restart management
 ```
 
+### DNS Bootstrap on the Self-Hosted Server
+
+If the self-hosted server also runs a NetBird client, separate the host DNS path from the container DNS path during troubleshooting:
+
+- the host may use a NetBird-managed `/etc/resolv.conf`
+- the management container may use Docker's embedded resolver `127.0.0.11`
+- startup tasks may still require public DNS before the whole NetBird path is stable
+
+Recommended pattern for infrastructure hosts:
+
+1. keep the local NetBird resolver first on the host
+2. add public fallback resolvers after it on the host
+3. if the management container still fails through `127.0.0.11`, add a per-service `dns:` override in `docker-compose.yml`
+
+Example:
+
+```yaml
+services:
+  netbird-server:
+    dns:
+      - 86.54.11.100
+      - 86.54.11.200
+```
+
+This override can remain necessary even when the host itself already has working fallback resolvers.
+
+### Symptom: geolocation startup crash
+
+One concrete symptom of broken container-side DNS is:
+
+```text
+lookup pkgs.netbird.io on 127.0.0.11:53: server misbehaving
+```
+
+Validate these paths separately:
+
+- host DNS resolution
+- container namespace DNS resolution
+- Docker embedded resolver behavior
+- provider firewall handling of UDP/53
+
 ---
 
 ## References
