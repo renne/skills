@@ -207,6 +207,66 @@ disappear.
 
 ---
 
+### Stale apt cache — missed upgrades
+
+`unattended-upgrade` only upgrades to the **apt candidate** at runtime — i.e. the version last
+fetched by `apt-get update`. If the apt package lists are stale, the latest version is
+never seen, and unattended-upgrades will report "package already at latest version" even
+when a newer release is available.
+
+**Symptom:** `apt-get install <pkg>` gets a newer version than `unattended-upgrade -d` offered.
+
+**Fix:** Run `apt-get update` before running unattended-upgrades, or ensure that the
+`APT::Periodic::Update-Package-Lists "1"` setting fires correctly (requires `apt-daily.timer`
+to be active):
+
+```bash
+systemctl status apt-daily.timer
+journalctl -u apt-daily.service --since "1 day ago"
+```
+
+---
+
+### DNS circular dependency on Netbird routing peers
+
+Routing peers that use DNS-only addresses (e.g. CoreDNS at `10.0.0.7`/`10.0.0.8` reachable
+only via the Fritz!OS WireGuard tunnel) can deadlock: if Netbird disconnects and needs to
+reconnect, it must resolve the management server FQDN — but DNS is unreachable without the
+tunnel.
+
+**Affected host:** nb1 (CT111 on pve2), which uses CoreDNS at `10.0.0.7`/`10.0.0.8` on the
+Weißdornweg LAN, reachable via Fritz!Box WireGuard VPN.
+
+**Fix:** Always add a fallback DNS server that is directly reachable without any tunnel.
+For nb1: add `192.168.178.1` (Fritz!Box 7690) as third nameserver.
+
+Persist in Proxmox (regenerated on restart — see Proxmox LXC DNS management below):
+```bash
+pct set 111 --nameserver "10.0.0.7 10.0.0.8 192.168.178.1"
+```
+
+---
+
+### Proxmox LXC resolv.conf management
+
+Proxmox VE **regenerates `/etc/resolv.conf`** inside LXC containers on every restart from
+the container's node config (`/etc/pve/lxc/<CTID>.conf`). Edits made directly inside the
+container will be lost on next `pct restart`.
+
+**Persist DNS via pct set on the Proxmox host:**
+
+```bash
+pct set <CTID> --nameserver "ns1 ns2 ns3"
+# Example for nb1:
+pct set 111 --nameserver "10.0.0.7 10.0.0.8 192.168.178.1"
+```
+
+PVE writes a `# --- BEGIN PVE ---` block into `/etc/resolv.conf`. Extra nameservers can be
+appended **below** that block inside the container for immediate effect without restart, but
+the `pct set` command is authoritative for persistence.
+
+---
+
 ## Notes
 
 - **Debian 13 (trixie)**: `unattended-upgrades` is not pre-installed. Default allowed origins are:

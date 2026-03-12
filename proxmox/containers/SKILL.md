@@ -272,6 +272,46 @@ pct create <ctid> <template> --unprivileged 1
 
 ---
 
+## DNS Management in LXC Containers
+
+Proxmox VE **regenerates `/etc/resolv.conf`** inside every LXC container on restart from the
+container's node configuration. Edits made directly inside the container are **lost on next
+`pct restart`**.
+
+### Persisting DNS settings
+
+Use `pct set` on the Proxmox host to persist nameservers and search domains:
+
+```bash
+# Set nameservers (space-separated, applied in order):
+pct set <CTID> --nameserver "10.0.0.7 10.0.0.8 192.168.178.1"
+
+# Set search domain (optional):
+pct set <CTID> --searchdomain "local"
+
+# View current config:
+grep -E "^nameserver|^searchdomain" /etc/pve/lxc/<CTID>.conf
+```
+
+PVE writes a `# --- BEGIN PVE ---` / `# --- END PVE ---` block into `/etc/resolv.conf`
+inside the container. Additional lines outside that block can be edited directly for
+immediate effect, but the PVE block is authoritative and will be re-written on restart.
+
+### Always include a fallback DNS
+
+For containers whose primary DNS (e.g. `10.0.0.7`/`10.0.0.8` via a WireGuard tunnel) may be
+unreachable during startup or tunnel reconnect, always add a locally-reachable fallback:
+
+```bash
+# For nb1 on pve2 (Friedensstraße):
+pct set 111 --nameserver "10.0.0.7 10.0.0.8 192.168.178.1"
+```
+
+Without a fallback, the container may fail to resolve hostnames on startup, breaking
+services like Netbird that need DNS to reconnect to the management server.
+
+---
+
 ## References
 
 - https://pve.proxmox.com/pve-docs/
