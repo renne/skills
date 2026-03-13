@@ -256,24 +256,32 @@ Multiple proxy instances with the same `NB_PROXY_DOMAIN` value form a single pro
 
 When a backend service sits behind the NetBird Reverse Proxy, it sees the proxy's **NetBird IP** (from the `100.64.0.0/10` CGNAT range) as the client IP instead of the real user's IP. Many applications require configuring trusted proxies to correctly read the real client IP from the `X-Forwarded-For` header.
 
+**Cloud-hosted usage limits:** NetBird's cloud-hosted Reverse Proxy is provided on a shared, best-effort basis. High-volume or sustained data transfers may be subject to bandwidth limits, rate limiting, and fair-use policies under the [NetBird Terms of Service](https://netbird.io/terms). These restrictions do not apply if you self-host NetBird.
+
 **Important:** Do not hardcode a specific NetBird IP (e.g., `100.64.0.47`) — NetBird IPs can change on peer restart. Instead, trust the entire CGNAT range:
 
 ```
 100.64.0.0/10
 ```
 
-**Docker bridge networks:** If the NetBird peer and backend run as containers on the same Docker bridge network (e.g., Home Assistant NetBird add-on), the backend sees the Docker bridge IP (`172.16.0.0/12` range) instead. Add both ranges:
+If you prefer a narrower range, you can use your account's specific network range (typically `100.64.0.0/16`). Find it via the API: `GET /api/accounts/{id}` — look for the `network_range` field. The full `/10` range is recommended for simplicity and resilience.
+
+**Docker bridge networks:** If the NetBird peer and backend run as containers on the same Docker bridge network (e.g., Home Assistant NetBird add-on), traffic does not traverse the WireGuard tunnel. The backend sees the NetBird container's **Docker bridge IP** (typically from `172.16.0.0/12`) instead. Add both ranges:
 
 ```
 100.64.0.0/10
 172.16.0.0/12
 ```
 
+The default Docker bridge subnet is `172.17.0.0/16`, but Docker and add-on managers may assign addresses from anywhere in the `172.16.0.0/12` range. Run `docker network inspect <network>` to find the exact subnet if you need a narrower entry.
+
 ### Jellyfin
 
 1. Go to **Dashboard** → **Networking**.
 2. In the **Known Proxies** field, enter `100.64.0.0/10`.
 3. Click **Save**.
+
+Jellyfin also supports a **Base URL** setting, which can be used in conjunction with a path prefix configured on the reverse proxy service.
 
 ### Home Assistant
 
@@ -299,6 +307,12 @@ In `config/config.php`:
   array (
     0 => '100.64.0.0/10',
   ),
+```
+
+If you're running **Nextcloud AIO**, trusted proxies are configured automatically during setup. If manual adjustment is needed, exec into the container:
+
+```bash
+sudo docker exec -u 0 -it nextcloud-aio-nextcloud /bin/bash
 ```
 
 ### Verifying Trusted Proxy Configuration

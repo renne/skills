@@ -156,6 +156,15 @@ The custom domain must already be configured and verified in your account. See [
 
 **Note:** After an unexpected client disconnect, the service remains accessible for up to 90 seconds. For sensitive services, always use authentication.
 
+### What Causes Expiration
+
+A session expires when the management server does not receive a renewal within 90 seconds. Common causes:
+
+- **Network interruption** between the peer and the management server.
+- **Client process killed** without graceful shutdown (e.g., `kill -9`, OOM kill, system reboot).
+- **Daemon restarted** while an expose session is active.
+- **Management server restarted** — all in-memory sessions are cleared immediately.
+
 ### Limits
 
 Each peer can have a maximum of **10 active expose sessions** simultaneously.
@@ -173,6 +182,8 @@ Each peer can have a maximum of **10 active expose sessions** simultaneously.
 | **Custom domains** | Yes | Yes (if pre-configured) |
 | **Authentication** | SSO, Password, PIN | SSO (user groups), Password, PIN |
 | **Advanced settings** | Host header, redirect rewriting | Not available |
+| **Visibility** | Always shown in dashboard | Shown while active |
+| **Source label** | Permanent | Ephemeral |
 | **Rate limit** | None | Max 10 per peer |
 
 ---
