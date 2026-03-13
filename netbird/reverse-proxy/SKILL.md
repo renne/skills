@@ -335,6 +335,70 @@ Access logs are available at **Activity** → **Proxy Events** in the dashboard.
 
 ---
 
+---
+
+## REST API — Target Type Constraints (Operational)
+
+The management REST API `POST /api/reverse-proxy/services` only accepts **two valid `target_type` values**:
+
+| `target_type` | Dashboard label | Requires |
+|---------------|-----------------|----------|
+| `peer` | Peer | A registered NetBird WireGuard peer ID (from `/api/peers`) |
+| `host` | Host / Domain / Subnet | A NetBird network resource ID (from `/api/networks/{id}/resources`) |
+
+The dashboard shows four target types (`Peer`, `Host`, `Domain`, `Subnet`) but all non-peer types resolve to network resource IDs and use `target_type=host` in the API. Using `target_type=network_resource` returns `422 invalid target_type`.
+
+### `target_type=peer`
+
+Works when the backend machine is a registered NetBird peer. Management resolves the peer's WireGuard IP and pushes it as the proxy target URL.
+
+**Prerequisite:** The host running the backend service must be enrolled in NetBird (installed `netbird` client, `netbird up` run, peer visible in `/api/peers`). If the host is not a registered peer, this type cannot be used.
+
+### `target_type=host`
+
+Works when a NetBird **network resource** has already been created for the target subnet/IP and a routing peer has been assigned to that network. Management resolves the resource via the routing peer.
+
+**Prerequisite:**
+1. A NetBird network must exist with a routing peer (a registered peer that has network access to the backend).
+2. A network resource must exist for the target subnet or IP within that network.
+3. The `id` field of the network resource is passed as `target_id`.
+
+If the resource or network does not exist, the API returns `422 resource target not found in account`.
+
+---
+
+## Migration Blocker: Backend Host Not a Peer
+
+If the host running the Docker backend containers (e.g., `docker`) is **not** a registered NetBird peer, the service API has no valid target:
+
+- `target_type=peer` — fails: peer ID does not exist in peer list.
+- `target_type=host` — fails: requires a routing peer with network access to the subnet.
+- No direct URL target type exists in the REST API.
+
+Even if the proxy container runs on the same Docker bridge network as the backend containers and could reach them directly by IP, the management server has no API mechanism to express a direct URL target without going through a peer or network resource.
+
+**Resolution options (pick one):**
+
+1. **Register `docker` as a NetBird peer** — install `netbird` client on the `docker` host, run `netbird up`, wait for it to appear in the peer list, then use `target_type=peer` with the peer ID.
+
+2. **Create a network resource via a routing peer** — add `docker` as a routing peer in a NetBird network, create a network resource for `172.0.x.x/24` (or a specific container IP), then use `target_type=host` with the resource ID.
+
+---
+
+## Management Source Location
+
+The reverse-proxy management code lives at:
+
+```
+netbirdio/netbird / management/internals/modules/reverseproxy/
+```
+
+*Not* at `management/server/http/handlers/reverseproxy/` — that path does not exist.
+
+The proxy container embeds a WireGuard client (`github.com/netbirdio/netbird/client/embed`) and receives `ProxyMapping → PathMapping{path, target, options}` from the management server via gRPC stream.
+
+---
+
 ## References
 
 - [Reverse Proxy Overview](https://docs.netbird.io/manage/reverse-proxy)
