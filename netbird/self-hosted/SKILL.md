@@ -110,6 +110,13 @@ NB_PROXY_CERTIFICATE_KEY_FILE=privkey.pem
 
 If the key is mounted with standard Certbot permissions (`0600` root-owned), the container may need to run as root or the mounted files need adjusted read permissions.
 
+For day-2 operations on a self-hosted deployment, prefer the supported NetBird interfaces:
+
+- the NetBird MCP server, if it exposes the required resource
+- the NetBird management API / dashboard for resources not covered by MCP
+
+Do **not** use direct `store.db` or other database writes for normal management changes. Database edits bypass NetBird validation and API-side invariants and should be treated as disaster-recovery work only, not routine administration.
+
 ---
 
 ## Docker Compose Structure

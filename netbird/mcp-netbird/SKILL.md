@@ -10,6 +10,8 @@ Source: https://github.com/XNet-NGO/mcp-netbird
 
 `mcp-netbird` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that lets AI assistants (Kiro, Claude Desktop, and any other MCP client) manage NetBird VPN infrastructure through natural language or programmatic tool calls.
 
+Use the MCP server or the supported NetBird management API for NetBird changes whenever possible. Do **not** modify NetBird's backing database directly for operational changes such as peers, groups, policies, reverse-proxy configuration, DNS, routes, or account state. Direct database edits bypass validation and can leave the management state inconsistent.
+
 It provides **50+ tools** for complete CRUD operations on all NetBird resources:
 
 | Resource | Operations |
