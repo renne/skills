@@ -353,6 +353,37 @@ http:
         metrics: true
 ```
 
+## Practical Troubleshooting Notes
+
+### Prove router selection with access logs before changing middleware or backends
+
+When troubleshooting "wrong credentials", "wrong backend", or "special route not working" reports, first confirm which router actually handled the request. The `RouterName` and `ServiceName` fields in Traefik access logs are often the fastest way to distinguish:
+
+- the request reached the intended special-case router
+- the request silently fell through to a generic router
+- the backend/service was correct but returned the wrong status
+
+Typical workflow:
+
+1. Filter access logs by the exact request path.
+2. Compare `RouterName` for successful vs failing samples.
+3. Only after that, inspect middleware or backend logs.
+
+For example, repeated WebDAV requests to `/remote.php/dav/files/alice/inbox/` hitting `nextcloud@file` instead of `scanner-proxy@file` usually means the routing rule is too broad or the exception router is matching on the wrong signal.
+
+### Correlate application logs with provider reloads
+
+If behavior changes after editing file-provider configuration, compare:
+
+- access logs (`RouterName`, `ServiceName`, status)
+- application logs (provider reload warnings, missing middlewares, transport errors)
+
+This helps separate:
+
+- a real routing mismatch
+- a temporary reload-time warning
+- a backend outage that only looks like an auth error to the client
+
 ---
 
 ## Kubernetes: Prometheus with ServiceMonitor

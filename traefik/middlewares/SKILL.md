@@ -345,6 +345,28 @@ http:
         initialInterval: 100ms
 ```
 
+Use `Retry` narrowly. It works best when attached only to the route that needs protection from short upstream restart windows or connection races, instead of globally across unrelated application traffic.
+
+Example:
+
+```yaml
+http:
+  routers:
+    scanner-webdav:
+      rule: "Host(`files.example.com`) && PathPrefix(`/remote.php/dav/files/alice/inbox`)"
+      service: scanner-proxy
+      middlewares:
+        - scanner-retry
+
+  middlewares:
+    scanner-retry:
+      retry:
+        attempts: 4
+        initialInterval: 2s
+```
+
+If the backend application can also distinguish transient connect failures from real authentication failures, combine Traefik `Retry` with a small application-level retry for connection-refused or connect-timeout errors only.
+
 ### Buffering
 
 Buffer requests/responses for better error handling and size limiting.

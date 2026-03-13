@@ -316,6 +316,43 @@ http:
       tls: {}
 ```
 
+## Practical Routing Notes
+
+### Prefer destination matching over `ClientIP` for device-specific exceptions
+
+When a device stores a stable target URL (for example, a WebDAV or API path) but its apparent source IP may vary because of dual-stack selection, proxy hops, or network changes, prefer matching the exception route on the destination request shape instead of `ClientIP(...)`.
+
+Example: route a scanner's saved WebDAV destination through a special auth-normalizing proxy:
+
+```yaml
+http:
+  routers:
+    scanner-webdav:
+      rule: "Host(`files.example.com`) && PathPrefix(`/remote.php/dav/files/alice/inbox`)"
+      entryPoints:
+        - websecure
+      service: scanner-proxy
+      priority: 100
+      tls: {}
+```
+
+This is usually more durable than:
+
+```yaml
+rule: "Host(`files.example.com`) && ClientIP(`192.168.1.50`)"
+```
+
+Use `ClientIP` only when the source address is the actual invariant you care about. If the real requirement is "requests for this exact stored destination must pass through a special service", encode that with `Host`, `Path`, or `PathPrefix`.
+
+### Use explicit priority when a special-case router overlaps a generic router
+
+If both of these exist:
+
+- a generic router such as `Host(`files.example.com`)`
+- a special-case router such as `Host(`files.example.com`) && PathPrefix(`/remote.php/dav/files/alice/inbox`)`
+
+set an explicit higher `priority` on the special-case router. This prevents later edits or rule-length changes from accidentally sending the request back to the generic service.
+
 ## References
 
 - [HTTP Routing Overview](https://doc.traefik.io/traefik/reference/routing-configuration/dynamic-configuration-methods/)
