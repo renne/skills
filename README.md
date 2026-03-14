@@ -150,6 +150,12 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 | [NAS and Storage (FRITZ!NAS, USB storage, SMB, media server, remote access)](fritzbox-7690/nas-and-storage/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
 | [Device Management (FRITZ!OS updates, backup/restore, diagnostics, factory reset)](fritzbox-7690/device-management/SKILL.md) | https://fritz.com/pages/knowledge-base?product=FRITZ-Box-7690 |
 
+### Watchtower
+
+| Skill | Source |
+|-------|--------|
+| [Deployment (Docker Compose, label-enable mode, Docker API version fix, scheduling, labeling stacks)](watchtower/deployment/SKILL.md) | https://containrrr.dev/watchtower/ |
+
 ### Home Assistant
 
 | Skill | Source |
