@@ -513,36 +513,27 @@ address: 172.0.4.6    # ← IP address, type auto-set to "host"
 
 ```
 # Create resource with DNS hostname
-address: grampsweb.proxy    # ← management sets resource.Domain = "grampsweb.proxy"
-# → proxy resolves this name via 100.115.255.254 (NetBird WireGuard DNS)
+address: grampsweb    # ← management sets resource.Domain = "grampsweb"
+# → proxy resolves this name using system /etc/resolv.conf
 ```
 
-⚠️ **DEFINITIVE FINDING: `target_type: domain` ALWAYS uses NetBird's WireGuard DNS (`100.115.255.254`)**
+**How `target_type: domain` resolution actually works (CONFIRMED from source code + binary analysis):**
 
-This is hardcoded in `proxy/internal/roundtrip/netbird.go`. The proxy binary does **not** use the container's `/etc/resolv.conf` or Docker's embedded DNS (`127.0.0.11`) for backend resolution — it always goes through `100.115.255.254`.
+DNS resolution for `target_type: domain` happens inside the **proxy binary** at connection time using the standard Go net.Resolver, which reads the system `/etc/resolv.conf`. The management server does NOT perform any DNS lookup — `manager.go` `replaceHostByLookup()` simply sets `target.Host = resource.Domain` (passes the domain string as-is to the proxy).
 
-`100.115.255.254` is NetBird's WireGuard DNS. It only resolves:
-- NetBird peer names
-- NetBird network resource names (if management registers them)
-- **NOT** Docker container names, Docker network names, or any host-local DNS
+`100.115.255.254` is **NOT hardcoded** in the proxy binary (confirmed by `strings /go/bin/netbird-proxy | grep "100.115"` returning nothing). It only appears as a DNS server when:
 
-This was confirmed by **two independent failed attempts**, both with the same root-cause error:
+1. The proxy container runs as **root** → WireGuard kernel module succeeds → NetBird modifies `/etc/resolv.conf` to `100.115.255.254` → Go resolver uses that → Docker container names fail (`server misbehaving`)
+2. The proxy container runs as **uid 1000** → no WireGuard capability → `/etc/resolv.conf` stays as Docker's `127.0.0.11` → Docker embedded DNS resolves container names on the same network ✅
 
-```
-# Attempt 1: grampsweb.proxy (Docker network name as TLD)
-dial: lookup grampsweb.proxy. on 100.115.255.254: server misbehaving
+Historical failures (`lookup grampsweb. on 100.115.255.254: server misbehaving`) occurred exclusively when the proxy ran as **root** and WireGuard replaced the container's DNS.
 
-# Attempt 2: grampsweb (plain container name, no TLD)
-dial: lookup grampsweb. on 100.115.255.254: server misbehaving
-```
+**With `user: "1000:1000"` (current setup), `target_type: domain` works for Docker container names** because:
+- No WireGuard interface → Docker embedded DNS `127.0.0.11` remains active
+- `127.0.0.11` resolves container names on the same Docker network
+- `address: "grampsweb"` → `resource.Domain = "grampsweb"` → proxy resolves `grampsweb` → `172.0.4.6` ✅
 
-Both failed for the same reason: `100.115.255.254` has no knowledge of Docker internals. The TLD (`.proxy` vs bare) was irrelevant.
-
-**Misleading test:** `wget http://vaultwarden/` from inside the proxy container WORKS — because `wget` uses `/etc/resolv.conf` → `127.0.0.11` → Docker embedded DNS → resolves container names. This does NOT represent how the proxy application resolves `target_type: domain` backends.
-
-**`uid 1000` does NOT fix domain DNS:** Running the proxy as non-root (`user: "1000:1000"`) only prevents the `nbnet.NewDialer()` 30-second timeout. The proxy binary's DNS resolution path for `target_type: domain` is unaffected by the process uid.
-
-**Use Option A (IP address + `target_type: host`) for ALL Docker container targets.** `target_type: domain` is only valid when the resource address is a real, publicly-resolvable FQDN (e.g., an external service with a public DNS record reachable from NetBird's WireGuard network).
+**Both options are valid when the proxy runs as uid 1000:**
 
 **Root cause in resource configuration:**
 
