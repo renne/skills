@@ -38,6 +38,32 @@ It provides **50+ tools** for complete CRUD operations on all NetBird resources:
 
 ---
 
+## Token & Endpoint Location (this installation)
+
+When MCP tools are unavailable or insufficient (e.g. for raw `curl` calls to endpoints the MCP server doesn't expose), retrieve the live credentials from:
+
+```
+~/.copilot/mcp-config.json
+```
+
+Relevant fields:
+
+| Field | Path in JSON |
+|-------|-------------|
+| API token (`nbp_…`) | `.mcpServers.netbird.headers["X-Netbird-API-Token"]` |
+| MCP SSE endpoint | `.mcpServers.netbird.url` |
+
+The MCP SSE server runs on vps1 (`mcp-netbird` Docker container, WireGuard IP `100.115.218.142`, port `8001`).
+
+**Never copy the token value into skill files or commit it to git.** Always read it at runtime:
+
+```bash
+NB_TOKEN=$(jq -r '.mcpServers.netbird.headers["X-Netbird-API-Token"]' ~/.copilot/mcp-config.json)
+curl -sf -H "Authorization: Token $NB_TOKEN" https://netbird.bartschnet.de/api/...
+```
+
+---
+
 ## Prerequisites
 
 A NetBird API token is required before any deployment:
