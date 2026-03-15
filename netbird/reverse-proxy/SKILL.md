@@ -518,6 +518,14 @@ address: grampsweb.proxy    # ← Docker DNS name, type auto-set to "domain"
 # → proxy container must be on the same Docker network to resolve this DNS name
 ```
 
+⚠️ **Pitfall: Docker network name as TLD (`grampsweb.proxy`) fails DNS from proxy container**
+
+If the proxy container's DNS resolvers are LAN split-horizon resolvers (not Docker's embedded `127.0.0.11`), they will not know `.proxy` and return `REFUSED` or `NXDOMAIN`. This causes:
+```
+dial: lookup grampsweb.proxy. on 10.0.0.7: server misbehaving
+```
+**Use Option A (IP address + `target_type: host`) for Docker container targets** unless you can guarantee the proxy container's DNS stack resolves Docker internal names. The only safe `target_type: domain` use case is when the address is a valid public FQDN (ends with a real TLD).
+
 **Root cause in resource configuration:**
 
 ```
@@ -538,26 +546,26 @@ Result:   resource.Domain → "grampsweb.proxy" → http://grampsweb.proxy:5000/
 
 ```bash
 # Create a host-type resource with IP address (use target_type: host in service)
+# ⚠️  groups must be a plain string array — NOT objects: [{"id":"..."}] returns "couldn't parse JSON request"
 curl -s -X POST "https://netbird.bartschnet.de/api/networks/<network_id>/resources" \
   -H "Authorization: Token <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "grampsweb",
-    "address": "172.0.4.6",   ← IP address → type auto-detected as "host"
+    "address": "172.0.4.6",
     "enabled": true,
-    "groups": [{"id": "<all-group-id>"}]
+    "groups": ["<all-group-id>"]
   }'
 
-# OR create a domain-type resource (use target_type: domain in service)
-# (when proxy container can resolve the DNS name)
-curl -s -X POST "https://netbird.bartschnet.de/api/networks/<network_id>/resources" \
+# Update an existing resource (PUT replaces all fields):
+curl -s -X PUT "https://netbird.bartschnet.de/api/networks/<network_id>/resources/<resource_id>" \
   -H "Authorization: Token <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "grampsweb",
-    "address": "grampsweb.proxy",   ← DNS name → type auto-detected as "domain"
+    "address": "172.0.4.6",
     "enabled": true,
-    "groups": [{"id": "<all-group-id>"}]
+    "groups": ["<all-group-id>"]
   }'
 ```
 
