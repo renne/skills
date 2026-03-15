@@ -475,41 +475,104 @@ target: http://invalid%20IP:8000/
 
 The proxy receives a mapping update with `target:"http://invalid%20IP:8000/"` — the literal string `"invalid IP"` URL-encoded.
 
-**Root cause:** The NetBird management server resolves a service target's `host` field by calling `net.ParseIP()` on the resource's address. Resources of `type: "domain"` have a DNS hostname (e.g., `grampsweb.proxy`, `paperless.proxy`) as their address. Since `net.ParseIP()` returns `nil` for a hostname, the management server substitutes the literal string `"invalid IP"` as a placeholder before sending the mapping to the proxy. The proxy then tries to construct `http://invalid IP:8000/`, fails URL parsing, and skips the route entirely — the service is silently unrouted.
+**Root cause (confirmed from NetBird source — `management/internals/modules/reverseproxy/service/manager/manager.go`):**
 
-**This is independent of the root-user/nbnet.NewDialer() issue** — even if the proxy runs as non-root, domain-type resource targets will always fail.
+The management server's `replaceHostByLookup()` function resolves each service target's `host` field based on `target_type`:
+
+```go
+case service.TargetTypeHost:
+    resource, err := m.store.GetNetworkResourceByID(...)
+    target.Host = resource.Prefix.Addr().String()   // ← uses IP prefix field
+
+case service.TargetTypeDomain:
+    resource, err := m.store.GetNetworkResourceByID(...)
+    target.Host = resource.Domain                   // ← uses DNS name field
+```
+
+When a service is created with **`target_type: host`** but points to a **`domain`-type network resource** (one created with a DNS hostname like `grampsweb.proxy`):
+
+1. The resource's `Prefix` field (a `netip.Prefix`) is zero-valued — domain resources don't populate the IP prefix
+2. `netip.Prefix{}.Addr()` returns `netip.Addr{}` (Go zero value)
+3. `netip.Addr{}.String()` returns the literal string `"invalid IP"` — this is Go's standard library behavior for the zero `netip.Addr`
+4. The proxy receives `http://invalid%20IP:8000/` — space URL-encoded
+5. `url.Parse()` fails: `invalid URL escape "%20"` in a host position → route skipped entirely
+
+**This is independent of the root-user/nbnet.NewDialer() issue** — even if the proxy runs as non-root, domain-type resource targets used with `target_type=host` will always fail.
+
+**Two valid fixes:**
+
+**Option A — Use `target_type: host` with an IP-address resource (recommended for static backends):**
+
+```
+# Create resource with actual IP address
+address: 172.0.4.6    # ← IP address, type auto-set to "host"
+# → management calls resource.Prefix.Addr().String() → "172.0.4.6" ✅
+```
+
+**Option B — Use `target_type: domain` with a domain-type resource (works when proxy can resolve DNS):**
+
+```
+# Create resource with DNS hostname
+address: grampsweb.proxy    # ← Docker DNS name, type auto-set to "domain"
+# → management calls resource.Domain → "grampsweb.proxy" ✅
+# → proxy container must be on the same Docker network to resolve this DNS name
+```
 
 **Root cause in resource configuration:**
 
 ```
-# BAD — resource address is a DNS hostname → type: "domain" → "invalid IP"
-address: grampsweb.proxy    # Docker service name / DNS name
+# BAD — target_type mismatch: host service → domain resource
+Service:  target_type: host,   target_id: <resource with address="grampsweb.proxy">
+Result:   resource.Prefix is zero → "invalid IP" → URL parse error → 404
 
-# GOOD — resource address is a valid IP → type: "host" → IP used correctly
-address: 172.0.4.6          # Actual container/host IP address
+# GOOD — matching target_type: host service → host resource (IP address)
+Service:  target_type: host,   target_id: <resource with address="172.0.4.6">
+Result:   resource.Prefix.Addr() → "172.0.4.6" → http://172.0.4.6:5000/ ✅
+
+# GOOD — matching target_type: domain service → domain resource (DNS name)
+Service:  target_type: domain, target_id: <resource with address="grampsweb.proxy">
+Result:   resource.Domain → "grampsweb.proxy" → http://grampsweb.proxy:5000/ ✅
 ```
 
-**Fix:** Network resources used as reverse-proxy service targets must be of `type: "host"` — created with a valid IP address, not a DNS hostname. Use the container's actual IP address (e.g., `172.0.4.6`) not its Docker service DNS name (`grampsweb.proxy`).
+**Fix:** Either create network resources with IP addresses and use `target_type: host`, or use the correct `target_type: domain` when the resource has a DNS hostname. The `target_type` in the service must match the address type of the linked network resource.
 
 ```bash
-# Create a host-type resource with IP address
+# Create a host-type resource with IP address (use target_type: host in service)
 curl -s -X POST "https://netbird.bartschnet.de/api/networks/<network_id>/resources" \
   -H "Authorization: Token <token>" \
   -H "Content-Type: application/json" \
   -d '{
     "name": "grampsweb",
-    "address": "172.0.4.6",   # ← IP address, not hostname
-    "type": "host",            # ← "host" not "domain"
+    "address": "172.0.4.6",   ← IP address → type auto-detected as "host"
+    "enabled": true,
+    "groups": [{"id": "<all-group-id>"}]
+  }'
+
+# OR create a domain-type resource (use target_type: domain in service)
+# (when proxy container can resolve the DNS name)
+curl -s -X POST "https://netbird.bartschnet.de/api/networks/<network_id>/resources" \
+  -H "Authorization: Token <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "grampsweb",
+    "address": "grampsweb.proxy",   ← DNS name → type auto-detected as "domain"
     "enabled": true,
     "groups": [{"id": "<all-group-id>"}]
   }'
 ```
 
-**Verify the resource type** before linking to a reverse-proxy service:
+**Verify the resource type and service target_type alignment** before deploying:
 ```bash
+# Check resource types
 curl -s "https://netbird.bartschnet.de/api/networks/<id>/resources" \
   -H "Authorization: Token <token>" | jq '.[] | {name, address, type}'
-# Must show: "type": "host", "address": "172.x.x.x"
+# host resource:   "type": "host",   "address": "172.x.x.x"
+# domain resource: "type": "domain", "address": "hostname.local"
+
+# Check service targets match resource type
+curl -s "https://netbird.bartschnet.de/api/reverse-proxies/services/<id>" \
+  -H "Authorization: Token <token>" | jq '.targets[] | {target_type, host, port}'
+# If "host" in targets is "invalid IP" → target_type/resource type mismatch!
 ```
 
 ---
