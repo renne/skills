@@ -353,7 +353,7 @@ Access logs are available at **Activity** → **Proxy Events** in the dashboard.
 
 ## REST API — Target Type Constraints (Operational)
 
-The management REST API `POST /api/reverse-proxy/services` only accepts **two valid `target_type` values**:
+The management REST API `POST /api/reverse-proxies/services` only accepts **two valid `target_type` values**:
 
 | `target_type` | Dashboard label | Requires |
 |---------------|-----------------|----------|
@@ -410,6 +410,56 @@ netbirdio/netbird / management/internals/modules/reverseproxy/
 *Not* at `management/server/http/handlers/reverseproxy/` — that path does not exist.
 
 The proxy container embeds a WireGuard client (`github.com/netbirdio/netbird/client/embed`) and receives `ProxyMapping → PathMapping{path, target, options}` from the management server via gRPC stream.
+
+---
+
+---
+
+## Operational: TCP SNI Routing Conflict with Traefik
+
+When the NetBird proxy container is on a Docker host also running **Traefik**, services are exposed via **TCP SNI passthrough** labels on the proxy container. These labels route HTTPS traffic at the TCP layer (before Traefik's HTTP routers see it).
+
+**Conflict:** If you later revert a service back to Traefik (HTTP router with certresolver), the TCP SNI passthrough rule will still intercept the traffic first. Users see the **NetBird proxy's error page** instead of the Traefik-routed service.
+
+**Fix:** Remove the TCP SNI passthrough label for any hostname being reverted to Traefik. Example — removing `vault.bartschnet.de`:
+
+```yaml
+# REMOVE these labels from the proxy container:
+- "traefik.tcp.routers.netbird-vault.rule=HostSNI(`vault.bartschnet.de`)"
+- "traefik.tcp.routers.netbird-vault.tls.passthrough=true"
+- "traefik.tcp.routers.netbird-vault.service=netbird-proxy-tls"
+```
+
+Keep only the base and wildcard proxy labels (`proxy.bartschnet.de`, `*.proxy.bartschnet.de`).
+
+After removing the TCP labels, redeploy the proxy container so Traefik picks up the change. The Traefik HTTP router for that hostname can then take over.
+
+---
+
+## Operational: Proxy Container Running as Root — nbnet.NewDialer() Failure
+
+The NetBird proxy container embeds a WireGuard-aware dialer (`nbnet.NewDialer()`) used when making gRPC calls **and the process runs as root on Linux**. The `nbnet.NewDialer()` requires a WireGuard interface; the proxy container has none (it is not a full NetBird peer).
+
+**Symptom:** Services return **504 Gateway Timeout**. Proxy logs show:
+```
+context deadline exceeded
+```
+at `client/internal/auth/auth.go` — specifically the `AddPeer` gRPC call that triggers `embed.Client.Start()` with a 30-second timeout.
+
+**Root cause:** `client/grpc/dialer_generic.go` selects `nbnet.NewDialer()` when `os.Getuid() == 0` on Linux. As non-root, it falls back to the standard `net.Dialer`, which works correctly.
+
+**Fix:** Run the proxy service as a non-root user:
+
+```yaml
+services:
+  proxy:
+    image: netbirdio/reverse-proxy:latest
+    user: "1000:1000"   # ← non-root; falls back to net.Dialer, not nbnet.NewDialer
+    volumes:
+      - ./letsencrypt:/certs:ro
+```
+
+Ensure cert files in the mounted volume are readable by uid 1000 (`chmod o+r` on the cert directory and key/cert files).
 
 ---
 

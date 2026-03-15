@@ -318,7 +318,28 @@ http:
 
 ## Practical Routing Notes
 
-### Prefer destination matching over `ClientIP` for device-specific exceptions
+### TCP SNI Passthrough Conflicts with HTTP Routers
+
+When TCP SNI passthrough routers coexist with HTTP routers on the same Traefik instance, the **TCP router matches first** at the transport layer — before any HTTP router sees the request. This is because TLS passthrough happens at a lower level (TCP), not after TLS termination.
+
+**Symptom:** An HTTPS request for a hostname that has *both* a TCP SNI passthrough rule *and* an HTTP router is routed to the TCP backend (e.g., a reverse proxy), even if the intended target is the HTTP service.
+
+**Common scenario:** NetBird reverse-proxy containers expose services via TCP SNI passthrough labels. If a service is later reverted to Traefik HTTP routing, the old TCP SNI label must be explicitly removed from the proxy container. Otherwise the TCP router intercepts all HTTPS traffic for that hostname, and the user sees the proxy's error page.
+
+**Fix:** Remove the TCP SNI passthrough labels for hostnames that should be handled by HTTP routers. Only TCP labels for the proxy's own domains (e.g., `proxy.example.com`, `*.proxy.example.com`) should remain.
+
+```yaml
+# Keep ONLY proxy-domain TCP labels:
+- "traefik.tcp.routers.netbird-proxy-base.rule=HostSNI(`proxy.example.com`)"
+- "traefik.tcp.routers.netbird-proxy-wild.rule=HostSNIRegexp(`^.+\\.proxy\\.example\\.com$`)"
+
+# REMOVE service-specific TCP labels when reverting to HTTP routing:
+# - "traefik.tcp.routers.netbird-vault.rule=HostSNI(`vault.example.com`)"
+```
+
+After removing TCP labels, redeploy the container — Traefik picks up the change dynamically.
+
+
 
 When a device stores a stable target URL (for example, a WebDAV or API path) but its apparent source IP may vary because of dual-stack selection, proxy hops, or network changes, prefer matching the exception route on the destination request shape instead of `ClientIP(...)`.
 
