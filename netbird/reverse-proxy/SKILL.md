@@ -509,22 +509,40 @@ address: 172.0.4.6    # ← IP address, type auto-set to "host"
 # → management calls resource.Prefix.Addr().String() → "172.0.4.6" ✅
 ```
 
-**Option B — Use `target_type: domain` with a domain-type resource (works when proxy can resolve DNS):**
+**Option B — Use `target_type: domain` with a domain-type resource:**
 
 ```
 # Create resource with DNS hostname
-address: grampsweb.proxy    # ← Docker DNS name, type auto-set to "domain"
-# → management calls resource.Domain → "grampsweb.proxy" ✅
-# → proxy container must be on the same Docker network to resolve this DNS name
+address: grampsweb.proxy    # ← management sets resource.Domain = "grampsweb.proxy"
+# → proxy resolves this name via 100.115.255.254 (NetBird WireGuard DNS)
 ```
 
-⚠️ **Pitfall: Docker network name as TLD (`grampsweb.proxy`) fails DNS from proxy container**
+⚠️ **DEFINITIVE FINDING: `target_type: domain` ALWAYS uses NetBird's WireGuard DNS (`100.115.255.254`)**
 
-If the proxy container's DNS resolvers are LAN split-horizon resolvers (not Docker's embedded `127.0.0.11`), they will not know `.proxy` and return `REFUSED` or `NXDOMAIN`. This causes:
+This is hardcoded in `proxy/internal/roundtrip/netbird.go`. The proxy binary does **not** use the container's `/etc/resolv.conf` or Docker's embedded DNS (`127.0.0.11`) for backend resolution — it always goes through `100.115.255.254`.
+
+`100.115.255.254` is NetBird's WireGuard DNS. It only resolves:
+- NetBird peer names
+- NetBird network resource names (if management registers them)
+- **NOT** Docker container names, Docker network names, or any host-local DNS
+
+This was confirmed by **two independent failed attempts**, both with the same root-cause error:
+
 ```
-dial: lookup grampsweb.proxy. on 10.0.0.7: server misbehaving
+# Attempt 1: grampsweb.proxy (Docker network name as TLD)
+dial: lookup grampsweb.proxy. on 100.115.255.254: server misbehaving
+
+# Attempt 2: grampsweb (plain container name, no TLD)
+dial: lookup grampsweb. on 100.115.255.254: server misbehaving
 ```
-**Use Option A (IP address + `target_type: host`) for Docker container targets** unless you can guarantee the proxy container's DNS stack resolves Docker internal names. The only safe `target_type: domain` use case is when the address is a valid public FQDN (ends with a real TLD).
+
+Both failed for the same reason: `100.115.255.254` has no knowledge of Docker internals. The TLD (`.proxy` vs bare) was irrelevant.
+
+**Misleading test:** `wget http://vaultwarden/` from inside the proxy container WORKS — because `wget` uses `/etc/resolv.conf` → `127.0.0.11` → Docker embedded DNS → resolves container names. This does NOT represent how the proxy application resolves `target_type: domain` backends.
+
+**`uid 1000` does NOT fix domain DNS:** Running the proxy as non-root (`user: "1000:1000"`) only prevents the `nbnet.NewDialer()` 30-second timeout. The proxy binary's DNS resolution path for `target_type: domain` is unaffected by the process uid.
+
+**Use Option A (IP address + `target_type: host`) for ALL Docker container targets.** `target_type: domain` is only valid when the resource address is a real, publicly-resolvable FQDN (e.g., an external service with a public DNS record reachable from NetBird's WireGuard network).
 
 **Root cause in resource configuration:**
 
