@@ -55,6 +55,21 @@ The Markdown body must contain clear instructions that describe:
 - Code examples where applicable.
 - A `## References` section linking to the authoritative source(s).
 
+## Document Quirks, Roadblocks, and API Structures
+
+Whenever you encounter unexpected behavior, a non-obvious limitation, or a working pattern through trial and error, **document it immediately** in the relevant `SKILL.md`. Do not wait until the end of the session.
+
+Specifically, always document:
+
+- **API quirks**: required fields that are not obvious from the docs, fields that silently ignored, error messages that are misleading, or undocumented defaults (e.g., "PUT /api/groups requires `name` even when only changing peers or else returns 422").
+- **Roadblocks and failure modes**: things that look like they should work but don't, and the actual root cause (e.g., "Netbird Networks subnet resources do NOT install OS-level routes on client peers — use classic routes instead").
+- **Working patterns**: the exact sequence of steps or API calls that solved a problem, so the same effort is not repeated.
+- **Non-obvious dependencies**: services or configs that must be in a certain state before a step will succeed.
+
+Place these under a `## Known Quirks and Limitations` or `## Troubleshooting` heading in the relevant `SKILL.md`. Use `⚠️` to mark critical pitfalls that would cause hard-to-diagnose failures.
+
+The goal is to avoid duplicating debugging effort across sessions. If you wasted time on something, capture it so future sessions don't repeat the same journey.
+
 ## Adding a New Skill
 
 1. Choose the appropriate category directory or create a new one.
