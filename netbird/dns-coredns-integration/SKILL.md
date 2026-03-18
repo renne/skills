@@ -19,7 +19,20 @@ NetBird's **Custom Zones** feature (available in recent versions) lets you host 
 
 Use Custom Zones when you need simple hostname → IP mappings and don't want to run a separate DNS server. See [Custom Zones documentation](https://docs.netbird.io/manage/dns/custom-zones) for full details.
 
-### Option B: CoreDNS (or other external DNS) via Nameserver Forwarding
+### Option B: Docker Embedded DNS (for Docker container name resolution)
+
+If the Netbird agent runs **inside a Docker container** and only needs to resolve other containers on the same Docker Compose network, Docker's built-in DNS resolver (`127.0.0.11`) is the simplest solution — no CoreDNS required.
+
+Docker natively resolves `<container-name>.<network-name>` (e.g., `traefik.proxy` → `172.0.4.2`). Configure Netbird with:
+
+- A **non-primary** nameserver for domain `<network-name>` pointing to `127.0.0.11:53` with `search_domains_enabled: true`
+- A **primary** nameserver (e.g., your central DNS) as catch-all
+
+See the `netbird/dns` skill for the full configuration pattern.
+
+> Use this approach when the goal is Docker container name resolution only. Choose CoreDNS when you need full zone management, SRV/TXT/PTR records, or dynamic DNS.
+
+### Option C: CoreDNS (or other external DNS) via Nameserver Forwarding
 
 For **complex zone management** — zone transfers, SRV/TXT/PTR records, dynamic DNS, DNSSEC, secondary nameservers, or existing infrastructure — you need an external authoritative DNS server.
 

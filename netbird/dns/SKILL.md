@@ -83,6 +83,35 @@ Each peer should have exactly **one** primary nameserver. Multiple nameservers m
 
 Result: `google.com` → Cloudflare; `app.company.internal` → internal DNS; `server` → `server.company.internal` → internal DNS
 
+### Docker Embedded DNS for Container Name Resolution
+
+Docker provides a built-in DNS resolver at `127.0.0.11` inside every container. It natively resolves `<container-name>.<network-name>` to the container's IP on that network — for example, `traefik.proxy` → `172.0.4.2`.
+
+To make a Netbird agent container resolve Docker container names without CoreDNS or a hosts file:
+
+1. Create a **non-primary** nameserver for the Docker network name as match domain, pointing to `127.0.0.11:53`
+2. Enable **Search Domains** so bare names like `traefik` expand to `traefik.proxy`
+3. Scope both nameservers (Docker embedded + central catch-all) to the agent peer group
+
+```
+# Nameserver: "Docker Embedded DNS"
+# IPs: 127.0.0.11 port 53
+# primary: false
+# domains: ["proxy"]      ← name of the Docker network
+# search_domains_enabled: true
+# distribution_groups: ["docker-agent-peers"]
+
+# Nameserver: "Central DNS"
+# IPs: 10.0.0.7, 10.0.0.8 port 53
+# primary: true            ← catch-all
+# domains: []
+# distribution_groups: ["docker-agent-peers"]
+```
+
+> ⚠️ **`127.0.0.11` cannot be the primary catch-all.** Netbird captures the original nameserver before takeover and assigns it priority -100. It will only work as a domain-specific non-primary nameserver.
+
+> ℹ️ This eliminates the need for CoreDNS, hosts files, or cron jobs when the only requirement is resolving peer containers on a specific Docker network.
+
 ### Private DNS Behind a Routing Peer
 
 If the internal DNS server is on a private network:

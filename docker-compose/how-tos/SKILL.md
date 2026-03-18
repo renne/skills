@@ -462,6 +462,25 @@ services:
       - "443:443"
 ```
 
+### ⚠️ Stopping services with `restart: always`
+
+**`docker stop <container>` does NOT permanently stop a service that has `restart: always` (or `restart: unless-stopped`).**  
+Docker restarts the container a few seconds after `docker stop`. To permanently stop and remove a service, use `docker compose down`:
+
+```bash
+# ❌ This is temporary — Docker restarts the container automatically:
+docker stop myservice
+
+# ✅ This permanently stops and removes containers (but keeps volumes):
+docker compose down
+
+# ✅ To stop only one service permanently:
+docker compose stop myservice   # stops without removing
+docker compose rm -f myservice  # removes the stopped container
+```
+
+Use `docker compose down` whenever you intend to disable or remove a service with an auto-restart policy. `docker stop` alone is only useful for temporary pauses or manual intervention.
+
 ### Deploying changes to a single service
 
 Rebuild and recreate only the changed service without restarting dependencies:

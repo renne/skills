@@ -95,7 +95,76 @@ http:
 
 ## HTTP Services
 
-### Load Balancer
+### gRPC Routing
+
+gRPC runs over HTTP/2. Traefik can route gRPC traffic by detecting the `Content-Type: application/grpc` header on HTTP/2 connections.
+
+**Backend scheme: `h2c` (HTTP/2 cleartext)**
+
+When the backend server speaks HTTP/2 without TLS (gRPC cleartext), use `h2c://` in the service URL:
+
+```yaml
+http:
+  routers:
+    grpc-router:
+      rule: "Host(`api.example.com`) && PathPrefix(`/mypackage.MyService/`)"
+      entryPoints: [websecure]
+      service: grpc-backend
+      tls: {}
+      priority: 100
+
+  services:
+    grpc-backend:
+      loadBalancer:
+        servers:
+          - url: "h2c://backend-service:80"
+```
+
+With Docker Compose labels:
+```yaml
+labels:
+  - "traefik.http.routers.grpc.rule=Host(`api.example.com`) && PathPrefix(`/mypackage.MyService/`)"
+  - "traefik.http.routers.grpc.entrypoints=websecure"
+  - "traefik.http.routers.grpc.tls=true"
+  - "traefik.http.services.grpc.loadbalancer.servers.url=h2c://backend-service:80"
+  - "traefik.http.routers.grpc.priority=100"
+```
+
+#### Mixed gRPC + REST on the same port (cmux)
+
+Some servers (e.g., Netbird management) use `cmux` to multiplex gRPC, HTTP/1.1, and HTTP/2 on the same port. Use separate Traefik routers with different priorities:
+
+```yaml
+# High-priority gRPC router (PathPrefix matches gRPC service paths)
+- "traefik.http.routers.grpc.rule=Host(`api.example.com`) && PathPrefix(`/mypackage.MyService/`)"
+- "traefik.http.routers.grpc.priority=100"
+- "traefik.http.services.grpc-svc.loadbalancer.servers.url=h2c://backend:80"
+
+# Lower-priority REST router (catches everything else)
+- "traefik.http.routers.rest.rule=Host(`api.example.com`)"
+- "traefik.http.routers.rest.priority=10"
+- "traefik.http.services.rest-svc.loadbalancer.servers.url=http://backend:80"
+```
+
+#### Testing gRPC endpoints
+
+> ⚠️ **Plain `curl` (HTTP/1.1) always returns 404 for gRPC endpoints** — gRPC requires HTTP/2.
+
+```bash
+# ❌ Wrong: HTTP/1.1 curl returns 404 even if routing is correct
+curl https://api.example.com/mypackage.MyService/Method
+
+# ✅ Correct: force HTTP/2
+curl --http2 -k https://api.example.com/mypackage.MyService/Method
+
+# ✅ Or use grpcurl
+grpcurl -plaintext api.example.com:80 list
+grpcurl api.example.com:443 list  # TLS
+```
+
+Check Traefik access logs for `HTTP/2.0 200` to confirm gRPC is routing correctly.
+
+
 
 The most common service type. Distributes requests across multiple backend servers using a round-robin strategy by default.
 
