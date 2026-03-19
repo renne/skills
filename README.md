@@ -21,6 +21,12 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Customization (custom instructions, prompt engineering, response tuning)](github-copilot/customization/SKILL.md) | https://docs.github.com/en/copilot/concepts/prompting/response-customization |
 | [CLI (terminal assistant, installation, modes, shortcuts, slash commands, skills, MCP, LSP)](github-copilot/cli/SKILL.md) | https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli |
 
+### LimeSurvey
+
+| Skill | Source |
+|-------|--------|
+| [Contributing (PHP backend, JS frontend, Twig/SCSS themes, OpenAPI, GitHub Actions CI, Cypress E2E, MySQL/PostgreSQL/MSSQL)](limesurvey/contributing/SKILL.md) | https://github.com/LimeSurvey/LimeSurvey |
+
 ### Moodle
 
 | Skill | Source |
