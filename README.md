@@ -181,4 +181,4 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 
 | Skill | Source |
 |-------|--------|
-| [Huananzhi H12D-8D (Dual-socket AMD EPYC, memory slot MM1–MM8, DIMM population)](hardware/huananzhi-h12d-8d/SKILL.md) | http://www.huananzhi.com/en/list_6/183.html |
+| [Huananzhi H12D-8D (Single-socket AMD EPYC, memory slot MM1–MM8, DIMM population)](hardware/huananzhi-h12d-8d/SKILL.md) | http://www.huananzhi.com/en/list_6/183.html |
