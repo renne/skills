@@ -183,3 +183,5 @@ Skills from [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesom
 |-------|--------|
 | [Huananzhi H12D-8D (Single-socket AMD EPYC, memory slot MM1–MM8, DIMM population)](hardware/huananzhi-h12d-8d/SKILL.md) | http://www.huananzhi.com/en/list_6/183.html |
 | [Acer Aspire VN7-593G (Intel i7-7700HQ, GTX 1060, 64GB RAM, 4K IPS, ZFS, Ubuntu)](hardware/acer-vn7-593g/SKILL.md) | https://www.acer.com/ac/en/US/content/series/aspirevinitrobeblack |
+| [Intel NUC7PJYHN (Pentium Silver J5040 Gemini Lake, 16GB, SATA ZFS — pve2)](hardware/intel-nuc7pjyhn/SKILL.md) | https://www.intel.com/content/www/us/en/products/sku/126143/intel-nuc-kit-nuc7pjyhn/specifications.html |
+| [Fujitsu D3643-H1 (Celeron G4900 Coffee Lake, 64GB, 2×4TB NVMe ZFS mirror, I350 — pve3)](hardware/fujitsu-d3643-h1/SKILL.md) | https://www.fujitsu.com/global/products/computing/peripheral/accessories/d3643-h1.html |
