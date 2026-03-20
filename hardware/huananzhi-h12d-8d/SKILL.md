@@ -56,6 +56,10 @@ Spread DIMMs across channels before doubling up in any channel.
 - Use identical DIMMs (capacity, speed, rank) for best compatibility.
 - 8 DIMMs gives maximum bandwidth via true 8-channel interleaving.
 
+> 💡 **Live example (confirmed):** A system with 2× 32 GB DDR4 ECC @ 3200 MT/s in MM1 and MM5 reported 64 GB total in BIOS (Chipset → Socket 0 Information), confirming this population order.
+
+> 📝 **BIOS internal naming:** The AMD CBS memory configuration shows channels as **Channel 0–Channel 7** (0-indexed), corresponding to silkscreen labels MM1–MM8 (A–H). The CBS memory submenu also shows "Socket 0" and "Socket 1" entries — these represent the two halves of the single CPU's memory controller (4 channels each), **not** two physical CPU sockets.
+
 ## Expansion Slots & Storage
 
 ### PCIe & M.2
@@ -139,9 +143,94 @@ Spread DIMMs across channels before doubling up in any channel.
 
 - **Type:** AMI UEFI
 - **CPU support:** EPYC 7002 (Rome) native; EPYC 7003 (Milan) may require BIOS update — check Huananzhi product page
+- **BIOS Version (confirmed):** 2.0 — Build Date **06/13/2025**
+- **AMI UEFI Core:** Version **2.20.1275**
+- **Menu tabs:** Main | Advanced | Chipset | Security | Boot | Save & Exit | **AMD CBS** | AMD PBS Option | Event Logs
+- **CSM:** Disabled by default — pure UEFI, no legacy BIOS boot
 - **Configuration options include:** CPU cores, virtualization (SVM), memory channels/speeds, fan curves, NVMe/SATA boot priority, PCIe mode for SFF-8643, IPMI settings
 - **BIOS update tutorial:** https://www.youtube.com/watch?v=nCq0WRROdS8
 - **BIOS download:** http://www.huananzhi.com/en/list_6/183.html
+
+### PSP / Firmware Versions (confirmed with EPYC 7282 + BIOS 2.0)
+
+| Component | Level 1 (Fixed) | Level 2 (Updateable) |
+|---|---|---|
+| PSP Recovery BL Ver | FF.C.0.89 | — |
+| PSP BootLoader Version | — | 0.C.0.89 |
+| SMU FW Version | 0.36.118.0 | 0.36.118.0 |
+| ABL Version | 34242010 | 34242010 |
+
+### BIOS Default Settings (confirmed)
+
+| Setting | Default | Location |
+|---|---|---|
+| SVM (virtualization) | Enabled | Advanced → CPU Configuration |
+| Above 4G Decoding | Enabled | Advanced → PCI Bus Driver |
+| SR-IOV Support | Enabled | Advanced → PCI Bus Driver |
+| Re-Size BAR Support | Enabled | Advanced → PCI Bus Driver |
+| PCI Bus Driver Version | A5.01.19 | Advanced → PCI Bus Driver |
+| CSM Support | Disabled | Advanced → CSM |
+| Restore On AC Power Loss | Last State | Advanced → ACPI Settings |
+| Wake On LAN | Enabled | Advanced → ACPI Settings |
+| RTC Wakeup | Disabled | Advanced → ACPI Settings |
+| Core Performance Boost | Auto | AMD CBS → CPU Common Options |
+| Global C-state Control | Enabled | AMD CBS → CPU Common Options |
+| NUMA nodes per socket | NPS1 | AMD CBS → Memory Addressing |
+| DRAM ECC | Enabled | Advanced → Memory Configuration |
+| IOMMU | Enabled | AMD CBS → NBIO Common Options |
+| ACS Enable | Enabled | AMD CBS → NBIO Common Options |
+| SRIS | Disabled | AMD CBS → NBIO Common Options |
+| TPM / Security Device | Enabled | Advanced → Trusted Computing |
+| NVDIMM-N Feature | Active (not disabled) | AMD CBS → NVDIMM |
+
+> 📝 The board **does support NVDIMM-N** (persistent memory) via the "Disable NVDIMM-N Feature: No" default.
+
+## Verified Compatible Hardware
+
+### CPUs Confirmed Working
+
+| CPU | Cores/Threads | Base Clock | Family | Microcode |
+|---|---|---|---|---|
+| **AMD EPYC 7282** | 16C / 32T | 2800 MHz | 17h (Zen2/Rome) | 830107B |
+
+**EPYC 7282 Details (from live BIOS readout):**
+- Processor Family: **17h**, Model: **30h–3Fh** (Zen 2 / Rome)
+- Running @ **2800 MHz, 1100 mV**
+- L1 Instruction Cache: 32 KB/8-way per core
+- L1 Data Cache: 32 KB/8-way per core
+- L2 Cache: 512 KB/8-way per core
+- L3 Cache per Socket: **64 MB/16-way**
+
+### Memory Confirmed Working
+
+| Config | DIMMs | Capacity | Speed | Slots Used |
+|---|---|---|---|---|
+| 2× 32 GB DDR4 ECC | 2 | 64 GB | 3200 MT/s | MM1 + MM5 |
+
+## Verified Compatible Hardware
+
+### CPU — AMD EPYC 7282 (confirmed working)
+
+| Attribute | Value |
+|---|---|
+| Name | AMD EPYC 7282 16-Core Processor |
+| Cores / Threads | 16 / 32 |
+| Base Clock (observed) | 2800 MHz |
+| Core Voltage (observed) | 1100 mV |
+| Processor Family | 17h (Zen 2 / Rome) |
+| Processor Model | 30h–3Fh |
+| Microcode Patch Level | 830107B |
+| L1 Instruction Cache | 32 KB / 8-way per core |
+| L1 Data Cache | 32 KB / 8-way per core |
+| L2 Cache | 512 KB / 8-way per core |
+| L3 Cache (socket total) | 64 MB / 16-way |
+| SEV support | Yes (SEV + SEV-ES) |
+
+### Memory — Samsung 32 GB DDR4 ECC RDIMM @ 3200 MT/s (confirmed working)
+
+- 2× 32 GB populated in **MM1 + MM5** = 64 GB total
+- Reported at 3200 MT/s in BIOS (Chipset → Socket 0 Information)
+- DRAM ECC enabled; Chipsel/Bank Interleave enabled
 
 ## Package Contents
 
@@ -158,6 +247,8 @@ Spread DIMMs across channels before doubling up in any channel.
 - ⚠️ **SFF-8643 mode is exclusive:** One mode (SATA or U.2) per port — cannot mix.
 - ⚠️ **VGA requires BMC:** Rear VGA output is only functional when the optional AST2500 BMC module is installed.
 - ⚠️ **No EPYC 9004/8004 support:** These CPUs use SP5/SP6 sockets, incompatible with SP3.
+- 📝 **"Socket 0" and "Socket 1" in AMD CBS memory menus** do NOT mean two physical CPU sockets. They represent the two halves of the single CPU's 8-channel memory controller (4 channels each). This is normal BIOS template behavior for SP3 boards.
+- 📝 **BIOS memory channels are 0-indexed:** Internally Channel 0–7; silkscreen shows MM1–MM8 (A–H).
 - 📝 **Ver2.0 designation** appears on official product page — may indicate a board revision.
 - 📝 Some Sohu articles claim "EPYC 8000 series" compatibility — these appear to be clickbait/AI-generated titles; all verified sources confirm only 7002/7003 support.
 - 📝 Manual PDF on Huananzhi site frequently times out; use the Manualzz mirror.
