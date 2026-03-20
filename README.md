@@ -74,6 +74,7 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Reverse Proxy (services, targets, domains, auth SSO/password/PIN, TLS, HA, custom domains, backend config, access logs)](netbird/reverse-proxy/SKILL.md) | https://docs.netbird.io/manage/reverse-proxy |
 | [Reverse Proxy — Expose from CLI (netbird expose, flags, session lifecycle, troubleshooting)](netbird/reverse-proxy-expose-cli/SKILL.md) | https://docs.netbird.io/manage/reverse-proxy/expose-from-cli |
 | [Public API (authentication, accounts, users, tokens, peers, setup keys, groups, networks, policies, routes, DNS, events)](netbird/api/SKILL.md) | https://docs.netbird.io/api |
+| [Docker Compose Integration (shared namespace sidecar pattern, subnet routing, 1:N services, port conflicts, --scale limitations)](netbird/docker-compose-integration/SKILL.md) | https://docs.netbird.io/manage/networks |
 
 ### Proxmox VE
 
