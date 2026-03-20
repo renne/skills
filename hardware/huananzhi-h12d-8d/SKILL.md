@@ -200,37 +200,33 @@ Spread DIMMs across channels before doubling up in any channel.
 - L1 Data Cache: 32 KB/8-way per core
 - L2 Cache: 512 KB/8-way per core
 - L3 Cache per Socket: **64 MB/16-way**
+- SEV + SEV-ES supported
 
 ### Memory Confirmed Working
 
-| Config | DIMMs | Capacity | Speed | Slots Used |
-|---|---|---|---|---|
-| 2× 32 GB DDR4 ECC | 2 | 64 GB | 3200 MT/s | MM1 + MM5 |
+| Part Number | Manufacturer | Type | Capacity | Speed | Config | Total RAM |
+|---|---|---|---|---|---|---|
+| HMAA8GL7MMR4N-UH TE | SK Hynix | DDR4 LRDIMM ECC | 64 GB | 3200 MT/s | 8× (all slots, MM1–MM8) | **512 GB** |
+| (unknown Samsung) | Samsung | DDR4 RDIMM ECC | 32 GB | 3200 MT/s | 2× (MM1 + MM5) | 64 GB |
 
-## Verified Compatible Hardware
+**SK Hynix HMAA8GL7MMR4N-UH TE — Part Number Decode:**
 
-### CPU — AMD EPYC 7282 (confirmed working)
+| Field | Value | Meaning |
+|---|---|---|
+| HMA | HMA | SK Hynix DDR4 DRAM |
+| A | A | Die revision A |
+| 8G | 8G | 8 Gbit per die |
+| L | L | **LRDIMM** (Load Reduced DIMM) |
+| 7 | 7 | x4 ECC organization |
+| MMR4N | MMR4N | DDR4, Registered/LR, non-parity |
+| UH | UH | DDR4-3200 speed bin |
+| TE | TE | Temperature/bin suffix |
 
-| Attribute | Value |
-|---|---|
-| Name | AMD EPYC 7282 16-Core Processor |
-| Cores / Threads | 16 / 32 |
-| Base Clock (observed) | 2800 MHz |
-| Core Voltage (observed) | 1100 mV |
-| Processor Family | 17h (Zen 2 / Rome) |
-| Processor Model | 30h–3Fh |
-| Microcode Patch Level | 830107B |
-| L1 Instruction Cache | 32 KB / 8-way per core |
-| L1 Data Cache | 32 KB / 8-way per core |
-| L2 Cache | 512 KB / 8-way per core |
-| L3 Cache (socket total) | 64 MB / 16-way |
-| SEV support | Yes (SEV + SEV-ES) |
-
-### Memory — Samsung 32 GB DDR4 ECC RDIMM @ 3200 MT/s (confirmed working)
-
-- 2× 32 GB populated in **MM1 + MM5** = 64 GB total
-- Reported at 3200 MT/s in BIOS (Chipset → Socket 0 Information)
-- DRAM ECC enabled; Chipsel/Bank Interleave enabled
+**Current configuration (8× HMAA8GL7MMR4N-UH TE):**
+- All 8 slots populated (MM1–MM8) → **full 8-channel mode**
+- Total capacity: 8 × 64 GB = **512 GB**
+- Speed: **DDR4-3200 (3200 MT/s)**
+- Type: **LRDIMM ECC** — all 8 channels active
 
 ## Package Contents
 
