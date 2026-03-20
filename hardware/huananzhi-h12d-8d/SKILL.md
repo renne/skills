@@ -206,7 +206,7 @@ Spread DIMMs across channels before doubling up in any channel.
 
 | Part Number | Manufacturer | Type | Capacity | Speed | Config | Total RAM |
 |---|---|---|---|---|---|---|
-| HMAA8GL7MMR4N-UH TE | SK Hynix | DDR4 LRDIMM ECC | 64 GB | 3200 MT/s | 8× (all slots, MM1–MM8) | **512 GB** |
+| HMAA8GL7MMR4N-UH TE | SK Hynix | DDR4 LRDIMM ECC | 64 GB | **PC4-2400T** (2400 MT/s) | 8× (all slots, MM1–MM8) | **512 GB** |
 | (unknown Samsung) | Samsung | DDR4 RDIMM ECC | 32 GB | 3200 MT/s | 2× (MM1 + MM5) | 64 GB |
 
 **SK Hynix HMAA8GL7MMR4N-UH TE — Part Number Decode:**
@@ -219,13 +219,13 @@ Spread DIMMs across channels before doubling up in any channel.
 | L | L | **LRDIMM** (Load Reduced DIMM) |
 | 7 | 7 | x4 ECC organization |
 | MMR4N | MMR4N | DDR4, Registered/LR, non-parity |
-| UH | UH | DDR4-3200 speed bin |
+| UH | UH | **PC4-2400T** speed bin (2400 MT/s) |
 | TE | TE | Temperature/bin suffix |
 
 **Current configuration (8× HMAA8GL7MMR4N-UH TE):**
 - All 8 slots populated (MM1–MM8) → **full 8-channel mode**
 - Total capacity: 8 × 64 GB = **512 GB**
-- Speed: **DDR4-3200 (3200 MT/s)**
+- Speed: **PC4-2400T (2400 MT/s)**
 - Type: **LRDIMM ECC** — all 8 channels active
 
 ## Package Contents
