@@ -227,6 +227,10 @@ v1.0 has **no POST code display** — rely on speaker beep codes and the followi
 
 Populating **any other combination** may result in no POST or reduced stability.
 
+**Physical slot order (left to right, starting closest to CPU socket):**  
+`DDR4_A1` → `DDR4_A2` → `DDR4_B1` → `DDR4_B2`  
+Slot labels are silk-screened on the PCB. **A1 is always the slot nearest the LGA 2011-3 socket.**
+
 ## Community Resources
 
 | Resource | URL |
@@ -240,3 +244,6 @@ Populating **any other combination** may result in no POST or reduced stability.
 | OldRigRevive full review | https://oldrigrevive.com/lga-2011-3/motherboards/machinist-x99-mr9a-pro/ |
 | Win-Raid BIOS mod guide | https://winraid.level1techs.com/t/guide-overclock-bios-mods-for-chinese-x99-mbs/104683 |
 | Linus Tech Tips community thread | https://linustechtips.com/topic/1480885-thread-for-those-of-you-with-chinese-x99x79x58etc-boards/ |
+| MR9A PRO manual PDF (Amazon CDN) | https://m.media-amazon.com/images/I/B19Zb42p7uL.pdf |
+| MR9A PRO MAX manual PDF (Amazon CDN) | https://m.media-amazon.com/images/I/B1NgOunvmGL.pdf |
+| Machinist official product page (MR9A) | https://machinist.site/mr9a |
