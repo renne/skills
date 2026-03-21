@@ -165,6 +165,7 @@ An independent custom BIOS by **iEngineer** is available as an alternative to th
 
 | Issue | Severity | Notes |
 |---|---|---|
+| **CPU fan (4-pin) required to boot** | **Critical** | Board will NOT initialize BIOS/CPU without a 4-pin fan on CPU_FAN1 — hard firmware requirement |
 | Temperature sensor reads 120 °C or random values | High | Hardware defect in v1.0; do not use for alerts/automation |
 | USB 3.0 instability under heavy load | High | Can cause system lockups; improved in v2.0 |
 | No ECC error correction despite ECC DIMMs | Medium | Expected — desktop chipset limitation |
@@ -206,16 +207,17 @@ v1.0 has **no POST code display** — rely on speaker beep codes and the followi
 
 ### Quick Checklist
 
-1. **RAM slot** — Single DIMM must be in **DDR4_A1** (closest to CPU). Wrong slot = silent no-POST.
-2. **RAM reseating** — Remove, clean contacts, firmly re-insert until both clips lock.
-3. **8-pin CPU power** — Must be fully seated. Missing = no POST.
-4. **Minimal config** — Remove all cards/drives. Boot with only CPU + 1× RAM + CPU power + 24-pin.
-5. **CMOS clear** — Short the JCMOS1 jumper (3-pin near CMOS battery) for 10 s with power off; or remove battery for 5 min.
-6. **GPU slot** — Primary display output is from **PCIe x16 #1 (top slot)**. BIOS will NOT output video from the lower x16 slot. Move GPU to top slot.
-7. **CPU socket pins** — Board was stored? Inspect LGA 2011-3 socket under good light for bent pins.
-8. **Speaker** — Attach a PC speaker to the front-panel header to hear beep codes (v1.0 has no other debug output).
-9. **RAM compatibility** — ECC RDIMMs may or may not POST depending on CPU microcode. Try non-ECC unbuffered if in doubt.
-10. **Breadboard** — Test outside the case to rule out case shorts.
+1. **CPU fan (4-pin)** — **A 4-pin CPU fan must be connected to the CPU_FAN1 header.** The board will NOT start the BIOS, initialize the CPU, or boot without it — this is a hard firmware requirement, not just a warning.
+2. **RAM slot** — Single DIMM must be in **DDR4_A1** (closest to CPU). Wrong slot = silent no-POST.
+3. **RAM reseating** — Remove, clean contacts, firmly re-insert until both clips lock.
+4. **8-pin CPU power** — Must be fully seated. Missing = no POST.
+5. **Minimal config** — Remove all cards/drives. Boot with only CPU + 1× RAM + CPU power + 24-pin + CPU fan.
+6. **CMOS clear** — Short the JCMOS1 jumper (3-pin near CMOS battery) for 10 s with power off; or remove battery for 5 min.
+7. **GPU slot** — Primary display output is from **PCIe x16 #1 (top slot)**. BIOS will NOT output video from the lower x16 slot. Move GPU to top slot.
+8. **CPU socket pins** — Board was stored? Inspect LGA 2011-3 socket under good light for bent pins.
+9. **Speaker** — Attach a PC speaker to the front-panel header to hear beep codes (v1.0 has no other debug output).
+10. **RAM compatibility** — ECC RDIMMs may or may not POST depending on CPU microcode. Try non-ECC unbuffered if in doubt.
+11. **Breadboard** — Test outside the case to rule out case shorts.
 
 ### RAM Slot Population Rules
 
