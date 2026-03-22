@@ -167,27 +167,57 @@ Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ven
 
 This system runs a **community-patched BIOS based on the Huananzhi X99-8M-F firmware**. This is the recommended approach for MRA9 v1.0 boards due to superior stability and feature support compared to stock.
 
+The default stock BIOS lacks sleep state support, memory timing control, Turbo Boost, and overclocking. Flashing the Huananzhi X99-8M-F firmware resolves all of these. The board is sold as both "X99-MR9A" and "E5-MR9A" — they are (nearly) identical; all BIOS files work on both.
+
 **Advantages over stock BIOS:**
 - Turbo Boost Unlock (full CPU turbo multipliers)
-- Undervolting support
-- Resizable BAR (ReBAR) for modern GPUs
+- Undervolting support (e.g., −50 mV)
+- Resizable BAR (ReBAR) support via [xCuri0/ReBarUEFI](https://github.com/xCuri0/ReBarUEFI)
 - Improved S3/S4 sleep state reliability
 - Better memory timing/compatibility
 
-**Flashing procedure:**
-1. Flash with **Intel FPT** (Flash Programming Tool) from a Windows or DOS bootable USB, or use Miyconst's **Mi899** GUI utility (Windows)
-2. **Always back up current BIOS before flashing**
-3. Keep a **CH341a programmer** on hand for recovery if the board won't POST after a failed flash
-4. After flashing: always load BIOS defaults (F6 → "Load Optimized Defaults")
+### BIOS ROM Files (0x8008/mr9a GitHub archive)
 
-**BIOS sources:**
-- Miyconst Mi899 utility: https://github.com/miyconst/Mi899
-- BIOS ROM collection: https://archive.org/download/machinist-e5-mr9a-pro-bios
-- MR9A BIOS GitHub archive: https://github.com/0x8008/mr9a
+Repository: https://github.com/0x8008/mr9a
+
+These are confirmed-working BIOS dumps from an MR9A board. Variants:
+
+| File | Description | Direct URL |
+|---|---|---|
+| `STOCK-machinist-x99-mr9a-20240226-203747.rom` | Original stock BIOS dump — keep as recovery backup | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/STOCK-machinist-x99-mr9a-20240226-203747.rom) |
+| `TBU-machinist-x99-mr9a-20240227-102043.rom` | **Recommended** — Huananzhi X99-8M-F + Turbo Boost Unlock + undervolting (−50 mV) via Mi899 | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/TBU-machinist-x99-mr9a-20240227-102043.rom) |
+| `REBAR-machinist-x99-mr9a-20240227-102043.rom` | TBU + undervolting + **Resizable BAR** (ReBarUEFI) | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/REBAR-machinist-x99-mr9a-20240227-102043.rom) |
+| `LOGO-machinist-x99-mr9a-20240227-102043.rom` | Same as REBAR + custom boot logo (no "Huananzhi" splash) | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/LOGO-machinist-x99-mr9a-20240227-102043.rom) |
+
+> **Warning (from 0x8008):** These BIOSes are only confirmed to work on the author's board. They will most likely work on yours too, but proceed at your own risk.
+
+### Mi899 Flashing Tool (Windows GUI)
+
+Mi899 is a Windows GUI for managing, patching, and flashing BIOSes for Machinist/Huananzhi boards. It bundles Intel FPT internally.
+
+- Project page: https://github.com/miyconst/Mi899
+- **Latest release (v1.4.6):** https://github.com/miyconst/Mi899/releases/tag/1.4.6
+- **Direct download:** https://github.com/miyconst/Mi899/releases/download/1.4.6/Mi899-1.4.6.zip
+- Additional BIOS ROM collection: https://archive.org/download/machinist-e5-mr9a-pro-bios
+
+### Flashing Procedure
+
+1. **Back up current BIOS first** — use Mi899 → "Read BIOS" or Intel FPT: `fpt.exe -d backup.rom`
+2. Keep a **CH341a SPI programmer** on hand for recovery (hardware reflash if board won't POST)
+3. Boot into Windows, run Mi899 or use `fpt.exe -f <rom_file>` from a command prompt
+4. **BIOS Lock workaround (if FPT fails with "Error 26" or access denied):**
+   - Reboot to BIOS → IntelRCSetup → PCH Configuration → Security Configuration → **BIOS Lock**
+   - Toggle it to **Disable** (even if it already appears Disabled) → Save & reboot to Windows → retry FPT
+5. After flashing: reboot, press **F6 → "Load Optimized Defaults"** — mandatory after any BIOS change
+6. After loading defaults: disable **CPU C6 states** (C-states configuration → C6 = **Disabled**) to prevent random boot failures
+7. Optionally set **Above 4G Decoding** if you have GPUs with large BARs (e.g., Tesla V100)
 
 ### Alternative: iEngineer Custom BIOS
 
-An independent custom BIOS by **iEngineer** is available as an alternative to the Huananzhi-patched firmware. Miyconst covers it in the MR9A review video (chapter 04:32). See also: https://www.youtube.com/watch?v=RI5bpvRTA_E (for MR9A PRO MAX variant). Offers similar stability/OC unlocks; use the same flashing procedure and CH341a recovery precaution.
+An independent custom BIOS by **iEngineer** is available as an alternative to the Huananzhi-patched firmware. Miyconst covers it in the MR9A review video (chapter 04:32).
+
+- Video review (MR9A PRO MAX variant, same flashing process): https://www.youtube.com/watch?v=RI5bpvRTA_E
+- Offers similar TBU/OC unlocks; use the same Mi899 + FPT flashing procedure and CH341a recovery precaution.
 
 ## Virtualization & IOMMU
 
