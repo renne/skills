@@ -185,19 +185,30 @@ nvidia-smi -q
 # 3. Device query
 /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery
 
-# 4. GPU burn-in (install gpu-burn)
+# 4. GPU burn-in (Volta native PTX — MUST override arch)
 sudo apt install -y git build-essential
 git clone https://github.com/wilicc/gpu-burn
-cd gpu-burn && make
-./gpu_burn 60   # 60 second stress test, watch temps and errors
+cd gpu-burn
+# Default Makefile uses -arch=compute_75 (Turing); override for Volta sm_70 native PTX:
+sed -i 's/-arch=compute_75/-arch=sm_70/' Makefile
+make
+sudo ./gpu_burn 300   # 300-second stress; watch temps and errors
 
-# 5. NCCL comms test (multi-GPU)
-# Tests NVLink or PCIe communication between both GPUs
-git clone https://github.com/NVIDIA/nccl-tests
-cd nccl-tests && make
-./build/all_reduce_perf -b 8 -e 512M -f 2 -g 2
+# 5. VRAM memtest (all tests, multiple passes)
+git clone https://github.com/ComputationalRadiationPhysics/cuda_memtest
+cd cuda_memtest && cmake -DCMAKE_CUDA_ARCHITECTURES=70 . && make -j$(nproc)
+# Run BOTH GPUs in parallel — must use sudo and CUDA_VISIBLE_DEVICES (--gpu_num flag absent)
+sudo CUDA_VISIBLE_DEVICES=0 ./cuda_memtest --num_passes 3 &
+sudo CUDA_VISIBLE_DEVICES=1 ./cuda_memtest --num_passes 3 &
+wait
+# ⚠️ DO NOT kill these with SIGKILL — see Xid 74 warning below
 
-# 6. ECC error check
+# 6. NCCL all-reduce bandwidth test (NVLink validation)
+# See "NCCL Compatibility" section for build instructions and version requirements
+sudo /tmp/nccl-tests/build/all_reduce_perf -g 2 -b 8 -e 4G -f 2
+# Expected busbw: ~50 GB/s (NVLink active), ~12 GB/s (PCIe fallback = NVLink broken)
+
+# 7. ECC error check
 nvidia-smi --query-gpu=ecc.errors.corrected.aggregate.total,ecc.errors.uncorrected.aggregate.total --format=csv
 ```
 
@@ -206,12 +217,41 @@ nvidia-smi --query-gpu=ecc.errors.corrected.aggregate.total,ecc.errors.uncorrect
 | Metric | Expected |
 |---|---|
 | Idle temperature | 25–45 °C |
-| Max load temperature | ≤ 83 °C (throttle threshold) |
+| Max load temperature | ≤ 83 °C (throttle threshold 87 °C, shutdown 90 °C) |
 | PCIe link | Gen3 x16 @ 8 GT/s |
 | ECC correctable errors | Low / zero on new run |
 | ECC uncorrectable errors | **0** (any UE = card fault) |
 | gpu-burn FP64 | ~7.8 TFLOPS per card |
 | VRAM available | 16 160 MiB (16 384 MiB − driver overhead) |
+| NVLink per-link bandwidth | 25.781 GB/s (all 6 links per GPU) |
+| NCCL all_reduce busbw | ~50 GB/s (NVLink active) |
+
+### Confirmed Test Results (mra9 pre-move validation, 2026-03-22)
+
+| Test | Result | Notes |
+|---|---|---|
+| FP64 burn (gpu-burn, 300 s) | ✅ PASSED | Peak 83/82 °C; no throttling (threshold 87 °C); ECC 0 post-burn |
+| VRAM memtest (cuda_memtest, 3 passes) | ✅ PASSED | Zero errors; temps ~41–45 °C during test |
+| NVLink link status | ✅ PASSED | All 6 links on both GPUs at 25.781 GB/s post-reboot |
+| NCCL all_reduce | ⏳ PENDING | Blocked by NCCL/nvcc version mismatch — see NCCL section |
+
+## ⚠️ Xid 74 — NVLink Fatal Error (SIGKILL on cuda_memtest)
+
+**Trigger:** Abruptly killing `cuda_memtest` processes with SIGKILL (or sending SIGTERM that escalates to kill) while they hold active NVLink state causes:
+- **Xid 74** on GPU0 `03:00.0`: `NVLink: fatal error detected on link 4` (error code `0x10000`)
+- **Xid 62** on GPU1 `04:00.0`: Internal micro-controller halt (NVLink cascade from GPU0)
+- Both `nvidia-smi` and kernel threads enter D-state (uninterruptible sleep); SSH freezes
+
+**Recovery:** **Hard power cycle only.** There is no software recovery path once Xid 74 fires. `SysRq+B` is the last resort if console is accessible. Reboot is clean — post-cycle `dmesg` shows no Xid errors and NVLink returns to 25.781 GB/s.
+
+**Prevention:**
+- Let `cuda_memtest` finish its passes naturally
+- If you must interrupt, use `SIGINT` (Ctrl+C) and wait for graceful teardown
+- Do **NOT** `kill -9` GPU compute processes that hold NVLink state
+
+**GPU serial numbers:**
+- GPU0 `03:00.0`: `1321920049451`
+- GPU1 `04:00.0`: `1321620017216`
 
 ## NVLink
 
@@ -223,7 +263,60 @@ To check NVLink status after driver install:
 ```bash
 nvidia-smi nvlink --status -i 0
 nvidia-smi nvlink --capabilities -i 0
+# Healthy output: all 6 links "Active" at 25.781 GB/s
 ```
+
+## NCCL Compatibility — Driver 580.x / CUDA 13.0
+
+### NCCL 2.18 + CUDA 13.0 driver (580.x) — BROKEN
+
+NCCL 2.18.5 calls `cuStreamBatchMemOp` (`misc/strongstream.cc:60`) which was **removed/stubbed** in the CUDA 13.0 driver (580.x). Symptoms:
+- NCCL init succeeds fully (12 P2P/direct pointer channels via NVLink are established and logged)
+- First `ncclAllReduce` call fails: `CUDA driver is a stub library`
+- Disabling NVLS (`NCCL_NVLS_ENABLE=0`) does NOT help — different code path
+
+### Fix: Upgrade to NCCL 2.29.7
+
+```bash
+# Add NVIDIA CUDA apt repo (if not already present)
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt update
+
+# Install NCCL 2.29.7 (compatible with CUDA 13.0 driver)
+sudo apt install -y libnccl2=2.29.7-1+cuda12.9 libnccl-dev=2.29.7-1+cuda12.9
+```
+
+### nccl-tests build — nvcc version requirement
+
+**NCCL 2.29.7 device headers require nvcc ≥ 12.2.** The Ubuntu 24.04 repo only ships `nvidia-cuda-toolkit` 12.0.140. Building nccl-tests against NCCL 2.29.7 with nvcc 12.0 fails in `nccl_device/impl/vector__funcs.h` with:
+
+```
+error: identifier "__bfloat1622float2" is undefined
+error: identifier "__float22bfloat162_rn" is undefined
+error: no suitable user-defined conversion from "__nv_bfloat162" to "__half2" exists
+```
+
+**Fix options:**
+1. Install newer CUDA toolkit from NVIDIA repo: `sudo apt install -y cuda-toolkit-12-8` (recommended)
+2. Downgrade NCCL to last version compatible with nvcc 12.0 (≈ 2.20.x)
+
+### nccl-tests build command
+
+```bash
+# After clean source + correct NCCL + nvcc ≥ 12.2:
+cd /tmp/nccl-tests
+make clean
+make MPI=0 CUDA_HOME=/usr -j$(nproc)
+
+# Run all-reduce bandwidth test
+sudo ./build/all_reduce_perf -g 2 -b 8 -e 4G -f 2
+# Expected: busbw ~50 GB/s (NVLink); ~12 GB/s = NVLink disabled/broken
+```
+
+### ABI mismatch warning
+
+Running nccl-tests binary compiled against NCCL 2.18 headers against NCCL 2.29.7 library produces `misaligned address` in the validation step. Always `make clean` before rebuilding after a NCCL library upgrade.
 
 ## VFIO / GPU Passthrough
 
@@ -241,6 +334,36 @@ echo 0000:03:00.0 | sudo tee /sys/bus/pci/drivers/vfio-pci/bind
 ls -la /sys/bus/pci/devices/0000:03:00.0/driver   # should point to vfio-pci
 ```
 
+## Validated Test Results (mra9, 2026-03-22)
+
+### FP64 Burn Test — PASSED
+
+- Tool: `wilicc/gpu-burn` compiled with `-arch=sm_70` (Volta native PTX)
+- Duration: 300 seconds, both GPUs simultaneously
+- Result: exit 0, 0 errors, both GPUs at 100% utilisation
+- Peak temps: 83 °C (GPU0) / 82 °C (GPU1) — 4–5 °C below throttle threshold (87 °C)
+- No thermal throttling observed; post-burn ECC uncorrected = 0/0
+
+### VRAM Memtest — 3 Passes PASSED
+
+- Tool: `ComputationalRadiationPhysics/cuda_memtest` built with `-DCMAKE_CUDA_ARCHITECTURES=70`
+- Ran both GPUs in parallel: `sudo CUDA_VISIBLE_DEVICES=0 ./cuda_memtest` and `sudo CUDA_VISIBLE_DEVICES=1 ./cuda_memtest`
+- 3 full passes (Test0–Test8, Test10; Test9 skipped by tool), zero errors on both GPUs
+- Temps during memtest: ~41–45 °C; throttle code 0x0 throughout
+
+> ⚠️ **SIGKILL after memtest triggers Xid 74 — see below**
+
+### NVLink Status — CONFIRMED ACTIVE
+
+```
+nvidia-smi nvlink --status -i 0
+```
+All 6 links on both GPUs at **25.781 GB/s** ✅
+
+GPU serial numbers:
+- GPU0 `03:00.0`: `1321920049451`
+- GPU1 `04:00.0`: `1321620017216`
+
 ## Known Issues / Quirks
 
 | Issue | Details |
@@ -253,6 +376,90 @@ ls -la /sys/bus/pci/devices/0000:03:00.0/driver   # should point to vfio-pci
 | pstate empty (nouveau) | Nouveau has no power-state management for GV100; driver required |
 | No display output | V100 SXM2 has no video output — always pair with a display card (GT-710 on this system) |
 | SXM2 ≠ PCIe card | Cannot be used in a standard PCIe x16 slot; requires SXM2 baseboard (TNS-2SXM2-4P54 or similar) |
+
+## ⚠️ Xid 74 / Xid 62 — NVLink Fatal Error After SIGKILL
+
+### Trigger
+
+Abruptly killing `cuda_memtest` (or any CUDA process doing active DMA over NVLink) with SIGKILL causes:
+
+- **Xid 74** on GPU0 (`03:00.0`): `NVLink: fatal error detected on link 4` (error code `0x10000`)
+- **Xid 62** on GPU1 (`04:00.0`): Internal micro-controller halt — secondary cascade from GPU0's NVLink fault
+
+`dmesg` output:
+```
+NVRM: GPU Board Serial Number: [N/A]
+NVRM: Xid (PCI:0000:03:00): 74, pid=..., NVLink: Fatal error detected on link 4
+NVRM: Xid (PCI:0000:04:00): 62, pid=0, 09d4 00000000 ...
+```
+
+After Xid 74, `nvidia-smi` hangs indefinitely in D-state. **SSH also hangs.** The system is completely frozen.
+
+### Recovery
+
+**Only recovery: hard power cycle.** Cold boot (power off → power on).
+
+- After hard power cycle: dmesg is clean — **no Xid 74, no NVLink errors**
+- `nvidia-smi` health: ECC uncorrected = 0, temps nominal, throttle code `0x1` (idle/normal)
+- NVLink status: all 12 lanes back at 25.781 GB/s ✅
+- No hardware damage from the Xid 74 event itself
+
+### Prevention
+
+Terminate CUDA processes **gracefully** (SIGTERM / wait for clean exit) rather than SIGKILL. When force-stopping cuda_memtest, use `kill -SIGINT <PID>` and wait for the process to exit cleanly before removing the driver or rebooting.
+
+## NCCL — Driver 580.x / CUDA 13.0 Incompatibility
+
+### NCCL 2.18.x + driver 580.x fails at runtime
+
+NCCL 2.18 calls `cuStreamBatchMemOp` internally (`misc/strongstream.cc:60`). This API was **removed/stubbed** in the CUDA 13.0 driver (580.x series). NCCL init succeeds completely (12 P2P/direct pointer NVLink channels confirmed), but the first `ncclAllReduce` enqueue fails:
+
+```
+NCCL WARN misc/strongstream.cc:60 CUDA failure 'driver is a stub library'
+```
+
+Disabling NVLS (`NCCL_NVLS_ENABLE=0`) does **not** help.
+
+### Fix: upgrade NCCL to 2.29.7+
+
+```bash
+# Add NVIDIA official CUDA apt repo (if not already present)
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt update
+
+# Install NCCL 2.29.7 (compatible with CUDA 13.0 / driver 580.x)
+sudo apt install -y libnccl2=2.29.7-1+cuda12.9 libnccl-dev=2.29.7-1+cuda12.9
+```
+
+### nccl-tests rebuild requires nvcc ≥ 12.2
+
+After upgrading to NCCL 2.29.7, rebuilding `NVIDIA/nccl-tests` with Ubuntu 24.04's bundled `nvidia-cuda-toolkit` (12.0.140) **fails** with errors in `nccl_device/impl/vector__funcs.h`:
+
+```
+error: identifier "__bfloat1622float2" is undefined
+error: identifier "__float22bfloat162_rn" is undefined
+error: no suitable user-defined conversion from "__nv_bfloat162" to "__half2" exists
+```
+
+**Root cause:** NCCL 2.29.7 device headers use bfloat16 intrinsics (`__bfloat1622float2`, `__float22bfloat162_rn`) that require nvcc ≥ 12.2. Ubuntu 24.04 repos only ship 12.0.140.
+
+**Fix:** Install CUDA toolkit 12.2+ from the NVIDIA CUDA apt repo:
+```bash
+sudo apt install -y cuda-toolkit-12-8   # or 12-6, 12-4 — any ≥ 12.2
+export CUDA_HOME=/usr/local/cuda
+make clean && make MPI=0 CUDA_HOME=$CUDA_HOME -j$(nproc)
+```
+
+### ABI mismatch warning
+
+Running an nccl-tests binary compiled against NCCL 2.18 headers against the 2.29.7 library produces a `misaligned address` in validation. Always `make clean` before rebuilding after an NCCL library upgrade.
+
+### Expected healthy NVLink bandwidth
+
+| Test | Expected busbw | NVLink broken indicator |
+|---|---|---|
+| `all_reduce_perf -g 2` | ≥ 50 GB/s | ~12 GB/s (PCIe only) |
 
 ## Useful nvidia-smi One-Liners
 

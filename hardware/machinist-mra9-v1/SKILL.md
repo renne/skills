@@ -32,11 +32,11 @@ Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ven
 |---|---|
 | CPU | Intel Xeon E5-2620 v3 @ 2.40 GHz (6C/12T, max turbo 3.2 GHz) |
 | RAM | 1× 8 GB DDR4 (Corsair CMK8GX4M1A2400C16) in slot **DIMM_B1**, running at **1866 MT/s** (JEDEC default; XMP not supported) |
-| GPU (display) | NVIDIA GeForce GT 710 (GK208B rev a1, ZOTAC 19da:5360, 1 GB DDR3) — PCIe x1 slot (PCH-attached), PCIe addr `05:00.0` |
-| GPU (compute) | 2× NVIDIA Tesla V100 (SXM2 or PCIe) — currently **removed** pending Above 4G Decoding fix; intended for CPU-attached PCIe x16 slots |
+| GPU (display) | NVIDIA GeForce GT 710 (GK208B rev a1, ZOTAC 19da:5360, 1 GB DDR3) — PCIe x1 slot (PCH-attached), PCIe addr `08:00.0` |
+| GPU (compute) | 2× NVIDIA Tesla V100 SXM2 16 GB — installed in TNS-2SXM2-4P54 carrier, CPU-attached PCIe x16 slots (addrs `03:00.0`, `04:00.0`) |
 | NIC | Realtek RTL8111/8168/8211/8411 GbE (`enp6s0`, PCIe `06:00.0`) |
-| Internal storage | **None installed** — system currently boots via Ventoy USB (SanDisk 57.3 GB, `/dev/sda`) |
-| OS | Ubuntu 24.04.4 LTS (live environment from Ventoy) |
+| Internal storage | Ortial ON-750-256 NVMe SSD (256 GB, SM2263EN) — M.2 slot, PCIe addr `02:00.0` |
+| OS | Ubuntu 24.04.4 LTS (installed on NVMe; kernel 6.17.0-19-generic) |
 
 > **RAM slot note:** On `mra9` (Machinist board with Huananzhi BIOS cross-flashed), SMBIOS reports the populated single-DIMM slot as **DIMM_B1** (Node 1). The physical silkscreen on the Machinist board labels this slot **DIMM1**. The Huananzhi BIOS relabels it B1 in its SMBIOS tables. Single-DIMM in the physical DIMM1 slot works correctly.
 
@@ -256,6 +256,7 @@ An independent custom BIOS by **iEngineer** is available as an alternative to th
 | Stock BIOS lacks C-state controls | Medium | Patched Huananzhi BIOS exposes and allows disabling C6 |
 | Fan speed reporting broken | Low | Workaround: external PWM controller |
 | S3/S4 sleep unreliable on stock BIOS | Medium | Patched Huananzhi BIOS resolves in most cases |
+| **Xid 74 NVLink fatal error + full system freeze** | **Critical** | Triggered by SIGKILL to V100 CUDA processes mid-NVLink DMA. Recovery: hard power cycle only. See V100 section above. |
 
 ## v1.0 vs v2.0 / PRO Differences
 
@@ -340,13 +341,58 @@ Slot labels are silk-screened on the PCB. **DIMM1 is always the slot nearest the
 
 | Parameter | Value |
 |---|---|
-| Model | NVIDIA Tesla V100 |
-| Quantity | 2 (currently **removed** — pending Above 4G Decoding fix) |
+| Model | NVIDIA Tesla V100 SXM2 16 GB |
+| Quantity | 2 — installed via TNS-2SXM2-4P54 carrier + 2× RTE162P54B-2UR risers |
 | PCIe slots | CPU-attached x16 slots (PCIe Gen 3, 16× lanes from CPU) |
+| PCIe addresses | GPU0 `03:00.0`, GPU1 `04:00.0` |
+| IOMMU groups | GPU0 → group 29, GPU1 → group 30 (each isolated — ideal for passthrough) |
+| VFIO PCI IDs | GPU function `10de:1db1`, Audio function `10de:1db3` |
 | BAR size | 64-bit prefetchable BAR up to 16 GB — **requires Above 4G Decoding** |
 | Purpose | CUDA compute only (no display output) |
+| Serial numbers | GPU0: `1321920049451`, GPU1: `1321620017216` |
 
 > **V100 and "PCI Out of Resources":** Both Tesla V100s request large 64-bit prefetchable memory BARs. Without "Above 4G Decoding" enabled in BIOS, the firmware cannot map these into the 32-bit MMIO window (0–4 GB) and logs "PCI Out of Resources" errors. The BARs are left unmapped and the GPUs are unusable for CUDA.
+
+### Validated test results (mra9, 2026-03-22)
+
+All tests run with **driver 580.126.09**, **CUDA toolkit 12.0**, **NCCL 2.29.7**.
+
+| Test | Result | Details |
+|---|---|---|
+| FP64 burn (gpu-burn, 300 s) | ✅ PASSED | Peak 83/82 °C, 0 errors, no throttling |
+| VRAM memtest (cuda_memtest, 3 passes) | ✅ PASSED | 0 errors both GPUs; temps 41–45 °C |
+| NVLink status | ✅ ACTIVE | All 6 links × 25.781 GB/s per GPU |
+| NCCL all_reduce bandwidth | ⏳ PENDING | Blocked — nccl-tests rebuild needs nvcc ≥ 12.2 |
+
+### Required driver setup (working configuration)
+
+```bash
+# 1. Blacklist nouveau in initramfs (MANDATORY before driver install)
+echo -e "blacklist nouveau\noptions nouveau modeset=0" | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
+sudo update-initramfs -u && sudo reboot
+
+# 2. Install server driver
+sudo apt install -y nvidia-driver-580-server
+
+# 3. Add NVIDIA CUDA apt repo + install NCCL
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb && sudo apt update
+sudo apt install -y libnccl2=2.29.7-1+cuda12.9 libnccl-dev=2.29.7-1+cuda12.9
+
+# 4. Kernel parameters (already in /etc/default/grub on mra9)
+# GRUB_CMDLINE_LINUX_DEFAULT="quiet splash iommu=pt pcie_aspm=off"
+```
+
+### ⚠️ GT 710 + GDM blocks NVIDIA driver unload
+
+GDM/X11 holds `nvidia_drm` via the GT 710 display GPU, preventing `rmmod` of the entire NVIDIA driver stack. If you need to unload the driver (e.g., for VFIO rebinding):
+
+```bash
+sudo systemctl stop gdm   # must do this FIRST — releases nvidia_drm
+sudo rmmod nvidia_drm nvidia_modeset nvidia_uvm nvidia
+```
+
+Skipping `systemctl stop gdm` causes `rmmod nvidia_drm` to fail with "Module is in use".
 
 ## Above 4G Decoding — Root Cause, Diagnosis, and Fix
 
