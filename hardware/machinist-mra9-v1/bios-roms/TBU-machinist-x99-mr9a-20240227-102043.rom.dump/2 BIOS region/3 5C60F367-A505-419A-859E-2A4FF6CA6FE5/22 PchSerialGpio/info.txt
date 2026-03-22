@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PchSerialGpio
+Fixed: No
+Base: 8D2D00h
+Header address: FF8D2D00h
+Data address: FF8D2D18h
+Offset: 42D00h
+File GUID: FC1B7640-3466-4C06-B1CC-1C935394B5C2
+Type: 07h
+Attributes: 00h
+Full size: 698h (1688)
+Header size: 18h (24)
+Body size: 680h (1664)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 18h, valid
+Data checksum: AAh, valid

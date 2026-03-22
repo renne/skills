@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: NVRAMDxe
+Fixed: No
+Base: A5B308h
+Header address: FFA5B308h
+Data address: FFA5B320h
+Offset: 1CB308h
+File GUID: 1807040D-5934-41A2-A088-8E0F777F71AB
+Type: 07h
+Attributes: 00h
+Full size: 5CBCh (23740)
+Header size: 18h (24)
+Body size: 5CA4h (23716)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Ah, valid
+Data checksum: AAh, valid

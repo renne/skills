@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtWrapperDxe
+Fixed: No
+Base: 925E10h
+Header address: FF925E10h
+Data address: FF925E28h
+Offset: 95E10h
+File GUID: D77C900D-A1C7-41C5-B989-0C3D37FCA432
+Type: 07h
+Attributes: 00h
+Full size: 32C1h (12993)
+Header size: 18h (24)
+Body size: 32A9h (12969)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 14h, valid
+Data checksum: AAh, valid

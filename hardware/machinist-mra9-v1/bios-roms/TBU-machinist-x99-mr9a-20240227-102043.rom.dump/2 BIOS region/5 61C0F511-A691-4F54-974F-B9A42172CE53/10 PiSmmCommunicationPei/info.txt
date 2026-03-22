@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PiSmmCommunicationPei
+Fixed: No
+Base: DAF918h
+Header address: FFDAF918h
+Data address: FFDAF930h
+Offset: F918h
+File GUID: 1C8B7F78-1699-40E6-AF33-9B995D16B043
+Type: 06h
+Attributes: 00h
+Full size: 6E6h (1766)
+Header size: 18h (24)
+Body size: 6CEh (1742)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 1Fh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ACPI
+Fixed: No
+Base: 8DF5A0h
+Header address: FF8DF5A0h
+Data address: FF8DF5B8h
+Offset: 4F5A0h
+File GUID: 16D0A23E-C09C-407D-A14A-AD058FDD0CA1
+Type: 07h
+Attributes: 00h
+Full size: 42DCh (17116)
+Header size: 18h (24)
+Body size: 42C4h (17092)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 46h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: SetUpdateCountVar
+Fixed: Yes
+Base: 811F5Fh
+Header address: FF811F5Fh
+Data address: FF811F69h
+Offset: 11F17h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

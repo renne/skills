@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DB4848h
+Header address: FFDB4848h
+Data address: FFDB484Ch
+Offset: 1238h
+Type: 15h
+Full size: 14h (20)
+Header size: 4h (4)
+Body size: 10h (16)
+Text: LoadHob

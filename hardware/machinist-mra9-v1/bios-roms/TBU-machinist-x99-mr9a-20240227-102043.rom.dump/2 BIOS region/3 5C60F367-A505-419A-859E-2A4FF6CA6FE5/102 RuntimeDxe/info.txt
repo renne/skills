@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: RuntimeDxe
+Fixed: No
+Base: 95C1A0h
+Header address: FF95C1A0h
+Data address: FF95C1B8h
+Offset: CC1A0h
+File GUID: B601F8C4-43B7-4784-95B1-F4226CB40CEE
+Type: 07h
+Attributes: 00h
+Full size: 7B6h (1974)
+Header size: 18h (24)
+Body size: 79Eh (1950)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Eh, valid
+Data checksum: AAh, valid

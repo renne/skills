@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Fat
+Fixed: No
+Base: 9CC938h
+Header address: FF9CC938h
+Data address: FF9CC950h
+Offset: 13C938h
+File GUID: 961578FE-B6B7-44C3-AF35-6BC705CD2B1F
+Type: 07h
+Attributes: 00h
+Full size: 3677h (13943)
+Header size: 18h (24)
+Body size: 365Fh (13919)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 85h, valid
+Data checksum: AAh, valid

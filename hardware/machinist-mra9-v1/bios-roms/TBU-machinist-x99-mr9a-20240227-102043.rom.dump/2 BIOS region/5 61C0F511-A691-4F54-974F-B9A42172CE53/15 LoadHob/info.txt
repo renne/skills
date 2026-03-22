@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: LoadHob
+Fixed: No
+Base: DB3610h
+Header address: FFDB3610h
+Data address: FFDB3628h
+Offset: 13610h
+File GUID: 1890592D-F10B-448F-93D5-91EFBC760630
+Type: 06h
+Attributes: 00h
+Full size: 125Ah (4698)
+Header size: 18h (24)
+Body size: 1242h (4674)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 41h, valid
+Data checksum: AAh, valid

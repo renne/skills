@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: E8FB14h
+Header address: FFE8FB14h
+Data address: FFE8FB18h
+Offset: 3084h
+Type: 15h
+Full size: 1Ah (26)
+Header size: 4h (4)
+Body size: 16h (22)
+Text: CapsuleX64

@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PlatformInfo
+Fixed: No
+Base: DB7B30h
+Header address: FFDB7B30h
+Data address: FFDB7B48h
+Offset: 17B30h
+File GUID: 34CC6167-7AE7-403E-8AB2-23837F398A30
+Type: 06h
+Attributes: 00h
+Full size: C06h (3078)
+Header size: 18h (24)
+Body size: BEEh (3054)
+Tail size: 0h (0)
+State: F8h
+Header checksum: EDh, valid
+Data checksum: AAh, valid

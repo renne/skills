@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: IccOverClocking
+Fixed: No
+Base: 920720h
+Header address: FF920720h
+Data address: FF920738h
+Offset: 90720h
+File GUID: 5BBA83E5-F027-4CA7-BFD0-16358CC9E123
+Type: 07h
+Attributes: 00h
+Full size: 2CC2h (11458)
+Header size: 18h (24)
+Body size: 2CAAh (11434)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 51h, valid
+Data checksum: AAh, valid

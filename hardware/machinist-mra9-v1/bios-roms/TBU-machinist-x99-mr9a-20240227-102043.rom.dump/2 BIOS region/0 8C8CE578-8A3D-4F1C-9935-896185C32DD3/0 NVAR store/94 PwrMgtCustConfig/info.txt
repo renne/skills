@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: PwrMgtCustConfig
+Fixed: Yes
+Base: 80583Eh
+Header address: FF80583Eh
+Data address: FF80585Ah
+Offset: 57F6h
+Variable GUID: EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9
+GUID index: 4
+Full size: 24h (36)
+Header size: 1Ch (28)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

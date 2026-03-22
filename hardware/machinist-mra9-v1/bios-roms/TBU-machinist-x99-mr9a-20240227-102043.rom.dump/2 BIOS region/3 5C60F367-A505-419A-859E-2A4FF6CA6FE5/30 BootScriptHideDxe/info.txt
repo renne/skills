@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: BootScriptHideDxe
+Fixed: No
+Base: 8E4DB8h
+Header address: FF8E4DB8h
+Data address: FF8E4DD0h
+Offset: 54DB8h
+File GUID: A570F393-B0F5-44A4-8550-61600597B409
+Type: 07h
+Attributes: 00h
+Full size: 57Eh (1406)
+Header size: 18h (24)
+Body size: 566h (1382)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Fh, valid
+Data checksum: AAh, valid

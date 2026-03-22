@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MdesStatusCodeDxe
+Fixed: No
+Base: 923880h
+Header address: FF923880h
+Data address: FF923898h
+Offset: 93880h
+File GUID: DF5CD25A-8E55-46BA-8CDA-BC7DB7BF9C64
+Type: 07h
+Attributes: 00h
+Full size: 57Dh (1405)
+Header size: 18h (24)
+Body size: 565h (1381)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 18h, valid
+Data checksum: AAh, valid

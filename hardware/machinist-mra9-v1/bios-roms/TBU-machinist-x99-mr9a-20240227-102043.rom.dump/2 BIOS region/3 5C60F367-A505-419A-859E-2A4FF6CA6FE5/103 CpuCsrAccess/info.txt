@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CpuCsrAccess
+Fixed: No
+Base: 95C958h
+Header address: FF95C958h
+Data address: FF95C970h
+Offset: CC958h
+File GUID: 06D20D84-A032-4E25-969A-346D255E46D1
+Type: 07h
+Attributes: 00h
+Full size: 1129h (4393)
+Header size: 18h (24)
+Body size: 1111h (4369)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A6h, valid
+Data checksum: AAh, valid

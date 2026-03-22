@@ -1,0 +1,7 @@
+Type: Region
+Subtype: BIOS
+Fixed: Yes
+Base: 800000h
+Address: FF800000h
+Offset: 800000h
+Full size: 800000h (8388608)

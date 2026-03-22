@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: NBDXE
+Fixed: No
+Base: 956B78h
+Header address: FF956B78h
+Data address: FF956B90h
+Offset: C6B78h
+File GUID: 20C19C9C-2C8E-476F-9E1F-F183840ABE25
+Type: 07h
+Attributes: 00h
+Full size: 8A2h (2210)
+Header size: 18h (24)
+Body size: 88Ah (2186)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 24h, valid
+Data checksum: AAh, valid

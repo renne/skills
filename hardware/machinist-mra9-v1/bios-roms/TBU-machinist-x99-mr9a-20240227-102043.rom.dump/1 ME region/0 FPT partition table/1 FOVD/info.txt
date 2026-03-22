@@ -1,0 +1,9 @@
+Type: FPT entry
+Subtype: Valid
+Fixed: Yes
+Base: 1050h
+Offset: 50h
+Full size: 20h (32)
+Partition offset: C00h
+Partition length: 400h
+Partition type: 03h

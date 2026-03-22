@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DC0958h
+Header address: FFDC0958h
+Data address: FFDC095Ch
+Offset: 508h
+Type: 15h
+Full size: 20h (32)
+Header size: 4h (4)
+Body size: 1Ch (28)
+Text: StartWatchDog

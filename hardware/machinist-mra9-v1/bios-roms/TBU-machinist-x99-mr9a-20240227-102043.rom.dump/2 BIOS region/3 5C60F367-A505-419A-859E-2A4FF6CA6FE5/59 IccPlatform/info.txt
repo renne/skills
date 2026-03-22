@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: IccPlatform
+Fixed: No
+Base: 920010h
+Header address: FF920010h
+Data address: FF920028h
+Offset: 90010h
+File GUID: 14257B56-BDA2-4FAF-8E4F-C885DF75583C
+Type: 07h
+Attributes: 00h
+Full size: 70Dh (1805)
+Header size: 18h (24)
+Body size: 6F5h (1781)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Ch, valid
+Data checksum: AAh, valid

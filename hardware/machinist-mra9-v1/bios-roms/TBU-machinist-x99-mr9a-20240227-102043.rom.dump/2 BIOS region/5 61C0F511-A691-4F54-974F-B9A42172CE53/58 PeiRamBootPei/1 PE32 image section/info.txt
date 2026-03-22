@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: E89870h
+Header address: FFE89870h
+Data address: FFE89874h
+Offset: 78h
+Type: 10h
+Full size: E44h (3652)
+Header size: 4h (4)
+Body size: E40h (3648)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 290h
+Base of code: 200h
+Image base: FFE89874h

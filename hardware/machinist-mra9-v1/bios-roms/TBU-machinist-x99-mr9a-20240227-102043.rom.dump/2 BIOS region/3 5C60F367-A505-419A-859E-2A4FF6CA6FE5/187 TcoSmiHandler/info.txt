@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: TcoSmiHandler
+Fixed: No
+Base: A1ADC8h
+Header address: FFA1ADC8h
+Data address: FFA1ADE0h
+Offset: 18ADC8h
+File GUID: 46B94C2D-AF5D-4915-814D-159323AE880A
+Type: 0Ah
+Attributes: 00h
+Full size: 300h (768)
+Header size: 18h (24)
+Body size: 2E8h (744)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 38h, valid
+Data checksum: AAh, valid

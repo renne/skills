@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AcpiS3SaveDxe
+Fixed: No
+Base: 9594C0h
+Header address: FF9594C0h
+Data address: FF9594D8h
+Offset: C94C0h
+File GUID: 2BDED685-F733-455F-A840-43A22B791FB3
+Type: 07h
+Attributes: 00h
+Full size: 88Ah (2186)
+Header size: 18h (24)
+Body size: 872h (2162)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F2h, valid
+Data checksum: AAh, valid

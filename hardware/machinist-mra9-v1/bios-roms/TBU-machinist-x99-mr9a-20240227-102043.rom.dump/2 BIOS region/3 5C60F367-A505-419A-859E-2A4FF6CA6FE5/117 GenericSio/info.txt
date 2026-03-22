@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: GenericSio
+Fixed: No
+Base: 975028h
+Header address: FF975028h
+Data address: FF975040h
+Offset: E5028h
+File GUID: 8EEF9AD2-463E-425F-A4FE-2F6783D6F97E
+Type: 07h
+Attributes: 00h
+Full size: 371Dh (14109)
+Header size: 18h (24)
+Body size: 3705h (14085)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Fh, valid
+Data checksum: AAh, valid

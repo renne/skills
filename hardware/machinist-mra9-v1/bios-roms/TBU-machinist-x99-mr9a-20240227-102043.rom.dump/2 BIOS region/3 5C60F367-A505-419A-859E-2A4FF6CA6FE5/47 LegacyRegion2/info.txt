@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: LegacyRegion2
+Fixed: No
+Base: 900D80h
+Header address: FF900D80h
+Data address: FF900D98h
+Offset: 70D80h
+File GUID: AA7B4695-00B4-4468-AD92-99370AC031C5
+Type: 07h
+Attributes: 00h
+Full size: 542h (1346)
+Header size: 18h (24)
+Body size: 52Ah (1322)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 83h, valid
+Data checksum: AAh, valid

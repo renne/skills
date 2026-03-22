@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: MemoryTypeInformation
+Fixed: Yes
+Base: 80A977h
+Header address: FF80A977h
+Data address: FF80A981h
+Offset: A92Fh
+Full size: 4Ah (74)
+Header size: Ah (10)
+Body size: 40h (64)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: E72Dh

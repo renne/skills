@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: RsdpPlus
+Fixed: No
+Base: 9331F8h
+Header address: FF9331F8h
+Data address: FF933210h
+Offset: A31F8h
+File GUID: 8F3F1DE2-2FE4-4D5C-A8EC-49E8CCA17EBC
+Type: 07h
+Attributes: 00h
+Full size: CF9h (3321)
+Header size: 18h (24)
+Body size: CE1h (3297)
+Tail size: 0h (0)
+State: F8h
+Header checksum: FFh, valid
+Data checksum: AAh, valid

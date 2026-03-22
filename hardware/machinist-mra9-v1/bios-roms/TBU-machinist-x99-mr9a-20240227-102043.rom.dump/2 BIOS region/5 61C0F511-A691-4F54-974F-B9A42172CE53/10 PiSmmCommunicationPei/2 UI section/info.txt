@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DAFFC0h
+Header address: FFDAFFC0h
+Data address: FFDAFFC4h
+Offset: 6A8h
+Type: 15h
+Full size: 30h (48)
+Header size: 4h (4)
+Body size: 2Ch (44)
+Text: PiSmmCommunicationPei

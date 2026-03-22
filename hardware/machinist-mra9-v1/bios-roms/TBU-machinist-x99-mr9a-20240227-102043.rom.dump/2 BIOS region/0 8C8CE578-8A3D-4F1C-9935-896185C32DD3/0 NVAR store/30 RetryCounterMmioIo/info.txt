@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: RetryCounterMmioIo
+Fixed: Yes
+Base: 803EF5h
+Header address: FF803EF5h
+Data address: FF803F13h
+Offset: 3EADh
+Variable GUID: A1948FF0-8C5D-11E0-83F2-0800200C9A66
+GUID index: 11
+Full size: 20h (32)
+Header size: 1Eh (30)
+Body size: 2h (2)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Setup
+Fixed: No
+Base: 8D5B10h
+Header address: FF8D5B10h
+Data address: FF8D5B28h
+Offset: 45B10h
+File GUID: 899407D7-99FE-43D8-9A21-79EC328CAC21
+Type: 07h
+Attributes: 00h
+Full size: 9A90h (39568)
+Header size: 18h (24)
+Body size: 9A78h (39544)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 77h, valid
+Data checksum: AAh, valid

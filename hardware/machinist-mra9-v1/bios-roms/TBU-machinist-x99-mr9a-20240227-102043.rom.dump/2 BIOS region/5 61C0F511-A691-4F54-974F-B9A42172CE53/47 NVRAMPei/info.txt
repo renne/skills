@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: NVRAMPei
+Fixed: No
+Base: DE2350h
+Header address: FFDE2350h
+Data address: FFDE2368h
+Offset: 42350h
+File GUID: 838DCF34-907B-4D55-9A4B-A0EF7167B5F4
+Type: 06h
+Attributes: 00h
+Full size: 181Ah (6170)
+Header size: 18h (24)
+Body size: 1802h (6146)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 13h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,17 @@
+Type: File
+Subtype: Freeform
+Fixed: No
+Base: B0F720h
+Header address: FFB0F720h
+Data address: FFB0F738h
+Offset: 27F720h
+File GUID: DAC2B117-B5FB-4964-A312-0DCC77061B9B
+Type: 02h
+Attributes: 00h
+Full size: 472h (1138)
+Header size: 18h (24)
+Body size: 45Ah (1114)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 06h, valid
+Data checksum: AAh, valid

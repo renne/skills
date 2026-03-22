@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: MemoryConfig3
+Fixed: Yes
+Base: 8036FFh
+Header address: FF8036FFh
+Data address: FF803718h
+Offset: 36B7h
+Variable GUID: 80DBD530-B74C-4F11-8C03-418665532831
+GUID index: 9
+Full size: 2BBh (699)
+Header size: 19h (25)
+Body size: 2A2h (674)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: 5219h

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: IioSmm
+Fixed: No
+Base: 9E11C0h
+Header address: FF9E11C0h
+Data address: FF9E11D8h
+Offset: 1511C0h
+File GUID: AAD10051-5D94-4B9F-B778-E4555EE3CCCA
+Type: 0Ah
+Attributes: 00h
+Full size: 64Ch (1612)
+Header size: 18h (24)
+Body size: 634h (1588)
+Tail size: 0h (0)
+State: F8h
+Header checksum: BEh, valid
+Data checksum: AAh, valid

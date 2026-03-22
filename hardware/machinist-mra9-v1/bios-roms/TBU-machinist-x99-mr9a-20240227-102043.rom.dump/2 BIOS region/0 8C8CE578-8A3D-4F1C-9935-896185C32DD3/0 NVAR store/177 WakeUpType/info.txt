@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: WakeUpType
+Fixed: Yes
+Base: 8100F9h
+Header address: FF8100F9h
+Data address: FF810103h
+Offset: 100B1h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 10196h

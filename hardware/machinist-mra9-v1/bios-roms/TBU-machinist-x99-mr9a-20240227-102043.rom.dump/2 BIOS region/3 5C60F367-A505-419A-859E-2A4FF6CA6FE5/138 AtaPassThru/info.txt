@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AtaPassThru
+Fixed: No
+Base: 9C6D00h
+Header address: FF9C6D00h
+Data address: FF9C6D18h
+Offset: 136D00h
+File GUID: 2E3AB8B6-AC9D-4D70-A675-54F52FB22D66
+Type: 07h
+Attributes: 00h
+Full size: 1159h (4441)
+Header size: 18h (24)
+Body size: 1141h (4417)
+Tail size: 0h (0)
+State: F8h
+Header checksum: DBh, valid
+Data checksum: AAh, valid

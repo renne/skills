@@ -1,0 +1,20 @@
+Type: Section
+Subtype: MM dependency
+Fixed: No
+Base: A04E90h
+Header address: FFA04E90h
+Data address: FFA04E94h
+Offset: 18h
+Type: 1Ch
+Full size: 4Ch (76)
+Header size: 4h (4)
+Body size: 48h (72)
+Parsed expression:
+PUSH 6F2C06A8-D4B4-4A93-9F78-2B480BE80E0F
+PUSH 5E90A50D-6955-4A49-9032-DA3812F8E8E5
+PUSH F4CCBFB7-F6E0-47FD-9DD4-10A8F150C191
+PUSH 13A3F0F6-264A-3EF0-F2E0-DEC512342F34
+AND
+AND
+AND
+END

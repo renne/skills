@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: TimestampDxe
+Fixed: No
+Base: 8B6510h
+Header address: FF8B6510h
+Data address: FF8B6528h
+Offset: 26510h
+File GUID: C10194E7-DEB2-4AF4-9EEE-BFFDE4D7D4C7
+Type: 07h
+Attributes: 00h
+Full size: 23Ch (572)
+Header size: 18h (24)
+Body size: 224h (548)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 12h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PS2Main
+Fixed: No
+Base: 97CE70h
+Header address: FF97CE70h
+Data address: FF97CE88h
+Offset: ECE70h
+File GUID: 5FECEF6B-5FA4-4570-8163-0CF72A9C04C5
+Type: 07h
+Attributes: 00h
+Full size: 28FAh (10490)
+Header size: 18h (24)
+Body size: 28E2h (10466)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 04h, valid
+Data checksum: AAh, valid

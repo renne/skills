@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: LegacyDevOrder
+Fixed: Yes
+Base: 84581Bh
+Header address: FF84581Bh
+Data address: FF845835h
+Offset: 57D3h
+Variable GUID: A56074DB-65FE-45F7-BD21-2D2BDD8E9652
+GUID index: 14
+Full size: 22h (34)
+Header size: 1Ah (26)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 7BA8h

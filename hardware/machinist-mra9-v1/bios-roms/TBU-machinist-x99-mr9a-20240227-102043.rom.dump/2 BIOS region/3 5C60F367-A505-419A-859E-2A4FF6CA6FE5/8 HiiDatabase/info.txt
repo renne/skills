@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: HiiDatabase
+Fixed: No
+Base: 8AB100h
+Header address: FF8AB100h
+Data address: FF8AB118h
+Offset: 1B100h
+File GUID: 348C4D62-BFBD-4882-9ECE-C80BB1C4783B
+Type: 07h
+Attributes: 00h
+Full size: 8D93h (36243)
+Header size: 18h (24)
+Body size: 8D7Bh (36219)
+Tail size: 0h (0)
+State: F8h
+Header checksum: BDh, valid
+Data checksum: AAh, valid

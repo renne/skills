@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: EnglishDxe
+Fixed: No
+Base: 8A92F0h
+Header address: FF8A92F0h
+Data address: FF8A9308h
+Offset: 192F0h
+File GUID: CD3BAFB6-50FB-4FE8-8E4E-AB74D2C1A600
+Type: 07h
+Attributes: 00h
+Full size: 45Eh (1118)
+Header size: 18h (24)
+Body size: 446h (1094)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 74h, valid
+Data checksum: AAh, valid

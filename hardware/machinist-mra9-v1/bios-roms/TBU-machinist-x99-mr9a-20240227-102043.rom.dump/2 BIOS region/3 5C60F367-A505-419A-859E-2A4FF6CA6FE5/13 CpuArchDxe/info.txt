@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CpuArchDxe
+Fixed: No
+Base: 8BD148h
+Header address: FF8BD148h
+Data address: FF8BD160h
+Offset: 2D148h
+File GUID: 62D171CB-78CD-4480-8678-C6A2A797A8DE
+Type: 07h
+Attributes: 00h
+Full size: 2315h (8981)
+Header size: 18h (24)
+Body size: 22FDh (8957)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 1Fh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MeFwDowngrade
+Fixed: No
+Base: 91F920h
+Header address: FF91F920h
+Data address: FF91F938h
+Offset: 8F920h
+File GUID: 5820EEB4-C135-4854-9D2A-AA9EFC4475E9
+Type: 07h
+Attributes: 00h
+Full size: 6EEh (1774)
+Header size: 18h (24)
+Body size: 6D6h (1750)
+Tail size: 0h (0)
+State: F8h
+Header checksum: ACh, valid
+Data checksum: AAh, valid

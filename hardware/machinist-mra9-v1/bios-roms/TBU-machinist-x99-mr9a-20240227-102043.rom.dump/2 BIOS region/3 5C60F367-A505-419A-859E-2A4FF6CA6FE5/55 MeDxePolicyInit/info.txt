@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MeDxePolicyInit
+Fixed: No
+Base: 91D760h
+Header address: FF91D760h
+Data address: FF91D778h
+Offset: 8D760h
+File GUID: 24A44CAF-0BF2-4514-90C4-C794B3E778F5
+Type: 07h
+Attributes: 00h
+Full size: DFDh (3581)
+Header size: 18h (24)
+Body size: DE5h (3557)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 20h, valid
+Data checksum: AAh, valid

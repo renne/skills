@@ -1,0 +1,8 @@
+Type: FPT partition
+Subtype: Code
+Fixed: Yes
+Base: 147000h
+Offset: 146000h
+Full size: 37000h (225280)
+Partition type: 00h
+

@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: rd
+Fixed: Yes
+Base: 81358Fh
+Header address: FF81358Fh
+Data address: FF81359Dh
+Offset: 13547h
+Variable GUID: 47C7B227-C42A-11D2-8E57-00A0C969723B
+GUID index: 28
+Full size: 14h (20)
+Header size: Eh (14)
+Body size: 6h (6)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

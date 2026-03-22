@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: S3NvramSave
+Fixed: No
+Base: 903880h
+Header address: FF903880h
+Data address: FF903898h
+Offset: 73880h
+File GUID: 62DC08AC-A651-4EE9-AF81-EAA9261E9780
+Type: 07h
+Attributes: 00h
+Full size: 1524h (5412)
+Header size: 18h (24)
+Body size: 150Ch (5388)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 82h, valid
+Data checksum: AAh, valid

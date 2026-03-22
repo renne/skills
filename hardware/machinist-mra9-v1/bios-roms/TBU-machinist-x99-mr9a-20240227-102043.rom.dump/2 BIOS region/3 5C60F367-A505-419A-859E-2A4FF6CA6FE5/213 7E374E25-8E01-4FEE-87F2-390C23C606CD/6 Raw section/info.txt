@@ -1,0 +1,11 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Base: A668A0h
+Header address: FFA668A0h
+Data address: FFA668A4h
+Offset: 18E8h
+Type: 19h
+Full size: 70h (112)
+Header size: 4h (4)
+Body size: 6Ch (108)

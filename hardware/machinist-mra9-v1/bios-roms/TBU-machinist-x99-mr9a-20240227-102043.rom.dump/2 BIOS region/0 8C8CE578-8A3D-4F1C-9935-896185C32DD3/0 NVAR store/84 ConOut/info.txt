@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: ConOut
+Fixed: Yes
+Base: 80536Fh
+Header address: FF80536Fh
+Data address: FF805379h
+Offset: 5327h
+Full size: 2Eh (46)
+Header size: Ah (10)
+Body size: 24h (36)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

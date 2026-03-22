@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: ConIn
+Fixed: Yes
+Base: 80539Dh
+Header address: FF80539Dh
+Data address: FF8053A7h
+Offset: 5355h
+Full size: 92h (146)
+Header size: Ah (10)
+Body size: 88h (136)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

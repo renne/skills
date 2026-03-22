@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: SiPolicyOneTimeFix
+Fixed: Yes
+Base: 80AA06h
+Header address: FF80AA06h
+Data address: FF80AA24h
+Offset: A9BEh
+Variable GUID: 77FA9ABD-0359-4D32-BD60-28F4E78F784B
+GUID index: 25
+Full size: 22h (34)
+Header size: 1Eh (30)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

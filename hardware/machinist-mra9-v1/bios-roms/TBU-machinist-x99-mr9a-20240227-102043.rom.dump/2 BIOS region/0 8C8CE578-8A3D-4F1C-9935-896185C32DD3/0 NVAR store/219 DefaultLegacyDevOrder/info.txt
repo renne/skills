@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: DefaultLegacyDevOrder
+Fixed: Yes
+Base: 812852h
+Header address: FF812852h
+Data address: FF81285Ch
+Offset: 1280Ah
+Full size: 16h (22)
+Header size: Ah (10)
+Body size: Ch (12)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

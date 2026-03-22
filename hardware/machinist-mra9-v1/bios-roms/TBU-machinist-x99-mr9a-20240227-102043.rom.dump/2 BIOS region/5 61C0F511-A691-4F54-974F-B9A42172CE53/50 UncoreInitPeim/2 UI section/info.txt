@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: E78A98h
+Header address: FFE78A98h
+Data address: FFE78A9Ch
+Offset: 93B40h
+Type: 15h
+Full size: 22h (34)
+Header size: 4h (4)
+Body size: 1Eh (30)
+Text: UncoreInitPeim

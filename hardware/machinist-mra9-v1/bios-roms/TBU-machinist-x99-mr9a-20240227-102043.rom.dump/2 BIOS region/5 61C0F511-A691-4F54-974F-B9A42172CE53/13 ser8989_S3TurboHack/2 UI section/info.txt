@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DB322Ch
+Header address: FFDB322Ch
+Data address: FFDB3230h
+Offset: 1D94h
+Type: 15h
+Full size: 2Ch (44)
+Header size: 4h (4)
+Body size: 28h (40)
+Text: ser8989_S3TurboHack

@@ -1,0 +1,11 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Base: A65040h
+Header address: FFA65040h
+Data address: FFA65044h
+Offset: 88h
+Type: 19h
+Full size: DFCh (3580)
+Header size: 4h (4)
+Body size: DF8h (3576)

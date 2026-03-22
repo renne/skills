@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: FastBootOption
+Fixed: No
+Base: 9CBB68h
+Header address: FF9CBB68h
+Data address: FF9CBB80h
+Offset: 13BB68h
+File GUID: 0C989D41-F4B4-4244-9D7F-E9FFB4163273
+Type: 07h
+Attributes: 00h
+Full size: DCFh (3535)
+Header size: 18h (24)
+Body size: DB7h (3511)
+Tail size: 0h (0)
+State: F8h
+Header checksum: FAh, valid
+Data checksum: AAh, valid

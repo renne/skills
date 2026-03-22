@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: DD7018h
+Header address: FFDD7018h
+Data address: FFDD701Ch
+Offset: 40h
+Type: 10h
+Full size: 944h (2372)
+Header size: 4h (4)
+Body size: 940h (2368)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 520h
+Base of code: 220h
+Image base: FFDD701Ch

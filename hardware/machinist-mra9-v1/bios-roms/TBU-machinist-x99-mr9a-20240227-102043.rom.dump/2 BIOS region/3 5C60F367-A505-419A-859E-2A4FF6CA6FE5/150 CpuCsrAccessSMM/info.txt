@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: CpuCsrAccessSMM
+Fixed: No
+Base: 9DFD30h
+Header address: FF9DFD30h
+Data address: FF9DFD48h
+Offset: 14FD30h
+File GUID: 870E0F5A-1981-45F6-AE26-0391425CC46F
+Type: 0Ah
+Attributes: 00h
+Full size: 1185h (4485)
+Header size: 18h (24)
+Body size: 116Dh (4461)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 54h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: CapsuleLongModeBuffer
+Fixed: Yes
+Base: 80AA36h
+Header address: FF80AA36h
+Data address: FF80AA40h
+Offset: A9EEh
+Full size: 22h (34)
+Header size: Ah (10)
+Body size: 18h (24)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: E785h

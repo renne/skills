@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: WatchdogTimer
+Fixed: No
+Base: 958D50h
+Header address: FF958D50h
+Data address: FF958D68h
+Offset: C8D50h
+File GUID: F099D67F-71AE-4C36-B2A3-DCEB0EB2B7D8
+Type: 07h
+Attributes: 00h
+Full size: 309h (777)
+Header size: 18h (24)
+Body size: 2F1h (753)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 03h, valid
+Data checksum: AAh, valid

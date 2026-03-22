@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PlatformReset
+Fixed: No
+Base: 966A80h
+Header address: FF966A80h
+Data address: FF966A98h
+Offset: D6A80h
+File GUID: 253E85E9-993B-439B-B74C-6120F77B4723
+Type: 07h
+Attributes: 00h
+Full size: 660h (1632)
+Header size: 18h (24)
+Body size: 648h (1608)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B0h, valid
+Data checksum: AAh, valid

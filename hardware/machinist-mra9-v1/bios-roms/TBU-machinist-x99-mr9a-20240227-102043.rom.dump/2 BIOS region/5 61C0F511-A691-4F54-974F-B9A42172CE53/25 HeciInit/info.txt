@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: HeciInit
+Fixed: No
+Base: DC1368h
+Header address: FFDC1368h
+Data address: FFDC1380h
+Offset: 21368h
+File GUID: 4862AFF3-667C-5458-B274-A1C62DF8BA80
+Type: 06h
+Attributes: 00h
+Full size: DFAh (3578)
+Header size: 18h (24)
+Body size: DE2h (3554)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 2Dh, valid
+Data checksum: AAh, valid

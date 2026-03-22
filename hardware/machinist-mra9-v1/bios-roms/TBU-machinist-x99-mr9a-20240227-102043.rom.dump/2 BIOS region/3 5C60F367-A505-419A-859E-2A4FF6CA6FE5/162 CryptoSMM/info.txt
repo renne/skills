@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: CryptoSMM
+Fixed: No
+Base: 9E7938h
+Header address: FF9E7938h
+Data address: FF9E7950h
+Offset: 157938h
+File GUID: 2AD511C7-1B60-4002-841D-2998DDC138EE
+Type: 0Ah
+Attributes: 00h
+Full size: 7145h (28997)
+Header size: 18h (24)
+Body size: 712Dh (28973)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 86h, valid
+Data checksum: AAh, valid

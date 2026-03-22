@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: SetUpdateCountVar
+Fixed: Yes
+Base: 807037h
+Header address: FF807037h
+Data address: FF807041h
+Offset: 6FEFh
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 11F17h

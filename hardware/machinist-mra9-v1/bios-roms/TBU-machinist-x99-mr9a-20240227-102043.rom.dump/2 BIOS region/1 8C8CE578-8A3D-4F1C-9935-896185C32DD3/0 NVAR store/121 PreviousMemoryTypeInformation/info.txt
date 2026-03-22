@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: PreviousMemoryTypeInformation
+Fixed: Yes
+Base: 84B62Eh
+Header address: FF84B62Eh
+Data address: FF84B638h
+Offset: B5E6h
+Full size: 4Ah (74)
+Header size: Ah (10)
+Body size: 40h (64)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

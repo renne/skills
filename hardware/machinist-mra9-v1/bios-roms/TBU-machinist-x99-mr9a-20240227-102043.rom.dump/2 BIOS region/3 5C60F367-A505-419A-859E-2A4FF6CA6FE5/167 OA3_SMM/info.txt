@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: OA3_SMM
+Fixed: No
+Base: 9F3AD8h
+Header address: FF9F3AD8h
+Data address: FF9F3AF0h
+Offset: 163AD8h
+File GUID: 8434DA1F-5CEB-402E-A93C-038CBE0F3F0E
+Type: 0Ah
+Attributes: 00h
+Full size: A1Ch (2588)
+Header size: 18h (24)
+Body size: A04h (2564)
+Tail size: 0h (0)
+State: F8h
+Header checksum: DCh, valid
+Data checksum: AAh, valid

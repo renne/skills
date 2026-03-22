@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: BootScriptHideSmm
+Fixed: No
+Base: 9F25B8h
+Header address: FF9F25B8h
+Data address: FF9F25D0h
+Offset: 1625B8h
+File GUID: 70B8BACB-0B26-4048-A6F8-03A6AF2C5029
+Type: 0Ah
+Attributes: 00h
+Full size: A36h (2614)
+Header size: 18h (24)
+Body size: A1Eh (2590)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B5h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CryptoDXE
+Fixed: No
+Base: 95EB20h
+Header address: FF95EB20h
+Data address: FF95EB38h
+Offset: CEB20h
+File GUID: 77EB6C06-FD48-488B-A1B3-AE0A70801369
+Type: 07h
+Attributes: 00h
+Full size: 6FCCh (28620)
+Header size: 18h (24)
+Body size: 6FB4h (28596)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Ah, valid
+Data checksum: AAh, valid

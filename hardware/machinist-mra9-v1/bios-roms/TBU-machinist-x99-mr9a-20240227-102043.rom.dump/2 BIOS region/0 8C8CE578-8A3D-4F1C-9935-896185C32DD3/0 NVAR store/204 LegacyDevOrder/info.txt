@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: LegacyDevOrder
+Fixed: Yes
+Base: 811D12h
+Header address: FF811D12h
+Data address: FF811D1Ch
+Offset: 11CCAh
+Full size: 14h (20)
+Header size: Ah (10)
+Body size: Ah (10)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 127DEh

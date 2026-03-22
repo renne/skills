@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: StartWatchDog
+Fixed: No
+Base: DC0450h
+Header address: FFDC0450h
+Data address: FFDC0468h
+Offset: 20450h
+File GUID: 5479E09C-2E74-481B-89F8-B0172E388D1F
+Type: 06h
+Attributes: 00h
+Full size: 536h (1334)
+Header size: 18h (24)
+Body size: 51Eh (1310)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 17h, valid
+Data checksum: AAh, valid

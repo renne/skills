@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Invalid
+Fixed: Yes
+Base: 805683h
+Header address: FF805683h
+Data address: FF80568Dh
+Offset: 563Bh
+Full size: 19Bh (411)
+Header size: Ah (10)
+Body size: 191h (401)
+Tail size: 0h (0)
+Attributes: 03h (Runtime, AsciiName)
+Next node at offset: F0D4h

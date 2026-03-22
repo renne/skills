@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: CapsuleLongModeBuffer
+Fixed: Yes
+Base: 841B24h
+Header address: FF841B24h
+Data address: FF841B45h
+Offset: 1ADCh
+Variable GUID: 711C703F-C285-4B10-A3B0-36ECBD3C8BE2
+GUID index: 3
+Full size: 39h (57)
+Header size: 21h (33)
+Body size: 18h (24)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 5C4Eh

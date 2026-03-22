@@ -1,0 +1,25 @@
+Type: Region
+Subtype: Descriptor
+Fixed: Yes
+Base: 0h
+Offset: 0h
+ReservedVector:
+FF FF FF FF FF FF FF FF
+FF FF FF FF FF FF FF FF
+Full size: 1000h (4096)
+ME region offset: 1000h
+BIOS region offset: 800000h
+Region access settings:
+BIOS: FFh FFh ME: FFh FFh
+GbE:  FFh FFh
+BIOS access table:
+      Read  Write
+Desc  Yes   Yes 
+BIOS  Yes   Yes
+ME    Yes   Yes 
+GbE   Yes   Yes 
+PDR   Yes   Yes 
+Flash chips in VSCC table:
+1F4700 (Atmel AT25DF321)
+EF4017 (Winbond W25Q64)
+EF4018 (Winbond W25Q128)

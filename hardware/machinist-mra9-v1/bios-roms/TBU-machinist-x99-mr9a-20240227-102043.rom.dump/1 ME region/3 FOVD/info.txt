@@ -1,0 +1,8 @@
+Type: FPT partition
+Subtype: 
+Fixed: Yes
+Base: 1C00h
+Offset: C00h
+Full size: 400h (1024)
+Partition type: 03h
+

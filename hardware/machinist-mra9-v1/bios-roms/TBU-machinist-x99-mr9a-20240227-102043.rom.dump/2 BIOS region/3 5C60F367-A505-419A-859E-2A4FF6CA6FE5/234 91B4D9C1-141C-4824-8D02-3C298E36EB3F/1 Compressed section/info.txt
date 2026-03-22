@@ -1,0 +1,14 @@
+Type: Section
+Subtype: Compressed
+Fixed: No
+Base: B58EF8h
+Header address: FFB58EF8h
+Data address: FFB58F01h
+Offset: 30h
+Type: 01h
+Full size: 156C1h (87745)
+Header size: 9h (9)
+Body size: 156B8h (87736)
+Compression type: 01h
+Decompressed size: 33B04h (211716)
+Compression algorithm: EFI 1.1

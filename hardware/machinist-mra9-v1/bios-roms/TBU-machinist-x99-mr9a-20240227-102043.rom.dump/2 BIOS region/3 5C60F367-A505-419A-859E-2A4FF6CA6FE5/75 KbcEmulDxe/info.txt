@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: KbcEmulDxe
+Fixed: No
+Base: 92FC10h
+Header address: FF92FC10h
+Data address: FF92FC28h
+Offset: 9FC10h
+File GUID: 81A4F912-E72F-44ED-8931-16A9FE9650E0
+Type: 07h
+Attributes: 00h
+Full size: 786h (1926)
+Header size: 18h (24)
+Body size: 76Eh (1902)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B8h, valid
+Data checksum: AAh, valid

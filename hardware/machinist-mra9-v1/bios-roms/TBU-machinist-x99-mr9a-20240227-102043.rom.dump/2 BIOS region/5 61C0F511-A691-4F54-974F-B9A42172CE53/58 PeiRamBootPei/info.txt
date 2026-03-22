@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PeiRamBootPei
+Fixed: No
+Base: E897F8h
+Header address: FFE897F8h
+Data address: FFE89810h
+Offset: E97F8h
+File GUID: 08EFD15D-EC55-4023-B648-7BA40DF7D05D
+Type: 06h
+Attributes: 00h
+Full size: EEAh (3818)
+Header size: 18h (24)
+Body size: ED2h (3794)
+Tail size: 0h (0)
+State: F8h
+Header checksum: EBh, valid
+Data checksum: AAh, valid

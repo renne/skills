@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: PreviousMemoryTypeInformation
+Fixed: Yes
+Base: 816ED4h
+Header address: FF816ED4h
+Data address: FF816EDEh
+Offset: 16E8Ch
+Full size: 4Ah (74)
+Header size: Ah (10)
+Body size: 40h (64)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

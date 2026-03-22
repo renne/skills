@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: BootOrder
+Fixed: Yes
+Base: 816EB4h
+Header address: FF816EB4h
+Data address: FF816EBEh
+Offset: 16E6Ch
+Full size: 12h (18)
+Header size: Ah (10)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

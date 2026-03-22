@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: FlashSmiDxe
+Fixed: No
+Base: 965AF0h
+Header address: FF965AF0h
+Data address: FF965B08h
+Offset: D5AF0h
+File GUID: 755877A6-4F10-4A5C-9B2E-852123B9682C
+Type: 07h
+Attributes: 00h
+Full size: F89h (3977)
+Header size: 18h (24)
+Body size: F71h (3953)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 93h, valid
+Data checksum: AAh, valid

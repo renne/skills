@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: IntelSetup
+Fixed: Yes
+Base: 807053h
+Header address: FF807053h
+Data address: FF80705Dh
+Offset: 700Bh
+Full size: 17D5h (6101)
+Header size: Ah (10)
+Body size: 17CBh (6091)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 87E0h

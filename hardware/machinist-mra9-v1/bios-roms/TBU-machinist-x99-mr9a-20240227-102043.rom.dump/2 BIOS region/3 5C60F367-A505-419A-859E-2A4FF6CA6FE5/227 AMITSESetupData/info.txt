@@ -1,0 +1,18 @@
+Type: File
+Subtype: Freeform
+Text: AMITSESetupData
+Fixed: No
+Base: B35D90h
+Header address: FFB35D90h
+Data address: FFB35DA8h
+Offset: 2A5D90h
+File GUID: FE612B72-203C-47B1-8560-A66D946EB371
+Type: 02h
+Attributes: 00h
+Full size: C8B9h (51385)
+Header size: 18h (24)
+Body size: C8A1h (51361)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 0Fh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: WakeUpType
+Fixed: Yes
+Base: 816EC6h
+Header address: FF816EC6h
+Data address: FF816ED0h
+Offset: 16E7Eh
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

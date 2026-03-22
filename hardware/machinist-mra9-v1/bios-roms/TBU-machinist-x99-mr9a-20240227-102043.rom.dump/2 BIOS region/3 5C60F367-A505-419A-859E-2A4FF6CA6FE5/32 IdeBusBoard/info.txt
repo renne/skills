@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: IdeBusBoard
+Fixed: No
+Base: 8E6768h
+Header address: FF8E6768h
+Data address: FF8E6780h
+Offset: 56768h
+File GUID: 00364A4C-6A0A-4F08-8FFD-0937F3DBB13E
+Type: 07h
+Attributes: 00h
+Full size: 509h (1289)
+Header size: 18h (24)
+Body size: 4F1h (1265)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CBh, valid
+Data checksum: AAh, valid

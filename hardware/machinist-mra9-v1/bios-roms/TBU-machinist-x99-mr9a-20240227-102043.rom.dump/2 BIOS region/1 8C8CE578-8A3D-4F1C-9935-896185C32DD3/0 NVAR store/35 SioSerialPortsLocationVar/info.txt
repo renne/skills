@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: SioSerialPortsLocationVar
+Fixed: Yes
+Base: 8456C3h
+Header address: FF8456C3h
+Data address: FF8456CDh
+Offset: 567Bh
+Full size: Ch (12)
+Header size: Ah (10)
+Body size: 2h (2)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

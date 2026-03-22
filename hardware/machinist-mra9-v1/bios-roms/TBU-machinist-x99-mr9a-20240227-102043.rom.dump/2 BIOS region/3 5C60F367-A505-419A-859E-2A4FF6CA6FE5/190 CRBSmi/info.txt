@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: CRBSmi
+Fixed: No
+Base: A1C5C8h
+Header address: FFA1C5C8h
+Data address: FFA1C5E0h
+Offset: 18C5C8h
+File GUID: 221F1D4F-034C-4BEA-B2BB-B7A9672B06D7
+Type: 0Ah
+Attributes: 00h
+Full size: A8Bh (2699)
+Header size: 18h (24)
+Body size: A73h (2675)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F4h, valid
+Data checksum: AAh, valid

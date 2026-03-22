@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: CpuPei
+Fixed: No
+Base: DAD910h
+Header address: FFDAD910h
+Data address: FFDAD928h
+Offset: D910h
+File GUID: 01359D99-9446-456D-ADA4-50A711C03ADA
+Type: 06h
+Attributes: 00h
+Full size: FF6h (4086)
+Header size: 18h (24)
+Body size: FDEh (4062)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D0h, valid
+Data checksum: AAh, valid

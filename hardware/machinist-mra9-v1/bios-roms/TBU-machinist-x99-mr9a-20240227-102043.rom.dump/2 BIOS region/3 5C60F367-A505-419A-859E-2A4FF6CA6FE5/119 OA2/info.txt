@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: OA2
+Fixed: No
+Base: 97C4E8h
+Header address: FF97C4E8h
+Data address: FF97C500h
+Offset: EC4E8h
+File GUID: 952821AA-EACD-465B-B478-5429DFC9A747
+Type: 07h
+Attributes: 00h
+Full size: 984h (2436)
+Header size: 18h (24)
+Body size: 96Ch (2412)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Dh, valid
+Data checksum: AAh, valid

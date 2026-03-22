@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: DB7B84h
+Header address: FFDB7B84h
+Data address: FFDB7B88h
+Offset: 54h
+Type: 10h
+Full size: B84h (2948)
+Header size: 4h (4)
+Body size: B80h (2944)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 2A4h
+Base of code: 220h
+Image base: FFDB7B88h

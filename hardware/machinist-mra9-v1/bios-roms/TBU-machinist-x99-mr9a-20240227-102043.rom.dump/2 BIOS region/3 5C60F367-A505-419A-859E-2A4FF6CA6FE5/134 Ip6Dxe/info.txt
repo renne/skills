@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Ip6Dxe
+Fixed: No
+Base: 9B34B8h
+Header address: FF9B34B8h
+Data address: FF9B34D0h
+Offset: 1234B8h
+File GUID: 5BEDB5CC-D830-4EB2-8742-2D4CC9B54F2C
+Type: 07h
+Attributes: 00h
+Full size: 8DA2h (36258)
+Header size: 18h (24)
+Body size: 8D8Ah (36234)
+Tail size: 0h (0)
+State: F8h
+Header checksum: BEh, valid
+Data checksum: AAh, valid

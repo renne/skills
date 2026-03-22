@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: Boot0001
+Fixed: Yes
+Base: 813613h
+Header address: FF813613h
+Data address: FF813627h
+Offset: 135CBh
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 140h (320)
+Header size: 14h (20)
+Body size: 12Ch (300)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: 169B6h

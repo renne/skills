@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ExportHiiDb
+Fixed: No
+Base: 8ECA00h
+Header address: FF8ECA00h
+Data address: FF8ECA18h
+Offset: 5CA00h
+File GUID: 271B424E-A4CC-4E0E-90A2-7EA4841F12F3
+Type: 07h
+Attributes: 00h
+Full size: 5F4h (1524)
+Header size: 18h (24)
+Body size: 5DCh (1500)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 66h, valid
+Data checksum: AAh, valid

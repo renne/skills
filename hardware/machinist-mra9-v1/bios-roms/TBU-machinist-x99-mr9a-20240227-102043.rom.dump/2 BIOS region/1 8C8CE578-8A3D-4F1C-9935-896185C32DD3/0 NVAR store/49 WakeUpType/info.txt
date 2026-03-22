@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: WakeUpType
+Fixed: Yes
+Base: 845AF5h
+Header address: FF845AF5h
+Data address: FF845AFFh
+Offset: 5AADh
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 7453h

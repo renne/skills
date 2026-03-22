@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: AcpiGlobalVariable
+Fixed: Yes
+Base: 84AA91h
+Header address: FF84AA91h
+Data address: FF84AA9Bh
+Offset: AA49h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

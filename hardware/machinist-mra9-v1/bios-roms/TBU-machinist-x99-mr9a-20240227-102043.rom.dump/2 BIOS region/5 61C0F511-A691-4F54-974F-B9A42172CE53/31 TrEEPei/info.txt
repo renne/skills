@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: TrEEPei
+Fixed: No
+Base: DCA198h
+Header address: FFDCA198h
+Data address: FFDCA1B0h
+Offset: 2A198h
+File GUID: 961C19BE-D1AC-4BA7-87AF-4AE0F09DF2A6
+Type: 06h
+Attributes: 00h
+Full size: C76Ah (51050)
+Header size: 18h (24)
+Body size: C752h (51026)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Ch, valid
+Data checksum: AAh, valid

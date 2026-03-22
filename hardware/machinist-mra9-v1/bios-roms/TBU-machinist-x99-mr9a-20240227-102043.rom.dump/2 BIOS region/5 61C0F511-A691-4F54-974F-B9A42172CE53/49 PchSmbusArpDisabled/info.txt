@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PchSmbusArpDisabled
+Fixed: No
+Base: DE4438h
+Header address: FFDE4438h
+Data address: FFDE4450h
+Offset: 44438h
+File GUID: 643DF777-F312-42ED-81CC-1B1F57E18AD6
+Type: 06h
+Attributes: 00h
+Full size: B1Eh (2846)
+Header size: 18h (24)
+Body size: B06h (2822)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Fh, valid
+Data checksum: AAh, valid

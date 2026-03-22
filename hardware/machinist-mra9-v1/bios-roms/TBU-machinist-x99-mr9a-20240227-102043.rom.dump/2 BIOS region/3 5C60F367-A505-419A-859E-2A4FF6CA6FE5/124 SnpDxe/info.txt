@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SnpDxe
+Fixed: No
+Base: 98C950h
+Header address: FF98C950h
+Data address: FF98C968h
+Offset: FC950h
+File GUID: A2F436EA-A127-4EF8-957C-8048606FF670
+Type: 07h
+Attributes: 00h
+Full size: 283Eh (10302)
+Header size: 18h (24)
+Body size: 2826h (10278)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C1h, valid
+Data checksum: AAh, valid

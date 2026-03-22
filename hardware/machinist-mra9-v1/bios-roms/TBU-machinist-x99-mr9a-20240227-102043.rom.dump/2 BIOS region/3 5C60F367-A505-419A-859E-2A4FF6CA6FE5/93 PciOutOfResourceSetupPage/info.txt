@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PciOutOfResourceSetupPage
+Fixed: No
+Base: 957420h
+Header address: FF957420h
+Data address: FF957438h
+Offset: C7420h
+File GUID: CDC1C80D-E6D3-4A42-9229-75F3BEFCF109
+Type: 07h
+Attributes: 00h
+Full size: 16EFh (5871)
+Header size: 18h (24)
+Body size: 16D7h (5847)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 75h, valid
+Data checksum: AAh, valid

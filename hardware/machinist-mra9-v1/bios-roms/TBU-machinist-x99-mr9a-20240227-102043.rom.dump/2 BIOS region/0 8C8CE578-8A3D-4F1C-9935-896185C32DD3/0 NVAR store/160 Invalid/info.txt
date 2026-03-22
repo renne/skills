@@ -1,0 +1,12 @@
+Type: NVAR entry
+Subtype: Invalid
+Fixed: Yes
+Base: 80F372h
+Header address: FF80F372h
+Data address: FF80F37Ch
+Offset: F32Ah
+Full size: 114h (276)
+Header size: Ah (10)
+Body size: 10Ah (266)
+Tail size: 0h (0)
+Attributes: 03h (Runtime, AsciiName)

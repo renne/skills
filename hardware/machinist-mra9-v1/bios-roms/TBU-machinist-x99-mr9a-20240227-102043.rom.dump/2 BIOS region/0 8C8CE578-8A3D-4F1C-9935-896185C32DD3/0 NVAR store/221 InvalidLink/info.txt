@@ -1,0 +1,12 @@
+Type: NVAR entry
+Subtype: Invalid link
+Fixed: Yes
+Base: 812878h
+Header address: FF812878h
+Data address: FF812882h
+Offset: 12830h
+Full size: 220h (544)
+Header size: Ah (10)
+Body size: 216h (534)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

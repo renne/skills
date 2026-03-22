@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: FPDT_Variable_NV
+Fixed: Yes
+Base: 845CB8h
+Header address: FF845CB8h
+Data address: FF845CC2h
+Offset: 5C70h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

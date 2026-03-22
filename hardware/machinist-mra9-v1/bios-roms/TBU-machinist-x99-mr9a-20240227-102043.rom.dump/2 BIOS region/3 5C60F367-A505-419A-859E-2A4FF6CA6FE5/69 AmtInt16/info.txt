@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtInt16
+Fixed: No
+Base: 929AE0h
+Header address: FF929AE0h
+Data address: FF929AF8h
+Offset: 99AE0h
+File GUID: 1A481E8E-342F-40AA-AF31-F4FB7C99D428
+Type: 07h
+Attributes: 00h
+Full size: 45Ch (1116)
+Header size: 18h (24)
+Body size: 444h (1092)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Eh, valid
+Data checksum: AAh, valid

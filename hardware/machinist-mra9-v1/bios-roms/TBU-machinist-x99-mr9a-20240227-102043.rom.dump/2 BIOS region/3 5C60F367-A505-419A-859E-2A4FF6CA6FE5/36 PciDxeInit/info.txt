@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PciDxeInit
+Fixed: No
+Base: 8EBD78h
+Header address: FF8EBD78h
+Data address: FF8EBD90h
+Offset: 5BD78h
+File GUID: 502B04F3-71AB-47B4-BEAE-4736EA190AA4
+Type: 07h
+Attributes: 00h
+Full size: C82h (3202)
+Header size: 18h (24)
+Body size: C6Ah (3178)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 48h, valid
+Data checksum: AAh, valid

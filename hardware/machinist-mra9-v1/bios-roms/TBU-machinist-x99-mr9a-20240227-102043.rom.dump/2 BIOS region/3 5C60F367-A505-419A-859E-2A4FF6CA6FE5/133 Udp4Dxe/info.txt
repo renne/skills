@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Udp4Dxe
+Fixed: No
+Base: 9AFD78h
+Header address: FF9AFD78h
+Data address: FF9AFD90h
+Offset: 11FD78h
+File GUID: 6D6963AB-906D-4A65-A7CA-BD40E5D6AF2B
+Type: 07h
+Attributes: 00h
+Full size: 373Bh (14139)
+Header size: 18h (24)
+Body size: 3723h (14115)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F4h, valid
+Data checksum: AAh, valid

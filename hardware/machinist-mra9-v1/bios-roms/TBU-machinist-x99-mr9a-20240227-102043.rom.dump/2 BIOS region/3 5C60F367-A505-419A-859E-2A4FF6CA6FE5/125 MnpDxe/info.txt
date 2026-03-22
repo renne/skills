@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MnpDxe
+Fixed: No
+Base: 98F190h
+Header address: FF98F190h
+Data address: FF98F1A8h
+Offset: FF190h
+File GUID: 025BBFC7-E6A9-4B8B-82AD-6815A1AEAF4A
+Type: 07h
+Attributes: 00h
+Full size: 36D6h (14038)
+Header size: 18h (24)
+Body size: 36BEh (14014)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B1h, valid
+Data checksum: AAh, valid

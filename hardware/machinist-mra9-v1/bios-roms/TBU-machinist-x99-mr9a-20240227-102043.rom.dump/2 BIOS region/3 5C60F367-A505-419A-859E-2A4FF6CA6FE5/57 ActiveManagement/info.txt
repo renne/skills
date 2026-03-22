@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ActiveManagement
+Fixed: No
+Base: 91F420h
+Header address: FF91F420h
+Data address: FF91F438h
+Offset: 8F420h
+File GUID: D739F969-FB2D-4BC2-AFE7-081327D3FEDE
+Type: 07h
+Attributes: 00h
+Full size: 4FBh (1275)
+Header size: 18h (24)
+Body size: 4E3h (1251)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CCh, valid
+Data checksum: AAh, valid

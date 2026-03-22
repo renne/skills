@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Nvme
+Fixed: No
+Base: 9CFFB0h
+Header address: FF9CFFB0h
+Data address: FF9CFFC8h
+Offset: 13FFB0h
+File GUID: 634E8DB5-C432-43BE-A653-9CA2922CC458
+Type: 07h
+Attributes: 00h
+Full size: 3A69h (14953)
+Header size: 18h (24)
+Body size: 3A51h (14929)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Bh, valid
+Data checksum: AAh, valid

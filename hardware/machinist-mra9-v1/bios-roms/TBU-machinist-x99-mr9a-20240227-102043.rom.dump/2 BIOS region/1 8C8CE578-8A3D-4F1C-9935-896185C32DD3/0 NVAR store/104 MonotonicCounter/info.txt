@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: MonotonicCounter
+Fixed: Yes
+Base: 84AB33h
+Header address: FF84AB33h
+Data address: FF84AB3Dh
+Offset: AAEBh
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

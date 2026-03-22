@@ -1,0 +1,11 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Base: A60FE0h
+Header address: FFA60FE0h
+Data address: FFA60FE4h
+Offset: 18h
+Type: 19h
+Full size: 1E5h (485)
+Header size: 4h (4)
+Body size: 1E1h (481)

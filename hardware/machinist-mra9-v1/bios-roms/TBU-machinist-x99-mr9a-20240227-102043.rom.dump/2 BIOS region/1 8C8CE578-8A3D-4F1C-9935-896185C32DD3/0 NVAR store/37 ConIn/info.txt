@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: ConIn
+Fixed: Yes
+Base: 845705h
+Header address: FF845705h
+Data address: FF845716h
+Offset: 56BDh
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 33h (51)
+Header size: 11h (17)
+Body size: 22h (34)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

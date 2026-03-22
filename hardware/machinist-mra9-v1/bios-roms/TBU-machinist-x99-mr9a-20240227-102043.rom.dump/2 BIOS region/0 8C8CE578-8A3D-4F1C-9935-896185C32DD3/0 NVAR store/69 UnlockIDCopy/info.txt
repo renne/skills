@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: UnlockIDCopy
+Fixed: Yes
+Base: 8047E4h
+Header address: FF8047E4h
+Data address: FF8047FCh
+Offset: 479Ch
+Variable GUID: EAEC226F-C9A3-477A-A826-DDC716CDC0E3
+GUID index: 26
+Full size: 38h (56)
+Header size: 18h (24)
+Body size: 20h (32)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

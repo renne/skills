@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: CpuIo2Smm
+Fixed: No
+Base: 9DF2B0h
+Header address: FF9DF2B0h
+Data address: FF9DF2C8h
+Offset: 14F2B0h
+File GUID: A47EE2D8-F60E-42FD-8E58-7BD65EE4C29B
+Type: 0Ah
+Attributes: 00h
+Full size: 445h (1093)
+Header size: 18h (24)
+Body size: 42Dh (1069)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B8h, valid
+Data checksum: AAh, valid

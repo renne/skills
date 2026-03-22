@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: SBPEI
+Fixed: Yes
+Base: E8FB40h
+Header address: FFE8FB40h
+Data address: FFE8FB58h
+Offset: EFB40h
+File GUID: C1FBD624-27EA-40D1-AA48-94C3DC5C7E0D
+Type: 06h
+Attributes: 00h
+Full size: FC6h (4038)
+Header size: 18h (24)
+Body size: FAEh (4014)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 41h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,11 @@
+Type: Image
+Subtype: Intel
+Fixed: Yes
+Base: 0h
+Offset: 0h
+Full size: 1000000h (16777216)
+Flash chips: 1
+Regions: 3
+Masters: 3
+PCH straps: 21
+PROC straps: 1

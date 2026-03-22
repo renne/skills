@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DA081Ch
+Header address: FFDA081Ch
+Data address: FFDA0820h
+Offset: 6B4h
+Type: 15h
+Full size: 12h (18)
+Header size: 4h (4)
+Body size: Eh (14)
+Text: WdtPei

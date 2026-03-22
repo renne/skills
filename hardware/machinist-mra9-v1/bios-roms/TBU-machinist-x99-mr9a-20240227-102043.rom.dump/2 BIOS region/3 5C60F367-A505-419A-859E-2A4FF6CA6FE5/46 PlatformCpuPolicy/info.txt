@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PlatformCpuPolicy
+Fixed: No
+Base: 9000E0h
+Header address: FF9000E0h
+Data address: FF9000F8h
+Offset: 700E0h
+File GUID: 76A7B4FC-C8D5-462D-A4D2-6E88338A772A
+Type: 07h
+Attributes: 00h
+Full size: C9Eh (3230)
+Header size: 18h (24)
+Body size: C86h (3206)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A8h, valid
+Data checksum: AAh, valid

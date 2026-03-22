@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: DefaultBootOrder
+Fixed: Yes
+Base: 80C68Bh
+Header address: FF80C68Bh
+Data address: FF80C695h
+Offset: C643h
+Full size: Ch (12)
+Header size: Ah (10)
+Body size: 2h (2)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: F0C6h

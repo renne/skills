@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: DefaultBootOrder
+Fixed: Yes
+Base: 84588Bh
+Header address: FF84588Bh
+Data address: FF8458A7h
+Offset: 5843h
+Variable GUID: 45CF35F6-0D6E-4D04-856A-0370A5B16F53
+GUID index: 16
+Full size: 20h (32)
+Header size: 1Ch (28)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: A009h

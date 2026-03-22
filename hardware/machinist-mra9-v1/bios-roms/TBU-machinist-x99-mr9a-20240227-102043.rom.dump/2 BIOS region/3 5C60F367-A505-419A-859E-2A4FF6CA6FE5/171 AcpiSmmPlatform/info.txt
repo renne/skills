@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: AcpiSmmPlatform
+Fixed: No
+Base: 9F6610h
+Header address: FF9F6610h
+Data address: FF9F6628h
+Offset: 166610h
+File GUID: F5AC7057-5650-466E-B692-76A47223EFB0
+Type: 0Ah
+Attributes: 00h
+Full size: B73h (2931)
+Header size: 18h (24)
+Body size: B5Bh (2907)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 20h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: StatusCodeDxe
+Fixed: No
+Base: A54DD0h
+Header address: FFA54DD0h
+Data address: FFA54DE8h
+Offset: 1C4DD0h
+File GUID: 61422D26-81EC-47FF-B6CF-939EAEE73FBA
+Type: 07h
+Attributes: 00h
+Full size: 258Dh (9613)
+Header size: 18h (24)
+Body size: 2575h (9589)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Ah, valid
+Data checksum: AAh, valid

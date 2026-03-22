@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: MemoryConfig0
+Fixed: Yes
+Base: 816141h
+Header address: FF816141h
+Data address: FF81614Bh
+Offset: 160F9h
+Full size: 33Ch (828)
+Header size: Ah (10)
+Body size: 332h (818)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

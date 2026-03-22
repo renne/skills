@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: NvramSmiDxe
+Fixed: No
+Base: 95AD20h
+Header address: FF95AD20h
+Data address: FF95AD38h
+Offset: CAD20h
+File GUID: 54B070F3-9EB8-47CC-ADAF-39029C853CBB
+Type: 07h
+Attributes: 00h
+Full size: AFAh (2810)
+Header size: 18h (24)
+Body size: AE2h (2786)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 76h, valid
+Data checksum: AAh, valid

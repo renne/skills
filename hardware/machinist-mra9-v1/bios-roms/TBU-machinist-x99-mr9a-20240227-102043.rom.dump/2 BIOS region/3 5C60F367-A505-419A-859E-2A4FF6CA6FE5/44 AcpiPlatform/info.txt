@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AcpiPlatform
+Fixed: No
+Base: 8F8400h
+Header address: FF8F8400h
+Data address: FF8F8418h
+Offset: 68400h
+File GUID: 87AB821C-79B8-4EF6-A913-21D22063F55F
+Type: 07h
+Attributes: 00h
+Full size: 761Eh (30238)
+Header size: 18h (24)
+Body size: 7606h (30214)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 9Ah, valid
+Data checksum: AAh, valid

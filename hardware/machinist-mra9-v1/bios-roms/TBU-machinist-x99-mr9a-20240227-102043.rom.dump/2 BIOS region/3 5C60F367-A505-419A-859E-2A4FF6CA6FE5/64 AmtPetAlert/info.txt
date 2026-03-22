@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtPetAlert
+Fixed: No
+Base: 923F68h
+Header address: FF923F68h
+Data address: FF923F80h
+Offset: 93F68h
+File GUID: 290EA249-6E88-423C-B0DA-75CDDE7920CC
+Type: 07h
+Attributes: 00h
+Full size: 1C91h (7313)
+Header size: 18h (24)
+Body size: 1C79h (7289)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A7h, valid
+Data checksum: AAh, valid

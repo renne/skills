@@ -1,0 +1,7 @@
+Type: Padding
+Subtype: Non-empty
+Fixed: Yes
+Base: EA8720h
+Address: FFEA8720h
+Offset: 17C18h
+Full size: 8410h (33808)

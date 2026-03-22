@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: DefaultBootOrder
+Fixed: Yes
+Base: 8169ECh
+Header address: FF8169ECh
+Data address: FF8169F6h
+Offset: 169A4h
+Full size: 12h (18)
+Header size: Ah (10)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

@@ -1,0 +1,12 @@
+Type: NVAR entry
+Subtype: Invalid
+Fixed: Yes
+Base: 80FE23h
+Header address: FF80FE23h
+Data address: FF80FE2Dh
+Offset: FDDBh
+Full size: 22Ah (554)
+Header size: Ah (10)
+Body size: 220h (544)
+Tail size: 0h (0)
+Attributes: 03h (Runtime, AsciiName)

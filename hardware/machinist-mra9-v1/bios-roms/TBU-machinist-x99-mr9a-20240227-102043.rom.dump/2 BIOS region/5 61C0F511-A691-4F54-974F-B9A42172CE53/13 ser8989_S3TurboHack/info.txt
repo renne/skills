@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: ser8989_S3TurboHack
+Fixed: No
+Base: DB1498h
+Header address: FFDB1498h
+Data address: FFDB14B0h
+Offset: 11498h
+File GUID: 271DD6F2-54CB-45E6-8585-8C923C1AC706
+Type: 06h
+Attributes: 00h
+Full size: 1DCEh (7630)
+Header size: 18h (24)
+Body size: 1DB6h (7606)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Eh, valid
+Data checksum: AAh, valid

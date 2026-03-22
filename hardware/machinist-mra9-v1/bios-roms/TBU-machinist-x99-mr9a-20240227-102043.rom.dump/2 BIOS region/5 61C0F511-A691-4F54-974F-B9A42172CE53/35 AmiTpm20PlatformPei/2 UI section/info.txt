@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DDB2BCh
+Header address: FFDDB2BCh
+Data address: FFDDB2C0h
+Offset: 1C64h
+Type: 15h
+Full size: 2Ch (44)
+Header size: 4h (4)
+Body size: 28h (40)
+Text: AmiTpm20PlatformPei

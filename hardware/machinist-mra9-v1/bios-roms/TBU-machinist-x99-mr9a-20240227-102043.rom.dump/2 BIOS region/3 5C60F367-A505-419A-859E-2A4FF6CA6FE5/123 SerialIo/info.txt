@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SerialIo
+Fixed: No
+Base: 98AB50h
+Header address: FF98AB50h
+Data address: FF98AB68h
+Offset: FAB50h
+File GUID: 97C81E5D-8FA0-486A-AAEA-0EFDF090FE4F
+Type: 07h
+Attributes: 00h
+Full size: 1DFBh (7675)
+Header size: 18h (24)
+Body size: 1DE3h (7651)
+Tail size: 0h (0)
+State: F8h
+Header checksum: BAh, valid
+Data checksum: AAh, valid

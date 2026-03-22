@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: OEMSleepSmi
+Fixed: No
+Base: A1D058h
+Header address: FFA1D058h
+Data address: FFA1D070h
+Offset: 18D058h
+File GUID: 221F1D4F-034C-4BEA-B2BB-B7A9672B06F9
+Type: 0Ah
+Attributes: 00h
+Full size: 97Ah (2426)
+Header size: 18h (24)
+Body size: 962h (2402)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E4h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: IoTrap
+Fixed: No
+Base: 9E29A8h
+Header address: FF9E29A8h
+Data address: FF9E29C0h
+Offset: 1529A8h
+File GUID: 2374EDDF-F203-4FC0-A20E-61BAD73089D6
+Type: 0Ah
+Attributes: 00h
+Full size: ADBh (2779)
+Header size: 18h (24)
+Body size: AC3h (2755)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 79h, valid
+Data checksum: AAh, valid

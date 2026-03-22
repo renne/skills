@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: NCT5532DPeiInit
+Fixed: No
+Base: DE3B70h
+Header address: FFDE3B70h
+Data address: FFDE3B88h
+Offset: 43B70h
+File GUID: 9029F23E-E1EE-40D1-9382-36DD61A63EAA
+Type: 06h
+Attributes: 00h
+Full size: 8C6h (2246)
+Header size: 18h (24)
+Body size: 8AEh (2222)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Ch, valid
+Data checksum: AAh, valid

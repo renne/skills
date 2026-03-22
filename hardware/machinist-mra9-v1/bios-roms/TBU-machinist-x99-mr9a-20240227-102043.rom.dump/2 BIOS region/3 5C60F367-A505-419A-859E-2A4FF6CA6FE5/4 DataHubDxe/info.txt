@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: DataHubDxe
+Fixed: No
+Base: 8A5528h
+Header address: FF8A5528h
+Data address: FF8A5540h
+Offset: 15528h
+File GUID: 53BCC14F-C24F-434C-B294-8ED2D4CC1860
+Type: 07h
+Attributes: 00h
+Full size: 5D6h (1494)
+Header size: 18h (24)
+Body size: 5BEh (1470)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A1h, valid
+Data checksum: AAh, valid

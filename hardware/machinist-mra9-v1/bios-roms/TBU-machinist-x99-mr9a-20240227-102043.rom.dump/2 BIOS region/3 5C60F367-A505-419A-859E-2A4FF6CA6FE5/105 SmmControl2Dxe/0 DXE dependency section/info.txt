@@ -1,0 +1,16 @@
+Type: Section
+Subtype: DXE dependency
+Fixed: No
+Base: 95E540h
+Header address: FF95E540h
+Data address: FF95E544h
+Offset: 18h
+Type: 13h
+Full size: 28h (40)
+Header size: 4h (4)
+Body size: 24h (36)
+Parsed expression:
+PUSH 31CE593D-108A-485D-ADB2-78F21F2966BE
+PUSH 13A3F0F6-264A-3EF0-F2E0-DEC512342F34
+AND
+END

@@ -1,0 +1,18 @@
+Type: File
+Subtype: Freeform
+Text: NVRAM external defaults
+Fixed: No
+Base: B0FB98h
+Header address: FFB0FB98h
+Data address: FFB0FBB0h
+Offset: 27FB98h
+File GUID: 9221315B-30BB-46B5-813E-1B1BF4712BD3
+Type: 02h
+Attributes: 00h
+Full size: 3F8h (1016)
+Header size: 18h (24)
+Body size: 3E0h (992)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 86h, valid
+Data checksum: AAh, valid

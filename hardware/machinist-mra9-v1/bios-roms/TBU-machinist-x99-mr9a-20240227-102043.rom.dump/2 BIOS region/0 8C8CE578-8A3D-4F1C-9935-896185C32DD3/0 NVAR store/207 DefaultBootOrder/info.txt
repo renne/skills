@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: DefaultBootOrder
+Fixed: Yes
+Base: 811D4Eh
+Header address: FF811D4Eh
+Data address: FF811D58h
+Offset: 11D06h
+Full size: Ch (12)
+Header size: Ah (10)
+Body size: 2h (2)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 12820h

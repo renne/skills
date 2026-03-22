@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: OsIndications
+Fixed: Yes
+Base: 8049E8h
+Header address: FF8049E8h
+Data address: FF804A01h
+Offset: 49A0h
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 21h (33)
+Header size: 19h (25)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: 49CFh

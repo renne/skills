@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: AMITSESetup
+Fixed: Yes
+Base: 811F03h
+Header address: FF811F03h
+Data address: FF811F0Dh
+Offset: 11EBBh
+Full size: 5Ch (92)
+Header size: Ah (10)
+Body size: 52h (82)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

@@ -1,0 +1,18 @@
+Type: File
+Subtype: Freeform
+Text: PEI apriori file
+Fixed: No
+Base: DA0078h
+Header address: FFDA0078h
+Data address: FFDA0090h
+Offset: 78h
+File GUID: 1B45CC0A-156A-428A-AF62-49864DA0E6E6
+Type: 02h
+Attributes: 00h
+Full size: ECh (236)
+Header size: 18h (24)
+Body size: D4h (212)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F8h, valid
+Data checksum: AAh, valid

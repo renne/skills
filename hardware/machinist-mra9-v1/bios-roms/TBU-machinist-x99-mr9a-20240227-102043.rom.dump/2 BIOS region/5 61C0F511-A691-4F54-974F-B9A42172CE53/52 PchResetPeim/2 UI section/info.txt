@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: E7ED2Ch
+Header address: FFE7ED2Ch
+Data address: FFE7ED30h
+Offset: 734h
+Type: 15h
+Full size: 1Eh (30)
+Header size: 4h (4)
+Body size: 1Ah (26)
+Text: PchResetPeim

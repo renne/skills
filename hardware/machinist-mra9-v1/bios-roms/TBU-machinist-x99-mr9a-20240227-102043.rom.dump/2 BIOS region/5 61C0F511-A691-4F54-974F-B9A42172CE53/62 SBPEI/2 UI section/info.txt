@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: E90AE8h
+Header address: FFE90AE8h
+Data address: FFE90AECh
+Offset: FA8h
+Type: 15h
+Full size: 10h (16)
+Header size: 4h (4)
+Body size: Ch (12)
+Text: SBPEI

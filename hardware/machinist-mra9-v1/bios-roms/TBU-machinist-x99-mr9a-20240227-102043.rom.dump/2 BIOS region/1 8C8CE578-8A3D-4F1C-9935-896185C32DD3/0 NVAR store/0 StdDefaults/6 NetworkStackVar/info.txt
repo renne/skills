@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: NetworkStackVar
+Fixed: Yes
+Base: 8401EFh
+Header address: FF8401EFh
+Data address: FF84020Ah
+Offset: 18Fh
+Variable GUID: D1405D16-7AFC-4695-BB12-41459D3695A2
+GUID index: 5
+Full size: 21h (33)
+Header size: 1Bh (27)
+Body size: 6h (6)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

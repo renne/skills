@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SecurityStubDxe
+Fixed: No
+Base: 8B3E98h
+Header address: FF8B3E98h
+Data address: FF8B3EB0h
+Offset: 23E98h
+File GUID: F80697E9-7FD6-4665-8646-88E33EF71DFC
+Type: 07h
+Attributes: 00h
+Full size: 2676h (9846)
+Header size: 18h (24)
+Body size: 265Eh (9822)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Ah, valid
+Data checksum: AAh, valid

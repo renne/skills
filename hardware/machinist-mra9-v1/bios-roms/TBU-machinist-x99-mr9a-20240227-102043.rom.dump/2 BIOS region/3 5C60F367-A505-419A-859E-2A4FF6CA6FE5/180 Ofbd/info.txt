@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: Ofbd
+Fixed: No
+Base: A02808h
+Header address: FFA02808h
+Data address: FFA02820h
+Offset: 172808h
+File GUID: 57E56594-CE95-46AD-9531-3C49310CA7CE
+Type: 0Ah
+Attributes: 00h
+Full size: 266Fh (9839)
+Header size: 18h (24)
+Body size: 2657h (9815)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D9h, valid
+Data checksum: AAh, valid

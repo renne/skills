@@ -1,0 +1,14 @@
+Type: Section
+Subtype: DXE dependency
+Fixed: No
+Base: A611C8h
+Header address: FFA611C8h
+Data address: FFA611CCh
+Offset: 200h
+Type: 13h
+Full size: 6h (6)
+Header size: 4h (4)
+Body size: 2h (2)
+Parsed expression:
+TRUE
+END

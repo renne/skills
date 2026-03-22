@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DA7DBCh
+Header address: FFDA7DBCh
+Data address: FFDA7DC0h
+Offset: 9D4h
+Type: 15h
+Full size: 1Eh (30)
+Header size: 4h (4)
+Body size: 1Ah (26)
+Text: PciTableInit

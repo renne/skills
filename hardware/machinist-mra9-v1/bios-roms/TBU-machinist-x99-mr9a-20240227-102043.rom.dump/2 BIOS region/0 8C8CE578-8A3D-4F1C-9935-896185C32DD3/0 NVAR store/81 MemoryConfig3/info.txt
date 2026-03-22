@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: MemoryConfig3
+Fixed: Yes
+Base: 805261h
+Header address: FF805261h
+Data address: FF80526Bh
+Offset: 5219h
+Full size: 3Dh (61)
+Header size: Ah (10)
+Body size: 33h (51)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PciRootBridge
+Fixed: No
+Base: 8E87C0h
+Header address: FF8E87C0h
+Data address: FF8E87D8h
+Offset: 587C0h
+File GUID: 80E66E0A-CCD1-43FA-A7B1-2D5EE0F13910
+Type: 07h
+Attributes: 00h
+Full size: 35B7h (13751)
+Header size: 18h (24)
+Body size: 359Fh (13727)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 58h, valid
+Data checksum: AAh, valid

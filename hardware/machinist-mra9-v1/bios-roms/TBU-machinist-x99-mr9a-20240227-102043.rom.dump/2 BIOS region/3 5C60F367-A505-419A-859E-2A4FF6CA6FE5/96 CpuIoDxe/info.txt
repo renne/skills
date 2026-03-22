@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CpuIoDxe
+Fixed: No
+Base: 959060h
+Header address: FF959060h
+Data address: FF959078h
+Offset: C9060h
+File GUID: BAE7599F-3C6B-43B7-BDF0-9CE07AA91AA6
+Type: 07h
+Attributes: 00h
+Full size: 45Bh (1115)
+Header size: 18h (24)
+Body size: 443h (1091)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 54h, valid
+Data checksum: AAh, valid

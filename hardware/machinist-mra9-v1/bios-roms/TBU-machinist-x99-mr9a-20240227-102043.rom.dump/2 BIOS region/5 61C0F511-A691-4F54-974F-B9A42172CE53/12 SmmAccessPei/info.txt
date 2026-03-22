@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: SmmAccessPei
+Fixed: No
+Base: DB0D20h
+Header address: FFDB0D20h
+Data address: FFDB0D38h
+Offset: 10D20h
+File GUID: B4E0CDFC-30CD-4B29-A445-B0AA95A532E4
+Type: 06h
+Attributes: 00h
+Full size: 772h (1906)
+Header size: 18h (24)
+Body size: 75Ah (1882)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 20h, valid
+Data checksum: AAh, valid

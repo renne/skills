@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DDCF40h
+Header address: FFDDCF40h
+Data address: FFDDCF44h
+Offset: 1098h
+Type: 15h
+Full size: 1Eh (30)
+Header size: 4h (4)
+Body size: 1Ah (26)
+Text: S3Resume2Pei

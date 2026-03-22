@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: MemoryConfig4
+Fixed: Yes
+Base: 80529Eh
+Header address: FF80529Eh
+Data address: FF8052A8h
+Offset: 5256h
+Full size: 6Ah (106)
+Header size: Ah (10)
+Body size: 60h (96)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

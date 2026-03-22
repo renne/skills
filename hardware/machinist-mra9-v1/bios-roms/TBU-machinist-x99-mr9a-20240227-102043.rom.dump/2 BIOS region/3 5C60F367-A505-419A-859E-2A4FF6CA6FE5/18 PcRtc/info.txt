@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PcRtc
+Fixed: No
+Base: 8CA520h
+Header address: FF8CA520h
+Data address: FF8CA538h
+Offset: 3A520h
+File GUID: 378D7B65-8DA9-4773-B6E4-A47826A833E1
+Type: 07h
+Attributes: 00h
+Full size: EE9h (3817)
+Header size: 18h (24)
+Body size: ED1h (3793)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D6h, valid
+Data checksum: AAh, valid

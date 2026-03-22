@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: BootScriptHidePei
+Fixed: No
+Base: DB64D0h
+Header address: FFDB64D0h
+Data address: FFDB64E8h
+Offset: 164D0h
+File GUID: 9B8A0C3A-5186-4B55-89F4-CAFDE613DAB1
+Type: 06h
+Attributes: 00h
+Full size: B9Eh (2974)
+Header size: 18h (24)
+Body size: B86h (2950)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A7h, valid
+Data checksum: AAh, valid

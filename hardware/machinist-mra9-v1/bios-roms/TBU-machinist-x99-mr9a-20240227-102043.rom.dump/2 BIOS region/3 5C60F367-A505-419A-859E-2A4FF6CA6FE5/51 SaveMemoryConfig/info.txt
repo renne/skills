@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SaveMemoryConfig
+Fixed: No
+Base: 904DA8h
+Header address: FF904DA8h
+Data address: FF904DC0h
+Offset: 74DA8h
+File GUID: 0F99E33C-CA0C-4AA2-887D-B57EC9050278
+Type: 07h
+Attributes: 00h
+Full size: 363h (867)
+Header size: 18h (24)
+Body size: 34Bh (843)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Ah, valid
+Data checksum: AAh, valid

@@ -1,0 +1,7 @@
+Type: Padding
+Subtype: Empty (FFh)
+Fixed: Yes
+Base: 84B6C2h
+Address: FF84B6C2h
+Offset: B67Ah
+Full size: 3481Eh (215070)

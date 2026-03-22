@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DC2600h
+Header address: FFDC2600h
+Data address: FFDC2604h
+Offset: 498h
+Type: 15h
+Full size: 24h (36)
+Header size: 4h (4)
+Body size: 20h (32)
+Text: MePolicyInitPei

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: FlashDriver
+Fixed: No
+Base: A58F30h
+Header address: FFA58F30h
+Data address: FFA58F48h
+Offset: 1C8F30h
+File GUID: CBC59C4A-383A-41EB-A8EE-4498AEA567E4
+Type: 07h
+Attributes: 00h
+Full size: 23D6h (9174)
+Header size: 18h (24)
+Body size: 23BEh (9150)
+Tail size: 0h (0)
+State: F8h
+Header checksum: DCh, valid
+Data checksum: AAh, valid

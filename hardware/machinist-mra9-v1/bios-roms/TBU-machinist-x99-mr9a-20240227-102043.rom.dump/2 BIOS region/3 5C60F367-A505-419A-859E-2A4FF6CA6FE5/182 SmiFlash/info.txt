@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: SmiFlash
+Fixed: No
+Base: A07540h
+Header address: FFA07540h
+Data address: FFA07558h
+Offset: 177540h
+File GUID: BC327DBD-B982-4F55-9F79-056AD7E987C5
+Type: 0Ah
+Attributes: 00h
+Full size: 30FAh (12538)
+Header size: 18h (24)
+Body size: 30E2h (12514)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 32h, valid
+Data checksum: AAh, valid

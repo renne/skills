@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: BootingDeviceTypeInfo
+Fixed: Yes
+Base: 80478Bh
+Header address: FF80478Bh
+Data address: FF8047ACh
+Offset: 4743h
+Variable GUID: 77FA9ABD-0359-4D32-BD60-28F4E78F784B
+GUID index: 25
+Full size: 25h (37)
+Header size: 21h (33)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 1017Ah

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: MtrrS3SaveRestoreSmm
+Fixed: No
+Base: A1BCE0h
+Header address: FFA1BCE0h
+Data address: FFA1BCF8h
+Offset: 18BCE0h
+File GUID: 05D672F4-8338-465C-B15F-5221B5B31DCA
+Type: 0Ah
+Attributes: 00h
+Full size: 8E8h (2280)
+Header size: 18h (24)
+Body size: 8D0h (2256)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 96h, valid
+Data checksum: AAh, valid

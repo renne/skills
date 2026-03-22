@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: DiskIoDxe
+Fixed: No
+Base: 96DE28h
+Header address: FF96DE28h
+Data address: FF96DE40h
+Offset: DDE28h
+File GUID: 6B38F7B4-AD98-40E9-9093-ACA2B5A253C4
+Type: 07h
+Attributes: 00h
+Full size: 11B9h (4537)
+Header size: 18h (24)
+Body size: 11A1h (4513)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 94h, valid
+Data checksum: AAh, valid

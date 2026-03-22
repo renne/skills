@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: GraphicsConsole
+Fixed: No
+Base: 96B6C0h
+Header address: FF96B6C0h
+Data address: FF96B6D8h
+Offset: DB6C0h
+File GUID: 43E7ABDD-E352-4CFB-A230-4CDC1D350E5C
+Type: 07h
+Attributes: 00h
+Full size: 2768h (10088)
+Header size: 18h (24)
+Body size: 2750h (10064)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 86h, valid
+Data checksum: AAh, valid

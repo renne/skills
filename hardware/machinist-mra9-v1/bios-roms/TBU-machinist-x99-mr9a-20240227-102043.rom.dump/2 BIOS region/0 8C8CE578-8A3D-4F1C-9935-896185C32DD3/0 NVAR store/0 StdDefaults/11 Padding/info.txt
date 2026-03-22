@@ -1,0 +1,7 @@
+Type: Padding
+Subtype: Empty (FFh)
+Fixed: Yes
+Base: 801A61h
+Address: FF801A61h
+Offset: 1A01h
+Full size: 10h (16)

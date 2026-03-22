@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AcpiVTD
+Fixed: No
+Base: 8FFA20h
+Header address: FF8FFA20h
+Data address: FF8FFA38h
+Offset: 6FA20h
+File GUID: 64A11188-5B86-4F59-A702-73365896E65E
+Type: 07h
+Attributes: 00h
+Full size: 6B9h (1721)
+Header size: 18h (24)
+Body size: 6A1h (1697)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Fh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: MemoryConfig1
+Fixed: Yes
+Base: 80B6ECh
+Header address: FF80B6ECh
+Data address: FF80B6F6h
+Offset: B6A4h
+Full size: 33Ah (826)
+Header size: Ah (10)
+Body size: 330h (816)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: C0B7h

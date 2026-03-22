@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: MemoryConfig8
+Fixed: Yes
+Base: 803C93h
+Header address: FF803C93h
+Data address: FF803CACh
+Offset: 3C4Bh
+Variable GUID: 80DBD530-B74C-4F11-8C03-418665532831
+GUID index: 9
+Full size: 42h (66)
+Header size: 19h (25)
+Body size: 29h (41)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

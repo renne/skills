@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: AlertStandardFormatPeim
+Fixed: No
+Base: DBFB10h
+Header address: FFDBFB10h
+Data address: FFDBFB28h
+Offset: 1FB10h
+File GUID: 3E4817FD-2742-4351-B59F-91493280329C
+Type: 06h
+Attributes: 00h
+Full size: 93Ah (2362)
+Header size: 18h (24)
+Body size: 922h (2338)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 72h, valid
+Data checksum: AAh, valid

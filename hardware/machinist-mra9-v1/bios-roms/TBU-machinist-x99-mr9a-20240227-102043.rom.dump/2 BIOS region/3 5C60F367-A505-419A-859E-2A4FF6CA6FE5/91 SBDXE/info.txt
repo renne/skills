@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SBDXE
+Fixed: No
+Base: 954E10h
+Header address: FF954E10h
+Data address: FF954E28h
+Offset: C4E10h
+File GUID: B7D19491-E55A-470D-8508-85A5DFA41974
+Type: 07h
+Attributes: 00h
+Full size: 1D66h (7526)
+Header size: 18h (24)
+Body size: 1D4Eh (7502)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Fh, valid
+Data checksum: AAh, valid

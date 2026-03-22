@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: ErrOut
+Fixed: Yes
+Base: 80542Fh
+Header address: FF80542Fh
+Data address: FF805439h
+Offset: 53E7h
+Full size: 2Eh (46)
+Header size: Ah (10)
+Body size: 24h (36)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

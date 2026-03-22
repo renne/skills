@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: BootingDeviceTypeInfo
+Fixed: Yes
+Base: 813605h
+Header address: FF813605h
+Data address: FF81360Fh
+Offset: 135BDh
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

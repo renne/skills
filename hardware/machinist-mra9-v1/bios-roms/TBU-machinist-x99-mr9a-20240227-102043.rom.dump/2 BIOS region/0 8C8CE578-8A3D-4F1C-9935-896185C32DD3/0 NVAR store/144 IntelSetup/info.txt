@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: IntelSetup
+Fixed: Yes
+Base: 80CF92h
+Header address: FF80CF92h
+Data address: FF80CF9Ch
+Offset: CF4Ah
+Full size: 17D5h (6101)
+Header size: Ah (10)
+Body size: 17CBh (6091)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

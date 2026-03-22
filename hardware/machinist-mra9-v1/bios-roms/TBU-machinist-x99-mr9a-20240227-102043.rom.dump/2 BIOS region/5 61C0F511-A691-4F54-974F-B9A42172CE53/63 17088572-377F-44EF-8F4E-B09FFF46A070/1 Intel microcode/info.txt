@@ -1,0 +1,16 @@
+Type: Microcode
+Subtype: Intel
+Fixed: Yes
+Base: E99320h
+Address: FFE99320h
+Offset: 8818h
+Full size: 7C00h (31744)
+Header size: 0h (0u)
+Body size: 7C00h (31744)
+Tail size: 0h (0u)
+Date: 02.07.2015
+CPU signature: 000406F0h
+Revision: 00000014h
+Minimal update revision: 00000000h
+CPU platform Id: 000000EFh
+Checksum: F22A3585h, valid

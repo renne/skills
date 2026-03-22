@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: LegacyDevOrder
+Fixed: Yes
+Base: 84B500h
+Header address: FF84B500h
+Data address: FF84B50Ah
+Offset: B4B8h
+Full size: 12h (18)
+Header size: Ah (10)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: PchSmbusSmm
+Fixed: No
+Base: 9E5A38h
+Header address: FF9E5A38h
+Data address: FF9E5A50h
+Offset: 155A38h
+File GUID: 59287178-59B2-49CA-BC63-532B12EA2C53
+Type: 0Ah
+Attributes: 00h
+Full size: 865h (2149)
+Header size: 18h (24)
+Body size: 84Dh (2125)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E9h, valid
+Data checksum: AAh, valid

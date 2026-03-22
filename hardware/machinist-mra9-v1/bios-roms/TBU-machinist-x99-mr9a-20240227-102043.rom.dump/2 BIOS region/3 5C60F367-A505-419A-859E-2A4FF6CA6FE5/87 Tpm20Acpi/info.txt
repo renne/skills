@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Tpm20Acpi
+Fixed: No
+Base: 9401E8h
+Header address: FF9401E8h
+Data address: FF940200h
+Offset: B01E8h
+File GUID: 4C8BDF60-2085-4577-8A46-96CB180967BC
+Type: 07h
+Attributes: 00h
+Full size: 856h (2134)
+Header size: 18h (24)
+Body size: 83Eh (2110)
+Tail size: 0h (0)
+State: F8h
+Header checksum: AFh, valid
+Data checksum: AAh, valid

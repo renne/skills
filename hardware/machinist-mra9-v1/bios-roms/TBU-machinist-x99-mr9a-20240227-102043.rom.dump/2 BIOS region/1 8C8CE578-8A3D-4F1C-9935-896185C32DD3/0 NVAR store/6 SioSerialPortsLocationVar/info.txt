@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: SioSerialPortsLocationVar
+Fixed: Yes
+Base: 84335Eh
+Header address: FF84335Eh
+Data address: FF843383h
+Offset: 3316h
+Variable GUID: 560BF58A-1E0D-4D7E-953F-2980A261E031
+GUID index: 5
+Full size: 27h (39)
+Header size: 25h (37)
+Body size: 2h (2)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 567Bh

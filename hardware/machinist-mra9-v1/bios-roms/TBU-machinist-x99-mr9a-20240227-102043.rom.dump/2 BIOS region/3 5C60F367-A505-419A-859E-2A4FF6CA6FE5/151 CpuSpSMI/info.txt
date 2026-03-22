@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: CpuSpSMI
+Fixed: No
+Base: 9E0EB8h
+Header address: FF9E0EB8h
+Data address: FF9E0ED0h
+Offset: 150EB8h
+File GUID: 116E1ACF-2533-4CC2-820A-BBC10A2AB07C
+Type: 0Ah
+Attributes: 00h
+Full size: 306h (774)
+Header size: 18h (24)
+Body size: 2EEh (750)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B7h, valid
+Data checksum: AAh, valid

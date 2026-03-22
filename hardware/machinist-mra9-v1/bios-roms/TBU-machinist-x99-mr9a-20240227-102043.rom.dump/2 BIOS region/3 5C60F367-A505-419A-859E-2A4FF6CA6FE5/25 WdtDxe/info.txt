@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: WdtDxe
+Fixed: No
+Base: 8D4760h
+Header address: FF8D4760h
+Data address: FF8D4778h
+Offset: 44760h
+File GUID: 5AAB83E5-F027-4CA7-BFD0-16358CC9E453
+Type: 07h
+Attributes: 00h
+Full size: 49Fh (1183)
+Header size: 18h (24)
+Body size: 487h (1159)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 79h, valid
+Data checksum: AAh, valid

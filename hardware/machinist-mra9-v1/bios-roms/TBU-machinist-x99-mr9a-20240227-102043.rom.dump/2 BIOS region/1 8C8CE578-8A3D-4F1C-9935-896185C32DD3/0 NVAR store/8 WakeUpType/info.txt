@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: WakeUpType
+Fixed: Yes
+Base: 843398h
+Header address: FF843398h
+Data address: FF8433AEh
+Offset: 3350h
+Variable GUID: 4B3082A3-80C6-4D7E-9CD0-583917265DF1
+GUID index: 7
+Full size: 1Ah (26)
+Header size: 16h (22)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 5AADh

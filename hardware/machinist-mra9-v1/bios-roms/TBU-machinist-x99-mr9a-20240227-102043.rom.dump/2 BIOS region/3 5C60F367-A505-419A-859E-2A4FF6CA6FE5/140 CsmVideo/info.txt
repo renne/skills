@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CsmVideo
+Fixed: No
+Base: 9C9708h
+Header address: FF9C9708h
+Data address: FF9C9720h
+Offset: 139708h
+File GUID: 29CF55F8-B675-4F5D-8F2F-B87A3ECFD063
+Type: 07h
+Attributes: 00h
+Full size: 2460h (9312)
+Header size: 18h (24)
+Body size: 2448h (9288)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 29h, valid
+Data checksum: AAh, valid

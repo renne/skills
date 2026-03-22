@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmiBoardInfo2
+Fixed: No
+Base: 8ED8F8h
+Header address: FF8ED8F8h
+Data address: FF8ED910h
+Offset: 5D8F8h
+File GUID: 9F3A0016-AE55-4288-829D-D55FD3AAC347
+Type: 07h
+Attributes: 00h
+Full size: 884h (2180)
+Header size: 18h (24)
+Body size: 86Ch (2156)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D7h, valid
+Data checksum: AAh, valid

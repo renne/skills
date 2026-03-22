@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CpuIo2Dxe
+Fixed: No
+Base: 8B6750h
+Header address: FF8B6750h
+Data address: FF8B6768h
+Offset: 26750h
+File GUID: A19B1FE7-C1BC-49F8-875F-54A5D542443F
+Type: 07h
+Attributes: 00h
+Full size: 39Ch (924)
+Header size: 18h (24)
+Body size: 384h (900)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E1h, valid
+Data checksum: AAh, valid

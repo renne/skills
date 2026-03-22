@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DE4404h
+Header address: FFDE4404h
+Data address: FFDE4408h
+Offset: 894h
+Type: 15h
+Full size: 24h (36)
+Header size: 4h (4)
+Body size: 20h (32)
+Text: NCT5532DPeiInit

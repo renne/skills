@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PcdDxe
+Fixed: No
+Base: A60FC8h
+Header address: FFA60FC8h
+Data address: FFA60FE0h
+Offset: 1D0FC8h
+File GUID: 80CF7257-87AB-47F9-A3FE-D50B76D89541
+Type: 07h
+Attributes: 00h
+Full size: 16AFh (5807)
+Header size: 18h (24)
+Body size: 1697h (5783)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 05h, valid
+Data checksum: AAh, valid

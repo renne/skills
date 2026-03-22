@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CmosDxe
+Fixed: No
+Base: A62F40h
+Header address: FFA62F40h
+Data address: FFA62F58h
+Offset: 1D2F40h
+File GUID: 3237418A-478C-4700-B59F-768E2CCBC726
+Type: 07h
+Attributes: 00h
+Full size: 15BCh (5564)
+Header size: 18h (24)
+Body size: 15A4h (5540)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 9Eh, valid
+Data checksum: AAh, valid

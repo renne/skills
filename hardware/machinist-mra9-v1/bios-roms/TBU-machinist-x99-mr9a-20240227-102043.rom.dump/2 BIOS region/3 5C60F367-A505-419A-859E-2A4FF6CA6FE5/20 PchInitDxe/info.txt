@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PchInitDxe
+Fixed: No
+Base: 8CB5C0h
+Header address: FF8CB5C0h
+Data address: FF8CB5D8h
+Offset: 3B5C0h
+File GUID: DE23ACEE-CF55-4FB6-AA77-984AB53DE823
+Type: 07h
+Attributes: 00h
+Full size: 736Ch (29548)
+Header size: 18h (24)
+Body size: 7354h (29524)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 56h, valid
+Data checksum: AAh, valid

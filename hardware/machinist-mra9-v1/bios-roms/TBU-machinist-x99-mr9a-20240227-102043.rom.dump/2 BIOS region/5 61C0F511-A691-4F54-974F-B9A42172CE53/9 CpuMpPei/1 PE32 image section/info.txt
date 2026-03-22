@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: DAE948h
+Header address: FFDAE948h
+Data address: FFDAE94Ch
+Offset: 40h
+Type: 10h
+Full size: FA4h (4004)
+Header size: 4h (4)
+Body size: FA0h (4000)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 2C0h
+Base of code: 220h
+Image base: FFDAE94Ch

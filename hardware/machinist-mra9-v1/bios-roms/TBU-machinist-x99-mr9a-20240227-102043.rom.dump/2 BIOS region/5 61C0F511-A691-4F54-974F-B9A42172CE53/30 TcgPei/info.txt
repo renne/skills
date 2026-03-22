@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: TcgPei
+Fixed: No
+Base: DC5D98h
+Header address: FFDC5D98h
+Data address: FFDC5DB0h
+Offset: 25D98h
+File GUID: 34989D8E-930A-4A95-AB04-2E6CFDFF6631
+Type: 06h
+Attributes: 00h
+Full size: 43FAh (17402)
+Header size: 18h (24)
+Body size: 43E2h (17378)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Eh, valid
+Data checksum: AAh, valid

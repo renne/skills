@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: AmiTpm20PlatformPei
+Fixed: No
+Base: DD9658h
+Header address: FFDD9658h
+Data address: FFDD9670h
+Offset: 39658h
+File GUID: 0D8039FF-49E9-4CC9-A806-BB7C31B0BCB0
+Type: 06h
+Attributes: 00h
+Full size: 1C9Eh (7326)
+Header size: 18h (24)
+Body size: 1C86h (7302)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 02h, valid
+Data checksum: AAh, valid

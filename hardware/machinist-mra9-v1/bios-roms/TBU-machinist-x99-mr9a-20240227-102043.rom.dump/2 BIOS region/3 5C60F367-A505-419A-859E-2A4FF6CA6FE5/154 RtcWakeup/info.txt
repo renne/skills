@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: RtcWakeup
+Fixed: No
+Base: 9E2548h
+Header address: FF9E2548h
+Data address: FF9E2560h
+Offset: 152548h
+File GUID: F3B38282-B951-4E2A-8DF5-DE01FC527AE4
+Type: 0Ah
+Attributes: 00h
+Full size: 460h (1120)
+Header size: 18h (24)
+Body size: 448h (1096)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 59h, valid
+Data checksum: AAh, valid

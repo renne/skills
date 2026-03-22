@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI core
+Text: PeiCore
+Fixed: No
+Base: DA16C8h
+Header address: FFDA16C8h
+Data address: FFDA16E0h
+Offset: 16C8h
+File GUID: 52C05B14-0B98-496C-BC3B-04B50211D680
+Type: 04h
+Attributes: 00h
+Full size: 5D1Eh (23838)
+Header size: 18h (24)
+Body size: 5D06h (23814)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Fh, valid
+Data checksum: AAh, valid

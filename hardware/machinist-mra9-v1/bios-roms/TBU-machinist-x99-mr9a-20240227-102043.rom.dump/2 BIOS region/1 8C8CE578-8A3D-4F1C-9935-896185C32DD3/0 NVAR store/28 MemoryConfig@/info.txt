@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: MemoryConfig@
+Fixed: Yes
+Base: 84558Eh
+Header address: FF84558Eh
+Data address: FF8455A7h
+Offset: 5546h
+Variable GUID: 80DBD530-B74C-4F11-8C03-418665532831
+GUID index: 9
+Full size: 2Fh (47)
+Header size: 19h (25)
+Body size: 16h (22)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

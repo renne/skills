@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: PchBiosWriteProtect
+Fixed: No
+Base: 9E5408h
+Header address: FF9E5408h
+Data address: FF9E5420h
+Offset: 155408h
+File GUID: 2EE81ACB-64B2-41AE-8635-7030D16C4AA8
+Type: 0Ah
+Attributes: 00h
+Full size: 630h (1584)
+Header size: 18h (24)
+Body size: 618h (1560)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 36h, valid
+Data checksum: AAh, valid

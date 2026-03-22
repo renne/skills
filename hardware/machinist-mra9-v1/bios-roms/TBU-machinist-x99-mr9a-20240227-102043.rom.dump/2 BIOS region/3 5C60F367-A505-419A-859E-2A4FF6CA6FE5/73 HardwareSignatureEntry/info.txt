@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: HardwareSignatureEntry
+Fixed: No
+Base: 92CCD0h
+Header address: FF92CCD0h
+Data address: FF92CCE8h
+Offset: 9CCD0h
+File GUID: B7EE4835-84CE-4B15-BF52-2D11574CE470
+Type: 07h
+Attributes: 00h
+Full size: 16F4h (5876)
+Header size: 18h (24)
+Body size: 16DCh (5852)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D5h, valid
+Data checksum: AAh, valid

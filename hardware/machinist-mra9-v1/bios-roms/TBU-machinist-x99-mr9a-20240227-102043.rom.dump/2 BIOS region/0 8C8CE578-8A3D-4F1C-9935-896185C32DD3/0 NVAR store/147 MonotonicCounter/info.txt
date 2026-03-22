@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: MonotonicCounter
+Fixed: Yes
+Base: 80E7BFh
+Header address: FF80E7BFh
+Data address: FF80E7C9h
+Offset: E777h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: F50Eh

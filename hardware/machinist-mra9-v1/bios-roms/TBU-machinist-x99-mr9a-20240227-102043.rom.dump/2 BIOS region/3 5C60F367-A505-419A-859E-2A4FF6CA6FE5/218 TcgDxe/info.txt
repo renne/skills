@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: TcgDxe
+Fixed: No
+Base: B011E0h
+Header address: FFB011E0h
+Data address: FFB011F8h
+Offset: 2711E0h
+File GUID: 5E9CABA3-F2B1-497A-ADAC-24F575E9CDE9
+Type: 07h
+Attributes: 00h
+Full size: 31C5h (12741)
+Header size: 18h (24)
+Body size: 31ADh (12717)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CFh, valid
+Data checksum: AAh, valid

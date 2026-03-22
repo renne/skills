@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: CapsuleLongModeBuffer
+Fixed: Yes
+Base: 849885h
+Header address: FF849885h
+Data address: FF84988Fh
+Offset: 983Dh
+Full size: 22h (34)
+Header size: Ah (10)
+Body size: 18h (24)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

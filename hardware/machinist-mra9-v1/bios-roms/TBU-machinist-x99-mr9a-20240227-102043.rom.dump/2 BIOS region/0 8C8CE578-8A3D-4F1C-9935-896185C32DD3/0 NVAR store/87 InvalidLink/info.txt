@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Invalid link
+Fixed: Yes
+Base: 80545Dh
+Header address: FF80545Dh
+Data address: FF805467h
+Offset: 5415h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 57D6h

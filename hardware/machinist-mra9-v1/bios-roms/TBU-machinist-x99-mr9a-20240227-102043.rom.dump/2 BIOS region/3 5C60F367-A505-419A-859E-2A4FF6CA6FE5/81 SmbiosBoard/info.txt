@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SmbiosBoard
+Fixed: No
+Base: 937298h
+Header address: FF937298h
+Data address: FF9372B0h
+Offset: A7298h
+File GUID: CEF68C66-06AB-4FB3-A3ED-5FFA885B5725
+Type: 07h
+Attributes: 00h
+Full size: 7FEh (2046)
+Header size: 18h (24)
+Body size: 7E6h (2022)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 43h, valid
+Data checksum: AAh, valid

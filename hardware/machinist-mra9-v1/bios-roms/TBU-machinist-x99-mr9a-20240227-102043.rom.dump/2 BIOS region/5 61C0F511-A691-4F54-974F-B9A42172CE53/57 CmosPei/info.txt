@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: CmosPei
+Fixed: No
+Base: E87B90h
+Header address: FFE87B90h
+Data address: FFE87BA8h
+Offset: E7B90h
+File GUID: 654FE61A-2EDA-4749-A76A-56ED7ADE1CBE
+Type: 06h
+Attributes: 00h
+Full size: 1C66h (7270)
+Header size: 18h (24)
+Body size: 1C4Eh (7246)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A6h, valid
+Data checksum: AAh, valid

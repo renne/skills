@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SmmAccess
+Fixed: No
+Base: 8C9AE0h
+Header address: FF8C9AE0h
+Data address: FF8C9AF8h
+Offset: 39AE0h
+File GUID: 274F0C8F-9E57-41D8-9966-29CCD48D31C2
+Type: 07h
+Attributes: 00h
+Full size: 58Eh (1422)
+Header size: 18h (24)
+Body size: 576h (1398)
+Tail size: 0h (0)
+State: F8h
+Header checksum: FFh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: AhciSmm
+Fixed: No
+Base: 9E6518h
+Header address: FF9E6518h
+Data address: FF9E6530h
+Offset: 156518h
+File GUID: BC3245BD-B982-4F55-9F79-056AD7E987C5
+Type: 0Ah
+Attributes: 00h
+Full size: 141Eh (5150)
+Header size: 18h (24)
+Body size: 1406h (5126)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 62h, valid
+Data checksum: AAh, valid

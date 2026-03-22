@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SmartTimer
+Fixed: No
+Base: 8D3398h
+Header address: FF8D3398h
+Data address: FF8D33B0h
+Offset: 43398h
+File GUID: 90CB75DB-71FC-489D-AACF-943477EC7212
+Type: 07h
+Attributes: 00h
+Full size: 641h (1601)
+Header size: 18h (24)
+Body size: 629h (1577)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Dh, valid
+Data checksum: AAh, valid

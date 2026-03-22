@@ -1,0 +1,17 @@
+Type: File
+Subtype: Freeform
+Fixed: No
+Base: A52870h
+Header address: FFA52870h
+Data address: FFA52888h
+Offset: 1C2870h
+File GUID: A08276EC-A0FE-4E06-8670-385336C7D093
+Type: 02h
+Attributes: 00h
+Full size: 2E5h (741)
+Header size: 18h (24)
+Body size: 2CDh (717)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C0h, valid
+Data checksum: AAh, valid

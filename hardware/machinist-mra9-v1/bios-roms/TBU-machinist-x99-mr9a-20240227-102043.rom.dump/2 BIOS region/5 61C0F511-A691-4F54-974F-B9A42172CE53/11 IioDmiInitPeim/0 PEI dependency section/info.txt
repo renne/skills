@@ -1,0 +1,20 @@
+Type: Section
+Subtype: PEI dependency
+Fixed: No
+Base: DB0018h
+Header address: FFDB0018h
+Data address: FFDB001Ch
+Offset: 18h
+Type: 1Bh
+Full size: 4Ch (76)
+Header size: 4h (4)
+Body size: 48h (72)
+Parsed expression:
+PUSH 09EA894A-BE0D-4230-A003-EDC693B48E95
+PUSH ED097352-9041-445A-80B6-B29D509E8845
+PUSH 1E2ACC41-E26A-483D-AFC7-A056C34E087B
+PUSH 01F34D25-4DE2-23AD-3FF3-36353FF323F1
+AND
+AND
+AND
+END

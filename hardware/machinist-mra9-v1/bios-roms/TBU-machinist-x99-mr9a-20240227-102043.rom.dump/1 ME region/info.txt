@@ -1,0 +1,7 @@
+Type: Region
+Subtype: ME
+Fixed: Yes
+Base: 1000h
+Offset: 1000h
+Full size: 7FF000h (8384512)
+Version: 9.1.30.1008

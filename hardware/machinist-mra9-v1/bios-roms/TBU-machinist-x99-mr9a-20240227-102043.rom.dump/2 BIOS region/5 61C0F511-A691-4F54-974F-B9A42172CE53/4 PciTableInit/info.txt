@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PciTableInit
+Fixed: No
+Base: DA73E8h
+Header address: FFDA73E8h
+Data address: FFDA7400h
+Offset: 73E8h
+File GUID: DEF30E37-7AEC-4F69-91A2-CF099E2729F2
+Type: 06h
+Attributes: 00h
+Full size: A02h (2562)
+Header size: 18h (24)
+Body size: 9EAh (2538)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CFh, valid
+Data checksum: AAh, valid

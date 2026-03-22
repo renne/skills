@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmiTcgNvflagSample
+Fixed: No
+Base: 937A98h
+Header address: FF937A98h
+Data address: FF937AB0h
+Offset: A7A98h
+File GUID: 50F6096D-7C98-4C78-9A1D-C5A1833B6A88
+Type: 07h
+Attributes: 00h
+Full size: 5DCh (1500)
+Header size: 18h (24)
+Body size: 5C4h (1476)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B7h, valid
+Data checksum: AAh, valid

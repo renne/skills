@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Ahci
+Fixed: No
+Base: 971588h
+Header address: FF971588h
+Data address: FF9715A0h
+Offset: E1588h
+File GUID: 8F5A2E02-538C-4D59-B920-C4786ACBC552
+Type: 07h
+Attributes: 00h
+Full size: 3A9Bh (15003)
+Header size: 18h (24)
+Body size: 3A83h (14979)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 25h, valid
+Data checksum: AAh, valid

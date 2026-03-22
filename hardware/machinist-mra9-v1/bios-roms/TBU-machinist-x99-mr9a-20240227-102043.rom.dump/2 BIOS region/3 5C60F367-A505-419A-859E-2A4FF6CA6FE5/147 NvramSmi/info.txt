@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: NvramSmi
+Fixed: No
+Base: 9DEAA0h
+Header address: FF9DEAA0h
+Data address: FF9DEAB8h
+Offset: 14EAA0h
+File GUID: 842A454A-75E5-408B-8B1C-36420E4E3F21
+Type: 0Ah
+Attributes: 00h
+Full size: 80Bh (2059)
+Header size: 18h (24)
+Body size: 7F3h (2035)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A6h, valid
+Data checksum: AAh, valid

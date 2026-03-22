@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PciBus
+Fixed: No
+Base: 97F770h
+Header address: FF97F770h
+Data address: FF97F788h
+Offset: EF770h
+File GUID: 3C1DE39F-D207-408A-AACC-731CFB7F1DD7
+Type: 07h
+Attributes: 00h
+Full size: 7F79h (32633)
+Header size: 18h (24)
+Body size: 7F61h (32609)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 10h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: TcgLegacy
+Fixed: No
+Base: 93C2A0h
+Header address: FF93C2A0h
+Data address: FF93C2B8h
+Offset: AC2A0h
+File GUID: 858EBE6F-360F-415B-B7DC-463AAEB03412
+Type: 07h
+Attributes: 00h
+Full size: 9BBh (2491)
+Header size: 18h (24)
+Body size: 9A3h (2467)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Dh, valid
+Data checksum: AAh, valid

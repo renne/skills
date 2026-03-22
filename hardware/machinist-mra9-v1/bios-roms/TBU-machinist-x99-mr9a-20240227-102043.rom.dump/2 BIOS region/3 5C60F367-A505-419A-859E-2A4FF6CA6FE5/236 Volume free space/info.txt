@@ -1,0 +1,7 @@
+Type: Free space
+Subtype: 
+Fixed: No
+Base: B93D80h
+Address: FFB93D80h
+Offset: 303D80h
+Full size: 1FC280h (2081408)

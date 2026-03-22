@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: Boot0001
+Fixed: Yes
+Base: 8169FEh
+Header address: FF8169FEh
+Data address: FF816A08h
+Offset: 169B6h
+Full size: 136h (310)
+Header size: Ah (10)
+Body size: 12Ch (300)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

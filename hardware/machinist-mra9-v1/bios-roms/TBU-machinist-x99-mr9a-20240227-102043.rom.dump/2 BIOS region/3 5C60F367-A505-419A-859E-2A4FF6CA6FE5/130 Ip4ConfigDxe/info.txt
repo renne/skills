@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Ip4ConfigDxe
+Fixed: No
+Base: 9A4958h
+Header address: FF9A4958h
+Data address: FF9A4970h
+Offset: 114958h
+File GUID: 26841BDE-920A-4E7A-9FBE-637F477143A6
+Type: 07h
+Attributes: 00h
+Full size: 257Ch (9596)
+Header size: 18h (24)
+Body size: 2564h (9572)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 71h, valid
+Data checksum: AAh, valid

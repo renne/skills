@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: MicrocodeUpdate
+Fixed: No
+Base: 9EEA80h
+Header address: FF9EEA80h
+Data address: FF9EEA98h
+Offset: 15EA80h
+File GUID: F3331DE6-4A55-44E4-B767-7453F7A1A021
+Type: 0Ah
+Attributes: 00h
+Full size: 250Bh (9483)
+Header size: 18h (24)
+Body size: 24F3h (9459)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 98h, valid
+Data checksum: AAh, valid

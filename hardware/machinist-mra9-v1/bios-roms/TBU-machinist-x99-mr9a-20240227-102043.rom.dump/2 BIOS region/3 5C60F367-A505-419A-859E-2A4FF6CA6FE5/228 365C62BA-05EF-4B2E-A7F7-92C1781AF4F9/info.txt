@@ -1,0 +1,17 @@
+Type: File
+Subtype: Freeform
+Fixed: No
+Base: B42650h
+Header address: FFB42650h
+Data address: FFB42668h
+Offset: 2B2650h
+File GUID: 365C62BA-05EF-4B2E-A7F7-92C1781AF4F9
+Type: 02h
+Attributes: 00h
+Full size: BE17h (48663)
+Header size: 18h (24)
+Body size: BDFFh (48639)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 9Eh, valid
+Data checksum: AAh, valid

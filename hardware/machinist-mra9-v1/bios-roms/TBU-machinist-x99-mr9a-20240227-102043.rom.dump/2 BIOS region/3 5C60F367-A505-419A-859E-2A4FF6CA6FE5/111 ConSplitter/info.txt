@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ConSplitter
+Fixed: No
+Base: 968C58h
+Header address: FF968C58h
+Data address: FF968C70h
+Offset: D8C58h
+File GUID: 628A497D-2BF6-4264-8741-069DBD3399D6
+Type: 07h
+Attributes: 00h
+Full size: 2A67h (10855)
+Header size: 18h (24)
+Body size: 2A4Fh (10831)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 25h, valid
+Data checksum: AAh, valid

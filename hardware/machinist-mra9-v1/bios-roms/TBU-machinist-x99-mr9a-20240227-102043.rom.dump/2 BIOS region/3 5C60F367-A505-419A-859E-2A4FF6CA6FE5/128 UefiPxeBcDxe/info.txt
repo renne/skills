@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: UefiPxeBcDxe
+Fixed: No
+Base: 99A5B0h
+Header address: FF99A5B0h
+Data address: FF99A5C8h
+Offset: 10A5B0h
+File GUID: B95E9FDA-26DE-48D2-8807-1F9107AC5E3A
+Type: 07h
+Attributes: 00h
+Full size: 6C87h (27783)
+Header size: 18h (24)
+Body size: 6C6Fh (27759)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CEh, valid
+Data checksum: AAh, valid

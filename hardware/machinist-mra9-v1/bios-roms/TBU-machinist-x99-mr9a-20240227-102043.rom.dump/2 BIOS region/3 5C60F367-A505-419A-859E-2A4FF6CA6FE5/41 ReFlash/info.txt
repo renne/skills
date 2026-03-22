@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ReFlash
+Fixed: No
+Base: 8EE180h
+Header address: FF8EE180h
+Data address: FF8EE198h
+Offset: 5E180h
+File GUID: 70E1A818-0BE1-4449-BFD4-9EF68C7F02A8
+Type: 07h
+Attributes: 00h
+Full size: 3964h (14692)
+Header size: 18h (24)
+Body size: 394Ch (14668)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F6h, valid
+Data checksum: AAh, valid

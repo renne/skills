@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: PcRtcSmm
+Fixed: No
+Base: 9E1810h
+Header address: FF9E1810h
+Data address: FF9E1828h
+Offset: 151810h
+File GUID: 378D7B65-8DA9-4773-B6E4-A47826A833E2
+Type: 0Ah
+Attributes: 00h
+Full size: D32h (3378)
+Header size: 18h (24)
+Body size: D1Ah (3354)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Ah, valid
+Data checksum: AAh, valid

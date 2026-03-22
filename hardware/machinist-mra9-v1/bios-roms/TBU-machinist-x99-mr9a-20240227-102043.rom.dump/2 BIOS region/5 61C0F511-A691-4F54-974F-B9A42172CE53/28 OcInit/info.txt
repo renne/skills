@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: OcInit
+Fixed: No
+Base: DC3090h
+Header address: FFDC3090h
+Data address: FFDC30A8h
+Offset: 23090h
+File GUID: 6540F933-425F-464B-B4AD-B93A6ED0A8F5
+Type: 06h
+Attributes: 00h
+Full size: 2656h (9814)
+Header size: 18h (24)
+Body size: 263Eh (9790)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Ch, valid
+Data checksum: AAh, valid

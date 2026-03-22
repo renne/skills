@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: DC30C0h
+Header address: FFDC30C0h
+Data address: FFDC30C4h
+Offset: 30h
+Type: 10h
+Full size: 2604h (9732)
+Header size: 4h (4)
+Body size: 2600h (9728)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 2B0h
+Base of code: 200h
+Image base: FFDC30C4h

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: AMTLockUsbKBD
+Fixed: No
+Base: 9FD030h
+Header address: FF9FD030h
+Data address: FF9FD048h
+Offset: 16D030h
+File GUID: 9173C39B-08DA-429A-BE15-0F7481CF72CE
+Type: 0Ah
+Attributes: 00h
+Full size: 7FBh (2043)
+Header size: 18h (24)
+Body size: 7E3h (2019)
+Tail size: 0h (0)
+State: F8h
+Header checksum: EEh, valid
+Data checksum: AAh, valid

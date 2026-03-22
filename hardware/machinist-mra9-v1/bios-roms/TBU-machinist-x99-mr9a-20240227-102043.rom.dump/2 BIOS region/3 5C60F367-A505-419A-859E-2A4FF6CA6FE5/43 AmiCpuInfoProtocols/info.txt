@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmiCpuInfoProtocols
+Fixed: No
+Base: 8F7848h
+Header address: FF8F7848h
+Data address: FF8F7860h
+Offset: 67848h
+File GUID: 9529DD7B-9BA5-4FC3-B1E5-E085C9F98FCB
+Type: 07h
+Attributes: 00h
+Full size: BB8h (3000)
+Header size: 18h (24)
+Body size: BA0h (2976)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B7h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PcdPeim
+Fixed: No
+Base: DE0BA0h
+Header address: FFDE0BA0h
+Data address: FFDE0BB8h
+Offset: 40BA0h
+File GUID: 9B3ADA4F-AE56-4C24-8DEA-F03B7558AE50
+Type: 06h
+Attributes: 00h
+Full size: 1552h (5458)
+Header size: 18h (24)
+Body size: 153Ah (5434)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B4h, valid
+Data checksum: AAh, valid

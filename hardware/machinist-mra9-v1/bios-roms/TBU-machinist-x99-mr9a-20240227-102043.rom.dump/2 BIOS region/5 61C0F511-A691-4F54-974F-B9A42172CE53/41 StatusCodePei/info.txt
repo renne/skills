@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: StatusCodePei
+Fixed: No
+Base: DDD5E8h
+Header address: FFDDD5E8h
+Data address: FFDDD600h
+Offset: 3D5E8h
+File GUID: E9DD7F62-25EC-4F9D-A4AB-AAD20BF59A10
+Type: 06h
+Attributes: 00h
+Full size: 3302h (13058)
+Header size: 18h (24)
+Body size: 32EAh (13034)
+Tail size: 0h (0)
+State: F8h
+Header checksum: ACh, valid
+Data checksum: AAh, valid

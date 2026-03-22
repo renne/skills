@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Dhcp6Dxe
+Fixed: No
+Base: 9BF8A0h
+Header address: FF9BF8A0h
+Data address: FF9BF8B8h
+Offset: 12F8A0h
+File GUID: 95E3669D-34BE-4775-A651-7EA41B69D89E
+Type: 07h
+Attributes: 00h
+Full size: 37F9h (14329)
+Header size: 18h (24)
+Body size: 37E1h (14305)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Dh, valid
+Data checksum: AAh, valid

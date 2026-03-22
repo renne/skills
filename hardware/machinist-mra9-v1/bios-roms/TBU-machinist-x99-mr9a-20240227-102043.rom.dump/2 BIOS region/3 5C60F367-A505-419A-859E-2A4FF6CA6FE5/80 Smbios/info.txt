@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Smbios
+Fixed: No
+Base: 933EF8h
+Header address: FF933EF8h
+Data address: FF933F10h
+Offset: A3EF8h
+File GUID: B13EDD38-684C-41ED-A305-D7B7E32497DF
+Type: 07h
+Attributes: 00h
+Full size: 339Dh (13213)
+Header size: 18h (24)
+Body size: 3385h (13189)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 90h, valid
+Data checksum: AAh, valid

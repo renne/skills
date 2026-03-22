@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PchS3Support
+Fixed: No
+Base: 8D2930h
+Header address: FF8D2930h
+Data address: FF8D2948h
+Offset: 42930h
+File GUID: C7EA9787-CA0A-43B4-B1E5-25EF87391F8D
+Type: 07h
+Attributes: 00h
+Full size: 3C9h (969)
+Header size: 18h (24)
+Body size: 3B1h (945)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 7Dh, valid
+Data checksum: AAh, valid

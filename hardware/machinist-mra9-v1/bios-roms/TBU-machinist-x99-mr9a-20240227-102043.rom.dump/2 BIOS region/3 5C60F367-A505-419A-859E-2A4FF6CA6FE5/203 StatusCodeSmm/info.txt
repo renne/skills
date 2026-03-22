@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: StatusCodeSmm
+Fixed: No
+Base: A57360h
+Header address: FFA57360h
+Data address: FFA57378h
+Offset: 1C7360h
+File GUID: DB08F6CA-3048-4CD8-9B1F-20BED33ECFE7
+Type: 0Ah
+Attributes: 00h
+Full size: 1BCEh (7118)
+Header size: 18h (24)
+Body size: 1BB6h (7094)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Fh, valid
+Data checksum: AAh, valid

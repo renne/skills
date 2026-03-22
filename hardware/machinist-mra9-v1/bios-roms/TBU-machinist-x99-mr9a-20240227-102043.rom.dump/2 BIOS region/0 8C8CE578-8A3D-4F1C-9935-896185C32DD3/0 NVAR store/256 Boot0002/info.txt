@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: Boot0002
+Fixed: Yes
+Base: 816C4Eh
+Header address: FF816C4Eh
+Data address: FF816C62h
+Offset: 16C06h
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 266h (614)
+Header size: 14h (20)
+Body size: 252h (594)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

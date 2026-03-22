@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: OpalSecurity
+Fixed: No
+Base: 9328E0h
+Header address: FF9328E0h
+Data address: FF9328F8h
+Offset: A28E0h
+File GUID: 59AF16B0-661D-4865-A381-38DE68385D8D
+Type: 07h
+Attributes: 00h
+Full size: 915h (2325)
+Header size: 18h (24)
+Body size: 8FDh (2301)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 19h, valid
+Data checksum: AAh, valid

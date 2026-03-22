@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CapsuleRuntimeDxe
+Fixed: No
+Base: 95B820h
+Header address: FF95B820h
+Data address: FF95B838h
+Offset: CB820h
+File GUID: 42857F0A-13F2-4B21-8A23-53D3F714B840
+Type: 07h
+Attributes: 00h
+Full size: 97Ch (2428)
+Header size: 18h (24)
+Body size: 964h (2404)
+Tail size: 0h (0)
+State: F8h
+Header checksum: DDh, valid
+Data checksum: AAh, valid

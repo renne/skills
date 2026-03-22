@@ -1,0 +1,17 @@
+Type: File
+Subtype: Freeform
+Fixed: No
+Base: A53560h
+Header address: FFA53560h
+Data address: FFA53578h
+Offset: 1C3560h
+File GUID: 0AA31BC6-3379-41E8-825A-53F82CC0F254
+Type: 02h
+Attributes: 00h
+Full size: 1237h (4663)
+Header size: 18h (24)
+Body size: 121Fh (4639)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F9h, valid
+Data checksum: AAh, valid

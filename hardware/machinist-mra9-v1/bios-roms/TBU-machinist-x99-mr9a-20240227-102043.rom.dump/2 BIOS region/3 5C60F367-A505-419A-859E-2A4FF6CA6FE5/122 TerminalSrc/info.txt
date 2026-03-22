@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: TerminalSrc
+Fixed: No
+Base: 9876F0h
+Header address: FF9876F0h
+Data address: FF987708h
+Offset: F76F0h
+File GUID: 54891A9E-763E-4377-8841-8D5C90D88CDE
+Type: 07h
+Attributes: 00h
+Full size: 345Bh (13403)
+Header size: 18h (24)
+Body size: 3443h (13379)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E3h, valid
+Data checksum: AAh, valid

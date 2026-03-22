@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PchSmbusDxe
+Fixed: No
+Base: 8D39E0h
+Header address: FF8D39E0h
+Data address: FF8D39F8h
+Offset: 439E0h
+File GUID: E052D8A6-224A-4C32-8D37-2E0AE162364D
+Type: 07h
+Attributes: 00h
+Full size: D7Fh (3455)
+Header size: 18h (24)
+Body size: D67h (3431)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 11h, valid
+Data checksum: AAh, valid

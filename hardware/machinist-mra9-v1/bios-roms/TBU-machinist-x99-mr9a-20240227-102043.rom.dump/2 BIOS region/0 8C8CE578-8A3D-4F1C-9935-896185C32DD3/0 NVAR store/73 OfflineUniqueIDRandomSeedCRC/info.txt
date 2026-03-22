@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: OfflineUniqueIDRandomSeedCRC
+Fixed: Yes
+Base: 8049BCh
+Header address: FF8049BCh
+Data address: FF8049E4h
+Offset: 4974h
+Variable GUID: EAEC226F-C9A3-477A-A826-DDC716CDC0E3
+GUID index: 26
+Full size: 2Ch (44)
+Header size: 28h (40)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

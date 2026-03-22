@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: AcpiGlobalVariable
+Fixed: Yes
+Base: 844BE2h
+Header address: FF844BE2h
+Data address: FF844C00h
+Offset: 4B9Ah
+Variable GUID: C020489E-6DB2-4EF2-9AA5-CA06FC11D36A
+GUID index: 8
+Full size: 26h (38)
+Header size: 1Eh (30)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 7461h

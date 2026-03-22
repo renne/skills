@@ -1,0 +1,18 @@
+Type: File
+Subtype: Application
+Text: Shell_Full
+Fixed: No
+Base: A1D9D8h
+Header address: FFA1D9D8h
+Data address: FFA1D9F0h
+Offset: 18D9D8h
+File GUID: C57AD6B7-0515-40A8-9D21-551652854E37
+Type: 09h
+Attributes: 00h
+Full size: 34404h (214020)
+Header size: 18h (24)
+Body size: 343ECh (213996)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 59h, valid
+Data checksum: AAh, valid

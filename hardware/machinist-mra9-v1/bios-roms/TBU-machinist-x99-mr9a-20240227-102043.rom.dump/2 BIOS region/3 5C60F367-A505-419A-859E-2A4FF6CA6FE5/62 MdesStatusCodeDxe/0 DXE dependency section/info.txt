@@ -1,0 +1,18 @@
+Type: Section
+Subtype: DXE dependency
+Fixed: No
+Base: 923898h
+Header address: FF923898h
+Data address: FF92389Ch
+Offset: 18h
+Type: 13h
+Full size: 3Ah (58)
+Header size: 4h (4)
+Body size: 36h (54)
+Parsed expression:
+PUSH CFB33810-6E87-4284-B203-A66ABE07F6E8
+PUSH 69BF9E8A-4AD6-9A28-87F3-09A071292A00
+PUSH 13A3F0F6-264A-3EF0-F2E0-DEC512342F34
+AND
+AND
+END

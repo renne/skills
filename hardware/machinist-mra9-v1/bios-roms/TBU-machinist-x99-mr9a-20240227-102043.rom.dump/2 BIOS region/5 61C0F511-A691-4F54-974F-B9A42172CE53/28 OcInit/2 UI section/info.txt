@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DC56C4h
+Header address: FFDC56C4h
+Data address: FFDC56C8h
+Offset: 2634h
+Type: 15h
+Full size: 12h (18)
+Header size: 4h (4)
+Body size: Eh (14)
+Text: OcInit

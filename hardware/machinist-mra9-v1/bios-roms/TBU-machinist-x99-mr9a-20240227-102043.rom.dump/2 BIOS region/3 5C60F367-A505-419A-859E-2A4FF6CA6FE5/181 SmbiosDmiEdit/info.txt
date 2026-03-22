@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: SmbiosDmiEdit
+Fixed: No
+Base: A04E78h
+Header address: FFA04E78h
+Data address: FFA04E90h
+Offset: 174E78h
+File GUID: E2A74738-8934-48F5-8412-99E948C8DC1B
+Type: 0Ah
+Attributes: 00h
+Full size: 26C7h (9927)
+Header size: 18h (24)
+Body size: 26AFh (9903)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E8h, valid
+Data checksum: AAh, valid

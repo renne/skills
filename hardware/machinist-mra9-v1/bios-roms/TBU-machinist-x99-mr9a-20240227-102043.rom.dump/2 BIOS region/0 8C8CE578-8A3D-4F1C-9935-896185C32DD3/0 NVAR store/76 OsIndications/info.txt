@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: OsIndications
+Fixed: Yes
+Base: 804A17h
+Header address: FF804A17h
+Data address: FF804A21h
+Offset: 49CFh
+Full size: 12h (18)
+Header size: Ah (10)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

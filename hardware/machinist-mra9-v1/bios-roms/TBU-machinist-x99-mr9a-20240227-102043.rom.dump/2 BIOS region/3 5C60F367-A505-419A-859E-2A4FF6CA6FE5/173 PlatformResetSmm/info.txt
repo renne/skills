@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: PlatformResetSmm
+Fixed: No
+Base: 9FBDC8h
+Header address: FF9FBDC8h
+Data address: FF9FBDE0h
+Offset: 16BDC8h
+File GUID: 56F80AA7-87FB-4F43-BEE1-0BA18FAD4A06
+Type: 0Ah
+Attributes: 00h
+Full size: 5A5h (1445)
+Header size: 18h (24)
+Body size: 58Dh (1421)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 62h, valid
+Data checksum: AAh, valid

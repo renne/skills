@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: AcpiModeEnable
+Fixed: No
+Base: A1B0C8h
+Header address: FFA1B0C8h
+Data address: FFA1B0E0h
+Offset: 18B0C8h
+File GUID: 750890A6-7ACF-4F4F-81BD-B400C2BEA95A
+Type: 0Ah
+Attributes: 00h
+Full size: C16h (3094)
+Header size: 18h (24)
+Body size: BFEh (3070)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C5h, valid
+Data checksum: AAh, valid

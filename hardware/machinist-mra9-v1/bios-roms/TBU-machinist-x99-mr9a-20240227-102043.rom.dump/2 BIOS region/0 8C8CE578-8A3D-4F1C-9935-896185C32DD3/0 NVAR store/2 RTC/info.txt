@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: RTC
+Fixed: Yes
+Base: 801B11h
+Header address: FF801B11h
+Data address: FF801B20h
+Offset: 1AC9h
+Variable GUID: 378D7B65-8DA9-4773-B6E4-A47826A833E1
+GUID index: 2
+Full size: 13h (19)
+Header size: Fh (15)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PciPlatform
+Fixed: No
+Base: 9012C8h
+Header address: FF9012C8h
+Data address: FF9012E0h
+Offset: 712C8h
+File GUID: E2441B64-7EF4-41FE-B3A3-8CAA7F8D3017
+Type: 07h
+Attributes: 00h
+Full size: 7FAh (2042)
+Header size: 18h (24)
+Body size: 7E2h (2018)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C3h, valid
+Data checksum: AAh, valid

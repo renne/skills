@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: MePolicyInitPei
+Fixed: No
+Base: DC2168h
+Header address: FFDC2168h
+Data address: FFDC2180h
+Offset: 22168h
+File GUID: 12C67BE1-AD2E-4F13-A95F-6EDC2C4392DE
+Type: 06h
+Attributes: 00h
+Full size: 4CAh (1226)
+Header size: 18h (24)
+Body size: 4B2h (1202)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 8Ah, valid
+Data checksum: AAh, valid

@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Invalid link
+Fixed: Yes
+Base: 8100D9h
+Header address: FF8100D9h
+Data address: FF8100E3h
+Offset: 10091h
+Full size: 10h (16)
+Header size: Ah (10)
+Body size: 6h (6)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 100A1h

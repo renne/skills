@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: BootOrder
+Fixed: Yes
+Base: 84AA6Bh
+Header address: FF84AA6Bh
+Data address: FF84AA75h
+Offset: AA23h
+Full size: 18h (24)
+Header size: Ah (10)
+Body size: Eh (14)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: B5CCh

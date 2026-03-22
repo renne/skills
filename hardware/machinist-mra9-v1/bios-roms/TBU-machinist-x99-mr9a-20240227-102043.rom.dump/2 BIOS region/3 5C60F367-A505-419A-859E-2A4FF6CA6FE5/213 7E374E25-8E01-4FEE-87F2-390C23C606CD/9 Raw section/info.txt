@@ -1,0 +1,11 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Base: A67AB0h
+Header address: FFA67AB0h
+Data address: FFA67AB4h
+Offset: 2AF8h
+Type: 19h
+Full size: 33611h (210449)
+Header size: 4h (4)
+Body size: 3360Dh (210445)

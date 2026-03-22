@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: NetworkStackSetupScreen
+Fixed: No
+Base: 8ED3B0h
+Header address: FF8ED3B0h
+Data address: FF8ED3C8h
+Offset: 5D3B0h
+File GUID: 21891A9E-763E-4377-8841-8D5C90D88C51
+Type: 07h
+Attributes: 00h
+Full size: 542h (1346)
+Header size: 18h (24)
+Body size: 52Ah (1322)
+Tail size: 0h (0)
+State: F8h
+Header checksum: EBh, valid
+Data checksum: AAh, valid

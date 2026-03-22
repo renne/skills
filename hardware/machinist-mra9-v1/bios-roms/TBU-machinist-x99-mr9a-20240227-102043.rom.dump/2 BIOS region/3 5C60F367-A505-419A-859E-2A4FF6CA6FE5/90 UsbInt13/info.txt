@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: UsbInt13
+Fixed: No
+Base: 954130h
+Header address: FF954130h
+Data address: FF954148h
+Offset: C4130h
+File GUID: 4C006CD9-19BA-4617-8483-609194A1ACFC
+Type: 07h
+Attributes: 00h
+Full size: CDEh (3294)
+Header size: 18h (24)
+Body size: CC6h (3270)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 79h, valid
+Data checksum: AAh, valid

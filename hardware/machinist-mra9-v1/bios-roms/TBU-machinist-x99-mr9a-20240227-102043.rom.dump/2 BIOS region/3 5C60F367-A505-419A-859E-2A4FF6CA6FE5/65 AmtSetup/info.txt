@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtSetup
+Fixed: No
+Base: 925C00h
+Header address: FF925C00h
+Data address: FF925C18h
+Offset: 95C00h
+File GUID: 773CB08B-511A-4BD5-85AD-41D4F4B64A52
+Type: 07h
+Attributes: 00h
+Full size: 20Ch (524)
+Header size: 18h (24)
+Body size: 1F4h (500)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E5h, valid
+Data checksum: AAh, valid

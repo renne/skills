@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: EvaluateDefaults4FirstBoot
+Fixed: Yes
+Base: 8043EDh
+Header address: FF8043EDh
+Data address: FF804413h
+Offset: 43A5h
+Variable GUID: 4B4D31BE-88C6-446A-A4A9-4AD0F612B32E
+GUID index: 18
+Full size: 2Eh (46)
+Header size: 26h (38)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

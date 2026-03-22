@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: IioInit
+Fixed: No
+Base: 8BF460h
+Header address: FF8BF460h
+Data address: FF8BF478h
+Offset: 2F460h
+File GUID: 63809859-F029-41C3-9F34-EEEB9EA787A5
+Type: 07h
+Attributes: 00h
+Full size: 8B4Dh (35661)
+Header size: 18h (24)
+Body size: 8B35h (35637)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 13h, valid
+Data checksum: AAh, valid

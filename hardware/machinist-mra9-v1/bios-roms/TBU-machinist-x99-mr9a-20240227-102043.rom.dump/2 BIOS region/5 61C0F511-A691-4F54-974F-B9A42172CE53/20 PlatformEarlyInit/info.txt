@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PlatformEarlyInit
+Fixed: No
+Base: DB8738h
+Header address: FFDB8738h
+Data address: FFDB8750h
+Offset: 18738h
+File GUID: EE685731-CFF3-4EE7-9388-7E63FC5A59B0
+Type: 06h
+Attributes: 00h
+Full size: 73D2h (29650)
+Header size: 18h (24)
+Body size: 73BAh (29626)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 85h, valid
+Data checksum: AAh, valid

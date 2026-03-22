@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MEFwUpdLcl
+Fixed: No
+Base: 9307C8h
+Header address: FF9307C8h
+Data address: FF9307E0h
+Offset: A07C8h
+File GUID: A11585B7-8FA2-4F1C-AA6F-DD6309469613
+Type: 07h
+Attributes: 00h
+Full size: 2115h (8469)
+Header size: 18h (24)
+Body size: 20FDh (8445)
+Tail size: 0h (0)
+State: F8h
+Header checksum: E4h, valid
+Data checksum: AAh, valid

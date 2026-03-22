@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CRBDxe
+Fixed: No
+Base: 95A2A0h
+Header address: FF95A2A0h
+Data address: FF95A2B8h
+Offset: CA2A0h
+File GUID: 16271FCA-55D9-4A33-93FC-5A3EB128DEB6
+Type: 07h
+Attributes: 00h
+Full size: A7Eh (2686)
+Header size: 18h (24)
+Body size: A66h (2662)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 0Ch, valid
+Data checksum: AAh, valid

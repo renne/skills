@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: NvmeSmm
+Fixed: No
+Base: A01120h
+Header address: FFA01120h
+Data address: FFA01138h
+Offset: 171120h
+File GUID: E5E2C9D9-5BF5-497E-8860-94F81A09ADE0
+Type: 0Ah
+Attributes: 00h
+Full size: 16E7h (5863)
+Header size: 18h (24)
+Body size: 16CFh (5839)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 55h, valid
+Data checksum: AAh, valid

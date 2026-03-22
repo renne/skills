@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AsfTable
+Fixed: No
+Base: 9290D8h
+Header address: FF9290D8h
+Data address: FF9290F0h
+Offset: 990D8h
+File GUID: E72527CF-505B-4B50-99CD-A32467FA4AA4
+Type: 07h
+Attributes: 00h
+Full size: 2FDh (765)
+Header size: 18h (24)
+Body size: 2E5h (741)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 36h, valid
+Data checksum: AAh, valid

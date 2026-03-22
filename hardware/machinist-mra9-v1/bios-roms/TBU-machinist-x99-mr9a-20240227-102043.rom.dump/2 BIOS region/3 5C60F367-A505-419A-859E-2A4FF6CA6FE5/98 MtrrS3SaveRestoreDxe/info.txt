@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MtrrS3SaveRestoreDxe
+Fixed: No
+Base: 959D50h
+Header address: FF959D50h
+Data address: FF959D68h
+Offset: C9D50h
+File GUID: BB48BAD1-569A-4615-AAD2-20C0F1722E70
+Type: 07h
+Attributes: 00h
+Full size: 54Fh (1359)
+Header size: 18h (24)
+Body size: 537h (1335)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 6Fh, valid
+Data checksum: AAh, valid

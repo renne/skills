@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AMTLockKBD
+Fixed: No
+Base: 929F40h
+Header address: FF929F40h
+Data address: FF929F58h
+Offset: 99F40h
+File GUID: 5507247A-846B-4F22-B55F-72B4049435EF
+Type: 07h
+Attributes: 00h
+Full size: 806h (2054)
+Header size: 18h (24)
+Body size: 7EEh (2030)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 9Bh, valid
+Data checksum: AAh, valid

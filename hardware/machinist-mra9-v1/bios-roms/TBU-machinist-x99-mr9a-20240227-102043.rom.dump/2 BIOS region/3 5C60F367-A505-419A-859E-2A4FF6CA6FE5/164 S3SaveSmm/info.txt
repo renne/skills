@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: S3SaveSmm
+Fixed: No
+Base: 9F0F90h
+Header address: FF9F0F90h
+Data address: FF9F0FA8h
+Offset: 160F90h
+File GUID: 413B1952-D564-4AEB-8CDA-8353161500BC
+Type: 0Ah
+Attributes: 00h
+Full size: 1625h (5669)
+Header size: 18h (24)
+Body size: 160Dh (5645)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 43h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: LegacyInterrupt
+Fixed: No
+Base: 8CB410h
+Header address: FF8CB410h
+Data address: FF8CB428h
+Offset: 3B410h
+File GUID: C1C418F9-591D-461C-82A2-B9CD96DFEA86
+Type: 07h
+Attributes: 00h
+Full size: 1AEh (430)
+Header size: 18h (24)
+Body size: 196h (406)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Dh, valid
+Data checksum: AAh, valid

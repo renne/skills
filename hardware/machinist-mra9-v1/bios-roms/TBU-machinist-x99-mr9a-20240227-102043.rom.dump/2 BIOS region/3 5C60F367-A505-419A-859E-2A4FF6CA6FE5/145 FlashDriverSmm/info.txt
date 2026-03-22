@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: FlashDriverSmm
+Fixed: No
+Base: 9D6B50h
+Header address: FF9D6B50h
+Data address: FF9D6B68h
+Offset: 146B50h
+File GUID: 0C375A90-4C4C-4428-8EA0-531BE8959BF7
+Type: 0Ah
+Attributes: 00h
+Full size: 22EAh (8938)
+Header size: 18h (24)
+Body size: 22D2h (8914)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 0Eh, valid
+Data checksum: AAh, valid

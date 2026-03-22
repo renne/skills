@@ -1,0 +1,8 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Offset: 18h
+Type: 19h
+Full size: 4E9Ah (20122)
+Header size: 4h (4)
+Body size: 4E96h (20118)

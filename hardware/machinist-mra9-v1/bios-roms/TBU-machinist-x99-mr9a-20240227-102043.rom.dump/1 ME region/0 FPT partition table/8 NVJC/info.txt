@@ -1,0 +1,9 @@
+Type: FPT entry
+Subtype: Invalid
+Fixed: Yes
+Base: 1130h
+Offset: 130h
+Full size: 20h (32)
+Partition offset: FFFFFFFFh
+Partition length: 3DA0h
+Partition type: 02h

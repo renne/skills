@@ -1,0 +1,16 @@
+Type: Microcode
+Subtype: Intel
+Fixed: Yes
+Base: EA0F20h
+Address: FFEA0F20h
+Offset: 10418h
+Full size: 7800h (30720)
+Header size: 0h (0u)
+Body size: 7800h (30720)
+Tail size: 0h (0u)
+Date: 18.06.2019
+CPU signature: 000406F1h
+Revision: 0B000038h
+Minimal update revision: 00000000h
+CPU platform Id: 000000EFh
+Checksum: E705E458h, valid

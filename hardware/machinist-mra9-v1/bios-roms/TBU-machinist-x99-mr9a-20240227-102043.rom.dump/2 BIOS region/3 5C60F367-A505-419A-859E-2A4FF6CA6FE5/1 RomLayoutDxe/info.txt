@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: RomLayoutDxe
+Fixed: No
+Base: 890118h
+Header address: FF890118h
+Data address: FF890130h
+Offset: 118h
+File GUID: AB7ED12E-1D78-4635-AB87-23F00A911EC7
+Type: 07h
+Attributes: 00h
+Full size: 665h (1637)
+Header size: 18h (24)
+Body size: 64Dh (1613)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 91h, valid
+Data checksum: AAh, valid

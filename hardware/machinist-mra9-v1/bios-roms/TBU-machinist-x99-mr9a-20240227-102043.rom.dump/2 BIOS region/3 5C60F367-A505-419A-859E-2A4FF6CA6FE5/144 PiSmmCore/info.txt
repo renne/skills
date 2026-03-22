@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM core
+Text: PiSmmCore
+Fixed: No
+Base: 9D3A20h
+Header address: FF9D3A20h
+Data address: FF9D3A38h
+Offset: 143A20h
+File GUID: E94F54CD-81EB-47ED-AEC3-856F5DC157A9
+Type: 0Dh
+Attributes: 00h
+Full size: 312Ch (12588)
+Header size: 18h (24)
+Body size: 3114h (12564)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 1Ah, valid
+Data checksum: AAh, valid

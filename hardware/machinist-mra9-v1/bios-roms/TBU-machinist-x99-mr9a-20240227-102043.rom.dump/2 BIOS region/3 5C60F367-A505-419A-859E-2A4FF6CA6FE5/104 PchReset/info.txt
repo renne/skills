@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PchReset
+Fixed: No
+Base: 95DA88h
+Header address: FF95DA88h
+Data address: FF95DAA0h
+Offset: CDA88h
+File GUID: AF59F2F5-5E28-4E03-80E2-4727545AF811
+Type: 07h
+Attributes: 00h
+Full size: A9Fh (2719)
+Header size: 18h (24)
+Body size: A87h (2695)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 03h, valid
+Data checksum: AAh, valid

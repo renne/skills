@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PchResetPeim
+Fixed: No
+Base: E7E5F8h
+Header address: FFE7E5F8h
+Data address: FFE7E610h
+Offset: DE5F8h
+File GUID: 147B4839-5DBE-413F-917F-DFEB687C6312
+Type: 06h
+Attributes: 00h
+Full size: 762h (1890)
+Header size: 18h (24)
+Body size: 74Ah (1866)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B3h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: CpuPeiDummy
+Fixed: No
+Base: DDB730h
+Header address: FFDDB730h
+Data address: FFDDB748h
+Offset: 3B730h
+File GUID: E60A79D5-DC9B-47F1-87D3-51BF697B6121
+Type: 06h
+Attributes: 00h
+Full size: 776h (1910)
+Header size: 18h (24)
+Body size: 75Eh (1886)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C0h, valid
+Data checksum: AAh, valid

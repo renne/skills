@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: PreviousMemoryTypeInformation
+Fixed: Yes
+Base: 810AB2h
+Header address: FF810AB2h
+Data address: FF810ABCh
+Offset: 10A6Ah
+Full size: 4Ah (74)
+Header size: Ah (10)
+Body size: 40h (64)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 12B76h

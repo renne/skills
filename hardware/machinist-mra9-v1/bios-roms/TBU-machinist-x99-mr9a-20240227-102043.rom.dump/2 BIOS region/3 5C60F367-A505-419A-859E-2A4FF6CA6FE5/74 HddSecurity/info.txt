@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: HddSecurity
+Fixed: No
+Base: 92E3C8h
+Header address: FF92E3C8h
+Data address: FF92E3E0h
+Offset: 9E3C8h
+File GUID: A9B700CF-019E-4D8B-A3A7-88E1EA01699E
+Type: 07h
+Attributes: 00h
+Full size: 1848h (6216)
+Header size: 18h (24)
+Body size: 1830h (6192)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Eh, valid
+Data checksum: AAh, valid

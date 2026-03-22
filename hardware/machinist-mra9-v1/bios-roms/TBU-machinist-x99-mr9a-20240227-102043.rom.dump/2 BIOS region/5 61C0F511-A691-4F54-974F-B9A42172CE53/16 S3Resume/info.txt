@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: S3Resume
+Fixed: No
+Base: DB4870h
+Header address: FFDB4870h
+Data address: FFDB4888h
+Offset: 14870h
+File GUID: EFD652CC-0E99-40F0-96C0-E08C089070FC
+Type: 06h
+Attributes: 00h
+Full size: 1C5Eh (7262)
+Header size: 18h (24)
+Body size: 1C46h (7238)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 00h, valid
+Data checksum: AAh, valid

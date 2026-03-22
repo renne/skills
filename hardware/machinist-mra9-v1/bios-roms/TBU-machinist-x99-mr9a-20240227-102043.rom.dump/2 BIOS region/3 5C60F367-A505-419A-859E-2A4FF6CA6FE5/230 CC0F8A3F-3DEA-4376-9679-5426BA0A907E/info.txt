@@ -1,0 +1,17 @@
+Type: File
+Subtype: Freeform
+Fixed: No
+Base: B56008h
+Header address: FFB56008h
+Data address: FFB56020h
+Offset: 2C6008h
+File GUID: CC0F8A3F-3DEA-4376-9679-5426BA0A907E
+Type: 02h
+Attributes: 00h
+Full size: 494h (1172)
+Header size: 18h (24)
+Body size: 47Ch (1148)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 87h, valid
+Data checksum: AAh, valid

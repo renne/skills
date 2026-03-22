@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: WdtPei
+Fixed: No
+Base: DA0168h
+Header address: FFDA0168h
+Data address: FFDA0180h
+Offset: 168h
+File GUID: 1D88C542-9DF7-424A-AA90-02B61F286938
+Type: 06h
+Attributes: 00h
+Full size: 6D6h (1750)
+Header size: 18h (24)
+Body size: 6BEh (1726)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 78h, valid
+Data checksum: AAh, valid

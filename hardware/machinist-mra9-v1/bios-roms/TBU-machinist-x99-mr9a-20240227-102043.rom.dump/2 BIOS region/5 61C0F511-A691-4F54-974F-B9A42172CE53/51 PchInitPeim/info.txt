@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PchInitPeim
+Fixed: No
+Base: E78AD0h
+Header address: FFE78AD0h
+Data address: FFE78AE8h
+Offset: D8AD0h
+File GUID: FD236AE7-0791-48C4-B29E-29BDEEE1A838
+Type: 06h
+Attributes: 00h
+Full size: 5B22h (23330)
+Header size: 18h (24)
+Body size: 5B0Ah (23306)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 83h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: StdDefaults
+Fixed: Yes
+Base: 800060h
+Header address: FF800060h
+Data address: FF800077h
+Offset: 18h
+Variable GUID: 4599D26F-1A11-49B8-B91F-858745CFF824
+GUID index: 0
+Full size: 1A91h (6801)
+Header size: 17h (23)
+Body size: 1A7Ah (6778)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

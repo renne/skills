@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: ErrOut
+Fixed: Yes
+Base: 845738h
+Header address: FF845738h
+Data address: FF84574Ah
+Offset: 56F0h
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 36h (54)
+Header size: 12h (18)
+Body size: 24h (36)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)

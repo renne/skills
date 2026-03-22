@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtBoot
+Fixed: No
+Base: 923E00h
+Header address: FF923E00h
+Data address: FF923E18h
+Offset: 93E00h
+File GUID: 39C7942C-C272-4912-9FE4-57F695CF5442
+Type: 07h
+Attributes: 00h
+Full size: 161h (353)
+Header size: 18h (24)
+Body size: 149h (329)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 7Eh, valid
+Data checksum: AAh, valid

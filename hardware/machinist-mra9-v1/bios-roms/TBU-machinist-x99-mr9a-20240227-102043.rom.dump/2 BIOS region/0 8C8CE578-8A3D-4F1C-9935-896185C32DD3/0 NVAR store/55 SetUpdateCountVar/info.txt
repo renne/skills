@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: SetUpdateCountVar
+Fixed: Yes
+Base: 804565h
+Header address: FF804565h
+Data address: FF804582h
+Offset: 451Dh
+Variable GUID: 81C76078-BFDE-4368-9790-570914C01A65
+GUID index: 23
+Full size: 21h (33)
+Header size: 1Dh (29)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: 6FEFh

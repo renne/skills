@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: SoftStrapsPeim
+Fixed: No
+Base: E8A6E8h
+Header address: FFE8A6E8h
+Data address: FFE8A700h
+Offset: EA6E8h
+File GUID: 1988A1D8-04FC-4D68-B58D-636F36F30D82
+Type: 06h
+Attributes: 00h
+Full size: 626h (1574)
+Header size: 18h (24)
+Body size: 60Eh (1550)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 33h, valid
+Data checksum: AAh, valid

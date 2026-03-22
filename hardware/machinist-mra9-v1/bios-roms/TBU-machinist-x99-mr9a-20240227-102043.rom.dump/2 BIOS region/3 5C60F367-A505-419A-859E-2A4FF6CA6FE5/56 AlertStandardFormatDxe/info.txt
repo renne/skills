@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AlertStandardFormatDxe
+Fixed: No
+Base: 91E560h
+Header address: FF91E560h
+Data address: FF91E578h
+Offset: 8E560h
+File GUID: 33C6406D-2F6B-41B5-8705-52BAFB633C09
+Type: 07h
+Attributes: 00h
+Full size: EBAh (3770)
+Header size: 18h (24)
+Body size: EA2h (3746)
+Tail size: 0h (0)
+State: F8h
+Header checksum: C0h, valid
+Data checksum: AAh, valid

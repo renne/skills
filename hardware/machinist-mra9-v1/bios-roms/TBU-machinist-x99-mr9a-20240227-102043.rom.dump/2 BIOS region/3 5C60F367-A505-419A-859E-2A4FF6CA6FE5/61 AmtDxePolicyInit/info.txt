@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmtDxePolicyInit
+Fixed: No
+Base: 9233E8h
+Header address: FF9233E8h
+Data address: FF923400h
+Offset: 933E8h
+File GUID: 28D46803-7646-4DFE-90ED-8575584ED6E6
+Type: 07h
+Attributes: 00h
+Full size: 498h (1176)
+Header size: 18h (24)
+Body size: 480h (1152)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 16h, valid
+Data checksum: AAh, valid

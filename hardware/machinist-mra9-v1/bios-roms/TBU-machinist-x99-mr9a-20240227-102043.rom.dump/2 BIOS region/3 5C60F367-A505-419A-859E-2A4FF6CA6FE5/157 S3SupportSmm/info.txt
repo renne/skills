@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: S3SupportSmm
+Fixed: No
+Base: 9E5080h
+Header address: FF9E5080h
+Data address: FF9E5098h
+Offset: 155080h
+File GUID: BFBEDBD4-1B7E-42F5-A528-4351E860F120
+Type: 0Ah
+Attributes: 00h
+Full size: 381h (897)
+Header size: 18h (24)
+Body size: 369h (873)
+Tail size: 0h (0)
+State: F8h
+Header checksum: BCh, valid
+Data checksum: AAh, valid

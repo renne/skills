@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: MemoryConfig0
+Fixed: Yes
+Base: 80F572h
+Header address: FF80F572h
+Data address: FF80F57Ch
+Offset: F52Ah
+Full size: 334h (820)
+Header size: Ah (10)
+Body size: 32Ah (810)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 101A4h

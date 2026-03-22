@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: MtrrS3SaveRestorePei
+Fixed: No
+Base: DDCF70h
+Header address: FFDDCF70h
+Data address: FFDDCF88h
+Offset: 3CF70h
+File GUID: FFB2D055-6E85-4572-A7DB-77C6F67B9258
+Type: 06h
+Attributes: 00h
+Full size: 312h (786)
+Header size: 18h (24)
+Body size: 2FAh (762)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 4Bh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: HeciSmm
+Fixed: No
+Base: 9FD830h
+Header address: FF9FD830h
+Data address: FF9FD848h
+Offset: 16D830h
+File GUID: 921CD783-3E22-4579-A71F-00D74197FCC8
+Type: 0Ah
+Attributes: 00h
+Full size: C57h (3159)
+Header size: 18h (24)
+Body size: C3Fh (3135)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 34h, valid
+Data checksum: AAh, valid

@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PeiRamBootDxe
+Fixed: No
+Base: AFED48h
+Header address: FFAFED48h
+Data address: FFAFED60h
+Offset: 26ED48h
+File GUID: 534F73CF-0937-418A-90C7-4F1079DCAED1
+Type: 07h
+Attributes: 00h
+Full size: 81Eh (2078)
+Header size: 18h (24)
+Body size: 806h (2054)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Ah, valid
+Data checksum: AAh, valid

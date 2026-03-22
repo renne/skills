@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Dhcp4Dxe
+Fixed: No
+Base: 9A1238h
+Header address: FF9A1238h
+Data address: FF9A1250h
+Offset: 111238h
+File GUID: 94734718-0BBC-47FB-96A5-EE7A5AE6A2AD
+Type: 07h
+Attributes: 00h
+Full size: 371Ah (14106)
+Header size: 18h (24)
+Body size: 3702h (14082)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 07h, valid
+Data checksum: AAh, valid

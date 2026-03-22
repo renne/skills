@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: EbcDxe
+Fixed: No
+Base: 8A9750h
+Header address: FF8A9750h
+Data address: FF8A9768h
+Offset: 19750h
+File GUID: 13AC6DD0-73D0-11D4-B06B-00AA00BD6DE7
+Type: 07h
+Attributes: 00h
+Full size: 19AAh (6570)
+Header size: 18h (24)
+Body size: 1992h (6546)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 3Ch, valid
+Data checksum: AAh, valid

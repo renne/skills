@@ -1,0 +1,20 @@
+Type: Section
+Subtype: MM dependency
+Fixed: No
+Base: 9E2560h
+Header address: FF9E2560h
+Data address: FF9E2564h
+Offset: 18h
+Type: 1Ch
+Full size: 4Ch (76)
+Header size: 4h (4)
+Body size: 48h (72)
+Parsed expression:
+PUSH F4CCBFB7-F6E0-47FD-9DD4-10A8F150C191
+PUSH 456D2859-A84B-4E47-A2EE-3276D886997D
+PUSH 4B0165A9-61D6-4E23-A0B5-3EC79C2E30D5
+PUSH 13A3F0F6-264A-3EF0-F2E0-DEC512342F34
+AND
+AND
+AND
+END

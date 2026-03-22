@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: ArpDxe
+Fixed: No
+Base: 992868h
+Header address: FF992868h
+Data address: FF992880h
+Offset: 102868h
+File GUID: 529D3F93-E8E9-4E73-B1E1-BDF6A9D50113
+Type: 07h
+Attributes: 00h
+Full size: 1A57h (6743)
+Header size: 18h (24)
+Body size: 1A3Fh (6719)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 5Eh, valid
+Data checksum: AAh, valid

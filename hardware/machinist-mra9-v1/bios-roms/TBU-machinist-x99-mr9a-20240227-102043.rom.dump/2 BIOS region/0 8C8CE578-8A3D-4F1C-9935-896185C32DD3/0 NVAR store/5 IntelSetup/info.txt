@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: IntelSetup
+Fixed: Yes
+Base: 801B7Dh
+Header address: FF801B7Dh
+Data address: FF801B93h
+Offset: 1B35h
+Variable GUID: EC87D643-EBA4-4BB5-A1E5-3F3E36B20DA9
+GUID index: 4
+Full size: 17E1h (6113)
+Header size: 16h (22)
+Body size: 17CBh (6091)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)
+Next node at offset: 581Ah

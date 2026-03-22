@@ -1,0 +1,16 @@
+Type: NVAR entry
+Subtype: Link
+Text: ConIn
+Fixed: Yes
+Base: 803F9Ch
+Header address: FF803F9Ch
+Data address: FF803FADh
+Offset: 3F54h
+Variable GUID: 8BE4DF61-93CA-11D2-AA0D-00E098032B8C
+GUID index: 12
+Full size: 55h (85)
+Header size: 11h (17)
+Body size: 44h (68)
+Tail size: 0h (0)
+Attributes: 83h (Runtime, AsciiName, Valid)
+Next node at offset: 5355h

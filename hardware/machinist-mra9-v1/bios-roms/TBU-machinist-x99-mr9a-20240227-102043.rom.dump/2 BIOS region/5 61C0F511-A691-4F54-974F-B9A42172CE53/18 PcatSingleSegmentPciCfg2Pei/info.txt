@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: PcatSingleSegmentPciCfg2Pei
+Fixed: No
+Base: DB7070h
+Header address: FFDB7070h
+Data address: FFDB7088h
+Offset: 17070h
+File GUID: 4F1F379F-2A62-48BB-AC34-D3F135C6E2B7
+Type: 06h
+Attributes: 00h
+Full size: ABEh (2750)
+Header size: 18h (24)
+Body size: AA6h (2726)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 27h, valid
+Data checksum: AAh, valid

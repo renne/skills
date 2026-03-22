@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: DefaultLegacyDevOrder
+Fixed: Yes
+Base: 80F0F8h
+Header address: FF80F0F8h
+Data address: FF80F102h
+Offset: F0B0h
+Full size: 16h (22)
+Header size: Ah (10)
+Body size: Ch (12)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 11CF2h

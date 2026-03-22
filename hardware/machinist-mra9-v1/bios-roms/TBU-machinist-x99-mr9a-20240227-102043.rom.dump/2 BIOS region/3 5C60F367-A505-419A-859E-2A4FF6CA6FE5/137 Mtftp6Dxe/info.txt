@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Mtftp6Dxe
+Fixed: No
+Base: 9C30A0h
+Header address: FF9C30A0h
+Data address: FF9C30B8h
+Offset: 1330A0h
+File GUID: 99F03B99-98D8-49DD-A8D3-3219D0FFE41E
+Type: 07h
+Attributes: 00h
+Full size: 3C5Dh (15453)
+Header size: 18h (24)
+Body size: 3C45h (15429)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D6h, valid
+Data checksum: AAh, valid

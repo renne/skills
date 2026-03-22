@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: cr
+Fixed: Yes
+Base: 8135A3h
+Header address: FF8135A3h
+Data address: FF8135B1h
+Offset: 1355Bh
+Variable GUID: 47C7B227-C42A-11D2-8E57-00A0C969723B
+GUID index: 28
+Full size: 62h (98)
+Header size: Eh (14)
+Body size: 54h (84)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

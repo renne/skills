@@ -1,0 +1,14 @@
+Type: NVAR entry
+Subtype: Link
+Text: MemoryConfig0
+Fixed: Yes
+Base: 811F7Bh
+Header address: FF811F7Bh
+Data address: FF811F85h
+Offset: 11F33h
+Full size: 330h (816)
+Header size: Ah (10)
+Body size: 326h (806)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
+Next node at offset: 12BDCh

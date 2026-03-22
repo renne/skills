@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: DpcDxe
+Fixed: No
+Base: 8ECFF8h
+Header address: FF8ECFF8h
+Data address: FF8ED010h
+Offset: 5CFF8h
+File GUID: A210F973-229D-4F4D-AA37-9895E6C9EABA
+Type: 07h
+Attributes: 00h
+Full size: 3B8h (952)
+Header size: 18h (24)
+Body size: 3A0h (928)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 64h, valid
+Data checksum: AAh, valid

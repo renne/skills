@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DBFAD4h
+Header address: FFDBFAD4h
+Data address: FFDBFAD8h
+Offset: 739Ch
+Type: 15h
+Full size: 28h (40)
+Header size: 4h (4)
+Body size: 24h (36)
+Text: PlatformEarlyInit

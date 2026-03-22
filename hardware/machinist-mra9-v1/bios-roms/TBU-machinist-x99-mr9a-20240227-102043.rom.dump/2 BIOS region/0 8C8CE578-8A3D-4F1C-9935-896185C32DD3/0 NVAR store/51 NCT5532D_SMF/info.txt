@@ -1,0 +1,15 @@
+Type: NVAR entry
+Subtype: Full
+Text: NCT5532D_SMF
+Fixed: Yes
+Base: 8044B7h
+Header address: FF8044B7h
+Data address: FF8044CFh
+Offset: 446Fh
+Variable GUID: 2634D36A-335D-4312-B210-77E3134A61A6
+GUID index: 20
+Full size: 34h (52)
+Header size: 18h (24)
+Body size: 1Ch (28)
+Tail size: 0h (0)
+Attributes: 82h (AsciiName, Valid)

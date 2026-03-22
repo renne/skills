@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SmmControl2Dxe
+Fixed: No
+Base: 95E528h
+Header address: FF95E528h
+Data address: FF95E540h
+Offset: CE528h
+File GUID: BA31025C-4AA8-4CAE-98CA-BA12C6BC7D78
+Type: 07h
+Attributes: 00h
+Full size: 5F6h (1526)
+Header size: 18h (24)
+Body size: 5DEh (1502)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 24h, valid
+Data checksum: AAh, valid

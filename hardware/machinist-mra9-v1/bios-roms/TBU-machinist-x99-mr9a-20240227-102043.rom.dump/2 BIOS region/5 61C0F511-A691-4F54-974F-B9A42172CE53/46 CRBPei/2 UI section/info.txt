@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DE232Ch
+Header address: FFDE232Ch
+Data address: FFDE2330h
+Offset: 234h
+Type: 15h
+Full size: 12h (18)
+Header size: 4h (4)
+Body size: Eh (14)
+Text: CRBPei

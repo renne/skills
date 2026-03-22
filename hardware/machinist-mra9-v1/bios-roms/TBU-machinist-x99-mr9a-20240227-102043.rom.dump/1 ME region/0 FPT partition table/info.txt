@@ -1,0 +1,19 @@
+Type: FPT store
+Subtype: 
+Fixed: Yes
+Base: 1000h
+Offset: 0h
+Full size: 2B0h (688)
+Header size: 30h (48)
+Body size: 280h (640)
+ROM bypass vector: present
+Number of entries: 20
+Header version: 20h
+Entry version: 10h
+Header length: 30h
+Flash cycle life: 0007h
+Flash cycle limit: 0064h
+UMA size: 10h
+Flags: FFFFFC01h
+FITC version: 9.1.10.1000
+Checksum: D6h

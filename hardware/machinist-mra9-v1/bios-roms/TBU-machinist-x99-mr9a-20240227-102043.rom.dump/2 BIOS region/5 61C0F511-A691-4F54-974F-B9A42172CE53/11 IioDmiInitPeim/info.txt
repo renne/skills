@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: IioDmiInitPeim
+Fixed: No
+Base: DB0000h
+Header address: FFDB0000h
+Data address: FFDB0018h
+Offset: 10000h
+File GUID: 62EB9C56-A79C-4423-A7F0-891A345208CD
+Type: 06h
+Attributes: 00h
+Full size: D1Ah (3354)
+Header size: 18h (24)
+Body size: D02h (3330)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 55h, valid
+Data checksum: AAh, valid

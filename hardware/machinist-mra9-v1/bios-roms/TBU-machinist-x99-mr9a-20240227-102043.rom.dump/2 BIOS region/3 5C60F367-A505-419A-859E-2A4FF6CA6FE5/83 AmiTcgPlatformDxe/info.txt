@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: AmiTcgPlatformDxe
+Fixed: No
+Base: 938078h
+Header address: FF938078h
+Data address: FF938090h
+Offset: A8078h
+File GUID: A29A63E3-E4E7-495F-8A6A-07738300CBB3
+Type: 07h
+Attributes: 00h
+Full size: 3B65h (15205)
+Header size: 18h (24)
+Body size: 3B4Dh (15181)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F5h, valid
+Data checksum: AAh, valid

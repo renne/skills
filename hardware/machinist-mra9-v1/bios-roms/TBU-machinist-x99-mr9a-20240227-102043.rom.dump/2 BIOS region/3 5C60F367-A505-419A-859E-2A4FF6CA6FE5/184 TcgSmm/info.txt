@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: TcgSmm
+Fixed: No
+Base: A0AE10h
+Header address: FFA0AE10h
+Data address: FFA0AE28h
+Offset: 17AE10h
+File GUID: FD93F9E1-3C73-46E0-B7B8-2BBA3F718F6C
+Type: 0Ah
+Attributes: 00h
+Full size: A49h (2633)
+Header size: 18h (24)
+Body size: A31h (2609)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 65h, valid
+Data checksum: AAh, valid

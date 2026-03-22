@@ -1,0 +1,11 @@
+Type: Section
+Subtype: Raw
+Fixed: No
+Base: 925E98h
+Header address: FF925E98h
+Data address: FF925E9Ch
+Offset: 88h
+Type: 19h
+Full size: 1Ch (28)
+Header size: 4h (4)
+Body size: 18h (24)

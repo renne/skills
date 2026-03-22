@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PpmInitialize
+Fixed: No
+Base: 8C7FB0h
+Header address: FF8C7FB0h
+Data address: FF8C7FC8h
+Offset: 37FB0h
+File GUID: 3FFCAE95-23CF-4967-94F5-16352F68E43B
+Type: 07h
+Attributes: 00h
+Full size: 1B29h (6953)
+Header size: 18h (24)
+Body size: 1B11h (6929)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 0Bh, valid
+Data checksum: AAh, valid

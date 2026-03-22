@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: IdeRecovery
+Fixed: No
+Base: E86F20h
+Header address: FFE86F20h
+Data address: FFE86F38h
+Offset: E6F20h
+File GUID: 10C22623-DB6F-4721-AA30-4C12AF4230A7
+Type: 06h
+Attributes: 00h
+Full size: C70h (3184)
+Header size: 18h (24)
+Body size: C58h (3160)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B1h, valid
+Data checksum: AAh, valid

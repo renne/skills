@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SataController
+Fixed: No
+Base: 9708E8h
+Header address: FF9708E8h
+Data address: FF970900h
+Offset: E08E8h
+File GUID: BB65942B-521F-4EC3-BAF9-A92540CF60D2
+Type: 07h
+Attributes: 00h
+Full size: C9Ah (3226)
+Header size: 18h (24)
+Body size: C82h (3202)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 30h, valid
+Data checksum: AAh, valid

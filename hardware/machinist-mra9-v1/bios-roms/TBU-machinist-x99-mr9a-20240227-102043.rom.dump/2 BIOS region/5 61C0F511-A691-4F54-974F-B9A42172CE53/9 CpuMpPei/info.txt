@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: CpuMpPei
+Fixed: No
+Base: DAE908h
+Header address: FFDAE908h
+Data address: FFDAE920h
+Offset: E908h
+File GUID: 9D7AF408-64A3-4AF4-83C9-2D1095F700D1
+Type: 06h
+Attributes: 00h
+Full size: 100Ah (4106)
+Header size: 18h (24)
+Body size: FF2h (4082)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A2h, valid
+Data checksum: AAh, valid

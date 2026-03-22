@@ -1,0 +1,16 @@
+Type: Microcode
+Subtype: Intel
+Fixed: Yes
+Base: E90B20h
+Address: FFE90B20h
+Offset: 18h
+Full size: 8800h (34816)
+Header size: 0h (0u)
+Body size: 8800h (34816)
+Tail size: 0h (0u)
+Date: 02.10.2013
+CPU signature: 000306F1h
+Revision: 80000013h
+Minimal update revision: 00000000h
+CPU platform Id: 000000EFh
+Checksum: 43284BBAh, valid

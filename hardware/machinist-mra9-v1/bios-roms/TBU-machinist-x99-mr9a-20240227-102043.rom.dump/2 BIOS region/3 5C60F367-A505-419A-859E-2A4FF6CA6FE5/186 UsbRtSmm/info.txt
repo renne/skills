@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: UsbRtSmm
+Fixed: No
+Base: A0C6E8h
+Header address: FFA0C6E8h
+Data address: FFA0C700h
+Offset: 17C6E8h
+File GUID: 04EAAAA1-29A1-11D7-8838-00500473D4EB
+Type: 0Ah
+Attributes: 00h
+Full size: E6DBh (59099)
+Header size: 18h (24)
+Body size: E6C3h (59075)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 04h, valid
+Data checksum: AAh, valid

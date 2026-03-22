@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Platform
+Fixed: No
+Base: 907010h
+Header address: FF907010h
+Data address: FF907028h
+Offset: 77010h
+File GUID: ABBCE13D-E25A-4D9F-A1F9-2F7710786892
+Type: 07h
+Attributes: 00h
+Full size: 16749h (91977)
+Header size: 18h (24)
+Body size: 16731h (91953)
+Tail size: 0h (0)
+State: F8h
+Header checksum: D9h, valid
+Data checksum: AAh, valid

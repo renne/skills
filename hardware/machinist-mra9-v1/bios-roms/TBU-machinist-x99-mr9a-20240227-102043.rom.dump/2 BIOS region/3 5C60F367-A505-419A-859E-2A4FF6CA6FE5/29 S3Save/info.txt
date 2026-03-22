@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: S3Save
+Fixed: No
+Base: 8E3880h
+Header address: FF8E3880h
+Data address: FF8E3898h
+Offset: 53880h
+File GUID: 26A2481E-4424-46A2-9943-CC4039EAD8F8
+Type: 07h
+Attributes: 00h
+Full size: 1536h (5430)
+Header size: 18h (24)
+Body size: 151Eh (5406)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 55h, valid
+Data checksum: AAh, valid

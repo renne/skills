@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SmiFlashDxe
+Fixed: No
+Base: 9670E0h
+Header address: FF9670E0h
+Data address: FF9670F8h
+Offset: D70E0h
+File GUID: BB8C2CF3-A5E3-49EF-941B-4A01FAC6FD5F
+Type: 07h
+Attributes: 00h
+Full size: 570h (1392)
+Header size: 18h (24)
+Body size: 558h (1368)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 48h, valid
+Data checksum: AAh, valid

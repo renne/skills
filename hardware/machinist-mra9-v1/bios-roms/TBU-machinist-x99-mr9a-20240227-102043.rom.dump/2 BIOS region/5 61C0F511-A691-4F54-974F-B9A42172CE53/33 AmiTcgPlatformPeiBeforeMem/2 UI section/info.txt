@@ -1,0 +1,12 @@
+Type: Section
+Subtype: UI
+Fixed: No
+Base: DD795Ch
+Header address: FFDD795Ch
+Data address: FFDD7960h
+Offset: 984h
+Type: 15h
+Full size: 3Ah (58)
+Header size: 4h (4)
+Body size: 36h (54)
+Text: AmiTcgPlatformPeiBeforeMem

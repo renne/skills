@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Uhcd
+Fixed: No
+Base: 940A40h
+Header address: FF940A40h
+Data address: FF940A58h
+Offset: B0A40h
+File GUID: 580DD900-385D-11D7-883A-00500473D4EB
+Type: 07h
+Attributes: 00h
+Full size: 62FFh (25343)
+Header size: 18h (24)
+Body size: 62E7h (25319)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 95h, valid
+Data checksum: AAh, valid

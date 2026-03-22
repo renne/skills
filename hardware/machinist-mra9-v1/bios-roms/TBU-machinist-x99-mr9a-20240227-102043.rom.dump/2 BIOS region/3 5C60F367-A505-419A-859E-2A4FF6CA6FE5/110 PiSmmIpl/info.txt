@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: PiSmmIpl
+Fixed: No
+Base: 967650h
+Header address: FF967650h
+Data address: FF967668h
+Offset: D7650h
+File GUID: 2FA2A6DA-11D5-4DC3-999A-749648B03C56
+Type: 07h
+Attributes: 00h
+Full size: 1607h (5639)
+Header size: 18h (24)
+Body size: 15EFh (5615)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CEh, valid
+Data checksum: AAh, valid

@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: WakeUpType
+Fixed: Yes
+Base: 84B620h
+Header address: FF84B620h
+Data address: FF84B62Ah
+Offset: B5D8h
+Full size: Eh (14)
+Header size: Ah (10)
+Body size: 4h (4)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)

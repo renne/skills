@@ -1,0 +1,8 @@
+Type: NVAR GUID store
+Subtype: 
+Fixed: Yes
+Base: 801A71h
+Address: FF801A71h
+Offset: 1A11h
+Full size: 80h (128)
+GUIDs in store: 8

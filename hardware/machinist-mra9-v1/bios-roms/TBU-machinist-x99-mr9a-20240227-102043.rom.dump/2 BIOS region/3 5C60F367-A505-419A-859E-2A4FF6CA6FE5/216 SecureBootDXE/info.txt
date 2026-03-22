@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: SecureBootDXE
+Fixed: No
+Base: AFF568h
+Header address: FFAFF568h
+Data address: FFAFF580h
+Offset: 26F568h
+File GUID: 4551F2F5-C684-4F27-936F-C7B04A5C5FF1
+Type: 07h
+Attributes: 00h
+Full size: 187Ch (6268)
+Header size: 18h (24)
+Body size: 1864h (6244)
+Tail size: 0h (0)
+State: F8h
+Header checksum: B9h, valid
+Data checksum: AAh, valid

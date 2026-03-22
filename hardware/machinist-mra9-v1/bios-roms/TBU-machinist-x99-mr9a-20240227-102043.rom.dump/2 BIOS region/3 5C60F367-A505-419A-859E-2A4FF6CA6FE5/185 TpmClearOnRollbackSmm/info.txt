@@ -1,0 +1,18 @@
+Type: File
+Subtype: SMM module
+Text: TpmClearOnRollbackSmm
+Fixed: No
+Base: A0B860h
+Header address: FFA0B860h
+Data address: FFA0B878h
+Offset: 17B860h
+File GUID: C56EDB22-3D78-4705-A222-BDD6BD154DA0
+Type: 0Ah
+Attributes: 00h
+Full size: E85h (3717)
+Header size: 18h (24)
+Body size: E6Dh (3693)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 1Ch, valid
+Data checksum: AAh, valid

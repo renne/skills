@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: CpuMpDxe
+Fixed: No
+Base: 8B6AF0h
+Header address: FF8B6AF0h
+Data address: FF8B6B08h
+Offset: 26AF0h
+File GUID: 40BEAB40-CECE-4909-B133-20A413AE19E9
+Type: 07h
+Attributes: 00h
+Full size: 6658h (26200)
+Header size: 18h (24)
+Body size: 6640h (26176)
+Tail size: 0h (0)
+State: F8h
+Header checksum: F9h, valid
+Data checksum: AAh, valid

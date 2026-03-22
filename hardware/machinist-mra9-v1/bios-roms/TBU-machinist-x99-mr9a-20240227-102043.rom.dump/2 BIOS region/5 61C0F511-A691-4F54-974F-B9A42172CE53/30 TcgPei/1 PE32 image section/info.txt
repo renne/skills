@@ -1,0 +1,21 @@
+Type: Section
+Subtype: PE32 image
+Fixed: No
+Base: DC5DECh
+Header address: FFDC5DECh
+Data address: FFDC5DF0h
+Offset: 54h
+Type: 10h
+Full size: 4384h (17284)
+Header size: 4h (4)
+Body size: 4380h (17280)
+DOS signature: 5A4Dh
+PE signature: 00004550h
+Machine type: x86
+Number of sections: 2
+Characteristics: 2102h
+Optional header signature: 010Bh
+Subsystem: 000Bh
+Address of entry point: 620h
+Base of code: 220h
+Image base: FFDC5DF0h

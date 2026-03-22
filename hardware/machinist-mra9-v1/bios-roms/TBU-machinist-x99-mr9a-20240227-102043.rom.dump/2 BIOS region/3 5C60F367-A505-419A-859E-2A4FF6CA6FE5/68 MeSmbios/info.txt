@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: MeSmbios
+Fixed: No
+Base: 9293D8h
+Header address: FF9293D8h
+Data address: FF9293F0h
+Offset: 993D8h
+File GUID: E764500B-E398-4AB7-BBBC-99A8E683681F
+Type: 07h
+Attributes: 00h
+Full size: 702h (1794)
+Header size: 18h (24)
+Body size: 6EAh (1770)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 26h, valid
+Data checksum: AAh, valid

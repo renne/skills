@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: OEMPei
+Fixed: No
+Base: DDD288h
+Header address: FFDDD288h
+Data address: FFDDD2A0h
+Offset: 3D288h
+File GUID: 0D1ED2F7-E92B-4562-92DD-5C82EC917EFF
+Type: 06h
+Attributes: 00h
+Full size: 35Eh (862)
+Header size: 18h (24)
+Body size: 346h (838)
+Tail size: 0h (0)
+State: F8h
+Header checksum: A3h, valid
+Data checksum: AAh, valid

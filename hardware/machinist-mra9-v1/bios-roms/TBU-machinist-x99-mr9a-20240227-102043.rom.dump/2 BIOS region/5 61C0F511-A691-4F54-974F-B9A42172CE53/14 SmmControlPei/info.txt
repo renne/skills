@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: SmmControlPei
+Fixed: No
+Base: DB3268h
+Header address: FFDB3268h
+Data address: FFDB3280h
+Offset: 13268h
+File GUID: 60EC7720-512B-4490-9FD1-A336769AE01F
+Type: 06h
+Attributes: 00h
+Full size: 3A2h (930)
+Header size: 18h (24)
+Body size: 38Ah (906)
+Tail size: 0h (0)
+State: F8h
+Header checksum: CAh, valid
+Data checksum: AAh, valid

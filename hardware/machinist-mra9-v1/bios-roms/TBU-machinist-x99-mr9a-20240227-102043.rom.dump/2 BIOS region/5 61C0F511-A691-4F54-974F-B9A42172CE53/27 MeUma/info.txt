@@ -1,0 +1,18 @@
+Type: File
+Subtype: PEI module
+Text: MeUma
+Fixed: No
+Base: DC2638h
+Header address: FFDC2638h
+Data address: FFDC2650h
+Offset: 22638h
+File GUID: B6A2AFF3-767C-5658-C37A-D1C82EF76543
+Type: 06h
+Attributes: 00h
+Full size: A52h (2642)
+Header size: 18h (24)
+Body size: A3Ah (2618)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 61h, valid
+Data checksum: AAh, valid

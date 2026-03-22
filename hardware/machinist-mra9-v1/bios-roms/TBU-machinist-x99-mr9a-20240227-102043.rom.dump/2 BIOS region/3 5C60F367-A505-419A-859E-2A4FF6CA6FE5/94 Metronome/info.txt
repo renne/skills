@@ -1,0 +1,18 @@
+Type: File
+Subtype: DXE driver
+Text: Metronome
+Fixed: No
+Base: 958B10h
+Header address: FF958B10h
+Data address: FF958B28h
+Offset: C8B10h
+File GUID: C8339973-A563-4561-B858-D8476F9DEFC4
+Type: 07h
+Attributes: 00h
+Full size: 23Dh (573)
+Header size: 18h (24)
+Body size: 225h (549)
+Tail size: 0h (0)
+State: F8h
+Header checksum: 17h, valid
+Data checksum: AAh, valid

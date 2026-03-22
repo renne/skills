@@ -1,0 +1,13 @@
+Type: NVAR entry
+Subtype: Data
+Text: SmbiosScratchBuffer
+Fixed: Yes
+Base: 8497C3h
+Header address: FF8497C3h
+Data address: FF8497CDh
+Offset: 977Bh
+Full size: 12h (18)
+Header size: Ah (10)
+Body size: 8h (8)
+Tail size: 0h (0)
+Attributes: 88h (DataOnly, Valid)
