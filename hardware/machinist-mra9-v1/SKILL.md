@@ -351,7 +351,7 @@ Slot labels are silk-screened on the PCB. **DIMM1 is always the slot nearest the
 | Purpose | CUDA compute only (no display output) |
 | Serial numbers | GPU0: `1321920049451`, GPU1: `1321620017216` |
 
-> **V100 and "PCI Out of Resources":** Both Tesla V100s request large 64-bit prefetchable memory BARs. Without "Above 4G Decoding" enabled in BIOS, the firmware cannot map these into the 32-bit MMIO window (0–4 GB) and logs "PCI Out of Resources" errors. The BARs are left unmapped and the GPUs are unusable for CUDA.
+> **V100 and "PCI Out of Resources":** Both Tesla V100s request large 64-bit prefetchable memory BARs. Without "Above 4G Decoding" enabled in BIOS, the firmware cannot map these into the 32-bit MMIO window (0–4 GB) and logs "PCI Out of Resources" errors. The BARs are left unmapped and the GPUs are unusable for CUDA. **Additionally, the NVMe SSD (`02:00.0`) also becomes invisible to the OS when Above 4G Decoding is disabled on this board — always keep it enabled.**
 
 ### Validated test results (mra9, 2026-03-22)
 
