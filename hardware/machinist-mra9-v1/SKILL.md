@@ -26,16 +26,17 @@ Revision v1.0 is the original production run — no debug display, no onboard po
 
 ## Installed Configuration (`mra9`)
 
-Confirmed hardware as of live system inspection (Ubuntu 24.04.3 LTS live via Ventoy):
+Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ventoy, kernel 6.17.0-14-generic):
 
 | Component | Details |
 |---|---|
 | CPU | Intel Xeon E5-2620 v3 @ 2.40 GHz (6C/12T, max turbo 3.2 GHz) |
 | RAM | 1× 8 GB DDR4 (Corsair CMK8GX4M1A2400C16) in slot **DIMM_B1**, running at **1866 MT/s** (JEDEC default; XMP not supported) |
-| GPU | NVIDIA GeForce GT 710 (GK208B rev a1) — PCIe slot `05:00.0` |
+| GPU (display) | NVIDIA GeForce GT 710 (GK208B rev a1, ZOTAC 19da:5360, 1 GB DDR3) — PCIe x1 slot (PCH-attached), PCIe addr `05:00.0` |
+| GPU (compute) | 2× NVIDIA Tesla V100 (SXM2 or PCIe) — currently **removed** pending Above 4G Decoding fix; intended for CPU-attached PCIe x16 slots |
 | NIC | Realtek RTL8111/8168/8211/8411 GbE (`enp6s0`, PCIe `06:00.0`) |
 | Internal storage | **None installed** — system currently boots via Ventoy USB (SanDisk 57.3 GB, `/dev/sda`) |
-| OS | Ubuntu 24.04.3 LTS (live environment from Ventoy) |
+| OS | Ubuntu 24.04.4 LTS (live environment from Ventoy) |
 
 > **RAM slot note:** On `mra9` (Machinist board with Huananzhi BIOS cross-flashed), SMBIOS reports the populated single-DIMM slot as **DIMM_B1** (Node 1). The physical silkscreen on the Machinist board labels this slot **DIMM1**. The Huananzhi BIOS relabels it B1 in its SMBIOS tables. Single-DIMM in the physical DIMM1 slot works correctly.
 
@@ -270,6 +271,126 @@ Populating **any other combination** may result in no POST or reduced stability.
 Slot labels are silk-screened on the PCB. **DIMM1 is always the slot nearest the LGA 2011-3 socket.**
 
 > **Huananzhi BIOS cross-flash note:** When the Huananzhi X99-8M-F BIOS is flashed, SMBIOS reports the slots as `DIMM_A1/A2/B1/B2` — `DIMM1` maps to `DIMM_B1`. If no-POST occurs with single DIMM in DIMM1, verify it is seated correctly; no need to move to another slot.
+
+## GPU Configuration
+
+### Display GPU: NVIDIA GeForce GT 710 (ZOTAC)
+
+| Parameter | Value |
+|---|---|
+| Model | NVIDIA GeForce GT 710 |
+| GPU die | GK208B (Kepler, 28 nm) |
+| Device ID | `10de:128b` rev a1 |
+| Subsystem | ZOTAC `19da:5360` |
+| VRAM | 1 GB DDR3 |
+| PCIe slot | x1 slot (PCH-attached), PCIe address `05:00.0` |
+| VBIOS version | v80.28.A6.00.10, 59,904 bytes |
+| VBIOS type | **Legacy-only** (PCIR code_type=0, x86 real mode, no EFI/GOP partition) |
+| VBIOS backup | `~/Downloads/gt710_current.rom` (local machine, persistent) |
+| Driver | `nouveau` (open source) or proprietary NVIDIA 470.xx branch |
+
+> **VBIOS note:** The ZOTAC GT-710 1 GB DDR3 ships with a **legacy-only VBIOS** — no UEFI GOP module. This causes a black screen during BIOS POST when "Above 4G Decoding" is enabled (see section below). The OS will initialize the GPU correctly via driver regardless.
+
+### Compute GPUs: NVIDIA Tesla V100 (×2)
+
+| Parameter | Value |
+|---|---|
+| Model | NVIDIA Tesla V100 |
+| Quantity | 2 (currently **removed** — pending Above 4G Decoding fix) |
+| PCIe slots | CPU-attached x16 slots (PCIe Gen 3, 16× lanes from CPU) |
+| BAR size | 64-bit prefetchable BAR up to 16 GB — **requires Above 4G Decoding** |
+| Purpose | CUDA compute only (no display output) |
+
+> **V100 and "PCI Out of Resources":** Both Tesla V100s request large 64-bit prefetchable memory BARs. Without "Above 4G Decoding" enabled in BIOS, the firmware cannot map these into the 32-bit MMIO window (0–4 GB) and logs "PCI Out of Resources" errors. The BARs are left unmapped and the GPUs are unusable for CUDA.
+
+## Above 4G Decoding — Root Cause, Diagnosis, and Fix
+
+### Problem
+
+Enabling "Above 4G Decoding" in BIOS causes the GT-710 to output a **black screen from the first POST** with zero video output. This is **not** a hang — the system still boots; it is a POST-display-only issue.
+
+### Root Cause (Confirmed)
+
+When Above 4G Decoding is active, the BIOS MMIO resource allocator remaps the GT-710's 64-bit prefetchable BARs (Region 1: 128 MB framebuffer, Region 3: 32 MB) to addresses **above 4 GB**. The GT-710's legacy VBIOS runs in **16-bit real mode** during POST initialization and cannot address MMIO above 4 GB. The framebuffer becomes unreachable → black screen during POST.
+
+This affects **BIOS/POST display only**. The Linux OS (nouveau or NVIDIA proprietary driver) runs in 64-bit protected mode and can address any BAR location. **Display returns to normal once the OS boots and loads the driver.**
+
+### Confirmed non-causes (all ruled out via BIOS inspection)
+
+| BIOS Setting | Path | Confirmed value | Effect |
+|---|---|---|---|
+| Active Video | IntelRCSetup → Miscellaneous Configuration → Active Video | Offboard | Correct — no change needed |
+| Option ROM Execution → Video | CSM section | Legacy | Already Legacy — not the cause |
+| PCH Display | PCH section | Enabled | Correct |
+| Legacy VGA socket | IIO section | Socket 0 | Correct |
+| IIO ID0 Gen setting | PCIe generation config | Gen2 (x1 PCH slot) | Irrelevant to display |
+
+### Fix Option 1: Flash UEFI GOP VBIOS (Recommended for BIOS display)
+
+Replace the legacy-only VBIOS with a UEFI GOP-enabled VBIOS so the card can initialize in 64-bit protected mode during BIOS POST.
+
+**Target UEFI VBIOS:** TechPowerUp entry #190890  
+URL: `https://www.techpowerup.com/vgabios/190890/190890`  
+(ZOTAC GT-710 1024MB DDR3, UEFI=Yes, v80.28.A6.00.10)
+
+**Flash tool required:** nvflash 5.867 for Linux x64  
+Download: `https://www.techpowerup.com/download/nvidia-nvflash/`  
+(Must be downloaded manually via browser — TechPowerUp uses Cloudflare JS challenge that blocks all programmatic access.)
+
+**Flash procedure (on mra9 via SSH, Ubuntu live environment):**
+```bash
+# Copy files from local machine first
+scp ~/Downloads/nvflash_5.867_Linux_x64.zip ~/Downloads/gt710_uefi.rom mra9:/tmp/
+
+# On mra9:
+cd /tmp
+unzip nvflash_5.867_Linux_x64.zip
+chmod +x x64/nvflash
+
+# Verify tool sees the GPU
+sudo x64/nvflash --list
+
+# Flash (--protectoff removes write protection; -6 overrides subsystem ID mismatch if needed)
+sudo rmmod nouveau
+sudo x64/nvflash --protectoff
+sudo x64/nvflash -6 /tmp/gt710_uefi.rom
+
+# Reboot, then re-enable Above 4G Decoding in BIOS
+sudo reboot
+```
+
+> **Recovery:** If flash fails or display is lost, restore original VBIOS:
+> `sudo x64/nvflash -6 /tmp/gt710_current.rom`
+> Backup file: `~/Downloads/gt710_current.rom` (local, persistent — keep this safe)
+
+### Fix Option 2: Accept black BIOS screen (Practical workaround)
+
+Since the OS brings up display normally, you can operate with Above 4G Decoding enabled **without** flashing the VBIOS:
+- BIOS POST and BIOS setup screens: no display (navigate blind using memorized layout)
+- OS boot and runtime: display works normally via GPU driver
+- SSH management: always available regardless of display state
+- V100 CUDA compute: fully functional with Above 4G Decoding enabled
+
+**To test if this approach works:**
+1. Enable Above 4G Decoding in BIOS (navigate blind — you know the layout)
+2. Wait ~3 minutes for Ubuntu live to boot
+3. Run `ssh mra9` — if it connects, the system is fully functional
+4. Install V100s, verify no "PCI Out of Resources" errors: `dmesg | grep -i 'pci\|bar\|resource'`
+
+### BIOS Navigation (Huananzhi X99-8M-F, Machinist MRA9 v1.0)
+
+These menus are confirmed to exist in the Huananzhi-patched BIOS on this board:
+
+| Path | Location |
+|---|---|
+| Above 4G Decoding | Main BIOS setup → Advanced → PCIe/PCI settings (or similar top-level PCIe menu) |
+| Active Video (offboard/onboard) | IntelRCSetup → Miscellaneous Configuration → Active Video |
+| Option ROM Execution → Video | BIOS → Advanced → CSM Configuration → Option ROM Execution → Video |
+| PCH Display | PCH settings section |
+| Legacy VGA socket | IntelRCSetup → IIO Configuration → Legacy VGA Socket |
+| Load Optimized Defaults | F6 key from main BIOS screen (essential after any BIOS flash) |
+
+> **CSM / OpROM note:** "Option ROM Execution → Video = Legacy" is the **default** setting in this BIOS. It means the BIOS will try to run the GPU's legacy x86 option ROM during POST. This is correct for legacy VBIOSes. After flashing UEFI GOP VBIOS, change this to "UEFI" (or "Do Not Execute" if the GPU initializes via GOP without being called as legacy ROM).
 
 ## Community Resources
 
