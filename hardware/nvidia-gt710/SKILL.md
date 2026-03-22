@@ -111,12 +111,18 @@ Cards with large 64-bit prefetchable BARs (e.g. **Tesla V100**: BAR up to 16 GB)
 Flash `vbios/190890.rom` (see above) to replace the legacy VBIOS with a UEFI GOP version. The card will then initialize properly during BIOS POST even with Above 4G Decoding enabled.
 
 **Flash procedure (Linux, nvflash 5.867):**
-```bash
-# Download nvflash manually (Cloudflare JS challenge blocks automated download):
-# https://www.techpowerup.com/download/nvidia-nvflash/
 
-# Unzip
-unzip nvflash_5.867_Linux_x64.zip
+> **nvflash binary:** `nvflash_5.867_linux.zip` is stored in this skill directory.
+> The ZIP contains binaries for x64, x86, aarch64, and ppc64 — use `x64/nvflash` for mra9.
+> Source: [TechPowerUp nvflash download page](https://www.techpowerup.com/download/nvidia-nvflash/)
+> (Direct download requires a browser — Cloudflare JS challenge blocks curl/wget.)
+
+```bash
+# Copy nvflash to the target machine (Ubuntu live system)
+scp ~/.copilot/skills/hardware/nvidia-gt710/nvflash_5.867_linux.zip mra9:/tmp/
+
+# On mra9:
+cd /tmp && unzip nvflash_5.867_linux.zip
 chmod +x x64/nvflash
 
 # Backup current VBIOS first (keep this safe!)
