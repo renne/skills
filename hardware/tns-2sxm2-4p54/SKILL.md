@@ -16,17 +16,31 @@ description: TNS-2SXM2-4P54 dual-SXM2 GPU carrier baseboard. Hosts 2× NVIDIA SX
 | **Power** | 2× large PSU connectors (~20-24 pin) + 2× 8-pin PCIe power + aux connectors on top edge |
 | **Companion riser** | RTE162P54B-2UR — 2× per baseboard (each riser carries 2× SFF-8654-8i) |
 | **Host platform** | Intel Xeon server (confirmed via `IntelRCSetup` tab in AMI Aptio BIOS v2.18.1263) |
-| **GPUs installed** | 2× NVIDIA V100 SXM2 (confirmed by photo `PXL_20260314_180902214.jpg`) |
+| **GPUs installed** | 2× NVIDIA V100 SXM2 (confirmed; see assembled photo below) |
 | **Coolers** | 2× SXM2 heatsink — aluminum fin stack with copper heat pipes |
-| **Photos (board)** | `photos/PXL_20260314_104840199.jpg` (front/component side), `photos/PXL_20260314_104823252.jpg` (back/solder side) |
-| **Photos (assembled)** | `photos/PXL_20260314_180902214.jpg` (2× V100 + 2× heatsink installed, in shipping box) |
-| **Photos (BIOS)** | `photos/PXL_20260322_114203660.MP.jpg` (PCI resource error), `photos/PXL_20260322_125720017.jpg` (CSM config) |
 
 ## Physical Description
 - Large black PCB, SXM2 sockets arranged vertically (top + bottom), power headers along top edge
 - Left edge: 4× SFF-8654-8i stacked in two pairs; silkscreen shows X16 and X8 lane designations per group
 - Back/solder side: 2× metal SXM2 socket retainer frames with rectangular cutouts; sparse SMD population
 - Right edge: board version/revision silkscreen; CE/FCC marks
+
+## Photos
+
+### Board — Front (component side)
+![TNS-2SXM2-4P54 front PCB, component side](photos/PXL_20260314_104840199.jpg)
+
+### Board — Back (solder side / SXM2 socket frames)
+![TNS-2SXM2-4P54 back side with SXM2 socket retainer frames](photos/PXL_20260314_104823252.jpg)
+
+### Assembled — 2× V100 SXM2 + Heatsinks
+![TNS-2SXM2-4P54 assembled with 2× NVIDIA V100 SXM2 and heatsinks in shipping box](photos/PXL_20260314_180902214.jpg)
+
+### BIOS — PCI Resource Error
+![BIOS screen showing PCI resource exhaustion / Above 4G Decoding issue](photos/PXL_20260322_114203660.MP.jpg)
+
+### BIOS — CSM Configuration
+![BIOS CSM (Compatibility Support Module) configuration screen](photos/PXL_20260322_125720017.jpg)
 
 ## Model Name Breakdown
 - **TNS** — product line prefix (anonymous Chinese OEM)

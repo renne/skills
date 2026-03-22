@@ -24,7 +24,7 @@ description: YMZX-4GPU-Q1 quad-SXM2 GPU carrier baseboard. Hosts 4× NVIDIA SXM2
 
 ## Photos
 
-- `photos/YMZX-4GPU-Q1.jpg` — Board photo (source: angrysysadmins.tech)
+![YMZX-4GPU-Q1 board — quad-SXM2 GPU carrier (source: angrysysadmins.tech)](photos/YMZX-4GPU-Q1.jpg)
 
 ## Supported GPUs
 
