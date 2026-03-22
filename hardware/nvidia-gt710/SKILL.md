@@ -20,6 +20,20 @@ description: NVIDIA GeForce GT 710 — GK208B GPU, PCIe 2.0 x8/x16, 1–2 GB DDR
 | Display outputs | Varies by AIB partner (common: HDMI / DVI / VGA) |
 | Driver support | NVIDIA legacy driver branch 470.xx (Linux); 474.x (Windows) |
 
+## Flash Status (Machinist MRA9 v1.0)
+
+| Date | Action | Result |
+|------|--------|--------|
+| 2025 | Flashed `190890.rom` (UEFI GOP) over legacy VBIOS using nvflash 5.867 + `-6` flag | ✅ **SUCCESS — 100% complete** |
+
+**Post-flash BIOS steps still required (one-time, after reboot):**
+1. Enter BIOS setup
+2. **Option ROM Execution → Video** → change `Legacy` → `UEFI`
+3. **Enable Above 4G Decoding**
+4. Save & reboot — GT-710 should display POST screen normally
+
+---
+
 ## Known SKUs / Board Variants
 
 | AIB | Subsystem | VRAM | VBIOS type | Notes |
