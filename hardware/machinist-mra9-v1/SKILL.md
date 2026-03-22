@@ -94,8 +94,8 @@ Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ven
 |---|---|---|---|
 | SATA 3.0 (6 Gbps) | 4 | 6 Gbps | Primary storage |
 | SATA 2.0 (3 Gbps) | 2 | 3 Gbps | Secondary/legacy |
-| M.2 (NVMe) | 1 | PCIe 3.0 x4, up to 32 Gbps | 2280 form factor; CPU lanes |
-| M.2 (NGFF/SATA) | 1 | SATA | SATA M.2 drives only |
+| M.2 #1 (NVMe) | 1 | PCIe 3.0 x4, up to 32 Gbps | 2280 form factor; CPU lanes |
+| M.2 #2 (NVMe) | 1 | PCIe 3.0 x4, up to 32 Gbps | 2280 form factor; as advertised — both slots are NVMe |
 
 ## PCIe Expansion
 
