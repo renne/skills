@@ -371,14 +371,20 @@ URL: `https://www.techpowerup.com/vgabios/190890/190890`
 Download: `https://www.techpowerup.com/download/nvidia-nvflash/`  
 (Must be downloaded manually via browser — TechPowerUp uses Cloudflare JS challenge that blocks all programmatic access.)
 
+**nvflash binary is stored in this skill repository:**  
+`tools/nvflash_5.867_linux.zip` — MD5: `dc4775fdefa3d4cbf2b5ab9178a4720e`  
+Contains: `x64/nvflash` (Linux x86_64, 15.2 MB), `x86/`, `aarch64/`, `ppc64/` variants.  
+Source: TechPowerUp, dated 2024-12-10.
+
 **Flash procedure (on mra9 via SSH, Ubuntu live environment):**
 ```bash
 # Copy files from local machine first
-scp ~/Downloads/nvflash_5.867_Linux_x64.zip ~/Downloads/gt710_uefi.rom mra9:/tmp/
+# nvflash is stored in the skill repo: ~/.copilot/skills/hardware/machinist-mra9-v1/tools/nvflash_5.867_linux.zip
+scp ~/.copilot/skills/hardware/machinist-mra9-v1/tools/nvflash_5.867_linux.zip ~/Downloads/gt710_uefi.rom mra9:/tmp/
 
 # On mra9:
 cd /tmp
-unzip nvflash_5.867_Linux_x64.zip
+unzip nvflash_5.867_linux.zip
 chmod +x x64/nvflash
 
 # Verify tool sees the GPU
