@@ -182,12 +182,16 @@ Repository: https://github.com/0x8008/mr9a
 
 These are confirmed-working BIOS dumps from an MR9A board. Variants:
 
-| File | Description | Direct URL |
-|---|---|---|
-| `STOCK-machinist-x99-mr9a-20240226-203747.rom` | Original stock BIOS dump — keep as recovery backup | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/STOCK-machinist-x99-mr9a-20240226-203747.rom) |
-| `TBU-machinist-x99-mr9a-20240227-102043.rom` | **Recommended** — Huananzhi X99-8M-F + Turbo Boost Unlock + undervolting (−50 mV) via Mi899 | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/TBU-machinist-x99-mr9a-20240227-102043.rom) |
-| `REBAR-machinist-x99-mr9a-20240227-102043.rom` | TBU + undervolting + **Resizable BAR** (ReBarUEFI) | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/REBAR-machinist-x99-mr9a-20240227-102043.rom) |
-| `LOGO-machinist-x99-mr9a-20240227-102043.rom` | Same as REBAR + custom boot logo (no "Huananzhi" splash) | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/LOGO-machinist-x99-mr9a-20240227-102043.rom) |
+ROM files are stored locally in `bios-roms/` (this skill directory).
+
+| File | Description | MD5 | Direct URL |
+|---|---|---|---|
+| `STOCK-machinist-x99-mr9a-20240226-203747.rom` | Original stock BIOS dump — keep as recovery backup | `03d7859f2ac7958f458acafa2ff78aaa` | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/STOCK-machinist-x99-mr9a-20240226-203747.rom) |
+| `TBU-machinist-x99-mr9a-20240227-102043.rom` | **Recommended** — Huananzhi X99-8M-F + Turbo Boost Unlock + undervolting (−50 mV) via Mi899 | `9893df2d90b57e163881272a7730685d` | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/TBU-machinist-x99-mr9a-20240227-102043.rom) |
+| `REBAR-machinist-x99-mr9a-20240227-102043.rom` | TBU + undervolting + **Resizable BAR** (ReBarUEFI) | `022050ad32de1a00b448dd50fab6b210` | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/REBAR-machinist-x99-mr9a-20240227-102043.rom) |
+| `LOGO-machinist-x99-mr9a-20240227-102043.rom` | Same as REBAR + custom boot logo (no "Huananzhi" splash) | `8dd01baf00de2a0c7c265de67893c50e` | [download](https://raw.githubusercontent.com/0x8008/mr9a/main/LOGO-machinist-x99-mr9a-20240227-102043.rom) |
+
+All files are 16,777,216 bytes (16 MiB — matches the Winbond 25Q128FV SPI flash chip).
 
 > **Warning (from 0x8008):** These BIOSes are only confirmed to work on the author's board. They will most likely work on yours too, but proceed at your own risk.
 
