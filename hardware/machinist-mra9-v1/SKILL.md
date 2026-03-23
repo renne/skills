@@ -31,14 +31,14 @@ Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ven
 | Component | Details |
 |---|---|
 | CPU | Intel Xeon E5-2620 v3 @ 2.40 GHz (6C/12T, max turbo 3.2 GHz) |
-| RAM | 1× 8 GB DDR4 (Corsair CMK8GX4M1A2400C16) in slot **DIMM_B1**, running at **1866 MT/s** (JEDEC default; XMP not supported) |
+| RAM | 4× 32 GB DDR4 ECC RDIMM (Samsung M393A4K40DB2-CVF) — all 4 slots populated (DIMM_A1/B1/C1/D1, NODE 1), 128 GB total, rated DDR4-2933 but running at **1866 MT/s** (JEDEC default; XMP not supported) |
 | GPU (display) | NVIDIA GeForce GT 710 (GK208B rev a1, ZOTAC 19da:5360, 1 GB DDR3) — PCIe x1 slot (PCH-attached), PCIe addr `08:00.0` |
 | GPU (compute) | 2× NVIDIA Tesla V100 SXM2 16 GB — installed in TNS-2SXM2-4P54 carrier, CPU-attached PCIe x16 slots (addrs `03:00.0`, `04:00.0`) |
 | NIC | Realtek RTL8111/8168/8211/8411 GbE (`enp6s0`, PCIe `06:00.0`) |
 | Internal storage | Ortial ON-750-256 NVMe SSD (256 GB, SM2263EN) — M.2 slot, PCIe addr `02:00.0` |
 | OS | Ubuntu 24.04.4 LTS (installed on NVMe; kernel 6.17.0-19-generic) |
 
-> **RAM slot note:** On `mra9` (Machinist board with Huananzhi BIOS cross-flashed), SMBIOS reports the populated single-DIMM slot as **DIMM_B1** (Node 1). The physical silkscreen on the Machinist board labels this slot **DIMM1**. The Huananzhi BIOS relabels it B1 in its SMBIOS tables. Single-DIMM in the physical DIMM1 slot works correctly.
+> **RAM slot note:** All 4 DIMM slots are now populated. SMBIOS reports them as DIMM_A1/B1/C1/D1 (all NODE 1) in the Huananzhi cross-flashed BIOS tables. With 4× identical Samsung M393A4K40DB2-CVF RDIMMs, the system runs in quad-channel mode at 1866 MT/s.
 
 ## CPU Support
 
@@ -76,17 +76,17 @@ Confirmed hardware as of live system inspection (Ubuntu 24.04.4 LTS live via Ven
 | Slots | 4× DDR4 DIMM |
 | Channels | Quad-channel (populate all 4 for quad-channel) |
 | Capacity | Up to 128 GB total |
-| Speed | DDR4-2133 / 2400 (JEDEC); actual running speed may be **1866 MT/s** (see note) |
-| ECC support | ECC modules POST and boot; **ECC error correction is NOT functionally enabled** (desktop chipset limitation) |
+| Speed | DDR4-2133 / 2400 / 2933 (JEDEC); actual running speed **1866 MT/s** on `mra9` (see note) |
+| ECC support | ECC RDIMMs POST and boot; **ECC error correction is NOT functionally enabled** — `EDAC sbridge` kernel driver explicitly reports `"CPU SrcID #0, Ha #0, Channel #0 has DIMMs, but ECC is disabled"` (desktop chipset limitation) |
 | Non-ECC | Supported |
 | RDIMM | **Yes** — the E5-2620 v3's integrated memory controller (IMC) natively supports RDIMM. The Q87 PCH is irrelevant to memory type on LGA 2011-3; all memory signaling goes through the CPU IMC, not the chipset. Community-validated on this board. |
 | LRDIMM | Compatibility varies by module; some work, some fail to POST. |
 
 > **RDIMM & Chipset clarification:** On LGA 2011-3, the Q87 PCH does **not** control memory. The Intel E5 v3 CPU has a fully integrated DDR4 memory controller supporting UDIMM, RDIMM, and LRDIMM. The Q87 in this system handles chipset I/O (SATA, USB, PCIe from PCH lanes) — memory type support depends solely on the CPU IMC and the board's slot wiring, both of which accept registered DIMMs.
 
-> **ECC Caveat:** Linux `dmesg` / `edac-util` will report no ECC support. This is expected — the hardware accepts ECC/RDIMM modules electrically but the Q87 desktop PCH does not enable error correction logic.
+> **ECC Caveat:** Linux `dmesg` / `edac-util` will report no ECC support. This is expected — the EDAC `sbridge` driver loads, finds the DIMMs, but exits with `"ECC is disabled"` and registers no memory controller in `/sys/devices/system/edac/mc/`. Neither `rasdaemon` nor `mcelog` is active. The Q87 desktop PCH does not enable ECC error correction logic despite the CPU IMC and DIMMs being fully ECC-capable.
 
-> **Speed note:** On the `mra9` machine, a DDR4-2400 module (Corsair CMK8GX4M1A2400C16) runs at **1866 MT/s** — the board enforces JEDEC sub-profiles and does not support XMP. This is normal and expected.
+> **Speed note:** On `mra9`, the Samsung M393A4K40DB2-CVF (DDR4-2933) modules run at **1866 MT/s** — the board enforces JEDEC sub-profiles and does not support XMP. This is normal and expected.
 
 ## Storage
 
@@ -312,7 +312,7 @@ v1.0 has **no POST code display** — rely on speaker beep codes and the followi
 ### Quick Checklist
 
 1. **CPU fan (4-pin)** — **A 4-pin CPU fan must be connected to the CPU_FAN1 header.** The board will NOT start the BIOS, initialize the CPU, or boot without it — this is a hard firmware requirement, not just a warning.
-2. **RAM slot** — Single DIMM must be in **DIMM1** (closest to CPU). Wrong slot = silent no-POST.
+2. **RAM slot** — With all 4 slots populated (quad-channel), all DIMM slots are used. For single-DIMM testing, use **DIMM1** (closest to CPU). Wrong slot = silent no-POST.
 3. **RAM reseating** — Remove, clean contacts, firmly re-insert until both clips lock.
 4. **8-pin CPU power** — Must be fully seated. Missing = no POST.
 5. **Minimal config** — Remove all cards/drives. Boot with only CPU + 1× RAM + CPU power + 24-pin + CPU fan.
