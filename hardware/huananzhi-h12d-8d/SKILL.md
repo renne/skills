@@ -25,6 +25,28 @@ The **Huananzhi H12D-8D** (华南金牌 H12D-8D, Ver2.0) is a **single-socket** 
 | OS support          | Windows, Linux                             |
 | Approx. price (CN)  | ¥2188 (no BMC) / ¥2388 (with BMC module)   |
 
+## Board Diagrams
+
+All diagrams are rendered from the official Huananzhi H12D-8D bilingual manual (Chinese primary).
+
+### Board Overview & Rear I/O
+
+![H12D-8D board overview with component labels, rear I/O panel, LAN port status table, and audio jack configuration](images/board-overview.png)
+
+*图1-1 H12D-8D主板图解 — full board layout with all headers, slots, and connectors labeled. 图1-2 整体后置I/O面板展示 — rear I/O bracket. 图1-3 LAN端口状态表 — link LED meanings for the Intel I226-V 2.5 GbE ports.*
+
+### Connector & Header Pinouts
+
+![PCIe/M.2 slot layout, USB 3.0 19-pin header, USB 2.0 9-pin header, and F_PANEL1 10-pin front-panel header pinouts](images/connector-pinouts.png)
+
+*图2-1 PCIE扩展插槽 — slot arrangement (alternating PCIe x16 / M.2 2280). 图2-2 USB3.0接口 — 19-pin USB 3.2 front-panel header. 图2-3 USB扩充接口 — 9-pin USB 2.0 header. 图2-4 F_PANEL1开机接口 — 10-pin front-panel power/reset/LED header.*
+
+### Power & Fan Pinouts
+
+![ATX 12V 8-pin connector, ATX 24-pin main power connector, and fan header pin definitions](images/power-fan-pinouts.png)
+
+*图2-5 ATX-12V接口 — 8-pin CPU power (both required). 图2-6 ATX接口 — 24-pin main ATX power. 图2-7 风扇接脚定义 — fan header pinout: Pin1=GND, Pin2=+12V, Pin3=Tach, Pin4=PWM.*
+
 ## Memory Slot Numbering
 
 Slots are **labeled MM1–MM8** on the board silkscreen. All 8 slots serve the single CPU.
