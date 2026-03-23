@@ -35,17 +35,106 @@ All diagrams are rendered from the official Huananzhi H12D-8D bilingual manual (
 
 *图1-1 H12D-8D主板图解 — full board layout with all headers, slots, and connectors labeled. 图1-2 整体后置I/O面板展示 — rear I/O bracket. 图1-3 LAN端口状态表 — link LED meanings for the Intel I226-V 2.5 GbE ports.*
 
+#### 图1-1 Board Layout — Label Translations
+
+| Chinese label | English translation |
+|---|---|
+| CPU FAN1/SYS FAN (支持温控) | CPU FAN1 / SYS FAN (temperature-controlled) |
+| DDR4*4插槽 | DDR4 ×4 DIMM slot group (×2 groups = 8 slots total) |
+| TPM插针 | TPM header |
+| IPMI管理网口(上) | IPMI management port (top) |
+| USB 3.0(下) | USB 3.0 (bottom) |
+| RJ45网口 | RJ45 data network port |
+| 音频接口 | Audio jack |
+| PCI-E 3.0/4.0 X 16接口 | PCIe 3.0/4.0 ×16 slot |
+| M.2 2280 NVME | M.2 2280 NVMe slot |
+| SATA3.0*4 | SATA 3.0 ×4 |
+| BMC模块 (BMC 是可以控制 IPMI 还可以提供 VGA显示) | BMC module (manages IPMI; also provides VGA output) |
+| MINI SAS*3 | Mini-SAS ×3 (each = SATA×4 or PCIe x4) |
+| LED数码卡 | LED POST code display |
+| SYS FAN1 … SYS FAN4 | System fan headers 1–4 |
+| NCSI | NC-SI (Network Controller Sideband Interface — BMC NIC passthrough) |
+| 8Pin CPU供电 | 8-pin CPU power (EPS12V) |
+| 8Pin 12V | 8-pin 12V auxiliary power |
+| 辅助供电 | Auxiliary power connector |
+| 24Pin主板供电 | 24-pin ATX mainboard power |
+| POWER LED 开机指示灯 | Power LED (power-on indicator) |
+| POWER SW 开关机 | Power switch (on/off) |
+| HDD LED 硬盘指示灯 | HDD LED (disk activity indicator) |
+| RESET SW 重启键 | Reset switch (reboot button) |
+
+#### 图1-2 Rear I/O — Label Translations
+
+| Chinese label | English translation |
+|---|---|
+| IPMI管理网口 | IPMI management port (dedicated BMC NIC) |
+| RJ45网口 | RJ45 data port (×2, Intel I226-V 2.5 GbE) |
+| 音频端口 | Audio port (rear-panel jack) |
+
+#### 图1-3 LAN LED Status Table
+
+| 状态 (Speed) | 网灯状态 (LED behaviour) |
+|---|---|
+| 2.5G | Left orange: activity blinks — Right green: link solid |
+| 1G | Left orange: activity blinks — Right orange: link solid |
+| 10/100M | Left orange: activity blinks — Right: off |
+
 ### Connector & Header Pinouts
 
 ![PCIe/M.2 slot layout, USB 3.0 19-pin header, USB 2.0 9-pin header, and F_PANEL1 10-pin front-panel header pinouts](images/connector-pinouts.png)
 
 *图2-1 PCIE扩展插槽 — slot arrangement (alternating PCIe x16 / M.2 2280). 图2-2 USB3.0接口 — 19-pin USB 3.2 front-panel header. 图2-3 USB扩充接口 — 9-pin USB 2.0 header. 图2-4 F_PANEL1开机接口 — 10-pin front-panel power/reset/LED header.*
 
+#### 图2-1 PCIe Expansion Slots
+
+| Chinese label | English translation |
+|---|---|
+| PCIE扩展插槽 | PCIe expansion slot |
+| PCIE3.0/4.0x16 | PCIe 3.0/4.0 ×16 |
+| M.2 2280 NVME | M.2 2280 NVMe |
+
+#### 图2-3 USB 2.0 Header (9-pin) — Pin Label Translations
+
+| Chinese | English |
+|---|---|
+| VCC 电源正极 | VCC power (+5V) |
+| VCC 电源负极 | VCC power return (ground) |
+| D- 数据负信号 | D− data signal |
+| D+ 数据正信号 | D+ data signal |
+| GND 接地 | Ground |
+| KEY 空脚 | KEY — missing pin (orientation guide, no contact) |
+| N.C 空 | N.C. — no connection |
+
+#### 图2-4 F_PANEL1 Front-Panel Header (10-pin) — Pin Label Translations
+
+| Pin | Chinese label | English translation |
+|---|---|---|
+| 1 | 硬盘指示灯-电源正极 | HDD LED anode (+) |
+| 2 | 电源指示灯-电源正极 | Power LED anode (+) |
+| 3 | 硬盘指示灯-电源负极 | HDD LED cathode (−) |
+| 4 | 电源指示灯-电源负极 | Power LED cathode (−) |
+| 5 | 重新启动接口-重启开关 | Reset switch (one side) |
+| 6 | ATX电源开关-电源开关 | ATX power switch (one side) |
+| 7 | 重新启动接口-重启开关 | Reset switch (other side) |
+| 8 | ATX电源开关-电源开关 | ATX power switch (other side) |
+| 9 | N.C 空 | N.C. — no connection |
+| 10 | N.C 空 | N.C. — no connection |
+
 ### Power & Fan Pinouts
 
 ![ATX 12V 8-pin connector, ATX 24-pin main power connector, and fan header pin definitions](images/power-fan-pinouts.png)
 
 *图2-5 ATX-12V接口 — 8-pin CPU power (both required). 图2-6 ATX接口 — 24-pin main ATX power. 图2-7 风扇接脚定义 — fan header pinout: Pin1=GND, Pin2=+12V, Pin3=Tach, Pin4=PWM.*
+
+#### 图2-7 Fan Header — Pin Label Translation
+
+| Chinese label | English translation |
+|---|---|
+| 风扇接脚定义 | Fan pin definitions |
+| GND | Ground |
+| +12V | +12V power |
+
+> All remaining labels in 图2-5 and 图2-6 are already in English (GND, +12V, +5V, 3.3V, -12V, -5V, PS_ON, Power Good, 5VSB).
 
 ## Memory Slot Numbering
 
