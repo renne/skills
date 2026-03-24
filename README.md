@@ -26,6 +26,7 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | Skill | Source |
 |-------|--------|
 | [Contributing (PHP backend, JS frontend, Twig/SCSS themes, OpenAPI, GitHub Actions CI, Cypress E2E, MySQL/PostgreSQL/MSSQL)](limesurvey/contributing/SKILL.md) | https://github.com/LimeSurvey/LimeSurvey |
+| [Survey Administration (LSS format, groups/branching/questions, RemoteControl API, import/export, permissions)](limesurvey/survey-administration/SKILL.md) | https://limesurvey.svc.external.tba-hosting.de |
 
 ### Moodle
 
