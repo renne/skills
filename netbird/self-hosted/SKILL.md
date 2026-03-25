@@ -502,6 +502,93 @@ Set `server.auth.localAuthDisabled: false` (default) in `config.yaml`. The "Emai
 
 ---
 
+## Store Engine / Database Backend
+
+NetBird management supports three database backends (via GORM):
+
+| Engine | Notes |
+|--------|-------|
+| `sqlite` | Default. File stored in `Datadir` as `store.db`. |
+| `postgres` | Requires external PostgreSQL instance. |
+| `mysql` | Requires external MySQL/MariaDB instance. |
+
+**Configuration (v0.62+ `config.yaml`):**
+
+```yaml
+StoreConfig:
+  Engine: postgres
+```
+
+**Required env vars for PostgreSQL:**
+
+```bash
+NB_STORE_ENGINE_POSTGRES_DSN="host=db user=netbird password=secret dbname=netbird sslmode=disable"
+# Legacy alias (still accepted):
+NETBIRD_STORE_ENGINE_POSTGRES_DSN="..."
+```
+
+**Required env vars for MySQL:**
+
+```bash
+NB_STORE_ENGINE_MYSQL_DSN="netbird:secret@tcp(db:3306)/netbird?charset=utf8mb4&parseTime=True&loc=Local"
+# Legacy alias:
+NETBIRD_STORE_ENGINE_MYSQL_DSN="..."
+```
+
+> **Important:** The quickstart script (`getting-started.sh`) does **not** prompt for or configure the store engine. It generates a `config.yaml`/`management.json` with **no `StoreConfig` field**, which defaults to SQLite. PostgreSQL/MySQL must be added manually post-install.
+
+> **Common confusion:** In the legacy `getting-started-with-zitadel.sh` script, a PostgreSQL container is provisioned — but it is **exclusively for Zitadel (the IdP)**. NetBird management data in that script still goes to SQLite. This can be switched to CockroachDB for the Zitadel database via `export ZITADEL_DATABASE=cockroach` before running the script, but this has no effect on management data.
+
+### Manual steps to switch to PostgreSQL (post-install)
+
+1. Provision a PostgreSQL instance (external or as an additional Docker Compose service).
+2. Add the `StoreConfig` block to `config.yaml`:
+
+   ```yaml
+   StoreConfig:
+     Engine: postgres
+   ```
+
+3. Set the DSN env var in `docker-compose.yml` for the `management` service:
+
+   ```yaml
+   environment:
+     NB_STORE_ENGINE_POSTGRES_DSN: "host=db user=netbird password=secret dbname=netbird sslmode=disable"
+   ```
+
+4. Restart the management container: `docker compose up -d management`
+
+---
+
+## High Availability (HA)
+
+### Management server
+
+**HA clustering for the management server is NOT officially supported or documented.**
+
+- Both quickstart scripts deploy a **single management container** with no clustering options.
+- No `replicas` option is provided in the generated `docker-compose.yml`.
+- There is no documented procedure for running multiple management instances.
+- Using PostgreSQL or MySQL as the backend (see above) improves data durability and performance, but does **not** by itself provide HA — a second management instance would conflict.
+
+### Relay server (TURN)
+
+Relay servers **are** horizontally scalable:
+
+- Deploy multiple `relay` containers, all using the **same relay token** (shared credentials).
+- NetBird peers auto-select among available relays via the signal server.
+- This is the recommended way to scale relay capacity.
+
+### Reverse proxy / ingress
+
+Multiple reverse-proxy instances can front the same management/signal/relay backends using standard load-balancing (DNS round-robin, hardware/software LB, etc.). NetBird has no built-in awareness of proxy replicas.
+
+### Signal server
+
+The signal server is also stateless and can be replicated, though this is not officially documented.
+
+---
+
 ## References
 
 - [Self-Hosting Quickstart Guide](https://docs.netbird.io/selfhosted/selfhosted-quickstart)
