@@ -552,6 +552,119 @@ By default ghcr.io packages inherit the repo's visibility. To make images public
 
 ---
 
+## HTTP MCP Endpoint — Deployed (bartschnet.de)
+
+The `renne/cq` fork includes a **containerised HTTP MCP server** (`cq-mcp`) that wraps the team API and exposes CQ tools over FastMCP's `streamable-http` transport. This allows MCP clients that cannot run a local subprocess (VS Code GitHub Copilot, remote Copilot CLI sessions) to connect without cloning the repo.
+
+### Endpoint
+
+| Item | Value |
+|------|-------|
+| URL | `https://cq-mcp.bartschnet.de/mcp` |
+| Transport | `streamable-http` (FastMCP default for HTTP) |
+| Auth | HTTP BasicAuth (user `cq`, password = `CQ_TEAM_API_KEY`) |
+| Image | `ghcr.io/renne/cq-mcp:main` |
+| Host | `docker:/srv/docker/mozilla-cq/compose.yml` |
+
+**Always use `:main` tag** — not `:latest`. `docker-metadata-action` only pushes `:latest` for version tags (`refs/tags/`); branch pushes produce `:main` and `:sha-<short>` only. Using `:latest` means the container never updates on branch commits.
+
+### Health check
+
+```bash
+# Expect: 406 Not Acceptable (normal — server alive, client needs correct Accept header)
+curl -si -H "Authorization: Basic Y3E6YjI1MmVjYWRjNTdjYzA1MjMyN2NiZTA3M2NhM2QwOWYwODhiMmNlMDJiODZkZjdjZTUwZjE5MGRiZjllYzUwZA==" https://cq-mcp.bartschnet.de/mcp | head -5
+```
+
+`406` = server alive, rejecting plain GET (missing `Accept: text/event-stream`). `502` = container not running. `401` = wrong credentials.
+
+### Copilot CLI configuration (`~/.copilot/mcp-config.json`)
+
+```json
+{
+  "mcpServers": {
+    "cq": {
+      "type": "http",
+      "url": "https://cq-mcp.bartschnet.de/mcp",
+      "headers": {
+        "Authorization": "Basic Y3E6YjI1MmVjYWRjNTdjYzA1MjMyN2NiZTA3M2NhM2QwOWYwODhiMmNlMDJiODZkZjdjZTUwZjE5MGRiZjllYzUwZA=="
+      }
+    }
+  }
+}
+```
+
+### VS Code configuration (`~/.config/Code/User/mcp.json`)
+
+```json
+{
+  "servers": {
+    "cq": {
+      "type": "http",
+      "url": "https://cq-mcp.bartschnet.de/mcp",
+      "headers": {
+        "Authorization": "Basic Y3E6YjI1MmVjYWRjNTdjYzA1MjMyN2NiZTA3M2NhM2QwOWYwODhiMmNlMDJiODZkZjdjZTUwZjE5MGRiZjllYzUwZA=="
+      }
+    }
+  }
+}
+```
+
+### Architecture
+
+```
+VS Code / Copilot CLI (renne)
+  └── MCP streamable-http → https://cq-mcp.bartschnet.de/mcp  (Traefik: BasicAuth)
+                              ↕ FastMCP streamable-http :8080
+                    docker: cq-mcp container (ghcr.io/renne/cq-mcp:main)
+                              ↕ HTTP REST + Bearer (internal Docker network)
+                    docker: cq-team-api:8742
+```
+
+### `cq-mcp` service (compose.yml excerpt)
+
+```yaml
+cq-mcp:
+  image: ghcr.io/renne/cq-mcp:main   # :main not :latest (see tag quirk below)
+  environment:
+    CQ_TEAM_ADDR: http://cq-team-api:8742
+    CQ_TEAM_API_KEY: ${CQ_TEAM_API_KEY}
+    FASTMCP_HOST: 0.0.0.0
+    FASTMCP_PORT: "8080"
+    MCP_TRANSPORT: streamable-http
+  labels:
+    - "traefik.http.routers.cq-mcp.rule=Host(`cq-mcp.bartschnet.de`)"
+    - "traefik.http.routers.cq-mcp.tls.certresolver=letsencrypt"
+    - "traefik.http.services.cq-mcp-svc.loadbalancer.server.port=8080"
+    - "traefik.http.routers.cq-mcp.middlewares=cq-mcp-auth"
+    - "traefik.http.middlewares.cq-mcp-auth.basicauth.users=cq:$$2y$$..."
+    - "com.centurylinklabs.watchtower.enable=true"
+```
+
+### FastMCP host/port env var quirk (renne/cq fork fix, commit 249f3eb)
+
+`FastMCP.__init__` passes Python-default `host="127.0.0.1"` and `port=8000` as **explicit kwargs** to `Settings(...)`. In pydantic-settings v2, explicit constructor kwargs always override env var sources — `FASTMCP_HOST` and `FASTMCP_PORT` are silently ignored.
+
+**Fix:** Pass env vars explicitly at the `FastMCP(...)` call site in `server.py`:
+
+```python
+mcp = FastMCP(
+    "cq",
+    host=os.environ.get("FASTMCP_HOST", "127.0.0.1"),
+    port=int(os.environ.get("FASTMCP_PORT", "8000")),
+    ...
+)
+```
+
+Also note: `mcp = FastMCP(...)` is evaluated at **module import time**. Any `os.environ.setdefault()` in `main()` is too late — env vars must be set before the module is imported.
+
+### DNS / Networking
+
+- **Public DNS:** `cq-mcp.bartschnet.de` A record → `10.0.0.29` (VPS/Traefik) at INWX
+- **CoreDNS (pve3):** regex rule `^(aio|cq|cq-api|cq-mcp|...)\.bartschnet\.de\.$` → `docker.fritz.box`
+- **Netbird:** access via `cq-mcp.bartschnet.de` resolves through CoreDNS → internal IP
+
+---
+
 ## References
 
 - Repo: https://github.com/mozilla-ai/cq
