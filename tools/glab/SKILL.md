@@ -51,6 +51,27 @@ glab -R gitlab.example.com/namespace/repo <command>
 
 Do NOT use `--hostname` on subcommands — that flag only exists on `glab auth`.
 
+## Issue Templates
+
+> **Always follow the project's issue template.**
+> Before creating or updating an issue, check whether the project defines issue templates and use the appropriate one to structure the issue body.
+>
+> ```bash
+> # List available issue templates via the GitLab REST API
+> curl -s --header "PRIVATE-TOKEN: <token>" \
+>   "https://gitlab.example.com/api/v4/projects/<id>/templates/issues" \
+>   | jq '.[].name'
+>
+> # Read a specific template by name
+> curl -s --header "PRIVATE-TOKEN: <token>" \
+>   "https://gitlab.example.com/api/v4/projects/<id>/templates/issues/<template-name>" \
+>   | jq -r '.content'
+> ```
+>
+> Fill in every section of the template. Do not omit or reorder sections.
+>
+> GitLab issue templates live in `.gitlab/issue_templates/` in the repository.
+
 ## Issue commands
 
 ```bash

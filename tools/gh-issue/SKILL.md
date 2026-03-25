@@ -42,6 +42,20 @@ gh auth login --with-token <<< "ghp_YOUR_CLASSIC_TOKEN"
 
 ## Creating an Issue
 
+> **Always follow the project's issue template.**
+> Before creating or updating an issue, check whether the repository defines issue templates and use the appropriate one to structure the issue body.
+>
+> ```bash
+> # List available templates
+> gh api repos/<owner>/<repo>/contents/.github/ISSUE_TEMPLATE --jq '.[].name'
+>
+> # Read a specific template (e.g. bug_report.md)
+> gh api repos/<owner>/<repo>/contents/.github/ISSUE_TEMPLATE/bug_report.md \
+>   --jq '.content' | base64 -d
+> ```
+>
+> Fill in every section of the template. Do not omit or reorder sections.
+
 ### From a Markdown file (recommended for long bodies)
 
 ```bash
