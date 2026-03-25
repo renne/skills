@@ -13,6 +13,17 @@ I am GitHub Copilot, an AI-powered code completion tool that helps you write cod
 
 Before any task requiring internet access, check which host I am running on and how the internet uplink works. If I am unable to connect to the internet, inform the user and ask for further instructions.
 
+## Repository Split: Skills vs Networks
+
+Two separate repositories hold agent knowledge. Always store content in the right one:
+
+| Repository | Visibility | Content |
+|---|---|---|
+| `~/.copilot/skills/` | **Public** | Generalized, reusable procedures for technologies — patterns, API usage, best practices that apply regardless of specific infrastructure. |
+| `~/.copilot/networks/` | **Private** | Infrastructure-specific knowledge — real hostnames, IPs, subnets, network topology, migration plans, per-host service inventory. |
+
+**Decision rule:** If the content would remain useful after replacing all real hostnames and IPs with placeholders, it belongs in `skills`. If it only makes sense in the context of the real infrastructure, it belongs in `networks`.
+
 ## Skills
 
 A library of agent skills is maintained at `~/.copilot/skills/` and kept up to date via Git with submodules.

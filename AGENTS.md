@@ -2,6 +2,27 @@
 
 This repository is a collection of [Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills) for GitHub Copilot and other compatible AI agents. All skill files must follow the rules below.
 
+## Repository Scope
+
+**This is a public repository for generalized, reusable skills only.**
+
+### ✅ Belongs here (`skills`)
+
+- Generalized procedures for working with technologies (e.g., how to use the NetBird API, how to configure Traefik, Docker Compose patterns).
+- Technology best practices that apply regardless of the specific infrastructure.
+- Tool usage guides and reference patterns.
+- Skills that would be useful in *any* deployment of a given technology.
+
+### ❌ Does NOT belong here → goes in `networks` (private)
+
+- Specific host names, IP addresses, subnet assignments, or VLAN IDs.
+- Network topology maps or routing decisions tied to real infrastructure.
+- Migration plans, upgrade roadmaps, or go/no-go checklists for this specific environment.
+- Per-host service inventory (e.g., "Nextcloud runs on 10.0.0.29").
+- Any detail that reveals the structure of personal or organizational infrastructure.
+
+**Rule of thumb:** If the content would still be correct and useful after replacing all hostnames and IPs with placeholders, it belongs in `skills`. If it only makes sense in the context of the real infrastructure, it belongs in `networks`.
+
 ## Directory Structure
 
 Each skill lives in its own dedicated directory containing a `SKILL.md` file:
