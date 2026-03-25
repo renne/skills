@@ -183,6 +183,64 @@ When CoreDNS runs on LXC containers in the LAN (not on a NetBird overlay IP), co
 - Update `dns-nameservers` in `/etc/network/interfaces`
 - Run `resolvconf -u` or bounce the interface to apply immediately
 
+## Networks vs Network Routes Decision Matrix
+
+| Use Case | Use Networks | Use Network Routes |
+|----------|-------------|-------------------|
+| VPN-to-Site (remote client → LAN) | ✅ Recommended | ✅ Works |
+| Site-to-VPN (LAN → NetBird peers) | ❌ | ✅ Required |
+| Site-to-Site (LAN ↔ LAN) | ❌ | ✅ Required |
+| Exit Nodes (full internet via peer) | ❌ | ✅ Required |
+| Masquerade (NAT) control | ❌ | ✅ Required |
+| ACL groups on the route | ❌ | ✅ Required |
+
+**Networks** is the newer replacement for **Network Routes** for the VPN-to-Site use case. For all other use cases, continue using Network Routes.
+
+---
+
+## Resources and Groups
+
+Unlike peers, **network resources are NOT automatically added to the `All` group** when created. You must manually add resources to any group that should have access. This is a common misconfiguration — if a policy targets `All` but resources aren't in `All`, peers in `All` won't reach those resources.
+
+---
+
+## DNS Port Versioning
+
+NetBird changed the DNS listener port in v0.59.0:
+
+| Client version | DNS port |
+|----------------|----------|
+| ≤ 0.58.x | 5353 |
+| ≥ 0.59.0 | 22054 |
+
+**Important:** The port on the routing peer changes only when **all** peers in the account have upgraded to ≥ 0.59.0. As long as any peer is still on 0.58.x, all peers continue using port 5353.
+
+### Known bug: clients 0.59.0–0.59.1 with routing peers 0.59.0–0.59.9
+
+Clients on 0.59.0–0.59.1 fail DNS resolution when the routing peer is 0.59.0–0.59.9.
+
+**Fix:**
+- Use client version ≤ 0.58.2 or ≥ 0.59.2, **or**
+- Upgrade the routing peer to ≥ 0.59.10
+
+**Verification:**
+```bash
+nslookup -port=22054 <domain> <routing-peer-ip>
+```
+
+---
+
+## ACL Groups vs Distribution Groups in Network Routes
+
+When configuring a Network Route, there are two separate group fields:
+
+- **Routing Peer groups** (under "Routing Peers"): the peers that act as gateways for the route — these peers advertise the subnet.
+- **Access Control groups** (under "Distribution Groups"): the peers that are *allowed to use* this route. Only peers in these groups will have the route distributed to them.
+
+If Distribution Groups is empty, no peers receive the route even if routing peers are set.
+
+---
+
 ## References
 
 - [Networks](https://docs.netbird.io/manage/networks)

@@ -176,6 +176,13 @@ Setup keys are found in the dashboard under **Setup Keys**. Key options:
 | **Expiration** | Optional expiry date |
 | **Auto-groups** | Groups automatically assigned to enrolled peers |
 | **Ephemeral peers** | Peers are deleted from the network when they disconnect |
+| **Allow Extra DNS Labels** | Allow multiple peers to register with the same label — NetBird will return all their IPs for that hostname (DNS round-robin). Useful for load-balanced services. |
+
+### Key Revocation Behaviour
+
+Revoking or expiring a Setup Key does **not** disconnect peers that have already enrolled using that key. Existing peers remain connected. The key only affects *future* enrollments — a revoked key cannot be used to register new peers.
+
+To remove an already-enrolled peer, delete it explicitly from the dashboard under **Peers**.
 
 ---
 
@@ -184,6 +191,7 @@ Setup keys are found in the dashboard under **Setup Keys**. Key options:
 - Peers automatically reconnect after network changes or reboots when the service is installed.
 - Use `netbird status --detail` to diagnose connectivity issues; it shows relay vs. direct connections.
 - Remove a peer from the network in the dashboard under **Peers** → select peer → **Delete**.
+- Auto-assign groups on a Setup Key apply only to **newly registered** machines; changing the groups on an existing key does not retroactively update already-enrolled peers.
 
 ## References
 

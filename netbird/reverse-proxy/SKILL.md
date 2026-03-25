@@ -17,7 +17,7 @@ NetBird Reverse Proxy exposes internal services running on peers or behind netwo
 
 **Availability:**
 - **Self-hosted** deployments: available (beta). Requires [Traefik](https://docs.netbird.io/selfhosted/external-reverse-proxy) as the external reverse proxy (TLS passthrough is mandatory).
-- **Cloud** deployments: coming soon.
+- **Cloud** deployments: available (beta).
 
 **Limitations:** Does not currently support pre-shared keys or Rosenpass.
 

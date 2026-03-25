@@ -180,6 +180,23 @@ Dashboard → **Control Center** provides a topological visualization of all pee
 
 ---
 
+## Tips
+
+### Inline Group Creation
+
+In any group input field (policy sources, destinations, posture check targets, etc.), you can create a new group on the fly: type the desired group name and press **Enter**. The group is created and selected immediately — no need to navigate to the Groups page first.
+
+### Country Posture Check — Inversion Logic
+
+The country/location posture check works by inversion:
+
+- **Allow specific countries** → effectively **blocks all other countries** (only listed countries pass).
+- **Block specific countries** → effectively **allows all other countries** (only listed countries are denied).
+
+When adding a country to the "allow" list, you are saying "only peers from these countries may connect". All unlisted countries are implicitly blocked.
+
+---
+
 ## References
 
 - [Understanding Groups and Access Policies](https://docs.netbird.io/manage/access-control)
