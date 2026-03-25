@@ -26,28 +26,38 @@ https://cloud.example.de/.well-known/openid-configuration
 
 ## Registering an OIDC Client
 
-Use the `occ` CLI to create a client. The correct command is **`oidc:create`**:
+Use the `occ` CLI to create a client. The correct command is **`oidc:create`** with **positional arguments** (NOT `--id`/`--uri`/`--signing-alg` flags):
 
 ```bash
 docker exec -u www-data <nextcloud-container> php occ oidc:create \
-  --name="<display-name>" \
-  --client-id="<client-id>" \
-  --client-secret="<client-secret>" \
-  --redirect-uri="https://<app-domain>/oauth2/callback" \
-  --flow="code" \
-  --signing-alg="RS256"
+  [-a|--algorithm <RS256|ES256>] \
+  [-f|--flow <code|implicit>] \
+  [-t|--type <public|confidential>] \
+  [--client_id [<client-id>]] \
+  [--client_secret [<client-secret>]] \
+  -- "<display-name>" "<redirect-uri-1>" ["<redirect-uri-2>" ...]
 ```
 
-### Parameters
+**The name and redirect URIs are positional arguments, not named flags.**
 
-| Parameter | Description |
-|-----------|-------------|
-| `--name` | Human-readable display name shown in Nextcloud's connected apps list |
-| `--client-id` | Unique identifier for the client (can be auto-generated or set manually) |
-| `--client-secret` | Secret shared between Nextcloud and the relying party |
-| `--redirect-uri` | Must match exactly what the relying party sends; can be specified multiple times |
-| `--flow` | Use `code` (Authorization Code Flow — most secure and broadly supported) |
-| `--signing-alg` | Use `RS256` (asymmetric — preferred) or `HS256` |
+Example (confidential client for Dex federation):
+```bash
+docker exec -u www-data nextcloud-aio-nextcloud php occ oidc:create \
+  --algorithm RS256 \
+  --flow code \
+  --type confidential \
+  -- "NetBird-Dex" "https://netbird.example.de/oauth2/callback"
+```
+
+### Client ID / Secret constraints
+
+| Constraint | Rule |
+|------------|------|
+| Characters | Only `A-Za-z0-9` (no hyphens, underscores, or special characters) |
+| Minimum length | 32 characters |
+| Maximum length | 64 characters |
+
+⚠️ Violating these constraints gives the error: `The client ID is invalid`.
 
 ### List registered clients
 
@@ -55,10 +65,11 @@ docker exec -u www-data <nextcloud-container> php occ oidc:create \
 docker exec -u www-data <nextcloud-container> php occ oidc:list
 ```
 
-### Delete a client
+### Remove a client
 
 ```bash
-docker exec -u www-data <nextcloud-container> php occ oidc:delete <client-id>
+# The command is oidc:remove (NOT oidc:delete)
+docker exec -u www-data <nextcloud-container> php occ oidc:remove <client-id>
 ```
 
 ## Configuring oauth2-proxy
@@ -188,6 +199,98 @@ A decoded Nextcloud OIDC access token typically includes:
 ```
 
 Note: `email_verified` is **absent** (not `false`) — this is what triggers oauth2-proxy 500 errors.
+
+## Using Nextcloud as IdP for NetBird (via Dex connector federation)
+
+The self-hosted NetBird combined image (`netbirdio/netbird-server`) embeds Dex as its OIDC issuer and **cannot** bypass it. To add Nextcloud login to NetBird, federate Dex to Nextcloud via a Dex OIDC connector:
+
+```
+NetBird Dashboard → Embedded Dex (https://netbird.example.de/oauth2)
+                          ↕  OIDC connector
+                     Nextcloud (https://nextcloud.example.de)
+```
+
+### 1. Create a confidential Nextcloud OIDC client for Dex
+
+```bash
+# Run on the host that runs Nextcloud
+ssh docker "docker exec -u www-data nextcloud-aio-nextcloud php occ oidc:create \
+  --algorithm RS256 \
+  --flow code \
+  --type confidential \
+  -- 'NetBird-Dex' 'https://netbird.example.de/oauth2/callback'"
+```
+
+Save the printed `client_id` and `client_secret` immediately — they are shown only once.
+
+**Client ID constraints:** alphanumeric only (A-Za-z0-9), 32–64 characters.
+
+### 2. Insert the Dex OIDC connector directly into `idp.db`
+
+NetBird's management API and the NetBird dashboard have no UI for managing Dex connectors. The only way to add one is to insert directly into Dex's SQLite database:
+
+```bash
+# On vps1 (where NetBird runs)
+DB=/var/lib/docker/volumes/netbird_netbird_data/_data/idp.db
+
+CONFIG=$(cat <<'EOF'
+{"issuer":"https://nextcloud.example.de","clientID":"<client-id>","clientSecret":"<client-secret>","redirectURI":"https://netbird.example.de/oauth2/callback","scopes":["openid","profile","email"],"insecureEnableGroups":true,"insecureSkipEmailVerified":true}
+EOF
+)
+
+sqlite3 "$DB" "INSERT INTO connector (id, type, name, resource_version, config) VALUES ('nextcloud', 'oidc', 'Nextcloud', '', '$CONFIG');"
+
+# Verify
+sqlite3 "$DB" "SELECT id, type, name FROM connector;"
+# Expected: local|local|Email  AND  nextcloud|oidc|Nextcloud
+```
+
+Then restart the NetBird containers:
+```bash
+cd /srv/docker/netbird && docker compose restart
+```
+
+### 3. Verify the button appears
+
+```bash
+curl -s https://netbird.example.de/oauth2/auth?client_id=netbird-dashboard\&response_type=code\&redirect_uri=https://netbird.example.de | grep -i nextcloud
+# Should show: /oauth2/auth/nextcloud and "Continue with Nextcloud"
+```
+
+### Important: `insecureSkipEmailVerified: true` is REQUIRED
+
+Nextcloud tokens never include `email_verified: true`. Without this flag, Dex will reject every Nextcloud login.
+
+### Dex connector table schema
+
+```
+connector(id TEXT PK, type TEXT, name TEXT, resource_version TEXT, config BLOB)
+```
+
+- `config` is a JSON blob; the `local` connector uses `{}`
+- Connector type for Nextcloud (and any generic OIDC provider): `"oidc"`
+- Named types (not needed here): `zitadel`, `entra`, `okta`, `pocketid`, `authentik`, `keycloak`, `google`, `microsoft`
+- Connectors persist across Dex restarts; `store.db` (NetBird management DB) has **no** `identity_providers` table and does not overwrite Dex connectors
+
+### config.yaml must keep embedded Dex as issuer
+
+```yaml
+server:
+  auth:
+    issuer: "https://netbird.example.de/oauth2"   # ← ALWAYS the embedded Dex URL
+    localAuthDisabled: false                        # keep true to allow local login too
+```
+
+Setting `issuer` to the Nextcloud URL breaks everything — do not do it.
+
+### dashboard.env must point at embedded Dex
+
+```env
+AUTH_CLIENT_ID=netbird-dashboard
+AUTH_AUDIENCE=netbird-dashboard
+AUTH_AUTHORITY=https://netbird.example.de/oauth2
+AUTH_CLIENT_SECRET=
+```
 
 ## References
 

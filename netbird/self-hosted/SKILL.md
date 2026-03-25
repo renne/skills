@@ -400,6 +400,65 @@ Validate these paths separately:
 
 ---
 
+## Adding an External OIDC IdP via Dex Connector Federation
+
+The combined server image (`netbirdio/netbird-server`) embeds Dex and **cannot** use an external OIDC IdP directly. The correct architecture is to federate Dex to the external IdP using a Dex OIDC connector:
+
+```
+Dashboard → Embedded Dex (https://netbird.example.de/oauth2)
+                  ↕  OIDC connector
+            External IdP (e.g., Nextcloud, Authentik, Keycloak)
+```
+
+The dashboard and management server always talk to embedded Dex — do not change `config.yaml` `server.auth.issuer` or `dashboard.env` AUTH_* vars.
+
+### Supported connector types
+
+Named types: `zitadel`, `entra`, `okta`, `pocketid`, `authentik`, `keycloak`, `google`, `microsoft`  
+Generic: `oidc` (use for any OIDC-compliant provider, including Nextcloud)
+
+### Inserting a connector directly into `idp.db`
+
+NetBird management API and dashboard have no UI for Dex connectors. Insert directly:
+
+```bash
+DB=/var/lib/docker/volumes/netbird_netbird_data/_data/idp.db
+
+# Connector config (JSON)
+CONFIG='{"issuer":"https://idp.example.de","clientID":"<client-id>","clientSecret":"<client-secret>","redirectURI":"https://netbird.example.de/oauth2/callback","scopes":["openid","profile","email"],"insecureEnableGroups":true,"insecureSkipEmailVerified":true}'
+
+sqlite3 "$DB" "INSERT INTO connector (id, type, name, resource_version, config) VALUES ('myidp', 'oidc', 'My IdP', '', '$CONFIG');"
+
+# Verify
+sqlite3 "$DB" "SELECT id, type, name FROM connector;"
+```
+
+Then restart all NetBird containers:
+```bash
+cd /srv/docker/netbird && docker compose restart
+```
+
+### Connector table schema
+
+```
+connector(id TEXT PK, type TEXT, name TEXT, resource_version TEXT, config BLOB)
+```
+
+`store.db` (NetBird management) has **no** `identity_providers` table and never overwrites Dex connectors — connectors persist across restarts.
+
+### Keeping local login enabled
+
+Set `server.auth.localAuthDisabled: false` (default) in `config.yaml`. The "Email" local connector in `idp.db` handles this — do not remove it.
+
+### Nextcloud-specific notes
+
+- Nextcloud tokens never include `email_verified: true` — `insecureSkipEmailVerified: true` is **required** in the connector config
+- Client ID must be alphanumeric only (A-Za-z0-9), 32–64 characters
+- Create a **confidential** client (not public) so Dex can use a `client_secret`
+- See the Nextcloud OIDC IdP skill for the correct `occ oidc:create` syntax
+
+---
+
 ## References
 
 - [Self-Hosting Quickstart Guide](https://docs.netbird.io/selfhosted/selfhosted-quickstart)
