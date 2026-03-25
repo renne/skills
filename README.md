@@ -45,6 +45,7 @@ Each skill is a directory containing a `SKILL.md` file following the [VS Code Ag
 | [Coding Style & General Guidelines](nextcloud/coding-standards/SKILL.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/index.html |
 | [PHP Coding Standards](nextcloud/php-coding-standards/SKILL.md) | https://docs.nextcloud.com/server/stable/developer_manual/getting_started/coding_standards/php.html |
 | [App Development Guide](nextcloud/app-development/SKILL.md) | https://docs.nextcloud.com/server/19/developer_manual/app/index.html |
+| [OIDC Identity Provider (user_oidc app, registering clients, oauth2-proxy, email_verified quirk)](nextcloud/oidc-idp/SKILL.md) | https://github.com/nextcloud/user_oidc |
 
 ### Docker Compose
 
