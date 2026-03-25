@@ -109,6 +109,19 @@ Create a wildcard CNAME record in your DNS provider:
 
 Then in the dashboard, click **Verify Domain** → **Start Verification**. NetBird performs a CNAME lookup. DNS propagation can take up to 24 hours.
 
+#### Apex / Root Domain Support
+
+The custom domain setup requires a **wildcard CNAME** (`*.<your-domain>` → `<cluster>.proxy.netbird.io`). This means services always require a **subdomain prefix** (e.g., `myapp.proxy.example.com`).
+
+The **apex domain** (`example.com` itself) is **not supported** by the standard verification flow:
+- RFC 1034/1912 prohibit CNAME records at the DNS zone apex — placing a CNAME on `example.com` would break MX, NS, and other apex records.
+- NetBird's verification only checks for the wildcard CNAME (`*.<your-domain>`), not an apex record.
+- Therefore, `example.com` cannot be used directly as a reverse-proxy endpoint.
+
+**ALIAS / ANAME workaround (not officially supported):** Some DNS providers (Cloudflare, Route 53, NS1) offer CNAME-flattening / ALIAS / ANAME records that allow CNAME-like behavior at the apex. These are provider-specific extensions and are **not documented by NetBird**. If you require apex routing, contact NetBird support to confirm whether their infrastructure honours such records.
+
+**Recommendation:** Use a subdomain for your custom domain (e.g., `apps.example.com` as the registered domain, giving services like `myapp.apps.example.com`).
+
 #### Custom Domain Troubleshooting
 
 - **Pending Verification**: confirm the wildcard CNAME for `*.<your-domain>` is set and has propagated.
