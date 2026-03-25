@@ -50,7 +50,7 @@ Team UI  (Docker — React / Vite — localhost:3000)
 |----------|----------|---------|---------|
 | `CQ_LOCAL_DB_PATH` | No | `~/.cq/local.db` | Override local SQLite path |
 | `CQ_TEAM_ADDR` | No | *(disabled)* | Team API URL; enables team sync (e.g. `http://localhost:8742`) |
-| `CQ_TEAM_API_KEY` | When team configured | — | API key for team auth (⚠️ not yet implemented — see issues #63, #80) |
+| `CQ_TEAM_API_KEY` | When team configured | — | API key for team auth. When set, all knowledge endpoints require `Authorization: Bearer <key>`. When unset, endpoints are open (local dev). Fork patch implements issues #63/#80. |
 | `CQ_DB_PATH` | Team API only | — | Path inside the container for team DB (`/data/team.db`) |
 | `CQ_JWT_SECRET` | Team API | — | JWT signing secret; must be set before starting Docker Compose |
 
@@ -480,7 +480,9 @@ By default ghcr.io packages inherit the repo's visibility. To make images public
 
 ## Known Quirks and Limitations
 
-⚠️ **`CQ_TEAM_API_KEY` is documented but not yet implemented** — it appears in the README and DEVELOPMENT.md but authentication via this key is tracked in issues [#63](https://github.com/mozilla-ai/cq/issues/63) and [#80](https://github.com/mozilla-ai/cq/issues/80). Do not rely on it for access control today.
+⚠️ **`CQ_TEAM_API_KEY` is implemented in `renne/cq` fork only** — upstream `mozilla-ai/cq` still has no auth on knowledge endpoints (tracked in [#63](https://github.com/mozilla-ai/cq/issues/63) and [#80](https://github.com/mozilla-ai/cq/issues/80)). The `renne/cq` fork adds `get_agent_auth` to all 5 knowledge endpoints and wires `CQ_TEAM_API_KEY` through `TeamClient`. When `CQ_TEAM_API_KEY` is unset, behaviour is unchanged (backward-compatible). See `FORK_PATCHES.md` in the fork for details.
+
+⚠️ **Fork uses rebase sync strategy** — `renne/cq` syncs upstream with `git rebase upstream/main` + `git push --force-with-lease`. All fork-specific commits are prefixed `[fork]` for easy identification during conflict resolution. If upstream merges a fix for #63/#80, the workflow will fail loudly rather than silently diverging.
 
 ⚠️ **`reflect` is a stub in the PoC** — the `reflect` MCP tool always returns an empty candidates list. Actual session mining logic lives in the `/cq:reflect` slash command (tracked in issue #9). Use the slash command, not the tool, for end-of-session reflection.
 
