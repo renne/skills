@@ -26,20 +26,29 @@ description: Install, configure, and operate mozilla-ai/cq — a shared agent kn
 | Secrets | `/srv/docker/mozilla-cq/.env` (chmod 600) |
 
 **Auth layers:**
-- **UI** (`cq.bartschnet.de`): gated by `oauth2-proxy` → Nextcloud OIDC (`https://bartschnet.de`). Browser is redirected to Nextcloud login; any Nextcloud user can sign in. OIDC client name: `cq`.
+- **UI** (`cq.bartschnet.de`): gated by `oauth2-proxy` → Nextcloud OIDC (`https://bartschnet.de`). Browser is redirected to Nextcloud login; any Nextcloud user can sign in. OIDC client name: `cq`. After OIDC auth, CQ auto-logs in via `X-Auth-Request-User` header (SSO bypass — no second login screen).
 - **Agent API** (`cq-api.bartschnet.de`): Static Bearer token (`CQ_TEAM_API_KEY`). Retrieve: `ssh docker "grep CQ_TEAM_API_KEY /srv/docker/mozilla-cq/.env"`.
 - **`/api` path** on `cq.bartschnet.de`: same as agent API (priority 10 router bypasses oauth2-proxy). Used by UI nginx-proxy.
 
 **Traffic flow:**
 ```
-Browser → Traefik → cq-oauth2-proxy:4180 → cq-team-ui:3000
+Browser → Traefik → cq-oauth2-proxy:4180 (OIDC, injects X-Auth-Request-User)
+        → cq-team-ui:3000 (React app; on mount calls /api/auth/sso-token)
+        → cq-team-api:8742/auth/sso-token (reads header, issues JWT)
 Browser → Traefik → /api/* (priority 10) → cq-team-api:8742 (strip /api)
 Agent   → Traefik → cq-api.bartschnet.de → cq-team-api:8742
 ```
 
+**SSO auto-login flow:**
+1. User hits `cq.bartschnet.de` → oauth2-proxy → Nextcloud OIDC
+2. React `AuthProvider` mounts → calls `GET /api/auth/sso-token` with `isLoading=true`
+3. oauth2-proxy injects `X-Auth-Request-User`; backend issues HS256 JWT
+4. User authenticated → app renders; login screen never shown
+
 **Redeploy:** `ssh docker "cd /srv/docker/mozilla-cq && docker compose pull && docker compose up -d"`
+**Auto-updates:** Watchtower runs daily at 04:00 Europe/Berlin; all 3 containers have `com.centurylinklabs.watchtower.enable=true`.
 **Seed users:** `ssh docker "cd /srv/docker/mozilla-cq && docker compose exec cq-team-api make seed-users USER=<name> PASS=<pass>"`
-*(Note: OIDC login bypasses the bcrypt/JWT login; seed users only needed for legacy `/auth/login` path.)*
+*(Note: SSO bypass makes seed users unnecessary for normal use — only needed if `CQ_PASSWORD_AUTH_ENABLED=true`.)*
 
 ---
 
@@ -82,6 +91,8 @@ Team UI  (Docker — React / Vite — localhost:3000)
 | `CQ_TEAM_API_KEY` | When team configured | — | API key for team auth. When set, all knowledge endpoints require `Authorization: Bearer <key>`. When unset, endpoints are open (local dev). Fork patch implements issues #63/#80. |
 | `CQ_DB_PATH` | Team API only | — | Path inside the container for team DB (`/data/team.db`) |
 | `CQ_JWT_SECRET` | Team API | — | JWT signing secret; must be set before starting Docker Compose |
+| `CQ_FORWARD_AUTH_ENABLED` | Team API | `false` | Enable `GET /auth/sso-token` endpoint (fork patch). When `true`, backend issues JWT from `X-Auth-Request-User` header set by upstream proxy (oauth2-proxy). |
+| `CQ_PASSWORD_AUTH_ENABLED` | Team API | `true` | Enable `POST /auth/login` (username/password). Set to `false` to disable the login form. |
 
 When `CQ_TEAM_ADDR` is unset, cq runs in **local-only mode** — all knowledge stays on the agent's machine.
 
@@ -524,6 +535,8 @@ By default ghcr.io packages inherit the repo's visibility. To make images public
 ```
 
 ⚠️ **`CQ_TEAM_API_KEY` is implemented in `renne/cq` fork only** — upstream `mozilla-ai/cq` still has no auth on knowledge endpoints (tracked in [#63](https://github.com/mozilla-ai/cq/issues/63) and [#80](https://github.com/mozilla-ai/cq/issues/80)). The `renne/cq` fork adds `get_agent_auth` to all 5 knowledge endpoints and wires `CQ_TEAM_API_KEY` through `TeamClient`. When `CQ_TEAM_API_KEY` is unset, behaviour is unchanged (backward-compatible). See `FORK_PATCHES.md` in the fork for details.
+
+⚠️ **SSO bypass (`CQ_FORWARD_AUTH_ENABLED`) is implemented in `renne/cq` fork only** — upstream has no SSO bypass. The fork adds `GET /auth/sso-token` (reads `X-Auth-Request-User`/`X-Auth-Request-Email` from upstream proxy, issues HS256 JWT) and `GET /auth/config` (returns `{forward_auth_enabled, password_auth_enabled}`) plus React auto-login on mount. The Nextcloud OIDC provider requires `--insecure-oidc-allow-unverified-email=true` on oauth2-proxy (Nextcloud does not set `email_verified=true` in tokens). `X-Auth-Request-User` = Nextcloud `preferred_username` (e.g. `renne`).
 
 ⚠️ **Fork uses rebase sync strategy** — `renne/cq` syncs upstream with `git rebase upstream/main` + `git push --force-with-lease`. All fork-specific commits are prefixed `[fork]` for easy identification during conflict resolution. If upstream merges a fix for #63/#80, the workflow will fail loudly rather than silently diverging.
 
