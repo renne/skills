@@ -558,6 +558,94 @@ NETBIRD_STORE_ENGINE_MYSQL_DSN="..."
 
 4. Restart the management container: `docker compose up -d management`
 
+### Database HA Options
+
+> **⚠️ Important caveat:** Database HA makes the *data store* redundant. The **NetBird management server process
+> is still single-instance** — if it crashes, there is an application-level outage regardless of DB HA. Full
+> management-server HA (shared DB + LB + multiple management replicas) is **not officially supported**.
+
+#### Recommended: PostgreSQL + Patroni
+
+PostgreSQL is the preferred choice for NetBird HA because its single-primary model matches NetBird's
+single-instance management server perfectly. No write-conflict risk, excellent tooling, and the PostgreSQL
+License (permissive).
+
+**Architecture:**
+
+```
+NetBird Management ──► PgBouncer / HAProxy (stable VIP)
+                              │
+              ┌───────────────┴───────────────┐
+         [Patroni + PG primary]   [Patroni + PG replica(s)]
+                    │  ↕ leader election  │
+                 [etcd cluster (3 nodes, odd quorum)]
+```
+
+| Component | Role |
+|---|---|
+| **PostgreSQL streaming replication** | Built-in WAL-based replication from primary to replica(s). Provides data redundancy and read scaling. Does **not** auto-failover by itself. |
+| **Patroni** | Python daemon on each PostgreSQL node. Uses etcd/Consul/ZooKeeper for distributed leader election. Detects primary failure and auto-promotes a replica. RTO ~10–30 seconds. Battle-tested on k8s and bare-metal. |
+| **etcd** (3-node cluster) | Patroni's distributed lock store for leader election. Must have odd quorum (3, 5, …). |
+| **PgBouncer / HAProxy** | Provides a stable connection endpoint. `NB_STORE_ENGINE_POSTGRES_DSN` points here — never changes regardless of which node is primary. PgBouncer adds connection pooling; HAProxy works purely at L4. |
+
+**DSN configuration:**
+
+```bash
+# Points at PgBouncer/HAProxy VIP, not a specific PostgreSQL node
+NB_STORE_ENGINE_POSTGRES_DSN="host=pg-vip.internal user=netbird password=secret dbname=netbird sslmode=require"
+```
+
+**Kubernetes option:** [CloudNativePG](https://cloudnative-pg.io/) (CNCF sandbox) bundles Patroni, manages PVC
+storage, and handles failover automatically — the simplest path for k8s deployments.
+
+**Alternative orchestrators (less common):**
+- **repmgr**: lighter-weight, PostgreSQL-native, less automated. Good for simple two-node setups.
+- **pg_auto_failover**: dedicated monitor + two PostgreSQL nodes; simpler than Patroni for minimal clusters.
+
+#### MySQL InnoDB Cluster (if MySQL ecosystem preferred)
+
+MySQL InnoDB Cluster = Group Replication (built into MySQL 8.0+) + MySQL Router + MySQL Shell.
+
+| Component | Role |
+|---|---|
+| **Group Replication** | Consensus-based synchronous replication; single-primary by default (correct for NetBird). |
+| **MySQL Router** | Monitors the cluster and auto-reroutes connections on failover. `NB_STORE_ENGINE_MYSQL_DSN` points at the Router endpoint. |
+| **MySQL Shell** | Admin/bootstrapping tool for the cluster. |
+
+```bash
+# Points at MySQL Router, not a specific cluster node
+NB_STORE_ENGINE_MYSQL_DSN="netbird:secret@tcp(mysql-router.internal:6446)/netbird?charset=utf8mb4&parseTime=True&loc=Local"
+```
+
+#### MariaDB Galera Cluster (avoid for NetBird)
+
+Galera is a synchronous multi-master cluster. All nodes accept writes simultaneously. While Galera is production-proven, it is a **poor fit for NetBird** because:
+
+1. **Multi-master overhead for a single writer.** NetBird management is always single-instance — Galera's
+   write-set certification runs on every node for every write, adding latency with zero benefit.
+2. **Write certification conflicts.** Galera can reject (rollback) transactions when concurrent writes conflict.
+   Although rare for NetBird's serialised workload, it is an unnecessary risk that GORM and NetBird do **not**
+   handle with automatic retries.
+3. **No built-in client router.** Galera requires HAProxy or ProxySQL as an external routing layer (unlike
+   MySQL Router, which ships with InnoDB Cluster).
+4. **MaxScale license.** MariaDB's most capable proxy (MaxScale) switched to the Business Source License (BSL) in
+   2023 — commercial use at scale may require a paid agreement.
+
+If you already operate MariaDB and want HA, consider standard **MariaDB semi-sync replication + MaxScale** (single-primary, similar to Patroni) rather than Galera.
+
+#### Summary comparison
+
+| | PostgreSQL + Patroni | MySQL InnoDB Cluster | MariaDB Galera |
+|---|---|---|---|
+| **Replication model** | Single-primary (WAL streaming) | Single-primary (Group Replication) | Multi-master |
+| **Auto-failover** | ✅ Patroni ~10–30 s | ✅ MySQL Router ~seconds | ⚠️ Needs HAProxy/ProxySQL |
+| **Write-conflict risk** | ✅ None | ✅ None | ⚠️ Certification failures possible |
+| **NetBird fit** | ✅ Excellent | ✅ Good | ⚠️ Suboptimal |
+| **Client routing** | PgBouncer / HAProxy VIP | MySQL Router endpoint | HAProxy / ProxySQL |
+| **Kubernetes operator** | CloudNativePG (CNCF) | MySQL Operator | Percona PXC Operator |
+| **License** | PostgreSQL (permissive) | GPL-2.0 | GPL-2.0 + BSL proxy |
+| **Recommendation** | ✅ **Preferred** | ✅ If MySQL ecosystem | ❌ Avoid |
+
 ---
 
 ## High Availability (HA)
