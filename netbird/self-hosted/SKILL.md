@@ -623,6 +623,8 @@ panic: runtime error: invalid memory address or nil pointer dereference
 ```
 Management requires a valid, reachable IdP config at startup — there is no way around this without a code change.
 
+> **⚠️ v0.62+ config incompatibility (from NetBird team, issue #5084):** `HttpConfig` is part of the **legacy pre-v0.62 IdP configuration** and must **not** be combined with `EmbeddedIdP` config in v0.62+. Mixing them causes unexpected behavior. If you see the nil pointer panic above, first check whether you're running v0.62+ — if so, the fix is to remove `HttpConfig` entirely and use only the `EmbeddedIdP` block. The panic in v0.61.x and earlier occurs because `HttpConfig` was required; in v0.62+ it should be absent when using embedded Dex.
+
 **Workaround options (no perfect solution):**
 
 | Approach | Notes |
@@ -913,3 +915,4 @@ The signal server is also stateless and can be replicated, though this is not of
 - [Configuration Files Reference](https://docs.netbird.io/selfhosted/configuration-files)
 - [Identity Providers](https://docs.netbird.io/selfhosted/identity-providers)
 - [NetBird Releases](https://github.com/netbirdio/netbird/releases)
+- [Issue #5084 — IdP behind reverse proxy / overlay: startup deadlock, request for `--skip-oidc-startup-check`](https://github.com/netbirdio/netbird/issues/5084)
