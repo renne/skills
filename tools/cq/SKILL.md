@@ -49,7 +49,7 @@ Team UI  (Docker — React / Vite — localhost:3000)
 | Variable | Required | Default | Purpose |
 |----------|----------|---------|---------|
 | `CQ_LOCAL_DB_PATH` | No | `~/.cq/local.db` | Override local SQLite path |
-| `CQ_TEAM_ADDR` | No | *(disabled)* | Team API URL; enables team sync (e.g. `http://localhost:8742`) |
+| `CQ_TEAM_ADDR` | No | *(disabled)* | Team API URL; enables team sync. **Must be root-origin (no path component)** — e.g. `https://cq-api.bartschnet.de` or `http://localhost:8742`. See httpx quirk below. |
 | `CQ_TEAM_API_KEY` | When team configured | — | API key for team auth. When set, all knowledge endpoints require `Authorization: Bearer <key>`. When unset, endpoints are open (local dev). Fork patch implements issues #63/#80. |
 | `CQ_DB_PATH` | Team API only | — | Path inside the container for team DB (`/data/team.db`) |
 | `CQ_JWT_SECRET` | Team API | — | JWT signing secret; must be set before starting Docker Compose |
@@ -101,6 +101,11 @@ The install script writes the MCP server entry into the appropriate `opencode.js
 ---
 
 ## Agent Configuration
+
+### Deployed team instance (bartschnet.de)
+
+Use `CQ_TEAM_ADDR=https://cq-api.bartschnet.de` — **not** `https://cq.bartschnet.de/api`. See httpx quirk in Known Quirks below.
+Retrieve `CQ_TEAM_API_KEY` from: `ssh docker "grep CQ_TEAM_API_KEY /srv/docker/mozilla-cq/.env"`.
 
 ### Claude Code — connect to team API
 
@@ -479,6 +484,15 @@ By default ghcr.io packages inherit the repo's visibility. To make images public
 ---
 
 ## Known Quirks and Limitations
+
+⚠️ **httpx `base_url` + leading-slash path resolution** — `TeamClient` uses leading-slash paths (`/query`, `/propose`, etc.). httpx follows RFC 3986: a path starting with `/` is absolute and **replaces** the entire path of the base URL. `base_url="https://cq.bartschnet.de/api"` + `client.get("/query")` resolves to `https://cq.bartschnet.de/query` — **not** `/api/query`. Therefore `CQ_TEAM_ADDR` must point to a **root-origin URL with no path component**. Use `https://cq-api.bartschnet.de` (dedicated subdomain, no path) rather than `https://cq.bartschnet.de/api`.
+
+⚠️ **Traefik: multiple routers on one container require a shared service name** — when a container defines two Traefik routers pointing to the same port, both routers MUST reference a single named service. Otherwise Traefik logs `Router X cannot be linked automatically with multiple Services` and both routers fail. Pattern:
+```yaml
+- "traefik.http.services.cq-api-svc.loadbalancer.server.port=8742"   # one service
+- "traefik.http.routers.cq-api.service=cq-api-svc"                   # both routers reference it
+- "traefik.http.routers.cq-api-agents.service=cq-api-svc"
+```
 
 ⚠️ **`CQ_TEAM_API_KEY` is implemented in `renne/cq` fork only** — upstream `mozilla-ai/cq` still has no auth on knowledge endpoints (tracked in [#63](https://github.com/mozilla-ai/cq/issues/63) and [#80](https://github.com/mozilla-ai/cq/issues/80)). The `renne/cq` fork adds `get_agent_auth` to all 5 knowledge endpoints and wires `CQ_TEAM_API_KEY` through `TeamClient`. When `CQ_TEAM_API_KEY` is unset, behaviour is unchanged (backward-compatible). See `FORK_PATCHES.md` in the fork for details.
 
