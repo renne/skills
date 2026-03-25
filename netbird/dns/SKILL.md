@@ -174,6 +174,9 @@ Click the zone → **Add Record**:
 - Zone domain cannot be changed after creation (delete and recreate if needed)
 - CNAME records cannot coexist with A/AAAA records for the same hostname
 - Empty zones (no records) are not distributed to peers
+- **Nameserver upstream protocol**: only plain UDP/TCP is supported — DNS over TLS (DoT) or DNS over HTTPS (DoH) upstreams are not available. No known upstream issue as of 2026-06; use an intermediate resolver (e.g. CoreDNS with `forward . tls://…`) if you need encrypted upstream forwarding.
+- **No DNS name rewrites**: dynamic suffix/regex rewrites (like CoreDNS `rewrite name suffix`) are not supported. See [#5499](https://github.com/netbirdio/netbird/issues/5499) / [#817](https://github.com/netbirdio/netbird/issues/817) / [#2660](https://github.com/netbirdio/netbird/issues/2660).
+- **No wildcard records in Custom Zones**: `*.example.com` entries are not resolved; each subdomain requires its own record. See [#5170](https://github.com/netbirdio/netbird/issues/5170).
 
 ---
 

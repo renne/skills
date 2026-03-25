@@ -160,11 +160,113 @@ Via MCP (`netbird-create_netbird_nameserver`):
 | SRV/TXT records | ❌ | ❌ | ✅ |
 | Zone transfers to secondary nameservers | ❌ | ❌ | ✅ |
 | DNSSEC | ❌ | ❌ | ✅ |
+| DNS name rewrites (`rewrite name`) | ❌ | ❌ | ✅ (rewrite plugin) |
+| DNS over TLS (DoT) upstream forwarding | ❌ | ❌ | ✅ (`forward . tls://…`) |
+| Query-type view filtering (A vs AAAA) | ❌ | ❌ | ✅ (view plugin) |
+| Chained forwarding with fallthrough | ❌ | ❌ | ✅ (`forward { next NXDOMAIN }`) |
 | Forward queries to specific servers per domain | ❌ | ✅ | ✅ (forward plugin) |
 | Push DNS config to all VPN peers automatically | ✅ | ✅ | ❌ (manual config per host) |
 | Search domain distribution | ✅ | ✅ | ❌ (manual config per host) |
 | Split DNS (different servers per domain) | ✅ (zones) | ✅ (match domains) | ✅ (multiple server blocks) |
 | Group-based access control for DNS records | ✅ (distribution groups) | ❌ | ❌ |
+
+---
+
+## CoreDNS Features with No NetBird Equivalent (Gap Analysis)
+
+This section documents CoreDNS Corefile features that NetBird DNS cannot currently replace. These are the blockers that prevent retiring CoreDNS in favour of NetBird-only DNS.
+
+### 1. DNS Name Rewrites (`rewrite` plugin) — **Critical Blocker**
+
+CoreDNS can rewrite DNS query names before resolution:
+
+```corefile
+rewrite name suffix .bartschnet.de .fritz.box  # all *.bartschnet.de → *.fritz.box
+rewrite name exact pbs.bartschnet.de pbs.fritz.box
+rewrite name regex (.*)-srv\.bartschnet\.de {1}.fritz.box
+```
+
+This allows DHCP-assigned hostnames on a router (`fritz.box`) to be accessed via the public domain (`bartschnet.de`) without any static records.
+
+**NetBird has no equivalent.** Custom Zones require a static record per hostname; dynamic DHCP names cannot be rewritten.
+
+**Open issues:**
+- **[netbirdio/netbird#5499](https://github.com/netbirdio/netbird/issues/5499)** — "Support rewrite rules in Netbird DNS" (open, filed by `renne`, refs #2660 and #817)
+- **[netbirdio/netbird#817](https://github.com/netbirdio/netbird/issues/817)** — "Embedded DNS peer subdomain resolution customization" (open, 20 👍)
+- **[netbirdio/netbird#2660](https://github.com/netbirdio/netbird/issues/2660)** — "Custom DNS records" (open, 13 👍)
+
+### 2. DNS over TLS (DoT) Upstream Forwarding
+
+CoreDNS can forward upstream queries over TLS for privacy and ad-blocking:
+
+```corefile
+forward . tls://146.255.56.98 tls://146.255.56.99 {
+    tls_servername joindns4.eu
+    health_check 5s
+}
+```
+
+NetBird nameservers only support plain UDP/TCP (`ns_type: "udp"`). There is no `tls` nameserver type.
+
+**No known upstream NetBird issue as of 2026-06.** Workaround: keep CoreDNS as the primary resolver and forward DoT from CoreDNS.
+
+### 3. Query-Type View Filtering (`view` plugin)
+
+CoreDNS `view` plugin serves different answers based on the query type or client subnet:
+
+```corefile
+public.bartschnet.de {
+    view ipv6only { type AAAA }   # return AAAA only to IPv6 clients
+    view ipv4only { type A }      # return A only to IPv4 clients
+    hosts { … }
+}
+```
+
+NetBird Custom Zones serve the same records to all peers — no per-query-type or per-client filtering.
+
+**No known upstream NetBird issue as of 2026-06.**
+
+### 4. Chained Forwarding with Fallthrough
+
+CoreDNS can chain multiple upstreams with conditional fallthrough:
+
+```corefile
+fritz.box {
+    forward . 10.0.0.1 {
+        next NXDOMAIN
+    }
+    forward . 127.0.0.1:5353   # local bridge zone fallback
+}
+```
+
+NetBird nameservers have a single server list per entry; there is no ordered fallthrough between multiple upstreams.
+
+**No known upstream NetBird issue as of 2026-06.**
+
+### 5. Local-Only DNS Listeners (`bind`)
+
+CoreDNS can bind to specific interfaces/addresses:
+
+```corefile
+fritz.box:5353 {
+    bind 127.0.0.1
+    …
+}
+```
+
+This allows a local bridge zone only accessible on the same host. NetBird distributes DNS config to peers — it has no concept of a locally-bound-only DNS listener.
+
+### Summary: What CAN Be Migrated to NetBird Today
+
+| CoreDNS usage pattern | NetBird replacement |
+|----------------------|-------------------|
+| Static A/AAAA records for fixed services (e.g., `pbs.bartschnet.de → 10.0.0.x`) | ✅ Custom Zone record |
+| Static CNAME aliases | ✅ Custom Zone CNAME record |
+| Simple split-DNS forwarding | ✅ Nameserver with match domains |
+| **Dynamic suffix rewrites for DHCP hostnames** | ❌ Not possible yet (#5499) |
+| **DoT upstream for ad-blocking/privacy** | ❌ Not supported |
+| **View/type-based answer filtering** | ❌ Not supported |
+| **Chained forwarding with fallthrough** | ❌ Not supported |
 
 ---
 
