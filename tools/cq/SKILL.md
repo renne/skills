@@ -14,6 +14,35 @@ description: Install, configure, and operate mozilla-ai/cq — a shared agent kn
 
 ---
 
+## Deployed Instance — bartschnet.de
+
+| Item | Value |
+|------|-------|
+| UI | `https://cq.bartschnet.de` (OIDC-protected via oauth2-proxy) |
+| Agent API | `https://cq-api.bartschnet.de` (Bearer token auth) |
+| Host | `docker` (`/srv/docker/mozilla-cq/`) |
+| Images | `ghcr.io/renne/cq-team-api:latest`, `ghcr.io/renne/cq-team-ui:latest` |
+| DB volume | `mozilla-cq_cq-db` → `/data/team.db` inside container |
+| Secrets | `/srv/docker/mozilla-cq/.env` (chmod 600) |
+
+**Auth layers:**
+- **UI** (`cq.bartschnet.de`): gated by `oauth2-proxy` → Nextcloud OIDC (`https://bartschnet.de`). Browser is redirected to Nextcloud login; any Nextcloud user can sign in. OIDC client name: `cq`.
+- **Agent API** (`cq-api.bartschnet.de`): Static Bearer token (`CQ_TEAM_API_KEY`). Retrieve: `ssh docker "grep CQ_TEAM_API_KEY /srv/docker/mozilla-cq/.env"`.
+- **`/api` path** on `cq.bartschnet.de`: same as agent API (priority 10 router bypasses oauth2-proxy). Used by UI nginx-proxy.
+
+**Traffic flow:**
+```
+Browser → Traefik → cq-oauth2-proxy:4180 → cq-team-ui:3000
+Browser → Traefik → /api/* (priority 10) → cq-team-api:8742 (strip /api)
+Agent   → Traefik → cq-api.bartschnet.de → cq-team-api:8742
+```
+
+**Redeploy:** `ssh docker "cd /srv/docker/mozilla-cq && docker compose pull && docker compose up -d"`
+**Seed users:** `ssh docker "cd /srv/docker/mozilla-cq && docker compose exec cq-team-api make seed-users USER=<name> PASS=<pass>"`
+*(Note: OIDC login bypasses the bcrypt/JWT login; seed users only needed for legacy `/auth/login` path.)*
+
+---
+
 ## Architecture
 
 cq spans three runtime boundaries:

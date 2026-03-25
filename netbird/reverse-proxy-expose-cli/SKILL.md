@@ -1,6 +1,6 @@
 ---
 name: reverse-proxy-expose-cli
-description: NetBird `netbird expose` CLI command for ephemeral reverse proxy sessions — exposes a local HTTP/HTTPS port to the public internet without dashboard configuration. Covers enabling peer expose in account settings, command arguments and flags (--with-pin, --with-password, --with-user-groups, --with-custom-domain, --with-name-prefix), session lifecycle (90-second TTL, 30-second keepalive, max 10 sessions per peer), authentication options, custom domains, activity log events, and troubleshooting. Use when sharing a local development server, creating a temporary webhook endpoint, or giving teammates quick access to a running service without creating a permanent dashboard service.
+description: NetBird `netbird expose` CLI command for ephemeral reverse proxy sessions — exposes a local port to the public internet without dashboard configuration. Supports HTTP, HTTPS, TCP, UDP, and TLS protocols. Covers enabling peer expose in account settings, command arguments and flags (--protocol, --with-external-port, --with-pin, --with-password, --with-user-groups, --with-custom-domain, --with-name-prefix), protocol-specific flag constraints (auth only for http/https; --with-external-port only for tcp/udp/tls), session lifecycle (90-second TTL, 30-second keepalive, max 10 sessions per peer), authentication options, custom domains, activity log events, and troubleshooting. Use when sharing a local development server, creating a temporary webhook endpoint, exposing a raw TCP service, or giving teammates quick access to a running service without creating a permanent dashboard service.
 ---
 # NetBird Expose from CLI (`netbird expose`)
 
@@ -57,18 +57,34 @@ Press `Ctrl+C` to stop exposing and remove the service.
 
 | Argument | Required | Description |
 |----------|----------|-------------|
-| `port` | Yes | Local port number to expose (1–65535) |
+| `port` | Yes | Local (internal) port number to expose (1–65535) |
 
 ### Flags
 
-| Flag | Type | Default | Description |
-|------|------|---------|-------------|
-| `--protocol` | string | `http` | Protocol: `http` or `https` |
-| `--with-pin` | string | — | Protect with a 6-digit numeric PIN (must be exactly 6 digits) |
-| `--with-password` | string | — | Protect with a password (cannot be empty) |
-| `--with-user-groups` | strings | — | Restrict access to specific SSO user groups (e.g. `devops,Backend`; cannot be empty) |
-| `--with-custom-domain` | string | — | Use a custom domain pre-configured in your account |
-| `--with-name-prefix` | string | — | Readable prefix for the generated subdomain |
+| Flag | Type | Default | Protocols | Description |
+|------|------|---------|-----------|-------------|
+| `--protocol` | string | `http` | all | Protocol: `http`, `https`, `tcp`, `udp`, or `tls` |
+| `--with-external-port` | int | same as internal | tcp, udp, tls only | External port exposed to the public (enables port remapping). **Not available for http/https.** |
+| `--with-pin` | string | — | http, https only | Protect with a 6-digit numeric PIN (must be exactly 6 digits). **Not available for tcp/udp/tls.** |
+| `--with-password` | string | — | http, https only | Protect with a password (cannot be empty). **Not available for tcp/udp/tls.** |
+| `--with-user-groups` | strings | — | http, https only | Restrict access to specific SSO user groups (e.g. `devops,Backend`; cannot be empty). **Not available for tcp/udp/tls.** |
+| `--with-custom-domain` | string | — | http, https | Use a custom domain pre-configured in your account |
+| `--with-name-prefix` | string | — | http, https | Readable prefix for the generated subdomain |
+
+### ⚠️ Protocol-Specific Flag Constraints
+
+The CLI enforces a hard split between **"cluster protocols"** (tcp, udp, tls) and **"web protocols"** (http, https):
+
+| Feature | http / https | tcp / udp / tls |
+|---------|-------------|-----------------|
+| `--with-external-port` | ❌ rejected | ✅ supported |
+| `--with-pin` | ✅ supported | ❌ rejected |
+| `--with-password` | ✅ supported | ❌ rejected |
+| `--with-user-groups` | ✅ supported | ❌ rejected |
+| `--with-name-prefix` | ✅ supported | ❌ (n/a) |
+| `--with-custom-domain` | ✅ supported | ❌ (n/a) |
+
+Passing an incompatible flag returns a validation error and the command exits without creating a session.
 
 ---
 
