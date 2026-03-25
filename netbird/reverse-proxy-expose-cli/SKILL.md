@@ -248,6 +248,50 @@ netbird expose 8080 --with-name-prefix webhook
 netbird expose 8443 --protocol https
 ```
 
+### Raw TCP service (e.g. PostgreSQL)
+
+```bash
+netbird expose 5432 --protocol tcp
+```
+
+### TCP service with port remapping
+
+Expose internal port 5432 as external port 5433:
+
+```bash
+netbird expose 5432 --protocol tcp --with-external-port 5433
+```
+
+### UDP service (e.g. game server)
+
+```bash
+netbird expose 7777 --protocol udp
+```
+
+### TLS-passthrough service
+
+```bash
+netbird expose 443 --protocol tls
+```
+
+### Raw TCP service (e.g., PostgreSQL)
+
+```bash
+netbird expose 5432 --protocol tcp
+```
+
+### TCP with port remapping (internal 5432 → external 5433)
+
+```bash
+netbird expose 5432 --protocol tcp --with-external-port 5433
+```
+
+### TLS passthrough
+
+```bash
+netbird expose 8443 --protocol tls
+```
+
 ---
 
 ## Troubleshooting
@@ -278,9 +322,13 @@ The `--with-name-prefix` value is invalid. Requirements:
 - Must start and end with a letter or number
 - 1–32 characters
 
-### "unsupported protocol"
+### "auth flags ... are not supported for tcp/udp/tls protocol"
 
-Only `http` and `https` are supported with `--protocol`. TCP/UDP protocols are not yet supported for peer expose.
+`--with-pin`, `--with-password`, and `--with-user-groups` are **only valid for http/https**. Remove these flags when using `tcp`, `udp`, or `tls` protocols.
+
+### "--with-external-port is not supported for http/https"
+
+`--with-external-port` is **only valid for tcp, udp, tls** (cluster protocols). For HTTP/HTTPS, the public port is determined by the proxy platform and cannot be remapped.
 
 ### Service URL returns connection error after Ctrl+C
 
