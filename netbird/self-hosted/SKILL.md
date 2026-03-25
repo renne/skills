@@ -326,6 +326,8 @@ add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate,
 
 **Traefik workaround** (while waiting for upstream PR to merge): Add a Traefik headers middleware to force `Cache-Control: no-store` on all responses from the dashboard router. This prevents the browser from ever caching a transient 404.
 
+> ✅ **Applied on vps1** (`/srv/docker/netbird/docker-compose.yml`) as of 2026-03-25. Verified: both HTTP 200 and 404 responses now include `Cache-Control: no-store, no-cache, must-revalidate`. This workaround will remain in place until upstream PR #549 is merged and Watchtower auto-updates the image.
+
 Via Docker Compose labels on the `dashboard` service:
 
 ```yaml
