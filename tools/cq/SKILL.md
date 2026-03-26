@@ -1,6 +1,7 @@
 ---
 name: cq
 description: Install, configure, and operate mozilla-ai/cq — a shared agent knowledge commons that uses MCP tools (query, propose, confirm, flag, reflect, status) to prevent AI agents from rediscovering the same failures. Use this skill when setting up cq for Claude Code or OpenCode, deploying the team API/UI with Docker Compose, developing or extending cq, or integrating cq MCP tools into agent workflows.
+allowed-tools: cq(cq-status), cq(cq-query), cq(cq-propose), cq(cq-confirm), cq(cq-flag), cq(cq-reflect)
 ---
 
 # cq — Shared Agent Knowledge Commons
