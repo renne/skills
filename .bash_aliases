@@ -1,1 +1,1 @@
-alias copilot='/usr/local/bin/copilot --allow-tool=cq'
+alias copilot='copilot --allow-tool=cq'
