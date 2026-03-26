@@ -19,7 +19,7 @@ description: Install, configure, and operate mozilla-ai/cq — a shared agent kn
 | Item | Value |
 |------|-------|
 | UI | `https://cq.bartschnet.de` (OIDC-protected via oauth2-proxy) |
-| Agent API | `https://cq-api.bartschnet.de` (Bearer token auth) |
+| MCP | `https://cq-mcp.bartschnet.de/mcp` (HTTP BasicAuth via Traefik) |
 | Host | `docker` (`/srv/docker/mozilla-cq/`) |
 | Images | `ghcr.io/renne/cq-team-api:latest`, `ghcr.io/renne/cq-team-ui:latest` |
 | DB volume | `mozilla-cq_cq-db` → `/data/team.db` inside container |
@@ -27,16 +27,16 @@ description: Install, configure, and operate mozilla-ai/cq — a shared agent kn
 
 **Auth layers:**
 - **UI** (`cq.bartschnet.de`): gated by `oauth2-proxy` → Nextcloud OIDC (`https://bartschnet.de`). Browser is redirected to Nextcloud login; any Nextcloud user can sign in. OIDC client name: `cq`. After OIDC auth, CQ auto-logs in via `X-Auth-Request-User` header (SSO bypass — no second login screen).
-- **Agent API** (`cq-api.bartschnet.de`): Static Bearer token (`CQ_TEAM_API_KEY`). Retrieve: `ssh docker "grep CQ_TEAM_API_KEY /srv/docker/mozilla-cq/.env"`.
-- **`/api` path** on `cq.bartschnet.de`: same as agent API (priority 10 router bypasses oauth2-proxy). Used by UI nginx-proxy.
+- **Agent MCP** (`cq-mcp.bartschnet.de`): HTTP BasicAuth at Traefik level (user `cq`). The MCP container talks to `cq-team-api` on the internal Docker network — no external API route exists.
+- **`/api` path** on `cq.bartschnet.de`: forwarded to `cq-team-api` via `cq-forwardauth` middleware (oauth2-proxy validates session). Used by the UI React app for SSO token exchange.
 
 **Traffic flow:**
 ```
 Browser → Traefik → cq-oauth2-proxy:4180 (OIDC, injects X-Auth-Request-User)
         → cq-team-ui:3000 (React app; on mount calls /api/auth/sso-token)
         → cq-team-api:8742/auth/sso-token (reads header, issues JWT)
-Browser → Traefik → /api/* (priority 10) → cq-team-api:8742 (strip /api)
-Agent   → Traefik → cq-api.bartschnet.de → cq-team-api:8742
+Browser → Traefik → /api/* (priority 10) → cq-forwardauth → cq-team-api:8742 (strip /api)
+Agent   → Traefik → cq-mcp.bartschnet.de (BasicAuth) → cq-mcp:8080/mcp (FastMCP) → cq-team-api:8742 (internal, no auth)
 ```
 
 **SSO auto-login flow:**
@@ -87,8 +87,8 @@ Team UI  (Docker — React / Vite — localhost:3000)
 | Variable | Required | Default | Purpose |
 |----------|----------|---------|---------|
 | `CQ_LOCAL_DB_PATH` | No | `~/.cq/local.db` | Override local SQLite path |
-| `CQ_TEAM_ADDR` | No | *(disabled)* | Team API URL; enables team sync. **Must be root-origin (no path component)** — e.g. `https://cq-api.bartschnet.de` or `http://localhost:8742`. See httpx quirk below. |
-| `CQ_TEAM_API_KEY` | When team configured | — | API key for team auth. When set, all knowledge endpoints require `Authorization: Bearer <key>`. When unset, endpoints are open (local dev). Fork patch implements issues #63/#80. |
+| `CQ_TEAM_ADDR` | No | *(disabled)* | Team API URL; enables team sync. **Must be root-origin (no path component)** — e.g. `http://cq-team-api:8742` (internal Docker) or `http://localhost:8742`. See httpx quirk below. |
+| `CQ_TEAM_API_KEY` | No | *(disabled)* | API key for team auth. **Removed from deployed instance** — knowledge endpoints are open on the internal Docker network (no external API route). If re-enabled, all knowledge endpoints require `Authorization: Bearer <key>`. Fork patch implements issues #63/#80. |
 | `CQ_DB_PATH` | Team API only | — | Path inside the container for team DB (`/data/team.db`) |
 | `CQ_JWT_SECRET` | Team API | — | JWT signing secret; must be set before starting Docker Compose |
 | `CQ_FORWARD_AUTH_ENABLED` | Team API | `false` | Enable `GET /auth/sso-token` endpoint (fork patch). When `true`, backend issues JWT from `X-Auth-Request-User` header set by upstream proxy (oauth2-proxy). |
@@ -534,7 +534,7 @@ By default ghcr.io packages inherit the repo's visibility. To make images public
 - "traefik.http.routers.cq-api-agents.service=cq-api-svc"
 ```
 
-⚠️ **`CQ_TEAM_API_KEY` is implemented in `renne/cq` fork only** — upstream `mozilla-ai/cq` still has no auth on knowledge endpoints (tracked in [#63](https://github.com/mozilla-ai/cq/issues/63) and [#80](https://github.com/mozilla-ai/cq/issues/80)). The `renne/cq` fork adds `get_agent_auth` to all 5 knowledge endpoints and wires `CQ_TEAM_API_KEY` through `TeamClient`. When `CQ_TEAM_API_KEY` is unset, behaviour is unchanged (backward-compatible). See `FORK_PATCHES.md` in the fork for details.
+⚠️ **`CQ_TEAM_API_KEY` bearer auth was removed from the deployed instance** — the `renne/cq` fork implements it (adds `get_agent_auth` to all 5 knowledge endpoints, wires through `TeamClient`), but the deployed team API at `cq-team-api:8742` runs without it. The team API is internal-only (no external Traefik route); external access is only via MCP (`cq-mcp.bartschnet.de`, BasicAuth at Traefik level). When `CQ_TEAM_API_KEY` is unset, behaviour is unchanged (backward-compatible). See `FORK_PATCHES.md` in the fork for details.
 
 ⚠️ **SSO bypass (`CQ_FORWARD_AUTH_ENABLED`) is implemented in `renne/cq` fork only** — upstream has no SSO bypass. The fork adds `GET /auth/sso-token` (reads `X-Auth-Request-User`/`X-Auth-Request-Email` from upstream proxy, issues HS256 JWT) and `GET /auth/config` (returns `{forward_auth_enabled, password_auth_enabled}`) plus React auto-login on mount. The Nextcloud OIDC provider requires `--insecure-oidc-allow-unverified-email=true` on oauth2-proxy (Nextcloud does not set `email_verified=true` in tokens). `X-Auth-Request-User` = Nextcloud `preferred_username` (e.g. `renne`).
 
@@ -562,7 +562,7 @@ The `renne/cq` fork includes a **containerised HTTP MCP server** (`cq-mcp`) that
 |------|-------|
 | URL | `https://cq-mcp.bartschnet.de/mcp` |
 | Transport | `streamable-http` (FastMCP default for HTTP) |
-| Auth | HTTP BasicAuth (user `cq`, password = `CQ_TEAM_API_KEY`) |
+| Auth | HTTP BasicAuth at Traefik (user `cq`) — retrieve password from `/srv/docker/mozilla-cq/.env` |
 | Image | `ghcr.io/renne/cq-mcp:main` |
 | Host | `docker:/srv/docker/mozilla-cq/compose.yml` |
 
@@ -616,7 +616,7 @@ VS Code / Copilot CLI (renne)
   └── MCP streamable-http → https://cq-mcp.bartschnet.de/mcp  (Traefik: BasicAuth)
                               ↕ FastMCP streamable-http :8080
                     docker: cq-mcp container (ghcr.io/renne/cq-mcp:main)
-                              ↕ HTTP REST + Bearer (internal Docker network)
+                              ↕ HTTP REST, no auth (internal Docker network only)
                     docker: cq-team-api:8742
 ```
 
@@ -656,6 +656,47 @@ mcp = FastMCP(
 ```
 
 Also note: `mcp = FastMCP(...)` is evaluated at **module import time**. Any `os.environ.setdefault()` in `main()` is too late — env vars must be set before the module is imported.
+
+### `stateless_http=True` — preventing "Session not found" errors
+
+FastMCP `streamable-http` transport creates a server-side session on first connect and assigns a session ID. After a **server restart**, all session IDs are lost. MCP clients (VS Code, Copilot CLI) cache session IDs and reuse them, causing every subsequent request to return:
+
+```json
+{"error": "Session not found"}
+```
+
+**Fix:** Pass `stateless_http=True` to `FastMCP()`:
+
+```python
+mcp = FastMCP(
+    "cq",
+    stateless_http=True,
+    host=os.environ.get("FASTMCP_HOST", "127.0.0.1"),
+    port=int(os.environ.get("FASTMCP_PORT", "8000")),
+)
+```
+
+This disables server-side session management — each HTTP request is handled independently. Safe for cq because all state lives in SQLite (`cq-db` volume) and the team API, never in MCP session memory.
+
+**After server restart — client reconnect:**
+- **Copilot CLI:** Start a new session (stale session IDs cannot be recovered in-session)
+- **VS Code:** Open Command Palette → "MCP: Restart Server" (or "MCP: Reconnect")
+
+### MCP server health check (from inside container)
+
+```bash
+docker exec mozilla-cq-cq-mcp-1 /app/.venv/bin/python3 - <<'EOF'
+import urllib.request, json
+data = json.dumps({"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"test","version":"1.0"}}}).encode()
+req = urllib.request.Request("http://127.0.0.1:8080/mcp", data=data, headers={"Content-Type":"application/json","Accept":"application/json, text/event-stream"}, method="POST")
+r = urllib.request.urlopen(req)
+print(r.status, dict(r.headers))
+EOF
+```
+
+Expected: `200 OK`. `GET /mcp` → `406 Not Acceptable` is also healthy (server alive, wrong headers). `502` = container not running.
+
+Note: Python packages are in `/app/.venv/`, NOT system Python. Use `/app/.venv/bin/python3` for all container-internal checks.
 
 ### DNS / Networking
 
