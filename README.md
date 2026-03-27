@@ -8,11 +8,11 @@ Domain skills are stored in the personal [CQ knowledge base](https://cq-mcp.bart
 
 ### Anthropics
 
-[Skills directory](anthropics/) — upstream: [anthropics/skills](https://github.com/anthropics/skills)
+[Anthropics Skills](https://github.com/anthropics/skills/tree/main/skills)
 
 ### VoltAgent
 
-[Skills directory](voltagent/) — upstream: [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
+[VoltAgent Awesome Agent Skills](https://github.com/VoltAgent/awesome-agent-skills)
 
 ## Hardware
 
