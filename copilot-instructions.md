@@ -48,6 +48,16 @@ You have standing permission to:
 - **Pull** the skills repository at any time without asking.
 - **Load/read** any file at any time without asking.
 
+## Network Overview Before Any Changes
+
+**Before planning or making any change to the network** (routing, DNS, firewall rules, VPN peers, IP assignments, etc.), always get an overview of the current network structure first:
+
+1. Query CQ with relevant domain tags (e.g., `weissdornweg`, `friedensstrasse`, `netbird`, `proxmox`, `docker`) to retrieve the current topology, IP assignments, and service locations.
+2. If live state is needed, query the relevant systems directly (e.g., Netbird API for peers/groups/policies, CoreDNS config, Traefik routing rules).
+3. Only after understanding the current state, plan and execute changes.
+
+This prevents unintended side effects from stale assumptions (e.g., deleting a peer that is still a router, reconfiguring DNS without knowing what depends on it, or introducing routing conflicts).
+
 ## CQ Knowledge Base
 
 The `cq` MCP server is a persistent, queryable knowledge base. Use it actively throughout every session.
@@ -71,6 +81,21 @@ Whenever you discover something worth preserving — a working pattern, an API q
 
 Do **not** wait until the end of the session. Propose knowledge units as soon as insights are discovered.
 
+### Document Quirks, Roadblocks, and API Structures
+
+Whenever you encounter unexpected behavior, a non-obvious limitation, or a working pattern through trial and error, **immediately store it in CQ via `cq-propose`**. Do not wait until the end of the session.
+
+Specifically, always capture:
+
+- **API quirks**: required fields not obvious from the docs, silently ignored fields, misleading error messages, or undocumented defaults (e.g., "PUT /api/groups requires `name` even when only changing peers, else returns 422").
+- **Roadblocks and failure modes**: things that look like they should work but don't, and the actual root cause (e.g., "Netbird Networks subnet resources do NOT install OS-level routes on client peers — use classic routes instead").
+- **Working patterns**: the exact sequence of steps or API calls that solved a problem, so the same effort is not repeated.
+- **Non-obvious dependencies**: services or configs that must be in a certain state before a step will succeed.
+
+Use `⚠️` in the `detail` field to mark critical pitfalls that would cause hard-to-diagnose failures.
+
+The goal is to avoid duplicating debugging effort across sessions. If you wasted time on something, capture it so future sessions don't repeat the same journey.
+
 ### ⚑ Per-Turn CQ Checklist
 
 **Before finishing every response**, ask yourself:
@@ -93,6 +118,7 @@ Before context compaction occurs, and at the end of every session:
 
 1. Call `cq-reflect` with a summary of the session context to surface any candidate knowledge units you may have missed.
 2. Review the candidates and call `cq-propose` for each one that is genuinely useful and not already stored.
+3. If `AGENTS.md` or `copilot-instructions.md` were updated during the session, run `git -C ~/.copilot/skills add -A && git -C ~/.copilot/skills commit -m "<message>"` and push.
 
 ## Security: Credential and Secret Protection
 
