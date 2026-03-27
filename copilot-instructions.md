@@ -60,6 +60,8 @@ This prevents unintended side effects from stale assumptions (e.g., deleting a p
 
 ## CQ Knowledge Base
 
+> ⚠️ **CQ has no local storage.** All knowledge units are stored exclusively in the remote team API (`cq-team-api`). If the team API is unreachable, `cq-propose` will fail — do **not** rely on local fallback. Verify connectivity with `cq-status` at session start before attempting to store or retrieve knowledge.
+
 The `cq` MCP server is a persistent, queryable knowledge base. Use it actively throughout every session.
 
 ### During the Session: Confirm and Flag
