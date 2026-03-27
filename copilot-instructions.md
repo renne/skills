@@ -12,6 +12,17 @@
 
 ---
 
+# ⚠️ BEFORE EDITING THIS FILE
+
+**Before making any change to this file, you MUST:**
+
+1. **Check for instruction loops** — Re-read the entire file and verify no step would be performed twice. If the new directive already exists (even under a different heading), do NOT add it again.
+2. **Check for breaking situations** — Confirm the change does not contradict, override, or render unreachable any other directive already present. If a conflict is found, resolve it explicitly (remove the conflicting instruction) rather than leaving both.
+
+Only proceed with the edit once both checks pass.
+
+---
+
 # Copilot Instructions
 
 I am GitHub Copilot, an AI-powered code completion tool that helps you write code faster and with fewer errors.
@@ -41,9 +52,8 @@ Two separate repositories hold **existing** reference knowledge. Pull and read t
 A library of agent skills is maintained at `~/.copilot/skills/` and kept up to date via Git with submodules.
 
 Before starting any task:
-1. Run `git -C ~/.copilot/skills pull --recurse-submodules && git -C ~/.copilot/skills submodule update --init --recursive --remote` to ensure skills are current.
-2. Search `~/.copilot/skills/` for relevant `SKILL.md` files matching the task domain.
-3. Read and follow the instructions in any matching skill before proceeding.
+1. Search `~/.copilot/skills/` for relevant `SKILL.md` files matching the task domain.
+2. Read and follow the instructions in any matching skill before proceeding.
 
 ### Skill Locations
 
@@ -73,18 +83,6 @@ Network configurations are defined in `networks/` with YAML files per network, s
 ## CQ Knowledge Base
 
 The `cq` MCP server is a persistent, queryable knowledge base. Use it actively throughout every session.
-
-### Session Start: Connect and Build a Mindmap
-
-At the **very start of every session**, before doing any work:
-
-1. Call `cq-status` to verify connectivity and get an overview of stored domain counts.
-2. Based on the task description and available domains, call `cq-query` for each relevant domain cluster (e.g., `["networking", "netbird"]`, `["homeassistant", "automation"]`, `["docker", "compose"]`). Use broad domain tags first, then narrow.
-3. Mentally (or in a session note) assemble a **mindmap** of what is already known:
-   - Top-level nodes = domain areas with stored knowledge
-   - Child nodes = individual knowledge units (summary + recommended action)
-   - Note confidence levels — low-confidence units should be verified before acting on them
-4. Use this mindmap to inform your approach: prefer high-confidence known patterns over re-discovering solutions from scratch.
 
 ### During the Session: Confirm and Flag
 
@@ -127,12 +125,6 @@ Before context compaction occurs, and at the end of every session:
 
 1. Call `cq-reflect` with a summary of the session context to surface any candidate knowledge units you may have missed.
 2. Review the candidates and call `cq-propose` for each one that is genuinely useful and not already stored.
-
-## Pre-Compaction Save
-
-Before context compaction occurs, immediately persist any learned data, discovered patterns, or accumulated changes:
-
-1. Run the CQ session-end steps above to persist all insights to the `cq` knowledge base.
 
 ## Security: Credential and Secret Protection
 
