@@ -3,10 +3,10 @@ AI skills collection
 
 Clone this repository with:
 ```bash
-git clone --recurse-submodules https://github.com/renne/skills
+git clone https://github.com/renne/skills
 ```
 
-Each skill is a directory containing a `SKILL.md` file following the [VS Code Agent Skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills) open standard. See [AGENTS.md](AGENTS.md) for contribution rules.
+Internal skills are stored in the [CQ knowledge base](https://github.com/mozilla-ai/cq). This repository is an index of external skills with links to their upstream documentation sources. See [AGENTS.md](AGENTS.md) for contribution rules.
 
 ## Skills
 
