@@ -81,12 +81,6 @@ Whenever you discover something worth preserving — a working pattern, an API q
 - `domain`: array of relevant domain tags (e.g., `["netbird", "routing"]`)
 - `language` / `framework` if applicable
 
-Do **not** wait until the end of the session. Propose knowledge units as soon as insights are discovered.
-
-### Document Quirks, Roadblocks, and API Structures
-
-Whenever you encounter unexpected behavior, a non-obvious limitation, or a working pattern through trial and error, **immediately store it in CQ via `cq-propose`**. Do not wait until the end of the session.
-
 Specifically, always capture:
 
 - **API quirks**: required fields not obvious from the docs, silently ignored fields, misleading error messages, or undocumented defaults (e.g., "PUT /api/groups requires `name` even when only changing peers, else returns 422").
@@ -94,9 +88,7 @@ Specifically, always capture:
 - **Working patterns**: the exact sequence of steps or API calls that solved a problem, so the same effort is not repeated.
 - **Non-obvious dependencies**: services or configs that must be in a certain state before a step will succeed.
 
-Use `⚠️` in the `detail` field to mark critical pitfalls that would cause hard-to-diagnose failures.
-
-The goal is to avoid duplicating debugging effort across sessions. If you wasted time on something, capture it so future sessions don't repeat the same journey.
+Use `⚠️` in the `detail` field to mark critical pitfalls that would cause hard-to-diagnose failures. The goal is to avoid duplicating debugging effort across sessions — if you wasted time on something, capture it so future sessions don't repeat the same journey.
 
 ### ⚑ Per-Turn CQ Checklist
 
