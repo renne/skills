@@ -3,11 +3,12 @@
 **Before responding to ANY user message at the start of a new session, you MUST complete ALL of the following steps. Do not skip them, do not defer them, do not address the user's request first — even if the first message is simple, urgent, or unrelated to these topics.**
 
 1. **Pull skills repo:** `git -C ~/.copilot/skills pull --recurse-submodules && git -C ~/.copilot/skills submodule update --init --recursive --remote`
-2. **Connect to CQ:** Call `cq-status` to verify connectivity and get an overview of stored domain counts.
-3. **Query CQ for relevant domains:** Based on the task description, call `cq-query` for each relevant domain cluster. Start broad (e.g., `["networking", "netbird"]`, `["homeassistant", "automation"]`, `["docker", "compose"]`, `["linux", "proxmox"]`), then narrow.
-4. **Build a mindmap** of what is already known from CQ results. Prefer high-confidence stored patterns over re-discovering solutions from scratch.
+2. **Get current date and time:** Run `date` and keep the result in context for the entire session. Use it to provide time-aware answers and avoid presenting outdated information as current.
+3. **Connect to CQ:** Call `cq-status` to verify connectivity and get an overview of stored domain counts.
+4. **Query CQ for relevant domains:** Based on the task description, call `cq-query` for each relevant domain cluster. Start broad (e.g., `["networking", "netbird"]`, `["homeassistant", "automation"]`, `["docker", "compose"]`, `["linux", "proxmox"]`), then narrow.
+5. **Build a mindmap** of what is already known from CQ results. Prefer high-confidence stored patterns over re-discovering solutions from scratch.
 
-**Only after completing steps 1–4 may you respond to the user's first message.**
+**Only after completing steps 1–5 may you respond to the user's first message.**
 
 ---
 
